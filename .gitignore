@@ -1,0 +1,46 @@
+# Unityが自動生成する不要ファイル・フォルダ
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# OS関連
+.DS_Store
+Thumbs.db
+
+# Visual Studio関連
+.vs/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+
+# Crash/Log
+*.log
+sysinfo.txt
+
+# Unity Visual Scripting
+/[Aa]ssets/Unity.VisualScripting.Generated/
+
+# Asset Store Tools（使ってなければOK）
+# /Assets/AssetStoreTools*
+
+# Git管理にいらないもの
+*.apk
+*.aab
+*.unitypackage
+*.blend1
+*.blend1.meta
+
+# Addressablesの一時ファイル
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# LFS対象外にしたいもの
+MemoryCaptures/
+Recordings/
