@@ -1,0 +1,1209 @@
+fileFormatVersion: 2
+guid: 8f13b0eb8d1715d4a8e4c57bdf884a59
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1461612877088082882
+    second: boeRTaV_0
+  - first:
+      213: 9165403661185477286
+    second: boeRTaV_1
+  - first:
+      213: 4994304142806004465
+    second: boeRTaV_2
+  - first:
+      213: -5625605717490968208
+    second: boeRTaV_3
+  - first:
+      213: 52739144720318287
+    second: boeRTaV_4
+  - first:
+      213: -4362989257990414570
+    second: boeRTaV_5
+  - first:
+      213: -7025809954426230859
+    second: boeRTaV_6
+  - first:
+      213: 6769898336252040245
+    second: boeRTaV_7
+  - first:
+      213: 1391716046453058472
+    second: boeRTaV_8
+  - first:
+      213: -6259236058814494227
+    second: boeRTaV_9
+  - first:
+      213: 6142451309974790849
+    second: boeRTaV_10
+  - first:
+      213: 4869361319176472359
+    second: boeRTaV_11
+  - first:
+      213: 411448384882530384
+    second: boeRTaV_12
+  - first:
+      213: -2874762424526785324
+    second: boeRTaV_13
+  - first:
+      213: 8175422467172377573
+    second: boeRTaV_14
+  - first:
+      213: -8641166035576605623
+    second: boeRTaV_15
+  - first:
+      213: -8957467539431840247
+    second: boeRTaV_16
+  - first:
+      213: -1543428692736293701
+    second: boeRTaV_17
+  - first:
+      213: 5020900139926496427
+    second: boeRTaV_18
+  - first:
+      213: -3259905247216071759
+    second: boeRTaV_19
+  - first:
+      213: -7360830618852374608
+    second: boeRTaV_20
+  - first:
+      213: -1874216533295232582
+    second: boeRTaV_21
+  - first:
+      213: -4757712293478537972
+    second: boeRTaV_22
+  - first:
+      213: 3805460590424670088
+    second: boeRTaV_23
+  - first:
+      213: 5269563741957939299
+    second: boeRTaV_24
+  - first:
+      213: -6628330694035581805
+    second: boeRTaV_25
+  - first:
+      213: 8854060828510599603
+    second: boeRTaV_26
+  - first:
+      213: 2815265556770784837
+    second: boeRTaV_27
+  - first:
+      213: 442295563136354281
+    second: boeRTaV_28
+  - first:
+      213: 6876751103219263150
+    second: boeRTaV_29
+  - first:
+      213: 2171425238580271918
+    second: boeRTaV_30
+  - first:
+      213: 401958344621206538
+    second: boeRTaV_31
+  - first:
+      213: 1338295661850277381
+    second: boeRTaV_32
+  - first:
+      213: 6566835895150815079
+    second: boeRTaV_33
+  - first:
+      213: 5669726856340185182
+    second: boeRTaV_34
+  - first:
+      213: -4371318290468212316
+    second: boeRTaV_35
+  - first:
+      213: -7509145211275635776
+    second: boeRTaV_36
+  - first:
+      213: -8732157770674971935
+    second: boeRTaV_37
+  - first:
+      213: 7867342944941798442
+    second: boeRTaV_38
+  - first:
+      213: -256288361688856985
+    second: boeRTaV_39
+  - first:
+      213: -5069182819881436435
+    second: boeRTaV_40
+  - first:
+      213: 2355780390786460460
+    second: boeRTaV_41
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boeRTaV_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 897
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cbc8f1fa21b84410800000000000000
+      internalID: 1461612877088082882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 895
+        width: 258
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aa6608c11e023f70800000000000000
+      internalID: 9165403661185477286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_2
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 877
+        width: 60
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f2b63c28255f4540800000000000000
+      internalID: 4994304142806004465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_3
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 875
+        width: 66
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0795b8ad765dde1b0800000000000000
+      internalID: -5625605717490968208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_4
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 859
+        width: 24
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4fffc209fd5bb000800000000000000
+      internalID: 52739144720318287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_5
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 767
+        width: 178
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61fd2aec26c8373c0800000000000000
+      internalID: -4362989257990414570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_6
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 767
+        width: 236
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b7650f121f4f7e90800000000000000
+      internalID: -7025809954426230859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_7
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 923
+        width: 62
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5349fc91ba283fd50800000000000000
+      internalID: 6769898336252040245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_8
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 935
+        width: 62
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8abab01ee5e505310800000000000000
+      internalID: 1391716046453058472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_9
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 809
+        width: 54
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de9cb05a7f9b229a0800000000000000
+      internalID: -6259236058814494227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_10
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 797
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c22e2d1cee5e3550800000000000000
+      internalID: 6142451309974790849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_11
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 805
+        width: 60
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7278a802252739340800000000000000
+      internalID: 4869361319176472359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_12
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 805
+        width: 60
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 058d4584022c5b500800000000000000
+      internalID: 411448384882530384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_13
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 771
+        width: 64
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d4b0785ecaca18d0800000000000000
+      internalID: -2874762424526785324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_14
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 769
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e3ae8c2b6fe47170800000000000000
+      internalID: 8175422467172377573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_15
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 769
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94439440649641880800000000000000
+      internalID: -8641166035576605623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_16
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 769
+        width: 58
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 906a2194bbea0b380800000000000000
+      internalID: -8957467539431840247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_17
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 767
+        width: 43
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb4ce4908c3a49ae0800000000000000
+      internalID: -1543428692736293701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_18
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 667
+        width: 56
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba4270d4312dda540800000000000000
+      internalID: 5020900139926496427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_19
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 657
+        width: 66
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bb014a037d72c2d0800000000000000
+      internalID: -3259905247216071759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_20
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 661
+        width: 62
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b74c7f2d8319d990800000000000000
+      internalID: -7360830618852374608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_21
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 665
+        width: 58
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab906c43ef17df5e0800000000000000
+      internalID: -1874216533295232582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_22
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 667
+        width: 56
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c05e3b360e539fdb0800000000000000
+      internalID: -4757712293478537972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_23
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 671
+        width: 40
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88fb20bae36bfc430800000000000000
+      internalID: 3805460590424670088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_24
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 669
+        width: 58
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3606ea0dd40412940800000000000000
+      internalID: 5269563741957939299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_25
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 713
+        width: 36
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 394d0382a507304a0800000000000000
+      internalID: -6628330694035581805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_26
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 721
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b93317a961ffda70800000000000000
+      internalID: 8854060828510599603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_27
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 737
+        width: 8
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54607b3ab15d11720800000000000000
+      internalID: 2815265556770784837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_28
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 705
+        width: 118
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e74976a879532600800000000000000
+      internalID: 442295563136354281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_29
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 705
+        width: 114
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea6e82c91b02f6f50800000000000000
+      internalID: 6876751103219263150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_30
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 689
+        width: 46
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2b15e1ffb3722e10800000000000000
+      internalID: 2171425238580271918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_31
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 689
+        width: 46
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0ca6a91cfa049500800000000000000
+      internalID: 401958344621206538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_32
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 689
+        width: 46
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 506380950d4929210800000000000000
+      internalID: 1338295661850277381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_33
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 641
+        width: 60
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 767afbc3476122b50800000000000000
+      internalID: 6566835895150815079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_34
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 641
+        width: 60
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5026ad498aeeae40800000000000000
+      internalID: 5669726856340185182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_35
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 641
+        width: 60
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a17970dc25f553c0800000000000000
+      internalID: -4371318290468212316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_36
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 639
+        width: 50
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c3171b27382ac790800000000000000
+      internalID: -7509145211275635776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_37
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 517
+        width: 130
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ea5044c5c421d680800000000000000
+      internalID: -8732157770674971935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_38
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 645
+        width: 44
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a247e67b9ba6e2d60800000000000000
+      internalID: 7867342944941798442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1024
+        height: 641
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7660879c71b717cf0800000000000000
+      internalID: -256288361688856985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_40
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 0
+        width: 156
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dea347f3515a6a9b0800000000000000
+      internalID: -5069182819881436435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boeRTaV_41
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 0
+        width: 62
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2b68a1b8c961b020800000000000000
+      internalID: 2355780390786460460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      boeRTaV_0: 1461612877088082882
+      boeRTaV_1: 9165403661185477286
+      boeRTaV_10: 6142451309974790849
+      boeRTaV_11: 4869361319176472359
+      boeRTaV_12: 411448384882530384
+      boeRTaV_13: -2874762424526785324
+      boeRTaV_14: 8175422467172377573
+      boeRTaV_15: -8641166035576605623
+      boeRTaV_16: -8957467539431840247
+      boeRTaV_17: -1543428692736293701
+      boeRTaV_18: 5020900139926496427
+      boeRTaV_19: -3259905247216071759
+      boeRTaV_2: 4994304142806004465
+      boeRTaV_20: -7360830618852374608
+      boeRTaV_21: -1874216533295232582
+      boeRTaV_22: -4757712293478537972
+      boeRTaV_23: 3805460590424670088
+      boeRTaV_24: 5269563741957939299
+      boeRTaV_25: -6628330694035581805
+      boeRTaV_26: 8854060828510599603
+      boeRTaV_27: 2815265556770784837
+      boeRTaV_28: 442295563136354281
+      boeRTaV_29: 6876751103219263150
+      boeRTaV_3: -5625605717490968208
+      boeRTaV_30: 2171425238580271918
+      boeRTaV_31: 401958344621206538
+      boeRTaV_32: 1338295661850277381
+      boeRTaV_33: 6566835895150815079
+      boeRTaV_34: 5669726856340185182
+      boeRTaV_35: -4371318290468212316
+      boeRTaV_36: -7509145211275635776
+      boeRTaV_37: -8732157770674971935
+      boeRTaV_38: 7867342944941798442
+      boeRTaV_39: -256288361688856985
+      boeRTaV_4: 52739144720318287
+      boeRTaV_40: -5069182819881436435
+      boeRTaV_41: 2355780390786460460
+      boeRTaV_5: -4362989257990414570
+      boeRTaV_6: -7025809954426230859
+      boeRTaV_7: 6769898336252040245
+      boeRTaV_8: 1391716046453058472
+      boeRTaV_9: -6259236058814494227
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
