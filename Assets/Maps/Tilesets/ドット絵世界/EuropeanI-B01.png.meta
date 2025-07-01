@@ -1,0 +1,1235 @@
+fileFormatVersion: 2
+guid: 20b1c94ae177c6c42ad3b32bd305ae36
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6300557403402250491
+    second: EuropeanI-B01_0
+  - first:
+      213: 1299790747342745276
+    second: EuropeanI-B01_1
+  - first:
+      213: 8156863638955414842
+    second: EuropeanI-B01_2
+  - first:
+      213: -572038256873251993
+    second: EuropeanI-B01_3
+  - first:
+      213: 7923023387480557441
+    second: EuropeanI-B01_4
+  - first:
+      213: 5327206707024809258
+    second: EuropeanI-B01_5
+  - first:
+      213: -5765447216821772599
+    second: EuropeanI-B01_6
+  - first:
+      213: -2654937240932805973
+    second: EuropeanI-B01_7
+  - first:
+      213: -9058297675475650027
+    second: EuropeanI-B01_8
+  - first:
+      213: -8029977543072076155
+    second: EuropeanI-B01_9
+  - first:
+      213: 6101749052988586439
+    second: EuropeanI-B01_10
+  - first:
+      213: 2284508283579154976
+    second: EuropeanI-B01_11
+  - first:
+      213: -6507366155155634981
+    second: EuropeanI-B01_12
+  - first:
+      213: 2521416889896917750
+    second: EuropeanI-B01_13
+  - first:
+      213: -7315522165287860357
+    second: EuropeanI-B01_14
+  - first:
+      213: -1581760732743359722
+    second: EuropeanI-B01_15
+  - first:
+      213: -2476180127006015747
+    second: EuropeanI-B01_16
+  - first:
+      213: 5676271685540057831
+    second: EuropeanI-B01_17
+  - first:
+      213: 4902635569346015508
+    second: EuropeanI-B01_18
+  - first:
+      213: 351269055570165351
+    second: EuropeanI-B01_19
+  - first:
+      213: 5572657255260665243
+    second: EuropeanI-B01_20
+  - first:
+      213: 6384861476705424851
+    second: EuropeanI-B01_21
+  - first:
+      213: -2140502062449376681
+    second: EuropeanI-B01_22
+  - first:
+      213: 8715044639303517637
+    second: EuropeanI-B01_23
+  - first:
+      213: 1546298935446253338
+    second: EuropeanI-B01_24
+  - first:
+      213: 9005210613058897032
+    second: EuropeanI-B01_25
+  - first:
+      213: -307839058157516702
+    second: EuropeanI-B01_26
+  - first:
+      213: -4621167720258780900
+    second: EuropeanI-B01_27
+  - first:
+      213: -8379382222617991191
+    second: EuropeanI-B01_28
+  - first:
+      213: 3621344399350062991
+    second: EuropeanI-B01_29
+  - first:
+      213: 170063413387589003
+    second: EuropeanI-B01_30
+  - first:
+      213: 7778026746211405744
+    second: EuropeanI-B01_31
+  - first:
+      213: 6577148499495273084
+    second: EuropeanI-B01_32
+  - first:
+      213: 6092268063627525833
+    second: EuropeanI-B01_33
+  - first:
+      213: 259894076516279741
+    second: EuropeanI-B01_34
+  - first:
+      213: 8946936575464575688
+    second: EuropeanI-B01_35
+  - first:
+      213: 5505857304659095833
+    second: EuropeanI-B01_36
+  - first:
+      213: 8618546091742155779
+    second: EuropeanI-B01_37
+  - first:
+      213: -2202701576350596873
+    second: EuropeanI-B01_38
+  - first:
+      213: -6031555843416366294
+    second: EuropeanI-B01_39
+  - first:
+      213: -3863608515328886407
+    second: EuropeanI-B01_40
+  - first:
+      213: 6618177913004288370
+    second: EuropeanI-B01_41
+  - first:
+      213: 5303052931055334200
+    second: EuropeanI-B01_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EuropeanI-B01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 447
+        width: 161
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50750436c6cef88a0800000000000000
+      internalID: -6300557403402250491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_1
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 501
+        width: 98
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbe24b15cc8c90210800000000000000
+      internalID: 1299790747342745276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_2
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 479
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a35dc314340033170800000000000000
+      internalID: 8156863638955414842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_3
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 479
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76bd2257c36bf08f0800000000000000
+      internalID: -572038256873251993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_4
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 479
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18704edfacb34fd60800000000000000
+      internalID: 7923023387480557441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_5
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 421
+        width: 21
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2dca49764a0ee940800000000000000
+      internalID: 5327206707024809258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_6
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 430
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ced21e8d440dffa0800000000000000
+      internalID: -5765447216821772599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_7
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 417
+        width: 31
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba29e3555a4c72bd0800000000000000
+      internalID: -2654937240932805973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_8
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 425
+        width: 31
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51af68fc1467a4280800000000000000
+      internalID: -9058297675475650027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_9
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 453
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e23de18f9cf8090800000000000000
+      internalID: -8029977543072076155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_10
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 453
+        width: 24
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9f5fb6f64cda450800000000000000
+      internalID: 6101749052988586439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_11
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 449
+        width: 30
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0224c291e2434bf10800000000000000
+      internalID: 2284508283579154976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_12
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 449
+        width: 31
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd48c8a95f031b5a0800000000000000
+      internalID: -6507366155155634981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_13
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 416
+        width: 20
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fad9f46d4fddf220800000000000000
+      internalID: 2521416889896917750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_14
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 416
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b774587995b0a7a90800000000000000
+      internalID: -7315522165287860357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_15
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 415
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 613ab2d7ef47c0ae0800000000000000
+      internalID: -1581760732743359722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_16
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 420
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfebce93b47d2add0800000000000000
+      internalID: -2476180127006015747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_17
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 420
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e21939160b26ce40800000000000000
+      internalID: 5676271685540057831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_18
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 422
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41170163319a90440800000000000000
+      internalID: 4902635569346015508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_19
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 415
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76eb8dd4855ffd400800000000000000
+      internalID: 351269055570165351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_20
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 353
+        width: 154
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b95b0da9f3e065d40800000000000000
+      internalID: 5572657255260665243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 321
+        width: 97
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d55a134fa59b9850800000000000000
+      internalID: 6384861476705424851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 321
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 752c6be07b86b42e0800000000000000
+      internalID: -2140502062449376681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_23
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 327
+        width: 28
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c5cb57dcee02f870800000000000000
+      internalID: 8715044639303517637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_24
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 223
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1fa6db60be857510800000000000000
+      internalID: 1546298935446253338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_25
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 353
+        width: 91
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88404f6475fe8fc70800000000000000
+      internalID: 9005210613058897032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_26
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 319
+        width: 64
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 268c782f1065abbf0800000000000000
+      internalID: -307839058157516702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 134
+        width: 193
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c11497241705edfb0800000000000000
+      internalID: -4621167720258780900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_28
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 223
+        width: 64
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e7a1afa34476bb80800000000000000
+      internalID: -8379382222617991191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_29
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 223
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8f5c946b89914230800000000000000
+      internalID: 3621344399350062991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 159
+        width: 64
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b85f14006cf2c5200800000000000000
+      internalID: 170063413387589003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_31
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 170
+        width: 75
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf0b6dad1a11fb60800000000000000
+      internalID: 7778026746211405744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_32
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 178
+        width: 34
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c72c86b86b9b64b50800000000000000
+      internalID: 6577148499495273084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_33
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 170
+        width: 75
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ceb9f096851c8450800000000000000
+      internalID: 6092268063627525833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_34
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 178
+        width: 33
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db52bfd19445b9300800000000000000
+      internalID: 259894076516279741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 67
+        width: 129
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c214889967e92c70800000000000000
+      internalID: 8946936575464575688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 257
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 911f13c1c0cb86c40800000000000000
+      internalID: 5505857304659095833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_37
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 76
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3045f96e10a3b9770800000000000000
+      internalID: 8618546091742155779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_38
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 106
+        width: 75
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f00e63369e6e61e0800000000000000
+      internalID: -2202701576350596873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_39
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 109
+        width: 63
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a236c3ebaeb9b4ca0800000000000000
+      internalID: -6031555843416366294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_40
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 110
+        width: 97
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 979b5ac8684b16ac0800000000000000
+      internalID: -3863608515328886407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_41
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 15
+        width: 161
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279e4fc4fbd78db50800000000000000
+      internalID: 6618177913004288370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EuropeanI-B01_42
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 15
+        width: 77
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 833b5a44b8a389940800000000000000
+      internalID: 5303052931055334200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EuropeanI-B01_0: -6300557403402250491
+      EuropeanI-B01_1: 1299790747342745276
+      EuropeanI-B01_10: 6101749052988586439
+      EuropeanI-B01_11: 2284508283579154976
+      EuropeanI-B01_12: -6507366155155634981
+      EuropeanI-B01_13: 2521416889896917750
+      EuropeanI-B01_14: -7315522165287860357
+      EuropeanI-B01_15: -1581760732743359722
+      EuropeanI-B01_16: -2476180127006015747
+      EuropeanI-B01_17: 5676271685540057831
+      EuropeanI-B01_18: 4902635569346015508
+      EuropeanI-B01_19: 351269055570165351
+      EuropeanI-B01_2: 8156863638955414842
+      EuropeanI-B01_20: 5572657255260665243
+      EuropeanI-B01_21: 6384861476705424851
+      EuropeanI-B01_22: -2140502062449376681
+      EuropeanI-B01_23: 8715044639303517637
+      EuropeanI-B01_24: 1546298935446253338
+      EuropeanI-B01_25: 9005210613058897032
+      EuropeanI-B01_26: -307839058157516702
+      EuropeanI-B01_27: -4621167720258780900
+      EuropeanI-B01_28: -8379382222617991191
+      EuropeanI-B01_29: 3621344399350062991
+      EuropeanI-B01_3: -572038256873251993
+      EuropeanI-B01_30: 170063413387589003
+      EuropeanI-B01_31: 7778026746211405744
+      EuropeanI-B01_32: 6577148499495273084
+      EuropeanI-B01_33: 6092268063627525833
+      EuropeanI-B01_34: 259894076516279741
+      EuropeanI-B01_35: 8946936575464575688
+      EuropeanI-B01_36: 5505857304659095833
+      EuropeanI-B01_37: 8618546091742155779
+      EuropeanI-B01_38: -2202701576350596873
+      EuropeanI-B01_39: -6031555843416366294
+      EuropeanI-B01_4: 7923023387480557441
+      EuropeanI-B01_40: -3863608515328886407
+      EuropeanI-B01_41: 6618177913004288370
+      EuropeanI-B01_42: 5303052931055334200
+      EuropeanI-B01_5: 5327206707024809258
+      EuropeanI-B01_6: -5765447216821772599
+      EuropeanI-B01_7: -2654937240932805973
+      EuropeanI-B01_8: -9058297675475650027
+      EuropeanI-B01_9: -8029977543072076155
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

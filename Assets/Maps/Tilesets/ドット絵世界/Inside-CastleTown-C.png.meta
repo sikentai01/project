@@ -1,0 +1,1963 @@
+fileFormatVersion: 2
+guid: fd83c097a4fdf894bb9ffaf734209532
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -352273910250607092
+    second: Inside-CastleTown-C_0
+  - first:
+      213: 2705838174567130838
+    second: Inside-CastleTown-C_1
+  - first:
+      213: 2821272564023062117
+    second: Inside-CastleTown-C_2
+  - first:
+      213: 1195497695729673747
+    second: Inside-CastleTown-C_3
+  - first:
+      213: -2503050085139933811
+    second: Inside-CastleTown-C_4
+  - first:
+      213: -2196029958249381542
+    second: Inside-CastleTown-C_5
+  - first:
+      213: 7303085188835231231
+    second: Inside-CastleTown-C_6
+  - first:
+      213: -1437302937094081882
+    second: Inside-CastleTown-C_7
+  - first:
+      213: -2971181786377821139
+    second: Inside-CastleTown-C_8
+  - first:
+      213: 3798115530163923144
+    second: Inside-CastleTown-C_9
+  - first:
+      213: -3958692194978962583
+    second: Inside-CastleTown-C_10
+  - first:
+      213: 8467359849300276969
+    second: Inside-CastleTown-C_11
+  - first:
+      213: 7810501126901828749
+    second: Inside-CastleTown-C_12
+  - first:
+      213: 1701554855919135303
+    second: Inside-CastleTown-C_13
+  - first:
+      213: -4275202707196441745
+    second: Inside-CastleTown-C_14
+  - first:
+      213: 6145853436738043044
+    second: Inside-CastleTown-C_15
+  - first:
+      213: 3639034668727561212
+    second: Inside-CastleTown-C_16
+  - first:
+      213: 6865401098324513828
+    second: Inside-CastleTown-C_17
+  - first:
+      213: -4741661004610464965
+    second: Inside-CastleTown-C_18
+  - first:
+      213: -613939878747717026
+    second: Inside-CastleTown-C_19
+  - first:
+      213: 667800993729492801
+    second: Inside-CastleTown-C_20
+  - first:
+      213: 6453484116395467024
+    second: Inside-CastleTown-C_21
+  - first:
+      213: -1223992898277329736
+    second: Inside-CastleTown-C_22
+  - first:
+      213: 7697849549711103149
+    second: Inside-CastleTown-C_23
+  - first:
+      213: 7425856414668910860
+    second: Inside-CastleTown-C_24
+  - first:
+      213: 3501585808199267225
+    second: Inside-CastleTown-C_25
+  - first:
+      213: 6689959724506583619
+    second: Inside-CastleTown-C_26
+  - first:
+      213: -8412940134145711114
+    second: Inside-CastleTown-C_27
+  - first:
+      213: -5844038370337202529
+    second: Inside-CastleTown-C_28
+  - first:
+      213: -5392489617746850301
+    second: Inside-CastleTown-C_29
+  - first:
+      213: 3808770813722906439
+    second: Inside-CastleTown-C_30
+  - first:
+      213: -3670286871974919677
+    second: Inside-CastleTown-C_31
+  - first:
+      213: 2134995657438149866
+    second: Inside-CastleTown-C_32
+  - first:
+      213: 7041850028834105657
+    second: Inside-CastleTown-C_33
+  - first:
+      213: -6503260747073676876
+    second: Inside-CastleTown-C_34
+  - first:
+      213: -718560275498508225
+    second: Inside-CastleTown-C_35
+  - first:
+      213: -8569564174387930778
+    second: Inside-CastleTown-C_36
+  - first:
+      213: -489800976131142955
+    second: Inside-CastleTown-C_37
+  - first:
+      213: -3004226489269367485
+    second: Inside-CastleTown-C_38
+  - first:
+      213: -148822924128613578
+    second: Inside-CastleTown-C_39
+  - first:
+      213: 2645388613194093467
+    second: Inside-CastleTown-C_40
+  - first:
+      213: -337382953897835670
+    second: Inside-CastleTown-C_41
+  - first:
+      213: -4751042213195221127
+    second: Inside-CastleTown-C_42
+  - first:
+      213: -3518143111627127340
+    second: Inside-CastleTown-C_43
+  - first:
+      213: 177462684215944313
+    second: Inside-CastleTown-C_44
+  - first:
+      213: -7815173307472053983
+    second: Inside-CastleTown-C_45
+  - first:
+      213: -7024706693362969581
+    second: Inside-CastleTown-C_46
+  - first:
+      213: -112777464157337372
+    second: Inside-CastleTown-C_47
+  - first:
+      213: -4524569085312053082
+    second: Inside-CastleTown-C_48
+  - first:
+      213: 4476957493728359583
+    second: Inside-CastleTown-C_49
+  - first:
+      213: -6161895415748336575
+    second: Inside-CastleTown-C_50
+  - first:
+      213: -7323597785792152312
+    second: Inside-CastleTown-C_51
+  - first:
+      213: 672046555663977648
+    second: Inside-CastleTown-C_52
+  - first:
+      213: 9184705182837456075
+    second: Inside-CastleTown-C_53
+  - first:
+      213: 262574108477953254
+    second: Inside-CastleTown-C_54
+  - first:
+      213: 9047705958615032226
+    second: Inside-CastleTown-C_55
+  - first:
+      213: -8552000465083794359
+    second: Inside-CastleTown-C_56
+  - first:
+      213: -6365706698157242128
+    second: Inside-CastleTown-C_57
+  - first:
+      213: -6012954617244802341
+    second: Inside-CastleTown-C_58
+  - first:
+      213: -7856155899846149342
+    second: Inside-CastleTown-C_59
+  - first:
+      213: -5126778072681378636
+    second: Inside-CastleTown-C_60
+  - first:
+      213: -746704634691783882
+    second: Inside-CastleTown-C_61
+  - first:
+      213: -6566351771092990666
+    second: Inside-CastleTown-C_62
+  - first:
+      213: -8530441323938795455
+    second: Inside-CastleTown-C_63
+  - first:
+      213: 4505111924658676112
+    second: Inside-CastleTown-C_64
+  - first:
+      213: 8069856597880937501
+    second: Inside-CastleTown-C_65
+  - first:
+      213: -6581623788518255406
+    second: Inside-CastleTown-C_66
+  - first:
+      213: -5508901903113971371
+    second: Inside-CastleTown-C_67
+  - first:
+      213: 8002849758938626341
+    second: Inside-CastleTown-C_68
+  - first:
+      213: -6129736212294776129
+    second: Inside-CastleTown-C_69
+  - first:
+      213: 4969504360145476763
+    second: Inside-CastleTown-C_70
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 481
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0eefdbbeb87c1bf0800000000000000
+      internalID: -352273910250607092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 488
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d6e3cecb711d8520800000000000000
+      internalID: 2705838174567130838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_2
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 480
+        width: 62
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56e6621037c272720800000000000000
+      internalID: 2821272564023062117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_3
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 483
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316e3cbf1d2479010800000000000000
+      internalID: 1195497695729673747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_4
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 484
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8519349531634dd0800000000000000
+      internalID: -2503050085139933811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_5
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 415
+        width: 34
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a510e6653622681e0800000000000000
+      internalID: -2196029958249381542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_6
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 481
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff5c0fc2945c95560800000000000000
+      internalID: 7303085188835231231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_7
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 487
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a2b1e7089cad0ce0800000000000000
+      internalID: -1437302937094081882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_8
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 489
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d24e6d348ed34c6d0800000000000000
+      internalID: -2971181786377821139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_9
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 494
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c8a05f83fd95b430800000000000000
+      internalID: 3798115530163923144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_10
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 487
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 963ea273c66ef09c0800000000000000
+      internalID: -3958692194978962583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_11
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 455
+        width: 66
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e6b2f2cbea128570800000000000000
+      internalID: 8467359849300276969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_12
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 425
+        width: 65
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8c85c2a469746c60800000000000000
+      internalID: 7810501126901828749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 319
+        width: 257
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74aa6e050232d9710800000000000000
+      internalID: 1701554855919135303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_14
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 463
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6b84cee9cd6ba4c0800000000000000
+      internalID: -4275202707196441745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_15
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 455
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ac726a73257a4550800000000000000
+      internalID: 6145853436738043044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_16
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 459
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfb66d230c2708230800000000000000
+      internalID: 3639034668727561212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_17
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 463
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 424953aacedc64f50800000000000000
+      internalID: 6865401098324513828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_18
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 421
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b331fde407c323eb0800000000000000
+      internalID: -4741661004610464965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_19
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 422
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e52cbcddee8da77f0800000000000000
+      internalID: -613939878747717026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_20
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 387
+        width: 63
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14736e33771844900800000000000000
+      internalID: 667800993729492801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_21
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 391
+        width: 65
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 011a061ac916f8950800000000000000
+      internalID: 6453484116395467024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_22
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 394
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b4349aa1f0830fe0800000000000000
+      internalID: -1223992898277329736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_23
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 394
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da45ee8616144da60800000000000000
+      internalID: 7697849549711103149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_24
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 351
+        width: 64
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c017565b011fd0760800000000000000
+      internalID: 7425856414668910860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_25
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 260
+        width: 83
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99334488db1289030800000000000000
+      internalID: 3501585808199267225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_26
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 265
+        width: 128
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34292ecace287dc50800000000000000
+      internalID: 6689959724506583619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_27
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 263
+        width: 34
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f32e9b858b3f3b80800000000000000
+      internalID: -8412940134145711114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 300
+        width: 65
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9e5c42b01ec5eea0800000000000000
+      internalID: -5844038370337202529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 288
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30e873763470a25b0800000000000000
+      internalID: -5392489617746850301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_30
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 292
+        width: 59
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74f44d610e87bd430800000000000000
+      internalID: 3808770813722906439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_31
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 223
+        width: 66
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 302c7243985801dc0800000000000000
+      internalID: -3670286871974919677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_32
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 223
+        width: 58
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aec3a9e1d3701ad10800000000000000
+      internalID: 2134995657438149866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_33
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 262
+        width: 66
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9392b3aba4da9b160800000000000000
+      internalID: 7041850028834105657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_34
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 261
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b99ee86ec6cfb5a0800000000000000
+      internalID: -6503260747073676876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_35
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 260
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f30643d8c392706f0800000000000000
+      internalID: -718560275498508225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_36
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 95
+        width: 85
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66991b179cac21980800000000000000
+      internalID: -8569564174387930778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_37
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 161
+        width: 75
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da40177b90e339f0800000000000000
+      internalID: -489800976131142955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_38
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 197
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34dc742dce7de46d0800000000000000
+      internalID: -3004226489269367485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_39
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 197
+        width: 24
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b01e8c6564fedf0800000000000000
+      internalID: -148822924128613578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_40
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 223
+        width: 98
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b931c468dee46b420800000000000000
+      internalID: 2645388613194093467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_41
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 229
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a63c5afadff515bf0800000000000000
+      internalID: -337382953897835670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_42
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 159
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 977fc997748e01eb0800000000000000
+      internalID: -4751042213195221127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_43
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 127
+        width: 25
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d54a7ada7b0d2fc0800000000000000
+      internalID: -3518143111627127340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_44
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 135
+        width: 63
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 974249dfe59767200800000000000000
+      internalID: 177462684215944313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_45
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 135
+        width: 63
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 129730e884dea8390800000000000000
+      internalID: -7815173307472053983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_46
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 159
+        width: 33
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3149aca1b7a338e90800000000000000
+      internalID: -7024706693362969581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_47
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 172
+        width: 33
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e88b3e6e755f6ef0800000000000000
+      internalID: -112777464157337372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_48
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 168
+        width: 58
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a0d24c93608531c0800000000000000
+      internalID: -4524569085312053082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_49
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 99
+        width: 33
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94b330ee19512e30800000000000000
+      internalID: 4476957493728359583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_50
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 99
+        width: 31
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 144663934cc8c7aa0800000000000000
+      internalID: -6161895415748336575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_51
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 103
+        width: 31
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d750cad9a5d5a90800000000000000
+      internalID: -7323597785792152312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_52
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 96
+        width: 21
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bc40ee18c6935900800000000000000
+      internalID: 672046555663977648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_53
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 135
+        width: 31
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcc37bd73b0a67f70800000000000000
+      internalID: 9184705182837456075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_54
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 135
+        width: 31
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e41b0fa2c9d4a300800000000000000
+      internalID: 262574108477953254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_55
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a12f6fe1a8ef8d70800000000000000
+      internalID: 9047705958615032226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_56
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 128
+        width: 32
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94c74bf23e0315980800000000000000
+      internalID: -8552000465083794359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_57
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 9
+        width: 321
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f843082c7778a7a0800000000000000
+      internalID: -6365706698157242128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_58
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 96
+        width: 34
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd2249432a1bd8ca0800000000000000
+      internalID: -6012954617244802341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_59
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 95
+        width: 32
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22bb49135d359f290800000000000000
+      internalID: -7856155899846149342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_60
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 98
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bc809771860ad8b0800000000000000
+      internalID: -5126778072681378636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_61
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 103
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 633fe09471c23a5f0800000000000000
+      internalID: -746704634691783882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_62
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 98
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 635cebdaad1afd4a0800000000000000
+      internalID: -6566351771092990666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9
+        width: 65
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 140b055efc8cd9980800000000000000
+      internalID: -8530441323938795455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_64
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 5
+        width: 129
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09128a62d6f558e30800000000000000
+      internalID: 4505111924658676112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_65
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 5
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1c1901e1d3edff60800000000000000
+      internalID: 8069856597880937501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_66
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 6
+        width: 33
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d4db18090069a4a0800000000000000
+      internalID: -6581623788518255406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_67
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 0
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5591b6218e27c83b0800000000000000
+      internalID: -5508901903113971371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_68
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 0
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5297b507475df0f60800000000000000
+      internalID: 8002849758938626341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_69
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 0
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fba4253446dceeaa0800000000000000
+      internalID: -6129736212294776129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-CastleTown-C_70
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9cd930d2e937f440800000000000000
+      internalID: 4969504360145476763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Inside-CastleTown-C_0: -352273910250607092
+      Inside-CastleTown-C_1: 2705838174567130838
+      Inside-CastleTown-C_10: -3958692194978962583
+      Inside-CastleTown-C_11: 8467359849300276969
+      Inside-CastleTown-C_12: 7810501126901828749
+      Inside-CastleTown-C_13: 1701554855919135303
+      Inside-CastleTown-C_14: -4275202707196441745
+      Inside-CastleTown-C_15: 6145853436738043044
+      Inside-CastleTown-C_16: 3639034668727561212
+      Inside-CastleTown-C_17: 6865401098324513828
+      Inside-CastleTown-C_18: -4741661004610464965
+      Inside-CastleTown-C_19: -613939878747717026
+      Inside-CastleTown-C_2: 2821272564023062117
+      Inside-CastleTown-C_20: 667800993729492801
+      Inside-CastleTown-C_21: 6453484116395467024
+      Inside-CastleTown-C_22: -1223992898277329736
+      Inside-CastleTown-C_23: 7697849549711103149
+      Inside-CastleTown-C_24: 7425856414668910860
+      Inside-CastleTown-C_25: 3501585808199267225
+      Inside-CastleTown-C_26: 6689959724506583619
+      Inside-CastleTown-C_27: -8412940134145711114
+      Inside-CastleTown-C_28: -5844038370337202529
+      Inside-CastleTown-C_29: -5392489617746850301
+      Inside-CastleTown-C_3: 1195497695729673747
+      Inside-CastleTown-C_30: 3808770813722906439
+      Inside-CastleTown-C_31: -3670286871974919677
+      Inside-CastleTown-C_32: 2134995657438149866
+      Inside-CastleTown-C_33: 7041850028834105657
+      Inside-CastleTown-C_34: -6503260747073676876
+      Inside-CastleTown-C_35: -718560275498508225
+      Inside-CastleTown-C_36: -8569564174387930778
+      Inside-CastleTown-C_37: -489800976131142955
+      Inside-CastleTown-C_38: -3004226489269367485
+      Inside-CastleTown-C_39: -148822924128613578
+      Inside-CastleTown-C_4: -2503050085139933811
+      Inside-CastleTown-C_40: 2645388613194093467
+      Inside-CastleTown-C_41: -337382953897835670
+      Inside-CastleTown-C_42: -4751042213195221127
+      Inside-CastleTown-C_43: -3518143111627127340
+      Inside-CastleTown-C_44: 177462684215944313
+      Inside-CastleTown-C_45: -7815173307472053983
+      Inside-CastleTown-C_46: -7024706693362969581
+      Inside-CastleTown-C_47: -112777464157337372
+      Inside-CastleTown-C_48: -4524569085312053082
+      Inside-CastleTown-C_49: 4476957493728359583
+      Inside-CastleTown-C_5: -2196029958249381542
+      Inside-CastleTown-C_50: -6161895415748336575
+      Inside-CastleTown-C_51: -7323597785792152312
+      Inside-CastleTown-C_52: 672046555663977648
+      Inside-CastleTown-C_53: 9184705182837456075
+      Inside-CastleTown-C_54: 262574108477953254
+      Inside-CastleTown-C_55: 9047705958615032226
+      Inside-CastleTown-C_56: -8552000465083794359
+      Inside-CastleTown-C_57: -6365706698157242128
+      Inside-CastleTown-C_58: -6012954617244802341
+      Inside-CastleTown-C_59: -7856155899846149342
+      Inside-CastleTown-C_6: 7303085188835231231
+      Inside-CastleTown-C_60: -5126778072681378636
+      Inside-CastleTown-C_61: -746704634691783882
+      Inside-CastleTown-C_62: -6566351771092990666
+      Inside-CastleTown-C_63: -8530441323938795455
+      Inside-CastleTown-C_64: 4505111924658676112
+      Inside-CastleTown-C_65: 8069856597880937501
+      Inside-CastleTown-C_66: -6581623788518255406
+      Inside-CastleTown-C_67: -5508901903113971371
+      Inside-CastleTown-C_68: 8002849758938626341
+      Inside-CastleTown-C_69: -6129736212294776129
+      Inside-CastleTown-C_7: -1437302937094081882
+      Inside-CastleTown-C_70: 4969504360145476763
+      Inside-CastleTown-C_8: -2971181786377821139
+      Inside-CastleTown-C_9: 3798115530163923144
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
