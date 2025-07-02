@@ -8,7 +8,7 @@
 [Uu]ser[Ss]ettings/
 #外部ツールのフォルダ
 [Aa]ssets/[Ee]xternal/
-[Aa]ssets/[Ee]xternal.meta/
+[Aa]ssets/[Ee]xternal.meta
 # OS関連
 .DS_Store
 Thumbs.db
