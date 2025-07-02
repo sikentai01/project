@@ -6,6 +6,8 @@
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
+#外部ツールのフォルダ
+[Aa]ssets/[Ee]xternal/
 
 # OS関連
 .DS_Store
