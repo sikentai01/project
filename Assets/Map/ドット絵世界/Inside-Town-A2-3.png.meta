@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f00d0ccce45848c43a78569c6426408d
+guid: f3f87d9b4ad82c34fae3556c9a1f9630
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 295152795045799946
-    second: Wall01-01_0
+      213: 2196255004052966861
+    second: Inside-Town-A2-3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,11 +100,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wall01-01_0
+      name: Inside-Town-A2-3_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -115,80 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a082b2f37e7981400800000000000000
-      internalID: 295152795045799946
+      spriteID: dcd40c83a4aaa7e10800000000000000
+      internalID: 2196255004052966861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall01-01_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8a849ec29af5c2468543029c67f05f6
-      internalID: 549877151
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wall01-01_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6442379f3b0aa2349ae303aa58d003fa
-      internalID: 1498597365
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wall01-01_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f05b3d0c24a60fe41aceaa5820728a88
-      internalID: -794195906
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wall01-01_4
+      name: Inside-Town-A2-3_1
       rect:
         serializedVersion: 2
         x: 32
@@ -203,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc414a90b22af8d428d46c348dc72e61
-      internalID: -686583136
+      spriteID: bfc14d3a3a4f324418841307e4505d56
+      internalID: -1594925497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall01-01_5
+      name: Inside-Town-A2-3_2
       rect:
         serializedVersion: 2
         x: 64
@@ -225,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 130bcd699a370df4ebf28115b90b8113
-      internalID: 1055847465
+      spriteID: f1c9b5ca6e75f3c428a3ef04da3e3181
+      internalID: -1128922630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall01-01_6
+      name: Inside-Town-A2-3_3
       rect:
         serializedVersion: 2
         x: 0
@@ -247,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d22ceb33244e3149848a4a039dc3a61
-      internalID: 61173928
+      spriteID: d143a82794b06724790cee4883519813
+      internalID: 1328797571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall01-01_7
+      name: Inside-Town-A2-3_4
       rect:
         serializedVersion: 2
         x: 32
@@ -269,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebff2fd357f681c4da8f20d678572b59
-      internalID: 342880853
+      spriteID: bc88e2b86b768a342a2918c07776d4e6
+      internalID: 1219889068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall01-01_8
+      name: Inside-Town-A2-3_5
       rect:
         serializedVersion: 2
         x: 64
@@ -291,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 044b77eb1de218741af92d22e902b50b
-      internalID: -798817582
+      spriteID: a5bc25ba6b5bb9d4ba59f2887e6e1347
+      internalID: 372744468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wall01-01_9
+      name: Inside-Town-A2-3_6
       rect:
         serializedVersion: 2
         x: 0
@@ -313,8 +247,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c420398cba377114dbf82de3a994359d
-      internalID: -1934087388
+      spriteID: 20e255eede37d0a4ead8ecd4b949a179
+      internalID: 287616890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-Town-A2-3_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e11163ee700a24d9369e81554b94b0
+      internalID: -2125537027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inside-Town-A2-3_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7033e31b0740b4e993be86c389e057
+      internalID: -1325216914
       vertices: []
       indices: 
       edges: []
@@ -323,7 +301,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 05eebc18262cbff4cb2b67c37967c5bd
+    spriteID: b94484583726e6746972cccd0571b81f
     internalID: 0
     vertices: []
     indices: 
@@ -335,16 +313,15 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Wall01-01_0: 295152795045799946
-      Wall01-01_1: 549877151
-      Wall01-01_2: 1498597365
-      Wall01-01_3: -794195906
-      Wall01-01_4: -686583136
-      Wall01-01_5: 1055847465
-      Wall01-01_6: 61173928
-      Wall01-01_7: 342880853
-      Wall01-01_8: -798817582
-      Wall01-01_9: -1934087388
+      Inside-Town-A2-3_0: 2196255004052966861
+      Inside-Town-A2-3_1: -1594925497
+      Inside-Town-A2-3_2: -1128922630
+      Inside-Town-A2-3_3: 1328797571
+      Inside-Town-A2-3_4: 1219889068
+      Inside-Town-A2-3_5: 372744468
+      Inside-Town-A2-3_6: 287616890
+      Inside-Town-A2-3_7: -2125537027
+      Inside-Town-A2-3_8: -1325216914
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
