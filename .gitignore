@@ -12,6 +12,7 @@
 # OS関連
 .DS_Store
 Thumbs.db
+.vscode/
 
 # Visual Studio関連
 .vs/
