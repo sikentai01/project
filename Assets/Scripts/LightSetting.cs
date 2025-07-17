@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-public class LigitSetting : MonoBehaviour{
+public class LightSetting : MonoBehaviour{
     public Light2D lightSource; // ライトの参照
     public float intensity = 1f; // ライトの強度
 
