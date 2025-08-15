@@ -91,21 +91,6 @@
    <object id="1" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
- <tile id="251">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="32" height="32"/>
-  </objectgroup>
- </tile>
- <tile id="252">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="32" height="32"/>
-  </objectgroup>
- </tile>
- <tile id="253">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="32" height="32"/>
-  </objectgroup>
- </tile>
  <tile id="255">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="32" height="32"/>
