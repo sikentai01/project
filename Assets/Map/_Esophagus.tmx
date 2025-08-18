@@ -12,6 +12,7 @@
  <tileset firstgid="1082" source="ModernI-A501.tsx"/>
  <tileset firstgid="1210" source="Inside-Town-A5.tsx"/>
  <tileset firstgid="1338" source="ST-Room-I01.tsx"/>
+ <tileset firstgid="1618" source="Door.tsx"/>
  <layer id="1" name="壁周り" width="10" height="31" locked="1">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,
@@ -222,13 +223,13 @@
 0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="9" name="扉(仮)" width="10" height="31" locked="1">
+ <layer id="9" name="ドア" width="10" height="31" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,
-0,0,1570,0,0,0,0,0,0,0,
-0,0,1578,0,0,0,0,0,0,0,
+0,0,1618,0,0,0,0,0,0,0,
+0,0,1621,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,
