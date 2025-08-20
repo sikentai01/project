@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d7673863151e1b54fbd5106f3a1fa10f
+guid: 330268bb59e59bd4c9c0768352fa5867
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7752172063676994492
-    second: '!$Gate-Euro03_0'
+      213: 1061801751286890457
+    second: save_0
+  - first:
+      213: 5623039459162412730
+    second: save_1
+  - first:
+      213: -1088367540602228272
+    second: save_2
+  - first:
+      213: -1078378924327393389
+    second: save_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: '!$Gate-Euro03_0'
+      name: save_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 0
-        width: 77
-        height: 256
+        x: 3
+        y: 43
+        width: 25
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 44c63d2b490ca6490800000000000000
-      internalID: -7752172063676994492
+      spriteID: 9dfb75f21174cbe00800000000000000
+      internalID: 1061801751286890457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 24
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab65161989c090e40800000000000000
+      internalID: 5623039459162412730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 24
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d1b65dfc7755e0f0800000000000000
+      internalID: -1088367540602228272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: save_3
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 11
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397a232f414d801f0800000000000000
+      internalID: -1078378924327393389
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      '!$Gate-Euro03_0': -7752172063676994492
+      save_0: 1061801751286890457
+      save_1: 5623039459162412730
+      save_2: -1088367540602228272
+      save_3: -1078378924327393389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

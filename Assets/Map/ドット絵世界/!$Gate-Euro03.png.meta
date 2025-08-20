@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2d5f662c41de65b4c9a1e34aa1d25bf5
+guid: 8dd72cc7d86d6c74487dd6d0d32db04f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7348595211572656854
-    second: '!Door-FTownInside01_0'
+      213: -7752172063676994492
+    second: '!$Gate-Euro03_0'
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: '!Door-FTownInside01_0'
+      name: '!$Gate-Euro03_0'
       rect:
         serializedVersion: 2
-        x: 0
-        y: 255
-        width: 193
-        height: 257
+        x: 2
+        y: 0
+        width: 77
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a254310f69b840a90800000000000000
-      internalID: -7348595211572656854
+      spriteID: 44c63d2b490ca6490800000000000000
+      internalID: -7752172063676994492
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      '!Door-FTownInside01_0': -7348595211572656854
+      '!$Gate-Euro03_0': -7752172063676994492
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
