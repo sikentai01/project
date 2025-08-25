@@ -1,18 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems; // ← 追加（UI操作に必要）
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI;   // Panelをアタッチ
-    public GameObject firstButton;   // 最初に選択されるボタン (Itemsをアタッチ)
+    public GameObject pauseMenuUI;  // 左のポーズメニュー
+    public GameObject itemPanel;    // 右のアイテム画面 ← 新しく追加
+
     private bool isPaused = false;
 
     void Start()
     {
-        pauseMenuUI.SetActive(false);  // 最初は必ず非表示にする
-        Time.timeScale = 1f;           // ゲームスピードもリセット
-        isPaused = false;              // フラグもリセット
+        pauseMenuUI.SetActive(false);
+        itemPanel.SetActive(false);    // 最初はアイテム画面も非表示
+        Time.timeScale = 1f;
+        isPaused = false;
     }
 
     void Update()
@@ -29,6 +30,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        itemPanel.SetActive(false);   // メニュー閉じる時に一緒に非表示
         Time.timeScale = 1f;
         isPaused = false;
         Debug.Log("ゲーム再開");
@@ -40,16 +42,19 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         Debug.Log("ポーズメニューを開いた");
-
-        // ▼ メニューを開いたときに Items ボタンにカーソルを合わせる
-        EventSystem.current.SetSelectedGameObject(null);        // 一度リセット
-        EventSystem.current.SetSelectedGameObject(firstButton); // Itemsを選択
     }
 
-    // ▼ ダミーボタン処理 ▼
+    // ▼ アイテム画面を開く
     public void OpenItems()
     {
-        Debug.Log("アイテム画面を開く（ダミー）");
+        itemPanel.SetActive(true);
+        Debug.Log("アイテム画面を開いた");
+    }
+
+    // ▼ アイテム画面を閉じる（必要なら）
+    public void CloseItems()
+    {
+        itemPanel.SetActive(false);
     }
 
     public void OpenDocuments()
@@ -62,7 +67,6 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("オプション画面を開く（ダミー）");
     }
 
-    // ▼ 実際に処理するボタン ▼
     public void LoadGame()
     {
         Debug.Log("ロード処理（ダミー or Scene切替を後で追加）");
