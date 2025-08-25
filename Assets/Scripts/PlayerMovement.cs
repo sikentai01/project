@@ -1,129 +1,77 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class GridMovement : MonoBehaviour
 {
-    [Header("Grid")]
-    public float tilePixels = 32f;       // タイルのピクセルサイズ
-    public float pixelsPerUnit = 32f;   // Sprite Importer の PPU
-    public float moveSpeed = 3f;         // 移動速度（無視される）
-    private float tileSize;              // ワールド座標での1タイル長 = tilePixels / pixelsPerUnit
-
-    [Header("Animation")]
-    public int walkFrames = 4;           // 歩行アニメのフレーム数
-    public int fps = 12;                 // アニメのFPS
-
-    [Header("Collision (optional)")]
-    public LayerMask obstacleMask;
-    public Vector2 checkSize = new Vector2(0.8f, 0.8f);
-
-    private Rigidbody2D rb;
+    public float moveSpeed = 5f;
+    public float gridSize = 1f;
+    private Vector3 targetPosition;
+    private bool isMoving = false;
+    private bool Move_motion = true;
     private Animator animator;
-
-    private bool isMoving;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
-        tileSize = tilePixels / pixelsPerUnit;
-
-        // 初期位置をグリッドにスナップ
-        rb.position = transform.position;
+        targetPosition = transform.position;
     }
 
     void Update()
     {
-        Vector2Int dir = ReadHeldDirection();
-
-        if (dir != Vector2Int.zero && !isMoving)
+        if (!isMoving)
         {
-            TryStartMove(dir);
-        }
-        else if (dir == Vector2Int.zero && !isMoving)
-        {
-            animator.SetBool("Moving", false);
-        }
-    }
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
+            float verticalInput = Input.GetAxisRaw("Vertical");
 
-    Vector2Int ReadHeldDirection()
-    {
-        int x = 0, y = 0;
+            Vector3 nextPos = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) x = 1;
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) x = -1;
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) y = 1;
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) y = -1;
-
-        return new Vector2Int(x, y);
-    }
-
-    bool TryStartMove(Vector2Int dir)
-    {
-        if (isMoving) return false;
-
-        Vector2 start = rb.position;
-        Vector2 target = start + (Vector2)dir * tileSize;
-
-        // 壁チェック
-        if (obstacleMask.value != 0)
-        {
-            if (Physics2D.OverlapBox(target, checkSize, 0f, obstacleMask) != null)
+            if (horizontalInput != 0)
             {
-                animator.SetBool("Moving", false);
-                return false;
+                nextPos = transform.position + new Vector3(horizontalInput * gridSize, 0, 0);
+                animator.SetBool("Move_motion", true);
+                if (horizontalInput > 0) animator.SetInteger("Direction", 2); // 右
+                else if (horizontalInput < 0) animator.SetInteger("Direction", 1); // 左
+            }
+            else if (verticalInput != 0)
+            {
+                nextPos = transform.position + new Vector3(0, verticalInput * gridSize, 0);
+                animator.SetBool("Move_motion", true);
+                if (verticalInput > 0) animator.SetInteger("Direction", 3); // 上
+                else if (verticalInput < 0) animator.SetInteger("Direction", 0); // 下
+            }
+
+            // 次の場所に移動可能かチェック
+            if (nextPos != Vector3.zero && !IsOccupied(nextPos))
+            {
+                targetPosition = nextPos;
+                isMoving = true;
+            }
+
+        }
+
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * gridSize * Time.deltaTime);
+
+            if (transform.position == targetPosition)
+            {
+                isMoving = false;
             }
         }
-
-        // アニメーション制御
-        animator.SetBool("Moving", true);
-
-        if (dir.x > 0) animator.SetInteger("Direction", 2);   // 右
-        else if (dir.x < 0) animator.SetInteger("Direction", 1); // 左
-        else if (dir.y > 0) animator.SetInteger("Direction", 3); // 上
-        else if (dir.y < 0) animator.SetInteger("Direction", 0); // 下
-
-        StartCoroutine(MoveRoutine(start, target));
-        return true;
     }
 
-    IEnumerator MoveRoutine(Vector2 start, Vector2 target)
+    bool IsOccupied(Vector3 nextPos)
     {
-        isMoving = true;
+        // nextPosの中心から少しY軸を下にずらす
+        Vector3 checkPos = nextPos + new Vector3(0, -0.5f, 0); // キャラクターの足元をチェック
 
-        // 1歩 = 1モーションサイクル
-        float duration = (float)walkFrames / fps;  // 例: 4枚 ÷ 12fps = 0.33秒
+        // Physics2D.OverlapBoxを使用し、コライダーのサイズを調整
+        Collider2D hitCollider = Physics2D.OverlapBox(checkPos, new Vector2(0.8f, 0.8f), 0f);
 
-        float t = 0f;
-        while (t < 1f)
+        if (hitCollider != null && hitCollider.gameObject != gameObject)
         {
-            t += Time.deltaTime / duration;
-            rb.MovePosition(Vector2.Lerp(start, target, Mathf.Clamp01(t)));
-            yield return null;
+            return true;
         }
 
-        rb.MovePosition(SnapToGrid(target));
-
-        isMoving = false;
-        animator.SetBool("Moving", false);
-    }
-
-    Vector2 SnapToGrid(Vector2 pos)
-    {
-        float x = Mathf.Round(pos.x / tileSize) * tileSize;
-        float y = Mathf.Round(pos.y / tileSize) * tileSize;
-        return new Vector2(x, y);
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        if (obstacleMask.value == 0) return;
-        Gizmos.matrix = Matrix4x4.identity;
-        Gizmos.DrawWireCube(
-            Application.isPlaying ? (Vector3)(rb ? rb.position : (Vector2)transform.position) : transform.position,
-            (Vector3)checkSize
-        );
+        return false;
     }
 }

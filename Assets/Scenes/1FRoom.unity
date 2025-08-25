@@ -213,7 +213,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7242301425269238227, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       propertyPath: m_SortingOrder
-      value: 14
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -5129534490281181958, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -3811651643278206792, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -263,6 +267,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u5FC3\u81D3\u524D"
       objectReference: {fileID: 0}
+    - target: {fileID: 8616160700996035473, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -278,7 +286,6 @@ GameObject:
   m_Component:
   - component: {fileID: 898429435}
   - component: {fileID: 898429434}
-  - component: {fileID: 898429433}
   - component: {fileID: 898429432}
   - component: {fileID: 898429436}
   - component: {fileID: 898429437}
@@ -303,42 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e51d55282a6f274594fd5199b2cdb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePixels: 32
-  pixelsPerUnit: 32
-  moveSpeed: 3
-  walkFrames: 4
-  fps: 12
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  checkSize: {x: 0.8, y: 0.8}
---- !u!50 &898429433
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898429431}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  moveSpeed: 7
+  gridSize: 1
 --- !u!212 &898429434
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -439,7 +412,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -606,7 +579,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

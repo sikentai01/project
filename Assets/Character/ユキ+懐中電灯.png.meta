@@ -84,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -136,10 +136,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_0"
       rect:
         serializedVersion: 2
-        x: 3
-        y: 191
-        width: 25
-        height: 47
+        x: 0
+        y: 192
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,10 +158,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_1"
       rect:
         serializedVersion: 2
-        x: 35
-        y: 191
-        width: 25
-        height: 48
+        x: 32
+        y: 192
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,10 +180,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_2"
       rect:
         serializedVersion: 2
-        x: 67
-        y: 191
-        width: 25
-        height: 47
+        x: 64
+        y: 192
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,10 +202,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_3"
       rect:
         serializedVersion: 2
-        x: 4
-        y: 127
-        width: 24
-        height: 48
+        x: 0
+        y: 128
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,10 +224,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_4"
       rect:
         serializedVersion: 2
-        x: 36
-        y: 127
-        width: 24
-        height: 49
+        x: 32
+        y: 128
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,10 +246,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_5"
       rect:
         serializedVersion: 2
-        x: 68
-        y: 127
-        width: 24
-        height: 48
+        x: 64
+        y: 128
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,10 +268,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_6"
       rect:
         serializedVersion: 2
-        x: 4
-        y: 63
-        width: 24
-        height: 48
+        x: 0
+        y: 64
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,10 +290,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_7"
       rect:
         serializedVersion: 2
-        x: 36
-        y: 63
-        width: 24
-        height: 49
+        x: 32
+        y: 64
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,10 +312,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_8"
       rect:
         serializedVersion: 2
-        x: 68
-        y: 63
-        width: 24
-        height: 48
+        x: 64
+        y: 64
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -334,10 +334,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_9"
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 25
-        height: 46
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,10 +356,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_10"
       rect:
         serializedVersion: 2
-        x: 35
+        x: 32
         y: 0
-        width: 25
-        height: 47
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -378,10 +378,10 @@ TextureImporter:
       name: "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_11"
       rect:
         serializedVersion: 2
-        x: 67
+        x: 64
         y: 0
-        width: 25
-        height: 46
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -400,7 +400,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c857cc75e7aa7424f8750101b97847e9
     internalID: 0
     vertices: []
     indices: 
@@ -408,7 +408,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_0": 8829382335363427818
       "\u30E6\u30AD+\u61D0\u4E2D\u96FB\u706F_1": -9039160993235668231
