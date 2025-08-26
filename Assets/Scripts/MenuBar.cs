@@ -1,19 +1,28 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;  // UI選択を操作するために必要
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI;   // 左のポーズメニュー
-    public GameObject itemPanel;     // 右のアイテム画面
-    public GameObject firstSelected; // 最初に選択されるボタン（Itemsなど）
+    public GameObject pauseMenuUI;   // メニュー全体
+    public GameObject charPanel;     // キャラパネル
+    public GameObject itemPanel;     // アイテムパネル
+    public GameObject documentPanel; // 資料パネル
+    public GameObject optionPanel;   // オプションパネル
+
+    public GameObject firstSelected; // 最初に選択するボタン
 
     public static bool isPaused = false;
+    private GameObject currentPanel = null; // 現在開いている右側のパネル
 
     void Start()
     {
         pauseMenuUI.SetActive(false);
-        itemPanel.SetActive(false);   // 最初は非表示
+        charPanel.SetActive(false);
+        itemPanel.SetActive(false);
+        documentPanel.SetActive(false);
+        optionPanel.SetActive(false);
+
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -23,65 +32,84 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
-                Resume();
+            {
+                // もし右パネルが開いてるなら閉じてキャラパネルに戻す
+                if (currentPanel != null)
+                {
+                    currentPanel.SetActive(false);
+                    currentPanel = null;
+                    charPanel.SetActive(true);
+                }
+                else
+                {
+                    Resume();
+                }
+            }
             else
+            {
                 Pause();
+            }
         }
     }
 
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        itemPanel.SetActive(false);   // アイテム画面も一緒に閉じる
+        charPanel.SetActive(false);
+        itemPanel.SetActive(false);
+        documentPanel.SetActive(false);
+        optionPanel.SetActive(false);
+        currentPanel = null;
+
         Time.timeScale = 1f;
         isPaused = false;
 
-        // 選択解除（ゲーム再開時はカーソルを消す）
         EventSystem.current.SetSelectedGameObject(null);
-
         Debug.Log("ゲーム再開");
     }
 
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        charPanel.SetActive(true); // 最初はキャラパネル表示
+        currentPanel = null;
+
         Time.timeScale = 0f;
         isPaused = true;
 
-        //  最初に「アイテム」ボタンにカーソルを合わせる
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstSelected);
 
         Debug.Log("ポーズメニューを開いた");
     }
 
-    // ▼ アイテム画面を開く
+    // ▼ 各パネルを開く
     public void OpenItems()
     {
-        itemPanel.SetActive(true);
+        SwitchPanel(itemPanel);
         Debug.Log("アイテム画面を開いた");
-    }
-
-    // ▼ アイテム画面を閉じる
-    public void CloseItems()
-    {
-        itemPanel.SetActive(false);
     }
 
     public void OpenDocuments()
     {
-        Debug.Log("資料画面を開く（ダミー）");
+        SwitchPanel(documentPanel);
+        Debug.Log("資料画面を開いた");
     }
 
     public void OpenOptions()
     {
-        Debug.Log("オプション画面を開く（ダミー）");
+        SwitchPanel(optionPanel);
+        Debug.Log("オプション画面を開いた");
     }
 
-    public void LoadGame()
+    // ▼ 共通の切り替え処理
+    void SwitchPanel(GameObject newPanel)
     {
-        Debug.Log("ロード処理（ダミー or Scene切替を後で追加）");
-        // SceneManager.LoadScene("GameScene");
+        charPanel.SetActive(false);
+
+        if (currentPanel != null) currentPanel.SetActive(false);
+        currentPanel = newPanel;
+        currentPanel.SetActive(true);
     }
 
     public void QuitGame()
