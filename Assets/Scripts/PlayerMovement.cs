@@ -17,39 +17,27 @@ public class GridMovement : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.isPaused)
+        {
+            // ポーズ中はアニメーションを停止
+            animator.SetBool("Move_motion", false);
+            return; // 以降の処理をすべてスキップ
+        }
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
-        int key = -1;
 
         // アニメーションを制御するロジックを分離
         if (horizontalInput != 0 || verticalInput != 0)
         {
             animator.SetBool("Move_motion", true);
-            if (horizontalInput > 0&&key!=2)
-            {
-                animator.SetInteger("Direction", 2);
-                key = 2;
-            }
-            else if (horizontalInput < 0&&key!=1)
-            {
-                animator.SetInteger("Direction", 1);
-                key = 1;
-            }
-            else if (verticalInput > 0 && key != 3)
-            {
-                animator.SetInteger("Direction", 3);
-                key = 3;
-            }
-            else if (verticalInput < 0 && key != 0)
-            {
-                animator.SetInteger("Direction", 0);
-                key = 0;
-            }
+            if (horizontalInput > 0) animator.SetInteger("Direction", 2);
+            else if (horizontalInput < 0) animator.SetInteger("Direction", 1);
+            else if (verticalInput > 0) animator.SetInteger("Direction", 3);
+            else if (verticalInput < 0) animator.SetInteger("Direction", 0);
         }
         else
         {
             animator.SetBool("Move_motion", false);
-            key = -1;
         }
 
         // 移動ロジック
@@ -61,6 +49,10 @@ public class GridMovement : MonoBehaviour
             {
                 targetPosition = nextPos;
                 isMoving = true;
+            }
+            else
+            {
+                animator.SetBool("Move_motion", false);
             }
         }
 

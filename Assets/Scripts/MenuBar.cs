@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;  // 左のポーズメニュー
-    public GameObject itemPanel;    // 右のアイテム画面 ← 新しく追加
+    public GameObject itemPanel;    // 右のアイテム画面 
 
-    private bool isPaused = false;
+    public static bool isPaused = false;
 
     void Start()
     {
@@ -51,7 +51,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("アイテム画面を開いた");
     }
 
-    // ▼ アイテム画面を閉じる（必要なら）
+    // ▼ アイテム画面を閉じる
     public void CloseItems()
     {
         itemPanel.SetActive(false);
