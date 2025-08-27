@@ -12,12 +12,19 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionPanel;   // オプションパネル
     public GameObject itemInfoPanel; // アイテムバー (上の説明部分)
 
-    [Header("Menu Buttons")]
+    [Header("Menu Buttons (左のメニュー用)")]
     public GameObject firstSelected;    // ESCで最初に選択するボタン (Items)
-    public GameObject firstItemButton;  // ItemPanel内で最初に選択するボタン (Item1)
+    public GameObject documentButton;   // 左メニューの Documents ボタン
+    public GameObject optionButton;     // 左メニューの Options ボタン
+
+    [Header("Panel First Buttons (右のパネル用)")]
+    public GameObject firstItemButton;     // ItemPanel内で最初に選択するボタン (Item1)
+    public GameObject firstDocumentButton; // DocumentPanel内で最初に選択するボタン
+    public GameObject firstOptionButton;   // OptionPanel内で最初に選択するボタン
 
     public static bool isPaused = false;
-    private GameObject currentPanel = null; // 現在開いている右側のパネル
+    private GameObject currentPanel = null;     // 現在開いている右側のパネル
+    private GameObject lastMenuButton = null;   // 直前に開いたメニューのボタン
 
     void Start()
     {
@@ -38,16 +45,24 @@ public class PauseMenu : MonoBehaviour
         {
             if (isPaused)
             {
-                // もし右パネルが開いてるなら閉じてキャラパネルに戻す
+                // 右パネルを開いている場合は閉じてキャラパネルに戻る
                 if (currentPanel != null)
                 {
                     currentPanel.SetActive(false);
+
+                    // アイテムの場合はバーも閉じる
+                    if (currentPanel == itemPanel && itemInfoPanel != null)
+                        itemInfoPanel.SetActive(false);
+
                     currentPanel = null;
                     charPanel.SetActive(true);
 
-                    // ESCで戻ったらカーソルを「Items」に戻す
-                    EventSystem.current.SetSelectedGameObject(null);
-                    EventSystem.current.SetSelectedGameObject(firstSelected);
+                    //  ESCで戻ったら「直前に開いていたボタン」にカーソルを戻す
+                    if (lastMenuButton != null)
+                    {
+                        EventSystem.current.SetSelectedGameObject(null);
+                        EventSystem.current.SetSelectedGameObject(lastMenuButton);
+                    }
                 }
                 else
                 {
@@ -71,26 +86,25 @@ public class PauseMenu : MonoBehaviour
         if (itemInfoPanel != null) itemInfoPanel.SetActive(false);
 
         currentPanel = null;
+        lastMenuButton = null; //  Resumeしたらリセット（次回ESCではItems固定）
 
         Time.timeScale = 1f;
         isPaused = false;
 
-        // 選択解除
         EventSystem.current.SetSelectedGameObject(null);
-
         Debug.Log("ゲーム再開");
     }
 
     void Pause()
     {
         pauseMenuUI.SetActive(true);
-        charPanel.SetActive(true); // 最初はキャラパネル表示
+        charPanel.SetActive(true);
         currentPanel = null;
 
         Time.timeScale = 0f;
         isPaused = true;
 
-        //  メニューを開いた時は「Items」ボタンにカーソルを置く
+        //  メニューを開いたときは必ずItemsにカーソルを置く
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstSelected);
 
@@ -101,14 +115,15 @@ public class PauseMenu : MonoBehaviour
     public void OpenItems()
     {
         charPanel.SetActive(false);
-
         if (currentPanel != null) currentPanel.SetActive(false);
 
         itemPanel.SetActive(true);
-        if (itemInfoPanel != null) itemInfoPanel.SetActive(true); // アイテムバーも表示
+        if (itemInfoPanel != null) itemInfoPanel.SetActive(true);
         currentPanel = itemPanel;
 
-        //  アイテムパネルを開いた時は「Item1」にカーソルを合わせる
+        lastMenuButton = firstSelected; //  ESC戻り先はItemsボタン
+
+        // アイテムパネルを開いたらItem1にフォーカス
         if (firstItemButton != null)
         {
             EventSystem.current.SetSelectedGameObject(null);
@@ -122,6 +137,15 @@ public class PauseMenu : MonoBehaviour
     public void OpenDocuments()
     {
         SwitchPanel(documentPanel);
+        lastMenuButton = documentButton; //  ESC戻り先はDocumentsボタン
+
+        // 資料パネル内の最初の要素にフォーカス
+        if (firstDocumentButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstDocumentButton);
+        }
+
         Debug.Log("資料画面を開いた");
     }
 
@@ -129,10 +153,19 @@ public class PauseMenu : MonoBehaviour
     public void OpenOptions()
     {
         SwitchPanel(optionPanel);
+        lastMenuButton = optionButton; //  ESC戻り先はOptionsボタン
+
+        // オプションパネル内の最初の要素にフォーカス
+        if (firstOptionButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstOptionButton);
+        }
+
         Debug.Log("オプション画面を開いた");
     }
 
-    // ▼ 共通の切り替え処理
+    // ▼ 共通の切り替え処理（アイテム以外用）
     void SwitchPanel(GameObject newPanel)
     {
         charPanel.SetActive(false);
