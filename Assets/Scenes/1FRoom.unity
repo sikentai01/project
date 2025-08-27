@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1642670136}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999344
+  m_Size: 0.9996075
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2376,7 +2376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2863,9 +2863,11 @@ MonoBehaviour:
   optionPanel: {fileID: 1257705542}
   itemInfoPanel: {fileID: 1394836832}
   firstSelected: {fileID: 992161200}
-  firstItemButton: {fileID: 1907664092}
   documentButton: {fileID: 976949164}
   optionButton: {fileID: 1523153371}
+  firstItemButton: {fileID: 1907664092}
+  firstDocumentButton: {fileID: 0}
+  firstOptionButton: {fileID: 0}
 --- !u!4 &846249059
 Transform:
   m_ObjectHideFlags: 0
