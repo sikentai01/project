@@ -50,7 +50,17 @@ public class DocumentManager : MonoBehaviour
     /// </summary>
     public void ShowDocument(int index)
     {
+        // 範囲外チェック
         if (index < 0 || index >= documents.Length) return;
+
+        DocumentData data = documents[index];
+
+        // 空スロットなら何もしない
+        if (string.IsNullOrEmpty(data.title) || string.IsNullOrEmpty(data.body))
+        {
+            Debug.Log("このスロットには資料が存在しません");
+            return;
+        }
 
         currentIndex = index;
 
@@ -59,8 +69,8 @@ public class DocumentManager : MonoBehaviour
         if (documentDetailPanel != null) documentDetailPanel.SetActive(true);
 
         // テキストを反映
-        if (titleText != null) titleText.text = documents[index].title;
-        if (bodyText != null) bodyText.text = documents[index].body;
+        if (titleText != null) titleText.text = data.title;
+        if (bodyText != null) bodyText.text = data.body;
 
         IsDetailOpen = true;
     }
