@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject documentPanel; // 資料パネル (GridとDetailの親)
     public GameObject optionPanel;   // オプションパネル
     public GameObject controlPanel;  // 操作説明パネル ← 新しく追加
-    public GameObject itemInfoPanel; // アイテムバー (上の説明部分)
+    public GameObject itemInfoPanel; // アイテムバー (上の説明部分)?
 
     [Header("Menu Buttons (左のメニュー用)")]
     public GameObject firstSelected;    // ESCで最初に選択するボタン (Items)
