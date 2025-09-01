@@ -26,7 +26,6 @@ public class DocumentManager : MonoBehaviour
 
     void Start()
     {
-        if (documentGridPanel != null) documentGridPanel.SetActive(false);
         if (documentDetailPanel != null) documentDetailPanel.SetActive(false);
     }
 

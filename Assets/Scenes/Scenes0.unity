@@ -2110,7 +2110,7 @@ GameObject:
   - component: {fileID: 311206766}
   - component: {fileID: 311206765}
   m_Layer: 0
-  m_Name: Load
+  m_Name: Instractions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
