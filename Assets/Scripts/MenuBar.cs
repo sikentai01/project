@@ -145,6 +145,8 @@ public class PauseMenu : MonoBehaviour
     // ▼ 資料パネル
     public void OpenDocuments()
     {
+        charPanel.SetActive(false);
+
         if (documentManager != null)
         {
             documentManager.OpenDocumentGrid(); // Gridを開く
@@ -182,7 +184,16 @@ public class PauseMenu : MonoBehaviour
     // ▼ 操作説明パネル
     public void OpenControls()
     {
-        SwitchPanel(controlPanel);
+        // キャラパネルを閉じる
+        charPanel.SetActive(false);
+
+        // 今開いているパネルを閉じる
+        if (currentPanel != null) currentPanel.SetActive(false);
+
+        // 操作説明パネルを開く
+        controlPanel.SetActive(true);
+        currentPanel = controlPanel;
+
         lastMenuButton = controlButton;
 
         Debug.Log("操作説明を開いた");
@@ -190,10 +201,16 @@ public class PauseMenu : MonoBehaviour
 
     void SwitchPanel(GameObject newPanel)
     {
+        // キャラパネルを閉じる
         charPanel.SetActive(false);
+
+        // アイテム情報バーを閉じる
         if (itemInfoPanel != null) itemInfoPanel.SetActive(false);
 
+        // 現在のパネルを閉じる
         if (currentPanel != null) currentPanel.SetActive(false);
+
+        // 新しいパネルを開く
         currentPanel = newPanel;
         currentPanel.SetActive(true);
     }
