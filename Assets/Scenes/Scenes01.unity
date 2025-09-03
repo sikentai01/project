@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.1509434, g: 0.11344487, b: 0.11344487, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -228,6 +228,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: _Stomach
       objectReference: {fileID: 0}
+    - target: {fileID: -304750745589239045, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 621217634071282661, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -241,6 +249,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8721496998980460112, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5628805812914816397, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4343558897472686667, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -281,6 +297,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3199398793827524671, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619929068973375227, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279294040753765513, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853924585399932265, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8940204585512778508, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
       propertyPath: m_Name
       value: _Hallway1
@@ -295,6 +327,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2478624729669887157, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 194709899}
+    - targetCorrespondingSourceObject: {fileID: 5279294040753765513, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 409133917}
   m_SourcePrefab: {fileID: -2695619058785784247, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
 --- !u!1 &194709891 stripped
 GameObject:
@@ -336,6 +371,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   areaCollider: {fileID: 194709898}
+--- !u!1 &409133910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5279294040753765513, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
+  m_PrefabInstance: {fileID: 194709890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &409133917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409133910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3f08f6a3b228741b8fd4d1c98bcf25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectA: {fileID: 409133910}
+  objectB: {fileID: 0}
 --- !u!1001 &748015118
 PrefabInstance:
   m_ObjectHideFlags: 0
