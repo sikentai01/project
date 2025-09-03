@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 1183879484}
+  slotIcon: {fileID: 0}
 --- !u!222 &1223719
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1005,6 +1006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 491483636}
+  slotIcon: {fileID: 0}
 --- !u!222 &52772117
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1140,6 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 33130538}
+  slotIcon: {fileID: 0}
 --- !u!222 &58750056
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1794,6 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 1172606919}
+  slotIcon: {fileID: 0}
 --- !u!222 &130010951
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2145,6 +2149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 1567870994}
+  slotIcon: {fileID: 0}
 --- !u!222 &148349572
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4009,6 +4014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 316218000}
+  slotIcon: {fileID: 0}
 --- !u!222 &380008975
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4121,8 +4127,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4805,6 +4811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 712364490}
+  slotIcon: {fileID: 0}
 --- !u!222 &495562235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5500,6 +5507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 281167659}
+  slotIcon: {fileID: 0}
 --- !u!222 &612321885
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6796,6 +6804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 19668308}
+  slotIcon: {fileID: 0}
 --- !u!114 &810392627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7378,6 +7387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 2000635133}
+  slotIcon: {fileID: 0}
 --- !u!222 &873457976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9836,6 +9846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 573016179}
+  slotIcon: {fileID: 0}
 --- !u!222 &1130149220
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10433,8 +10444,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11015,6 +11026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 286391339}
+  slotIcon: {fileID: 0}
 --- !u!222 &1306609086
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11980,6 +11992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 1152285868}
+  slotIcon: {fileID: 0}
 --- !u!222 &1487609140
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13441,6 +13454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 987803817}
+  slotIcon: {fileID: 0}
 --- !u!222 &1622655831
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13924,6 +13938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 2074466970}
+  slotIcon: {fileID: 0}
 --- !u!222 &1709161036
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16170,6 +16185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 988371762}
+  slotIcon: {fileID: 0}
 --- !u!222 &2006723887
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16981,6 +16997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 1125048573}
+  slotIcon: {fileID: 0}
 --- !u!222 &2094299714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17116,6 +17133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotText: {fileID: 742788078}
+  slotIcon: {fileID: 0}
 --- !u!222 &2146881708
 CanvasRenderer:
   m_ObjectHideFlags: 0

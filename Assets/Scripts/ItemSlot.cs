@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;  // ISelectHandler を使うために必要
 
-public class ItemSlot : MonoBehaviour
+public class ItemSlot : MonoBehaviour, ISelectHandler
 {
-    public TMP_Text slotText;   // スロットに表示する名前
+    public TMP_Text slotText;   // スロット内に表示するテキスト
+
     private ItemData currentItem;
     private InventoryUI inventoryUI;
 
@@ -13,7 +15,7 @@ public class ItemSlot : MonoBehaviour
         // シーン内にある InventoryUI を探す
         inventoryUI = FindFirstObjectByType<InventoryUI>();
 
-        // ボタンのクリックイベントに登録
+        // このスロットがボタンなら、クリック時に呼ばれるように設定
         GetComponent<Button>().onClick.AddListener(OnClickSlot);
     }
 
@@ -40,13 +42,21 @@ public class ItemSlot : MonoBehaviour
             inventoryUI.ShowDescription(null);
     }
 
-    // Enter押したときに使用
+    // ISelectHandler 実装 → カーソルが乗った瞬間に OnSelectSlot() を呼ぶ
+    public void OnSelect(BaseEventData eventData)
+    {
+        Debug.Log("カーソルがスロットに乗った: " + (currentItem != null ? currentItem.itemName : "空"));
+        OnSelectSlot();
+    }
+
+    // Enter（クリック）で使用
     public void OnClickSlot()
     {
-        if (currentItem == null) return;
+        if (currentItem == null) return; // アイテムがなければ何もしない
 
         Debug.Log(currentItem.itemName + " を使用しました！");
 
+        // アイテムの効果発動
         currentItem.UseEffect();
 
         // 消耗品なら削除

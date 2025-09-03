@@ -135,8 +135,12 @@ public class PauseMenu : MonoBehaviour
 
         if (firstItemButton != null)
         {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstItemButton);
+            EventSystem.current.SetSelectedGameObject(null);              // 一旦リセット
+            EventSystem.current.SetSelectedGameObject(firstItemButton);   // 再度セット
+
+            // 強制的に説明欄を更新
+            var slot = firstItemButton.GetComponent<ItemSlot>();
+            if (slot != null) slot.OnSelectSlot();
         }
 
         Debug.Log("アイテム画面を開いた");

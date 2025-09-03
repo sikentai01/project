@@ -53,21 +53,22 @@ public class InventoryManager : MonoBehaviour
     // ▼ テスト用のアイテムを作成
     void CreateTestItems()
     {
+        // 消費アイテム
+        ItemData testBottle = ScriptableObject.CreateInstance<ItemData>();
+        testBottle.itemName = "potion of poison";
+        testBottle.description = "A poisonous bottle that will kill you if you drink it.";
+        testBottle.isConsumable = true;
+        testBottle.effectType = ItemData.EffectType.Poison;
+        AddItem(testBottle);
+
         // 鍵アイテム
         ItemData testKey = ScriptableObject.CreateInstance<ItemData>();
         testKey.itemName = "testkey";
-        testKey.description = "ドアAを開けるための鍵";
+        testKey.description = "A key to open the test door.";
         testKey.isConsumable = false;
         testKey.effectType = ItemData.EffectType.Key;
         testKey.keyID = "DoorA";
         AddItem(testKey);
 
-        // 消費アイテム
-        ItemData testBottle = ScriptableObject.CreateInstance<ItemData>();
-        testBottle.itemName = "potion of poison";
-        testBottle.description = "飲むと即死する危険な瓶";
-        testBottle.isConsumable = true;
-        testBottle.effectType = ItemData.EffectType.Poison;
-        AddItem(testBottle);
     }
 }
