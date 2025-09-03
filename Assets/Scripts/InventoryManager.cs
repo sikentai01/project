@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance; // シングルトン
+    public static InventoryManager Instance;
 
-    public List<ItemData> items = new List<ItemData>(); // 入手したアイテムリスト
-    public Transform slotParent; // スロットを並べる親オブジェクト（Grid/Content）
+    public List<ItemData> items = new List<ItemData>();
+    public Transform slotParent;
 
     private ItemSlot[] slots;
 
@@ -19,17 +19,26 @@ public class InventoryManager : MonoBehaviour
     {
         slots = slotParent.GetComponentsInChildren<ItemSlot>();
         RefreshUI();
+
+        // ▼ テスト用に仮のアイテムを追加
+        CreateTestItems();
     }
 
-
-    // アイテムを追加
     public void AddItem(ItemData newItem)
     {
         items.Add(newItem);
         RefreshUI();
     }
 
-    // スロットUIを更新
+    public void RemoveItem(ItemData item)
+    {
+        if (items.Contains(item))
+        {
+            items.Remove(item);
+            RefreshUI();
+        }
+    }
+
     void RefreshUI()
     {
         for (int i = 0; i < slots.Length; i++)
@@ -39,5 +48,26 @@ public class InventoryManager : MonoBehaviour
             else
                 slots[i].ClearSlot();
         }
+    }
+
+    // ▼ テスト用のアイテムを作成
+    void CreateTestItems()
+    {
+        // 鍵アイテム
+        ItemData testKey = ScriptableObject.CreateInstance<ItemData>();
+        testKey.itemName = "testkey";
+        testKey.description = "ドアAを開けるための鍵";
+        testKey.isConsumable = false;
+        testKey.effectType = ItemData.EffectType.Key;
+        testKey.keyID = "DoorA";
+        AddItem(testKey);
+
+        // 消費アイテム
+        ItemData testBottle = ScriptableObject.CreateInstance<ItemData>();
+        testBottle.itemName = "potion of poison";
+        testBottle.description = "飲むと即死する危険な瓶";
+        testBottle.isConsumable = true;
+        testBottle.effectType = ItemData.EffectType.Poison;
+        AddItem(testBottle);
     }
 }

@@ -4,18 +4,16 @@ using TMPro;
 
 public class ItemSlot : MonoBehaviour
 {
-    public TMP_Text slotText;   // スロット内に表示するテキスト
-    public Image slotIcon;      // アイコン表示（不要ならInspectorで外す）
-
+    public TMP_Text slotText;   // スロットに表示する名前
     private ItemData currentItem;
     private InventoryUI inventoryUI;
 
     void Start()
     {
         // シーン内にある InventoryUI を探す
-        inventoryUI = inventoryUI = FindFirstObjectByType<InventoryUI>();
+        inventoryUI = FindFirstObjectByType<InventoryUI>();
 
-        // このスロットがボタンなら、クリック時に呼ばれるように設定
+        // ボタンのクリックイベントに登録
         GetComponent<Button>().onClick.AddListener(OnClickSlot);
     }
 
@@ -24,8 +22,6 @@ public class ItemSlot : MonoBehaviour
     {
         currentItem = item;
         slotText.text = item.itemName;
-
-        if (slotIcon) slotIcon.sprite = item.icon;
     }
 
     // アイテムがない場合はクリア
@@ -33,15 +29,33 @@ public class ItemSlot : MonoBehaviour
     {
         currentItem = null;
         slotText.text = "";
-        if (slotIcon) slotIcon.sprite = null;
     }
 
-    // このスロットを選んだときに説明欄を更新
-    void OnClickSlot()
+    // カーソルが合ったときに情報を表示
+    public void OnSelectSlot()
     {
         if (currentItem != null)
-        {
             inventoryUI.ShowDescription(currentItem);
+        else
+            inventoryUI.ShowDescription(null);
+    }
+
+    // Enter押したときに使用
+    public void OnClickSlot()
+    {
+        if (currentItem == null) return;
+
+        Debug.Log(currentItem.itemName + " を使用しました！");
+
+        currentItem.UseEffect();
+
+        // 消耗品なら削除
+        if (currentItem.isConsumable)
+        {
+            InventoryManager.Instance.RemoveItem(currentItem);
         }
+
+        // メニューを閉じる
+        FindFirstObjectByType<PauseMenu>().Resume();
     }
 }

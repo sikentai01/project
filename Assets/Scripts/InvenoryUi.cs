@@ -8,7 +8,15 @@ public class InventoryUI : MonoBehaviour
 
     public void ShowDescription(ItemData item)
     {
-        itemNameText.text = item.itemName;
-        itemDescriptionText.text = item.description;
+        if (item == null)
+        {
+            itemNameText.text = "";
+            itemDescriptionText.text = "";
+        }
+        else
+        {
+            itemNameText.text = item.itemName;
+            itemDescriptionText.text = item.description;
+        }
     }
 }
