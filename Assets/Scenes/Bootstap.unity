@@ -129,11 +129,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4530068689335812028, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
       propertyPath: m_PointLightInnerRadius
-      value: 18.583578
+      value: 2.0140617
       objectReference: {fileID: 0}
     - target: {fileID: 4530068689335812028, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 18.626547
+      value: 5.0091715
       objectReference: {fileID: 0}
     - target: {fileID: 5024732067848838614, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
       propertyPath: m_Name
@@ -141,11 +141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7885711473307120589, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.57
+      value: 19.5
       objectReference: {fileID: 0}
     - target: {fileID: 7885711473307120589, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -105
+      value: -105.5
       objectReference: {fileID: 0}
     - target: {fileID: 7885711473307120589, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
       propertyPath: m_LocalPosition.z
@@ -376,8 +376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df3f08f6a3b228741b8fd4d1c98bcf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectA: {fileID: 5024732067769792822}
-  objectB: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
