@@ -3,7 +3,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public string message = "机の中を調べた";
-    public ItemData hiddenItem; // 鍵などのアイテム
+    public ItemBehaviour hiddenItem; // ここを ItemData → ItemBehaviour に修正
     private bool isPlayerNear = false;
 
     void Update()
@@ -18,6 +18,7 @@ public class Interactable : MonoBehaviour
             {
                 InventoryManager.Instance.AddItem(hiddenItem);
                 Debug.Log(hiddenItem.itemName + " を手に入れた！");
+
                 hiddenItem = null; // 一度きりにする場合は消す
             }
         }

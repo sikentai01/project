@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public ItemData itemData; // Inspectorで割り当てる（Potion.asset など）
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            // インベントリに追加
-            InventoryManager.Instance.AddItem(itemData);
+            // このオブジェクトが持つ ItemBehaviour を取得
+            ItemBehaviour item = GetComponent<ItemBehaviour>();
 
-            // このアイテムをシーンから消す
-            Destroy(gameObject);
+            if (item != null)
+            {
+                InventoryManager.Instance.AddItem(item);
+                Debug.Log(item.itemName + " を入手！");
+
+                Destroy(gameObject); // マップから消す
+            }
+            else
+            {
+                Debug.LogWarning("ItemBehaviour がこのオブジェクトに無いよ！");
+            }
         }
     }
 }

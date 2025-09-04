@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.EventSystems;  // ISelectHandler を使うために必要
+using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, ISelectHandler
 {
     public TMP_Text slotText;   // スロット内に表示するテキスト
 
-    private ItemData currentItem;
+    private InventoryManager.InventoryItem currentItem;
     private InventoryUI inventoryUI;
 
     void Start()
@@ -20,10 +20,10 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
     }
 
     // アイテムをセットして表示
-    public void SetItem(ItemData item)
+    public void SetItem(InventoryManager.InventoryItem item)
     {
         currentItem = item;
-        slotText.text = item.itemName;
+        slotText.text = item.itemName; // 名前を表示
     }
 
     // アイテムがない場合はクリア
@@ -33,39 +33,33 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
         slotText.text = "";
     }
 
-    // カーソルが合ったときに情報を表示
+    // このスロットを選んだときに説明欄を更新
     public void OnSelectSlot()
     {
         if (currentItem != null)
-            inventoryUI.ShowDescription(currentItem);
+            inventoryUI.ShowDescription(new ItemData
+            {
+                itemName = currentItem.itemName,
+                description = currentItem.description
+            });
         else
             inventoryUI.ShowDescription(null);
     }
 
-    // ISelectHandler 実装 → カーソルが乗った瞬間に OnSelectSlot() を呼ぶ
     public void OnSelect(BaseEventData eventData)
     {
-        Debug.Log("カーソルがスロットに乗った: " + (currentItem != null ? currentItem.itemName : "空"));
         OnSelectSlot();
     }
 
     // Enter（クリック）で使用
     public void OnClickSlot()
     {
-        if (currentItem == null) return; // アイテムがなければ何もしない
+        if (currentItem == null) return;
 
         Debug.Log(currentItem.itemName + " を使用しました！");
 
-        // アイテムの効果発動
-        currentItem.UseEffect();
-
-        // 消耗品なら削除
-        if (currentItem.isConsumable)
-        {
-            InventoryManager.Instance.RemoveItem(currentItem);
-        }
-
-        // メニューを閉じる
-        FindFirstObjectByType<PauseMenu>().Resume();
+        // InventoryManagerに処理を投げる
+        int index = transform.GetSiblingIndex();
+        InventoryManager.Instance.UseItem(index);
     }
 }

@@ -2,21 +2,26 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public string doorID;
+    public string doorID; // このドアを開けるための鍵ID
     private bool isPlayerNear = false;
 
-    private void Update()
+    void Update()
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
         {
-            // インベントリのアイテムを確認
             foreach (var item in InventoryManager.Instance.items)
             {
-                if (item.effectType == ItemData.EffectType.Key && item.keyID == doorID)
+                // 鍵アイテム判定
+                if (item.itemID == doorID)
                 {
-                    Debug.Log(item.itemName + " で " + doorID + " を開けた！");
-                    InventoryManager.Instance.RemoveItem(item);
-                    Destroy(gameObject); // ドアを消す（アニメ再生に置き換え可）
+                    Debug.Log(item.itemName + " を使ってドアを開けた！");
+
+                    // 消耗品なら削除
+                    if (item.isConsumable)
+                        InventoryManager.Instance.RemoveItemByID(item.itemID);
+
+                    // ドア削除（ここはアニメーションに差し替えも可）
+                    Destroy(gameObject);
                     return;
                 }
             }
