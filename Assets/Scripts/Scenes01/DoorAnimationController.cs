@@ -15,6 +15,7 @@ public class DoorAnimationController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsNearDoor = true;
+            Debug.Log("プレイヤーがドアの近くに入りました"); // ★これを追加
         }
     }
 
@@ -25,6 +26,7 @@ public class DoorAnimationController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsNearDoor = false;
+            Debug.Log("プレイヤーがドアから離れました"); // ★これを追加
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
