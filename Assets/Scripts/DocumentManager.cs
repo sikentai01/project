@@ -3,31 +3,34 @@ using TMPro;
 
 public class DocumentManager : MonoBehaviour
 {
-    public static DocumentManager Instance;  // シングルトン
+    // ===== シングルトン =====
+    public static DocumentManager Instance { get; private set; }
 
     [System.Serializable]
     public class DocumentData
     {
-        public string title;           // 資料タイトル
+        public string title;    // 資料タイトル
         [TextArea(3, 10)]
-        public string body;            // 資料本文
-        [HideInInspector] public bool obtained = false; // 入手済みフラグ
+        public string body;     // 資料本文
+        public bool obtained;   // 入手済みかどうか
     }
 
     [Header("資料データ")]
-    public DocumentData[] documents;   // Inspectorで登録する（本文はここに書く）
+    public DocumentData[] documents;   // Inspectorで登録
 
     [Header("UI参照")]
-    public GameObject documentGridPanel;   // 資料一覧 (DocumentGridPanel)
-    public GameObject documentDetailPanel; // 資料詳細 (DocumentDetailPanel)
-    public TMP_Text titleText;             // 詳細タイトル (TitleText)
-    public TMP_Text bodyText;              // 詳細本文 (BodyText)
-    public DocumentSlot[] slots;           // 資料スロット参照（Inspectorでセット）
+    public GameObject documentGridPanel;   // 資料一覧
+    public GameObject documentDetailPanel; // 資料詳細
+    public TMP_Text titleText;             // 詳細タイトル
+    public TMP_Text bodyText;              // 詳細本文
+    public DocumentSlot[] slots;           // スロット配列
 
-    public bool IsDetailOpen { get; private set; } = false; // 詳細画面が開いているかどうか
-    private int currentIndex = -1; // 現在表示している資料番号
+    public bool IsDetailOpen { get; private set; } = false;
 
-    void Awake()
+    private int currentIndex = -1;
+
+    // ===== Awakeでシングルトン初期化 =====
+    private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
@@ -35,26 +38,27 @@ public class DocumentManager : MonoBehaviour
 
     void Start()
     {
-        if (documentDetailPanel != null) documentDetailPanel.SetActive(false);
+        if (documentDetailPanel != null)
+            documentDetailPanel.SetActive(false);
+
         RefreshUI();
     }
 
-    //  新規追加：資料入手処理
+    // ===== 資料追加 =====
     public void AddDocument(int id, string title)
     {
         if (id < 0 || id >= documents.Length) return;
 
-        // 既に入手済みなら何もしない
-        if (documents[id].obtained) return;
+        if (documents[id].obtained) return;  // すでに入手済みなら無視
 
         documents[id].obtained = true;
-        documents[id].title = title; // タイトルだけ更新（本文は Inspector に入力）
+        documents[id].title = title;
 
-        Debug.Log($"資料 {title} を入手しました！");
+        Debug.Log($"資料「{title}」を入手しました！");
         RefreshUI();
     }
 
-    //  UI更新（スロットに反映）
+    // ===== UI更新 =====
     void RefreshUI()
     {
         for (int i = 0; i < slots.Length; i++)
@@ -70,9 +74,7 @@ public class DocumentManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 資料一覧を開く
-    /// </summary>
+    // ===== 一覧を開く =====
     public void OpenDocumentGrid()
     {
         if (documentGridPanel == null) return;
@@ -83,13 +85,9 @@ public class DocumentManager : MonoBehaviour
 
         IsDetailOpen = false;
         currentIndex = -1;
-
-        RefreshUI();
     }
 
-    /// <summary>
-    /// 資料スロットを押したときに呼ぶ
-    /// </summary>
+    // ===== 詳細を表示 =====
     public void ShowDocument(int index)
     {
         if (index < 0 || index >= documents.Length) return;
@@ -97,7 +95,7 @@ public class DocumentManager : MonoBehaviour
 
         if (!data.obtained)
         {
-            Debug.Log("このスロットには資料が存在しません");
+            Debug.Log("この資料は未入手です");
             return;
         }
 
@@ -112,9 +110,7 @@ public class DocumentManager : MonoBehaviour
         IsDetailOpen = true;
     }
 
-    /// <summary>
-    /// 詳細画面を閉じて一覧に戻る
-    /// </summary>
+    // ===== 詳細を閉じる =====
     public void CloseDetail()
     {
         if (documentDetailPanel != null) documentDetailPanel.SetActive(false);
