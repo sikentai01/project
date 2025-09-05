@@ -1347,8 +1347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0664141a8caa1694c80404e7fe63d01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollRect: {fileID: 0}
-  content: {fileID: 0}
+  scrollRect: {fileID: 1569197215}
+  content: {fileID: 1939050754}
 --- !u!4 &78462038
 Transform:
   m_ObjectHideFlags: 0
@@ -16672,9 +16672,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2068871777}
-  - component: {fileID: 2068871776}
   - component: {fileID: 2068871775}
   - component: {fileID: 2068871778}
+  - component: {fileID: 2068871779}
   m_Layer: 0
   m_Name: DocumentTestObject
   m_TagString: Untagged
@@ -16737,20 +16737,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2068871776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068871774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a15449a94a7334897511f791495bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  documentID: 0
-  title: test1
 --- !u!4 &2068871777
 Transform:
   m_ObjectHideFlags: 0
@@ -16812,6 +16798,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.25, y: 0.19}
   m_EdgeRadius: 0
+--- !u!114 &2068871779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068871774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a15449a94a7334897511f791495bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  documentID: 0
+  title: test1
 --- !u!1 &2074466969
 GameObject:
   m_ObjectHideFlags: 0
