@@ -575,6 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnimator: {fileID: 0}
+  movementScript: {fileID: 6634847764944034231, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
 --- !u!1 &427114880 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6803091616901732913, guid: bec834a295aa3aa48a092e1be42eb375, type: 3}
