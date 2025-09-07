@@ -11,7 +11,7 @@ public class DoorAnimationController : MonoBehaviour
     // トリガーコライダーに入ったときに一度だけ呼び出される
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Debug.Log("ドアに近づきました"); // デバッグ用
+         Debug.Log("ドアに近づきました"); // デバッグ用
     }
 
     // トリガーコライダーの中にいる間、毎フレーム呼び出される
