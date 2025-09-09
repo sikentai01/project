@@ -30,10 +30,28 @@ public class GridMovement : MonoBehaviour
         if (horizontalInput != 0 || verticalInput != 0)
         {
             animator.SetBool("Move_motion", true);
-            if (horizontalInput > 0) animator.SetInteger("Direction", 2);
-            else if (horizontalInput < 0) animator.SetInteger("Direction", 1);
-            else if (verticalInput > 0) animator.SetInteger("Direction", 3);
-            else if (verticalInput < 0) animator.SetInteger("Direction", 0);
+            if (verticalInput == 0)
+            {
+                if (horizontalInput > 0)
+                {
+                    animator.SetInteger("Direction", 2);
+                }
+                else if (horizontalInput < 0)
+                {
+                    animator.SetInteger("Direction", 1);
+                }
+            }
+            if (horizontalInput == 0)
+            {
+                if (verticalInput > 0)
+                {
+                    animator.SetInteger("Direction", 3);
+                }
+                else if (verticalInput < 0)
+                {
+                    animator.SetInteger("Direction", 0);
+                }
+            }
         }
         else
         {
