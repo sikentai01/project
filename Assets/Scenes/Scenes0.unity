@@ -5027,32 +5027,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6751309555823882615, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 505244542}
     - targetCorrespondingSourceObject: {fileID: 671562117153048660, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1814306890}
   m_SourcePrefab: {fileID: -2695619058785784247, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
---- !u!1 &505244541 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6751309555823882615, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
-  m_PrefabInstance: {fileID: 505244540}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &505244542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505244541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a15449a94a7334897511f791495bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  documentID: doc1
-  title: test1
 --- !u!1 &573016178
 GameObject:
   m_ObjectHideFlags: 0
