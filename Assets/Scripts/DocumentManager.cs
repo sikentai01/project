@@ -9,10 +9,11 @@ public class DocumentManager : MonoBehaviour
     [System.Serializable]
     public class DocumentData
     {
-        public string title;    // 資料タイトル
+        public string documentID;   // ← int → string に変更
+        public string title;
         [TextArea(3, 10)]
-        public string body;     // 資料本文
-        public bool obtained;   // 入手済みかどうか
+        public string body;
+        public bool obtained;       // 入手済みかどうか
     }
 
     [Header("資料データ")]
@@ -45,14 +46,15 @@ public class DocumentManager : MonoBehaviour
     }
 
     // ===== 資料追加 =====
-    public void AddDocument(int id, string title)
+    public void AddDocument(string id, string title)
     {
-        if (id < 0 || id >= documents.Length) return;
+        var doc = System.Array.Find(documents, d => d.documentID == id);
+        if (doc == null) return;
 
-        if (documents[id].obtained) return;  // すでに入手済みなら無視
+        if (doc.obtained) return;  // すでに入手済みなら無視
 
-        documents[id].obtained = true;
-        documents[id].title = title;
+        doc.obtained = true;
+        doc.title = title;
 
         Debug.Log($"資料「{title}」を入手しました！");
         RefreshUI();

@@ -3,8 +3,8 @@ using UnityEngine;
 public class DocumentObject : MonoBehaviour
 {
     [Header("資料情報")]
-    public int documentID;    // 資料ID（セーブ用）
-    public string title;      // 資料タイトル
+    public string documentID;  // ← int → string に
+    public string title;       // 資料タイトル
 
     private bool isPlayerNear = false;
 
@@ -19,15 +19,13 @@ public class DocumentObject : MonoBehaviour
 
     void CollectDocument()
     {
-        // DocumentManager に登録
         if (DocumentManager.Instance != null)
         {
             DocumentManager.Instance.AddDocument(documentID, title);
             Debug.Log($"資料「{title}」を入手しました");
         }
 
-        // 一度入手したら消える（見えなくするだけでもOK）
-        Destroy(gameObject);
+        Destroy(gameObject); // 入手後に消す（非表示でもOK）
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -31,7 +31,6 @@ public class DocumentSlot : MonoBehaviour
     {
         if (currentDoc != null)
         {
-            // DocumentManager ‚Ì ShowDocument() ‚ðŒÄ‚Ô
             int index = System.Array.IndexOf(DocumentManager.Instance.documents, currentDoc);
             if (index >= 0)
             {
