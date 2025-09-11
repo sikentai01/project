@@ -9,6 +9,8 @@ public class GridMovement : MonoBehaviour
     private bool isMoving = false;
     private Animator animator;
 
+    private int currentDirection = 0;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -96,5 +98,10 @@ public class GridMovement : MonoBehaviour
         }
 
         return false;
+    }
+
+    public int GetDirection()
+    {
+        return currentDirection;
     }
 }

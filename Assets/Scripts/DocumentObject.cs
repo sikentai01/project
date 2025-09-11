@@ -17,7 +17,7 @@ public class DocumentObject : MonoBehaviour
         }
     }
 
-    void CollectDocument()
+    public void CollectDocument()
     {
         if (DocumentManager.Instance != null)
         {
