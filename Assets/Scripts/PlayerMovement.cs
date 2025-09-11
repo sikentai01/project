@@ -64,7 +64,7 @@ public class GridMovement : MonoBehaviour
             animator.SetBool("Move_motion", false);
         }
 
-        // 移動ロジック
+        // 移動ロジック-
         if (!isMoving && (horizontalInput != 0 || verticalInput != 0))
         {
             Vector3 nextPos = transform.position + new Vector3(horizontalInput * gridSize, verticalInput * gridSize, 0);
