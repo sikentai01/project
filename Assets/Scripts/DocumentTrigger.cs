@@ -2,23 +2,70 @@ using UnityEngine;
 
 public class DocumentTrigger : MonoBehaviour
 {
-    [SerializeField] private DocumentObject parent; // Inspectorに表示される
-    public int requiredDirection; // 0=下, 1=左, 2=右, 3=上
+    public DocumentObject parent;
+    public int requiredDirection;
 
-    public void Setup(DocumentObject parentObject, int dir)
+    private bool isPlayerInside = false;
+    private GridMovement playerMovement;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        parent = parentObject;
-        requiredDirection = dir;
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player entered trigger zone");
+            isPlayerInside = true;
+            playerMovement = other.GetComponent<GridMovement>();
+        }
     }
 
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player left trigger zone");
+            isPlayerInside = false;
+            playerMovement = null;
+        }
+    }
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
         {
             GridMovement move = other.GetComponent<GridMovement>();
-            if (move != null && move.GetDirection() == requiredDirection)
+            if (move != null)
             {
-                parent.CollectDocument();
+                Debug.Log("PlayerDir=" + move.GetDirection() + " / Need=" + requiredDirection);
+
+                if (move.GetDirection() == requiredDirection)
+                {
+                    Debug.Log("方向一致 → CollectDocument()");
+                    parent.CollectDocument();
+                }
+            }
+        }
+    }
+
+    void Update()
+    {
+        if (isPlayerInside)
+        {
+            if (Input.anyKeyDown)
+                Debug.Log("何かキー押された: " + Input.inputString);
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("E key pressed");
+
+                if (playerMovement != null)
+                {
+                    Debug.Log("Direction = " + playerMovement.GetDirection() + ", Required = " + requiredDirection);
+
+                    if (playerMovement.GetDirection() == requiredDirection)
+                    {
+                        Debug.Log("Direction matched → CollectDocument");
+                        parent.CollectDocument();
+                    }
+                }
             }
         }
     }

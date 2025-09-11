@@ -36,10 +36,12 @@ public class GridMovement : MonoBehaviour
             {
                 if (horizontalInput > 0)
                 {
+                    currentDirection = 2;
                     animator.SetInteger("Direction", 2);
                 }
                 else if (horizontalInput < 0)
                 {
+                    currentDirection = 1;
                     animator.SetInteger("Direction", 1);
                 }
             }
@@ -47,10 +49,12 @@ public class GridMovement : MonoBehaviour
             {
                 if (verticalInput > 0)
                 {
+                    currentDirection = 3;
                     animator.SetInteger("Direction", 3);
                 }
                 else if (verticalInput < 0)
                 {
+                    currentDirection = 0;
                     animator.SetInteger("Direction", 0);
                 }
             }
@@ -90,9 +94,10 @@ public class GridMovement : MonoBehaviour
     bool IsOccupied(Vector3 nextPos)
     {
         Vector3 checkPos = nextPos + new Vector3(0, -0.5f, 0);
+
         Collider2D hitCollider = Physics2D.OverlapBox(checkPos, new Vector2(0.8f, 0.8f), 0f);
 
-        if (hitCollider != null && hitCollider.gameObject != gameObject)
+        if (hitCollider != null && !hitCollider.isTrigger && hitCollider.gameObject != gameObject)
         {
             return true;
         }
