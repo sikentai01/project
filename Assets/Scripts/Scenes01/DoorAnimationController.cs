@@ -3,54 +3,64 @@ using System.Collections;
 
 public class DoorAnimationController : MonoBehaviour
 {
-    public Animator characterAnimator;
-    public MonoBehaviour movementScript;
+    // ドア自身のAnimatorを割り当てる
+    public Animator doorAnimator;
 
+    // プレイヤーの移動スクリプトへの参照
+    public MonoBehaviour playerMovementScript;
+
+    private bool playerIsNearDoor = false;
     private bool isAnimationPlaying = false;
 
-    // トリガーコライダーに入ったときに一度だけ呼び出される
     void OnTriggerEnter2D(Collider2D other)
     {
-         Debug.Log("ドアに近づきました"); // デバッグ用
-    }
-
-    // トリガーコライダーの中にいる間、毎フレーム呼び出される
-    void OnTriggerStay2D(Collider2D other)
-    {
-        // アニメーション再生中でない、かつEnterキーが押された場合
-        if (!isAnimationPlaying && other.CompareTag("Player") && Input.GetKeyDown(KeyCode.Return))
+        if (other.CompareTag("Player"))
         {
-            isAnimationPlaying = true;
-
-            // 移動スクリプトを一時的に無効化する
-            if (movementScript != null)
-            {
-                movementScript.enabled = false;
-            }
-
-            // アニメーションを再生
-            characterAnimator.Play("OpenGate");
-
-            // アニメーションが終了するまで待機するコルーチンを開始
-            StartCoroutine(WaitForAnimationEnd());
+            playerIsNearDoor = true;
+            Debug.Log("プレイヤーがドアに近づいた");
         }
     }
 
-    // トリガーコライダーから出たときに呼び出される
     void OnTriggerExit2D(Collider2D other)
     {
-        // Debug.Log("ドアから離れました"); // デバッグ用
+        if (other.CompareTag("Player"))
+        {
+            playerIsNearDoor = false;
+            Debug.Log("プレイヤーがドアから離れた");
+        }
+    }
+
+    void Update()
+    {
+        if (playerIsNearDoor && !isAnimationPlaying && Input.GetKeyDown(KeyCode.Return))
+        {
+            isAnimationPlaying = true;
+
+            // プレイヤーの移動スクリプトを一時的に無効化
+            if (playerMovementScript != null)
+            {
+                playerMovementScript.enabled = false;
+            }
+
+            // ドアのアニメーションを再生
+            doorAnimator.Play("DoorOpenAnimation",0);
+
+            // アニメーション終了後に移動を再開させるコルーチンを開始
+            StartCoroutine(WaitForAnimationEnd());
+        }
     }
 
     private IEnumerator WaitForAnimationEnd()
     {
         yield return null;
 
-        yield return new WaitForSeconds(characterAnimator.GetCurrentAnimatorStateInfo(0).length);
+        // 再生中のアニメーションの長さを取得して待機
+        yield return new WaitForSeconds(doorAnimator.GetCurrentAnimatorStateInfo(0).length);
 
-        if (movementScript != null)
+        // プレイヤーの移動スクリプトを有効化
+        if (playerMovementScript != null)
         {
-            movementScript.enabled = true;
+            playerMovementScript.enabled = true;
         }
         isAnimationPlaying = false;
     }
