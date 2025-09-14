@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class DocumentScroll : MonoBehaviour
 {
     public ScrollRect scrollRect;
-    public float scrollSpeed = 0.05f;
+    public float scrollSpeed = 0.2f;
 
     void Update()
     {
