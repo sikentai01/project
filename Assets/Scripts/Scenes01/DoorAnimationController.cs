@@ -7,10 +7,17 @@ public class DoorAnimationController : MonoBehaviour
     public Animator doorAnimator;
 
     // プレイヤーの移動スクリプトへの参照
-    public MonoBehaviour playerMovementScript;
+    private MonoBehaviour playerMovementScript;
 
     private bool playerIsNearDoor = false;
     private bool isAnimationPlaying = false;
+
+    // Startはゲーム開始時に一度だけ呼ばれます
+    void Start()
+    {
+        // シーンに関係なく、GridMovementスクリプトを自動で探して割り当てる
+        playerMovementScript = FindObjectOfType<GridMovement>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -43,7 +50,7 @@ public class DoorAnimationController : MonoBehaviour
             }
 
             // ドアのアニメーションを再生
-            doorAnimator.Play("DoorOpenAnimation",0);
+            doorAnimator.Play("OpenGate", 0);
 
             // アニメーション終了後に移動を再開させるコルーチンを開始
             StartCoroutine(WaitForAnimationEnd());
