@@ -52,10 +52,25 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
     {
         if (currentItem == null) return;
 
-        Debug.Log(currentItem.itemName + " を使用しました！");
+        // 条件を満たす場合だけ確認パネルを出す
+        if (CanUseItem(currentItem))
+        {
+            // 他のパネルを全部閉じる（PauseMenuに任せてもOK）
+            PauseMenu.Instance.CloseAllPanels();
 
-        // InventoryManagerに処理を投げる
-        int index = transform.GetSiblingIndex();
-        InventoryManager.Instance.UseItem(index);
+            // 確認パネルを開く
+            ConfirmPanel.Instance.Show(currentItem);
+        }
+        else
+        {
+            Debug.Log(currentItem.itemName + " は今使えない！");
+        }
+    }
+
+    private bool CanUseItem(ItemData item)
+    {
+        // 条件判定をここに書く
+        // 例：ドアの前じゃないと鍵は使えない とか
+        return true;
     }
 }

@@ -4,14 +4,16 @@ using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu Instance; // ← シングルトン追加
+
     [Header("UI Panels")]
     public GameObject pauseMenuUI;   // メニュー全体
     public GameObject charPanel;     // キャラパネル
     public GameObject itemPanel;     // アイテムパネル
     public GameObject documentPanel; // 資料パネル (GridとDetailの親)
     public GameObject optionPanel;   // オプションパネル
-    public GameObject controlPanel;  // 操作説明パネル ← 新しく追加
-    public GameObject itemInfoPanel; // アイテムバー (上の説明部分)?
+    public GameObject controlPanel;  // 操作説明パネル
+    public GameObject itemInfoPanel; // アイテムバー (上の説明部分)
 
     [Header("Menu Buttons (左のメニュー用)")]
     public GameObject firstSelected;    // ESCで最初に選択するボタン (Items)
@@ -31,15 +33,17 @@ public class PauseMenu : MonoBehaviour
     private GameObject currentPanel = null;     // 現在開いている右側のパネル
     private GameObject lastMenuButton = null;   // 直前に開いたメニューのボタン
 
+    void Awake()
+    {
+        // シングルトン設定
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
     void Start()
     {
+        CloseAllPanels(); // 全部閉じる
         pauseMenuUI.SetActive(false);
-        charPanel.SetActive(false);
-        itemPanel.SetActive(false);
-        documentPanel.SetActive(false);
-        optionPanel.SetActive(false);
-        controlPanel.SetActive(false);
-        if (itemInfoPanel != null) itemInfoPanel.SetActive(false);
 
         Time.timeScale = 1f;
         isPaused = false;
@@ -51,14 +55,12 @@ public class PauseMenu : MonoBehaviour
         {
             if (isPaused)
             {
-                // DocumentDetailを開いている場合はGridに戻す
                 if (currentPanel == documentPanel && documentManager != null && documentManager.IsDetailOpen)
                 {
                     documentManager.CloseDetail();
                 }
                 else if (currentPanel != null)
                 {
-                    // アイテム画面の場合はバーも閉じる
                     if (currentPanel == itemPanel && itemInfoPanel != null)
                         itemInfoPanel.SetActive(false);
 
@@ -66,7 +68,6 @@ public class PauseMenu : MonoBehaviour
                     currentPanel = null;
                     charPanel.SetActive(true);
 
-                    // ESCで戻ったら「直前のボタン」にカーソルを戻す
                     if (lastMenuButton != null)
                     {
                         EventSystem.current.SetSelectedGameObject(null);
@@ -87,16 +88,11 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        CloseAllPanels();
         pauseMenuUI.SetActive(false);
-        charPanel.SetActive(false);
-        itemPanel.SetActive(false);
-        documentPanel.SetActive(false);
-        optionPanel.SetActive(false);
-        controlPanel.SetActive(false);
-        if (itemInfoPanel != null) itemInfoPanel.SetActive(false);
 
         currentPanel = null;
-        lastMenuButton = null; // Resumeしたらリセット
+        lastMenuButton = null;
 
         Time.timeScale = 1f;
         isPaused = false;
@@ -114,7 +110,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
 
-        // 開いたらItemsを選択
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstSelected);
 
@@ -135,10 +130,9 @@ public class PauseMenu : MonoBehaviour
 
         if (firstItemButton != null)
         {
-            EventSystem.current.SetSelectedGameObject(null);              // 一旦リセット
-            EventSystem.current.SetSelectedGameObject(firstItemButton);   // 再度セット
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstItemButton);
 
-            // 強制的に説明欄を更新
             var slot = firstItemButton.GetComponent<ItemSlot>();
             if (slot != null) slot.OnSelectSlot();
         }
@@ -153,10 +147,10 @@ public class PauseMenu : MonoBehaviour
 
         if (documentManager != null)
         {
-            documentManager.OpenDocumentGrid(); // Gridを開く
+            documentManager.OpenDocumentGrid();
         }
 
-        documentPanel.SetActive(true); // 親パネルも表示
+        documentPanel.SetActive(true);
         currentPanel = documentPanel;
 
         lastMenuButton = documentButton;
@@ -188,13 +182,9 @@ public class PauseMenu : MonoBehaviour
     // ▼ 操作説明パネル
     public void OpenControls()
     {
-        // キャラパネルを閉じる
         charPanel.SetActive(false);
-
-        // 今開いているパネルを閉じる
         if (currentPanel != null) currentPanel.SetActive(false);
 
-        // 操作説明パネルを開く
         controlPanel.SetActive(true);
         currentPanel = controlPanel;
 
@@ -205,18 +195,22 @@ public class PauseMenu : MonoBehaviour
 
     void SwitchPanel(GameObject newPanel)
     {
-        // キャラパネルを閉じる
         charPanel.SetActive(false);
-
-        // アイテム情報バーを閉じる
         if (itemInfoPanel != null) itemInfoPanel.SetActive(false);
-
-        // 現在のパネルを閉じる
         if (currentPanel != null) currentPanel.SetActive(false);
 
-        // 新しいパネルを開く
         currentPanel = newPanel;
         currentPanel.SetActive(true);
+    }
+
+    public void CloseAllPanels()
+    {
+        charPanel.SetActive(false);
+        itemPanel.SetActive(false);
+        documentPanel.SetActive(false);
+        optionPanel.SetActive(false);
+        controlPanel.SetActive(false);
+        if (itemInfoPanel != null) itemInfoPanel.SetActive(false);
     }
 
     public void QuitGame()
