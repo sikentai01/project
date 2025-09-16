@@ -5139,10 +5139,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 671562117153048660, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1814306890}
-    - targetCorrespondingSourceObject: {fileID: 3858278294383985137, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1690165493}
   m_SourcePrefab: {fileID: -2695619058785784247, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+--- !u!1 &505244541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3858278294383985137, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+  m_PrefabInstance: {fileID: 505244540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &573016178
 GameObject:
   m_ObjectHideFlags: 0
@@ -14351,33 +14353,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687540524}
   m_CullTransparentMesh: 1
---- !u!1 &1690165487 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3858278294383985137, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
-  m_PrefabInstance: {fileID: 505244540}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1690165488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7469800162939513096, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
   m_PrefabInstance: {fileID: 505244540}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1690165493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690165487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 031fedd0cde7adf459748e05253cb56f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemID: item1
-  itemName: light
-  description: light
-  effects:
-  - {fileID: 0}
 --- !u!1 &1709161032
 GameObject:
   m_ObjectHideFlags: 0
@@ -15250,9 +15230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a3f764657a3d8408cd080c2c67c3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 1690165493}
-  targetObject: {fileID: 1690165487}
-  requiredDirection: 3
+  itemData: {fileID: 11400000, guid: b6703f7d906bd2d4aba6874ed81c15a6, type: 2}
+  targetObject: {fileID: 505244541}
 --- !u!61 &1842115388
 BoxCollider2D:
   m_ObjectHideFlags: 0

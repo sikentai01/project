@@ -3,25 +3,14 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance; // シングルトン
+    public static InventoryManager Instance;
 
     [Header("UI 参照")]
-    public Transform slotParent; // スロットを並べる親オブジェクト（Grid/Content）
-
+    public Transform slotParent;
     private ItemSlot[] slots;
 
-    // 所持アイテムリスト（IDで管理）
-    [System.Serializable]
-    public class InventoryItem
-    {
-        public string itemID;
-        public string itemName;
-        public string description;
-        public bool isConsumable;
-        public ItemBehaviour source; // 元のオブジェクト (効果実行用)
-    }
-
-    public List<InventoryItem> items = new List<InventoryItem>();
+    // 所持アイテムリスト → ScriptableObject 参照に切り替え
+    public List<ItemData> items = new List<ItemData>();
 
     void Awake()
     {
@@ -35,29 +24,20 @@ public class InventoryManager : MonoBehaviour
         RefreshUI();
     }
 
-    /// <summary>
-    /// アイテム追加
-    /// </summary>
-    public void AddItem(ItemBehaviour item)
+    /// <summary> アイテム追加 </summary>
+    public void AddItem(ItemData item)
     {
-        InventoryItem newItem = new InventoryItem()
+        if (!items.Contains(item)) // 重複登録防止
         {
-            itemID = item.itemID,
-            itemName = item.itemName,
-            description = item.description,
-            source = item
-        };
-
-        items.Add(newItem);
-        RefreshUI();
+            items.Add(item);
+            RefreshUI();
+        }
     }
 
-    /// <summary>
-    /// アイテム削除 (IDで削除)
-    /// </summary>
+    /// <summary> アイテム削除 (ID で削除) </summary>
     public void RemoveItemByID(string itemID)
     {
-        var target = items.Find(i => i.itemID == itemID);
+        var target = items.Find(i => i.name == itemID); // name を ID 代わりに使ってる
         if (target != null)
         {
             items.Remove(target);
@@ -65,28 +45,19 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// アイテム使用
-    /// </summary>
+    /// <summary> アイテム使用 </summary>
     public void UseItem(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= items.Count) return;
 
         var target = items[slotIndex];
-
-        if (target.source != null)
+        if (target != null)
         {
-            target.source.Use(); // ← ここで各アイテムの処理が走る
-        }
-        else
-        {
-            Debug.Log(target.itemName + " は効果が設定されていない");
+            target.Use(); // ← ScriptableObject の Use() が呼ばれる
         }
     }
 
-    /// <summary>
-    /// UI更新
-    /// </summary>
+    /// <summary> UI 更新 </summary>
     void RefreshUI()
     {
         for (int i = 0; i < slots.Length; i++)

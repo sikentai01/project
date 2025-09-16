@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class ItemEffect : MonoBehaviour
+public abstract class ItemEffect : ScriptableObject
 {
-    public abstract void Execute(ItemBehaviour item);
+    public abstract void Execute(ItemData item);
 }

@@ -2,40 +2,35 @@ using UnityEngine;
 
 public class ItemTrigger : MonoBehaviour
 {
-    public ItemBehaviour item;       // このトリガーが持ってるアイテム
-    public GameObject targetObject;  // 消したい対象（未設定なら自分自身）
-    public int requiredDirection = -1; // -1なら判定なし / 0=下,1=左,2=右,3=上
+    [Header("拾えるアイテムデータ")]
+    public ItemData itemData;   // ScriptableObject をアタッチする
+    [Header("見た目を消すオブジェクト（机や松明など）")]
+    public GameObject targetObject;
 
     private bool isPlayerNear = false;
-    private GridMovement playerMovement;
-
-    void Start()
-    {
-        if (targetObject == null) targetObject = gameObject;
-    }
 
     void Update()
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.Return)) // Enterキー
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.Return)) // Eキーで取得
         {
-            if (item != null)
+            if (itemData != null)
             {
-                if (requiredDirection == -1 ||
-                    (playerMovement != null && playerMovement.GetDirection() == requiredDirection))
-                {
-                    InventoryManager.Instance.AddItem(item);
-                    Debug.Log(item.itemName + " を入手！");
+                InventoryManager.Instance.AddItem(itemData);
+                Debug.Log(itemData.itemName + " を手に入れた！");
 
-                    Destroy(targetObject);
+                // 見た目を消す
+                if (targetObject != null)
+                {
+                    targetObject.SetActive(false);
                 }
                 else
                 {
-                    Debug.Log("向きが違うので拾えない");
+                    Destroy(gameObject);
                 }
             }
             else
             {
-                Debug.LogWarning("ItemBehaviour が設定されていません！");
+                Debug.LogWarning("ItemData が設定されていません！");
             }
         }
     }
@@ -45,7 +40,7 @@ public class ItemTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = true;
-            playerMovement = other.GetComponent<GridMovement>();
+            Debug.Log("プレイヤーがアイテムの近くに来た");
         }
     }
 
@@ -54,7 +49,7 @@ public class ItemTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
-            playerMovement = null;
+            Debug.Log("プレイヤーがアイテムから離れた");
         }
     }
 }

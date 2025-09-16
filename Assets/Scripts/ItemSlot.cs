@@ -7,7 +7,7 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
 {
     public TMP_Text slotText;   // スロット内に表示するテキスト
 
-    private InventoryManager.InventoryItem currentItem;
+    private ItemData currentItem;  // ← InventoryItem ではなく ItemData に変更
     private InventoryUI inventoryUI;
 
     void Start()
@@ -20,7 +20,7 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
     }
 
     // アイテムをセットして表示
-    public void SetItem(InventoryManager.InventoryItem item)
+    public void SetItem(ItemData item)
     {
         currentItem = item;
         slotText.text = item.itemName; // 名前を表示
@@ -37,11 +37,7 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
     public void OnSelectSlot()
     {
         if (currentItem != null)
-            inventoryUI.ShowDescription(new ItemData
-            {
-                itemName = currentItem.itemName,
-                description = currentItem.description
-            });
+            inventoryUI.ShowDescription(currentItem);
         else
             inventoryUI.ShowDescription(null);
     }

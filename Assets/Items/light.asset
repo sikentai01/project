@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0462424cb8c3a4597b1726c64dec32, type: 3}
+  m_Name: light
+  m_EditorClassIdentifier: 
+  itemID: item1
+  itemName: light1
+  description: light1
+  isConsumable: 1
+  effects:
+  - {fileID: 11400000, guid: dd3b80f90d311bb44bd7be2de00e085f, type: 2}

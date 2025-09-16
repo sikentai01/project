@@ -1,47 +1,39 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "NewItem", menuName = "Game/Item")]
+[CreateAssetMenu(menuName = "Game/Item")]
 public class ItemData : ScriptableObject
 {
-    public string itemName;        // アイテム名
-    [TextArea] public string description; // 説明文
-    public bool isConsumable;      // 消耗品かどうか
+    [Header("基本情報")]
+    public string itemID;           // ← ID を追加
+    public string itemName;
+    [TextArea] public string description;
+    public bool isConsumable;
 
-    // 効果の種類（必要に応じて増やせる）
-    public enum EffectType { None, Key, Poison, Water, Lubricant }
-    public EffectType effectType;
+    [Header("効果リスト (ScriptableObject 参照)")]
+    [SerializeField] private List<ItemEffect> effects = new List<ItemEffect>();
+    public List<ItemEffect> Effects => effects;
 
-    // 鍵のID（部屋ごとに違う値を設定して特定のドアだけ開けられるようにする）
-    public string keyID;
-
-    // アイテムを使ったときの処理
-    public void UseEffect()
+    /// <summary>
+    /// アイテムを使用したときの処理
+    /// </summary>
+    public void Use()
     {
-        Debug.Log(itemName + " の効果を発動！");
-
-        switch (effectType)
+        if (effects == null || effects.Count == 0)
         {
-            case EffectType.Key:
-                // 鍵はドアスクリプト側で判定する
-                Debug.Log("ドアの前で使ってください");
-                break;
+            Debug.Log(itemName + " は効果が設定されていない");
+            return;
+        }
 
-            case EffectType.Poison:
-                Debug.Log("毒を飲んでしまった…ゲームオーバー！");
-                // GameManager.Instance.GameOver(); ← ここでゲームオーバー処理へ
-                break;
+        foreach (var effect in effects)
+        {
+            effect.Execute(this); // 自分を渡して実行
+        }
 
-            case EffectType.Water:
-                Debug.Log("水を捨てた");
-                break;
-
-            case EffectType.Lubricant:
-                Debug.Log("錆を落とした！");
-                break;
-
-            default:
-                Debug.Log("特別な効果はない");
-                break;
+        if (isConsumable)
+        {
+            Debug.Log(itemName + " を消費した！");
+            InventoryManager.Instance.RemoveItemByID(itemID);
         }
     }
 }
