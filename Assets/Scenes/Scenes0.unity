@@ -14376,7 +14376,8 @@ MonoBehaviour:
   itemID: item1
   itemName: light
   description: light
-  effects: []
+  effects:
+  - {fileID: 0}
 --- !u!1 &1709161032
 GameObject:
   m_ObjectHideFlags: 0
