@@ -16,5 +16,6 @@ MonoBehaviour:
   itemName: light1
   description: light1
   isConsumable: 1
+  DebugOwned: 0
   effects:
   - {fileID: 11400000, guid: dd3b80f90d311bb44bd7be2de00e085f, type: 2}
