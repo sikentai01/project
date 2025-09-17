@@ -52,14 +52,14 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
     {
         if (currentItem == null) return;
 
-        // 条件を満たす場合だけ確認パネルを出す
+        // 使用条件チェック
         if (CanUseItem(currentItem))
         {
-            // 他のパネルを全部閉じる（PauseMenuに任せてもOK）
-            PauseMenu.Instance.CloseAllPanels();
+            Debug.Log(currentItem.itemName + " を使用！");
+            currentItem.Use();
 
-            // 確認パネルを開く
-            ConfirmPanel.Instance.Show(currentItem);
+            // 使用したらメニューを閉じる
+            PauseMenu.Instance.CloseAllPanels();
         }
         else
         {
@@ -67,10 +67,10 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
         }
     }
 
+    // 使用条件チェック用
     private bool CanUseItem(ItemData item)
     {
-        // 条件判定をここに書く
-        // 例：ドアの前じゃないと鍵は使えない とか
+        // ここに判定ロジックを入れる（例：鍵が必要、シーン条件など）
         return true;
     }
 }

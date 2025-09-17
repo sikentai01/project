@@ -9,8 +9,12 @@ public class InventoryManager : MonoBehaviour
     public Transform slotParent;
     private ItemSlot[] slots;
 
-    // 所持アイテムリスト → ScriptableObject 参照に切り替え
+    // 所持アイテムリスト
     public List<ItemData> items = new List<ItemData>();
+
+    // Debug用に最初から持ってるアイテム
+    [Header("全アイテムリスト（デバッグ用）")]
+    public List<ItemData> allItems = new List<ItemData>();
 
     void Awake()
     {
@@ -21,6 +25,17 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         slots = slotParent.GetComponentsInChildren<ItemSlot>();
+
+        // ▼ ここで DebugOwned チェック
+        foreach (var item in allItems)
+        {
+            if (item != null && item.DebugOwned && !items.Contains(item))
+            {
+                items.Add(item);
+                Debug.Log(item.itemName + " をデバッグ所持として追加");
+            }
+        }
+
         RefreshUI();
     }
 
@@ -37,7 +52,7 @@ public class InventoryManager : MonoBehaviour
     /// <summary> アイテム削除 (ID で削除) </summary>
     public void RemoveItemByID(string itemID)
     {
-        var target = items.Find(i => i.name == itemID); // name を ID 代わりに使ってる
+        var target = items.Find(i => i.itemID == itemID); // ← 修正済み: itemID で検索
         if (target != null)
         {
             items.Remove(target);
@@ -53,7 +68,7 @@ public class InventoryManager : MonoBehaviour
         var target = items[slotIndex];
         if (target != null)
         {
-            target.Use(); // ← ScriptableObject の Use() が呼ばれる
+            target.Use(); // ScriptableObject の Use()
         }
     }
 
