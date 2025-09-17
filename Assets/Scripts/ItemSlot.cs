@@ -59,7 +59,7 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
             currentItem.Use();
 
             // 使用したらメニューを閉じる
-            PauseMenu.Instance.CloseAllPanels();
+            PauseMenu.Instance.Resume();
         }
         else
         {

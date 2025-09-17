@@ -10247,7 +10247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7b63a83cc5a064fbee1a982d90e153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextGimmick: {fileID: 0}
 --- !u!1 &1152285867
 GameObject:
   m_ObjectHideFlags: 0
@@ -10801,7 +10800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96cc1d87bde21e45813829a453037bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextGimmick: {fileID: 1138357808}
   correctPassword: 1234
 --- !u!1 &1255468649
 GameObject:
@@ -15329,12 +15327,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a3f764657a3d8408cd080c2c67c3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerID: firstgimmick
   itemData: {fileID: 11400000, guid: b6703f7d906bd2d4aba6874ed81c15a6, type: 2}
   targetObject: {fileID: 505244541}
   requiredDirection: 3
   gimmicks:
   - {fileID: 1246045405}
   - {fileID: 1138357808}
+  currentStage: 0
 --- !u!61 &1842115388
 BoxCollider2D:
   m_ObjectHideFlags: 0
