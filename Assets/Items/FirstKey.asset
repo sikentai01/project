@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c0462424cb8c3a4597b1726c64dec32, type: 3}
-  m_Name: light
+  m_Name: FirstKey
   m_EditorClassIdentifier: 
-  itemID: item1
-  itemName: light1
-  description: light1
+  itemID: Key001
+  itemName: FirstKey
+  description: key that mistery Chara give to you
   isConsumable: 1
-  DebugOwned: 1
-  effects:
-  - {fileID: 11400000, guid: dd3b80f90d311bb44bd7be2de00e085f, type: 2}
+  DebugOwned: 0
+  effects: []
