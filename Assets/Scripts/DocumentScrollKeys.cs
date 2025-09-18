@@ -36,8 +36,6 @@ public class DocumentScrollKeys : MonoBehaviour
                 scrollRect.verticalNormalizedPosition + move * scrollSpeed * dt
             );
             scrollRect.verticalNormalizedPosition = newPos;
-
-            Debug.Log($"Move:{move}, dt:{dt}, Pos:{scrollRect.verticalNormalizedPosition}");
         }
     }
 }
