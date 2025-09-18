@@ -25,15 +25,32 @@ public class ItemData : ScriptableObject
             return;
         }
 
+        bool executed = false;
+
         foreach (var effect in effects)
         {
-            effect.Execute(this);
+            if (effect.CanExecute(this))  // ← 条件をアイテムの効果に委ねる
+            {
+                effect.Execute(this);      // 実行
+                executed = true;
+            }
         }
 
-        if (isConsumable)
+        if (executed)
         {
-            Debug.Log(itemName + " を消費した");
-            InventoryManager.Instance.RemoveItemByID(itemID);
+            if (isConsumable)
+            {
+                Debug.Log(itemName + " を消費した");
+                InventoryManager.Instance.RemoveItemByID(itemID);
+            }
+
+            // 実際に効果が発動したときだけ閉じる
+            PauseMenu.Instance.Resume();
+        }
+        else
+        {
+            Debug.Log(itemName + " は今使えない！");
+            // ここでは閉じずに残すか、閉じるかは仕様次第
         }
     }
 }

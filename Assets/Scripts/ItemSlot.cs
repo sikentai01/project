@@ -52,25 +52,8 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
     {
         if (currentItem == null) return;
 
-        // 使用条件チェック
-        if (CanUseItem(currentItem))
-        {
-            Debug.Log(currentItem.itemName + " を使用！");
-            currentItem.Use();
-
-            // 使用したらメニューを閉じる
-            PauseMenu.Instance.Resume();
-        }
-        else
-        {
-            Debug.Log(currentItem.itemName + " は今使えない！");
-        }
+        Debug.Log(currentItem.itemName + " を使用しようとした");
+        currentItem.Use();   // ← 判定も効果も全部アイテム側に任せる
     }
 
-    // 使用条件チェック用
-    private bool CanUseItem(ItemData item)
-    {
-        // ここに判定ロジックを入れる（例：鍵が必要、シーン条件など）
-        return true;
-    }
 }
