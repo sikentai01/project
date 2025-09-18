@@ -89,7 +89,6 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         CloseAllPanels();
-        pauseMenuUI.SetActive(false);
 
         currentPanel = null;
         lastMenuButton = null;
@@ -205,6 +204,7 @@ public class PauseMenu : MonoBehaviour
 
     public void CloseAllPanels()
     {
+        pauseMenuUI.SetActive(false);
         charPanel.SetActive(false);
         itemPanel.SetActive(false);
         documentPanel.SetActive(false);

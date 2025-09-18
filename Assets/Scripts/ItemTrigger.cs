@@ -3,26 +3,30 @@ using System.Collections.Generic;
 
 public class ItemTrigger : MonoBehaviour
 {
+    [Header("このトリガー固有のID（セーブ用にユニークに設定）")]
+    public string triggerID;
+
     [Header("拾えるアイテムデータ")]
-    public ItemData itemData;   // ScriptableObject をアタッチする
+    public ItemData itemData;
+
     [Header("見た目を消すオブジェクト（机や松明など）")]
     public GameObject targetObject;
+
     [Header("必要な向き (0=下,1=左,2=右,3=上, -1=制限なし)")]
-    public int requiredDirection = -1; // -1ならどの向きでもOK
+    public int requiredDirection = -1;
 
     [Header("ギミック (任意)")]
     public List<GimmickBase> gimmicks = new List<GimmickBase>();
 
-    private int currentGimmickIndex = 0;
+    [Header("現在の進行度 (セーブ対象)")]
+    public int currentStage = 0;
+
     private bool isPlayerNear = false;
     private GridMovement playerMovement;
 
-    // ★ ギミックが終わった後「待機中」かどうか
-    private bool waitingForNext = false;
-
     void Update()
     {
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.Return)) // Enterで進行
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
             // 向きチェック
             if (requiredDirection != -1 && playerMovement != null && playerMovement.GetDirection() != requiredDirection)
@@ -31,18 +35,11 @@ public class ItemTrigger : MonoBehaviour
                 return;
             }
 
-            if (waitingForNext)
+            // ギミックが残っているならそちらを処理
+            if (currentStage < gimmicks.Count)
             {
-                // 次に進む処理
-                waitingForNext = false;
-                ContinueGimmickOrItem();
-                return;
-            }
-
-            // ギミック開始
-            if (currentGimmickIndex < gimmicks.Count)
-            {
-                gimmicks[currentGimmickIndex].StartGimmick(this);
+                Debug.Log($"ギミック {currentStage} 開始");
+                gimmicks[currentStage].StartGimmick(this);
             }
             else
             {
@@ -51,25 +48,20 @@ public class ItemTrigger : MonoBehaviour
         }
     }
 
+    // ギミック完了を受け取る
     public void CompleteCurrentGimmick()
     {
-        Debug.Log("ギミック完了！次の入力を待っています...");
-        waitingForNext = true; // ← 次のEnterを待つ
-    }
+        currentStage++;
+        Debug.Log($"進行段階が {currentStage} になった");
 
-    private void ContinueGimmickOrItem()
-    {
-        currentGimmickIndex++;
-        if (currentGimmickIndex < gimmicks.Count)
-        {
-            gimmicks[currentGimmickIndex].StartGimmick(this);
-        }
-        else
+        // 全部終わったらアイテム入手へ
+        if (currentStage >= gimmicks.Count)
         {
             CollectItem();
         }
     }
 
+    // アイテム入手
     public void CollectItem()
     {
         if (itemData != null)
@@ -80,7 +72,7 @@ public class ItemTrigger : MonoBehaviour
             if (targetObject != null)
                 targetObject.SetActive(false);
             else
-                Destroy(gameObject);
+                gameObject.SetActive(false); // Destroy じゃなく非表示
         }
     }
 

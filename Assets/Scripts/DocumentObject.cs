@@ -25,7 +25,7 @@ public class DocumentObject : MonoBehaviour
             Debug.Log($"資料「{title}」を入手しました");
         }
 
-        Destroy(gameObject); // 入手後に消す（非表示でもOK）
+        gameObject.SetActive(false); // 入手後に消す（非表示でもOK）
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
