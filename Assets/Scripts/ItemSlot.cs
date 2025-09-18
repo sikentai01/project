@@ -52,8 +52,23 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
     {
         if (currentItem == null) return;
 
-        Debug.Log(currentItem.itemName + " を使用しようとした");
-        currentItem.Use();   // ← 判定も効果も全部アイテム側に任せる
+        // まず近くのギミックを探す
+        var nearbyTrigger = FindFirstObjectByType<ItemTrigger>();
+        // ↑ 本当はシングルトンやプレイヤー近くのトリガーだけ参照する形にした方が良い
+
+        if (nearbyTrigger != null && nearbyTrigger.HasPendingGimmick(currentItem))
+        {
+            // ギミックに渡す
+            nearbyTrigger.UseItemOnGimmick(currentItem);
+        }
+        else
+        {
+            // ギミックが無いなら普通の効果
+            Debug.Log(currentItem.itemName + " を使用！");
+            currentItem.Use();
+        }
+
+        PauseMenu.Instance.Resume();
     }
 
 }

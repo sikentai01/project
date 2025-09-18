@@ -4,20 +4,26 @@ public class DummyGimmick : GimmickBase
 {
     public ItemData requiredItem;  // 必要なアイテム（例：水）
 
-    public override void StartGimmick(ItemTrigger trigger)
+    // ItemSlotから呼ばれる用のメソッド
+    public void UseItemForGimmick(ItemData usedItem, ItemTrigger trigger)
     {
-        // プレイヤーが必要なアイテムを持っているかチェック
-        if (InventoryManager.Instance.items.Contains(requiredItem))
+        if (usedItem == requiredItem)
         {
             Debug.Log(requiredItem.itemName + " を使って仕掛けを解いた！");
             InventoryManager.Instance.RemoveItemByID(requiredItem.itemID);
 
-            // ギミック完了 → ItemTrigger の CompleteCurrentGimmick が呼ばれる
+            // ギミック完了
             Complete(trigger);
         }
         else
         {
-            Debug.Log("必要なアイテムを持っていない");
+            Debug.Log("このギミックでは使えないアイテムです");
         }
+    }
+
+    // 直接Enterで呼ばれるのはもう無し
+    public override void StartGimmick(ItemTrigger trigger)
+    {
+        Debug.Log("アイテムスロットから使用してください");
     }
 }

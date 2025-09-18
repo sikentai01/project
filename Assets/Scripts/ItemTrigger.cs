@@ -28,14 +28,14 @@ public class ItemTrigger : MonoBehaviour
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
-            // 向きチェックは ItemTrigger が担当
+            // 向きチェック
             if (requiredDirection != -1 && playerMovement != null && playerMovement.GetDirection() != requiredDirection)
             {
                 Debug.Log("方向が合っていないのでアイテムを取得できない");
                 return;
             }
 
-            // ギミックがまだ残っている場合はギミックへ
+            // ギミックが残っている場合
             if (currentStage < gimmicks.Count)
             {
                 Debug.Log($"ギミック {currentStage} 開始");
@@ -48,7 +48,7 @@ public class ItemTrigger : MonoBehaviour
         }
     }
 
-    // ギミック完了時に呼ばれる
+    // ギミック完了時
     public void CompleteCurrentGimmick()
     {
         currentStage++;
@@ -72,6 +72,38 @@ public class ItemTrigger : MonoBehaviour
                 targetObject.SetActive(false);
             else
                 gameObject.SetActive(false);
+        }
+    }
+
+    // このトリガーが「アイテム使用に対応しているか」を判定
+    public bool HasPendingGimmick(ItemData item)
+    {
+        if (currentStage < gimmicks.Count)
+        {
+            var gimmick = gimmicks[currentStage];
+            // 必要アイテムを持つギミックの場合
+            if (gimmick is DummyGimmick dummy && dummy.requiredItem == item)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 実際にアイテムをギミックに使う
+    public void UseItemOnGimmick(ItemData item)
+    {
+        if (currentStage < gimmicks.Count)
+        {
+            var dummy = gimmicks[currentStage] as DummyGimmick;
+            if (dummy != null)
+            {
+                dummy.UseItemForGimmick(item, this);
+            }
+            else
+            {
+                gimmicks[currentStage].StartGimmick(this);
+            }
         }
     }
 
