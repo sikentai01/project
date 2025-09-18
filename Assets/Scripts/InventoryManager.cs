@@ -83,4 +83,18 @@ public class InventoryManager : MonoBehaviour
                 slots[i].ClearSlot();
         }
     }
+    public bool HasItem(string itemID)
+    {
+        // インベントリの各アイテムをチェック
+        foreach (var item in items)
+        {
+            // もしアイテムIDが引数と一致すればtrueを返す
+            if (item.itemID == itemID)
+            {
+                return true;
+            }
+        }
+        // 見つからなければfalseを返す
+        return false;
+    }
 }
