@@ -91,8 +91,24 @@ public class ItemTrigger : MonoBehaviour
     }
 
     // 実際にアイテムをギミックに使う
+    // 実際にアイテムをギミックに使う
     public void UseItemOnGimmick(ItemData item)
     {
+        // プレイヤーが近くにいないと使えない
+        if (!isPlayerNear)
+        {
+            Debug.Log("プレイヤーが範囲外なので使用できない");
+            return;
+        }
+
+        // 向きが一致していないと使えない
+        if (requiredDirection != -1 && playerMovement != null && playerMovement.GetDirection() != requiredDirection)
+        {
+            Debug.Log("方向が合っていないので使用できない");
+            return;
+        }
+
+        // ギミックがまだ残っている場合
         if (currentStage < gimmicks.Count)
         {
             var dummy = gimmicks[currentStage] as DummyGimmick;
@@ -104,6 +120,10 @@ public class ItemTrigger : MonoBehaviour
             {
                 gimmicks[currentStage].StartGimmick(this);
             }
+        }
+        else
+        {
+            CollectItem();
         }
     }
 
