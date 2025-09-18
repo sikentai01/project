@@ -21,9 +21,6 @@ public class ItemTrigger : MonoBehaviour
     [Header("現在の進行度 (セーブ対象)")]
     public int currentStage = 0;
 
-    [Header("アイテム入手後に表示するオブジェクト")]
-    public GameObject objectToShowOnCollect; // ★これを追加
-
     private bool isPlayerNear = false;
     private GridMovement playerMovement;
 
@@ -31,14 +28,14 @@ public class ItemTrigger : MonoBehaviour
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
-            // 向きチェック
+            // 向きチェックは ItemTrigger が担当
             if (requiredDirection != -1 && playerMovement != null && playerMovement.GetDirection() != requiredDirection)
             {
                 Debug.Log("方向が合っていないのでアイテムを取得できない");
                 return;
             }
 
-            // ギミックが残っているならそちらを処理
+            // ギミックがまだ残っている場合はギミックへ
             if (currentStage < gimmicks.Count)
             {
                 Debug.Log($"ギミック {currentStage} 開始");
@@ -51,13 +48,12 @@ public class ItemTrigger : MonoBehaviour
         }
     }
 
-    // ギミック完了を受け取る
+    // ギミック完了時に呼ばれる
     public void CompleteCurrentGimmick()
     {
         currentStage++;
         Debug.Log($"進行段階が {currentStage} になった");
 
-        // 全部終わったらアイテム入手へ
         if (currentStage >= gimmicks.Count)
         {
             CollectItem();
@@ -75,13 +71,7 @@ public class ItemTrigger : MonoBehaviour
             if (targetObject != null)
                 targetObject.SetActive(false);
             else
-                gameObject.SetActive(false); // Destroy じゃなく非表示
-        }
-
-        // ★アイテム入手後に新しいオブジェクトを表示
-        if (objectToShowOnCollect != null)
-        {
-            objectToShowOnCollect.SetActive(true);
+                gameObject.SetActive(false);
         }
     }
 
