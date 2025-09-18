@@ -2239,6 +2239,14 @@ PrefabInstance:
       propertyPath: slotParent
       value: 
       objectReference: {fileID: 573678963}
+    - target: {fileID: 5079299828247807668, guid: 0211598a63bb5ce4ebcbd3eaaec43b4e, type: 3}
+      propertyPath: allItems.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079299828247807668, guid: 0211598a63bb5ce4ebcbd3eaaec43b4e, type: 3}
+      propertyPath: 'allItems.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f98d4e9879308148a46dd6ae533ee61, type: 2}
     - target: {fileID: 5363766300312148513, guid: 0211598a63bb5ce4ebcbd3eaaec43b4e, type: 3}
       propertyPath: m_Name
       value: InventoryManager
