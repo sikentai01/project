@@ -13,8 +13,20 @@ public class SaveTrigger : MonoBehaviour
     [Header("会話イベントで渡すアイテム")]
     public ItemData rewardItem;
 
+    // ライト（Inspectorでドラッグ不要、Startで自動取得）
     private Light2D normalLight;
     private Light2D restrictedLight;
+
+    [Header("NPC関連（シーン内の仮置き用）")]
+    public GameObject sceneNpc;        // シーン内に置いた仮NPC
+    public Vector2 npcSpawnPosition;   // Inspectorで直接座標入力
+
+    // 将来的にPrefabでやる場合
+    // public GameObject npcPrefab;
+
+    [Header("1回きりにするか")]
+    public bool oneTimeOnly = true;    // trueなら1回限り
+    private bool alreadyTriggered = false;
 
     void Start()
     {
@@ -22,28 +34,32 @@ public class SaveTrigger : MonoBehaviour
 
         if (player != null)
         {
-            // Normal は Yuki 本体のコンポーネントから取得
+            // NormalLight はプレイヤー本体に付いてる
             normalLight = player.GetComponent<Light2D>();
 
-            // Restricted は Yuki の子オブジェクトから取得
+            // RestrictedLight はプレイヤーの子から取得
             var childLights = player.GetComponentsInChildren<Light2D>(true);
             foreach (var l in childLights)
             {
-                if (l.name == "RestrictedLight") // ← Unity上の名前に合わせる
-                {
+                if (l.name == "RestrictedLight")
                     restrictedLight = l;
-                }
             }
 
-            // シーン0開始時は狭いライトだけONに
+            // 開始時は Restricted だけON
             if (restrictedLight != null) restrictedLight.enabled = true;
             if (normalLight != null) normalLight.enabled = false;
         }
+
+        // 仮置きNPCは最初非表示
+        if (sceneNpc != null) sceneNpc.SetActive(false);
     }
+
     void Update()
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
+            if (oneTimeOnly && alreadyTriggered) return;
+
             if (requiredDirection == -1 || player.GetDirection() == requiredDirection)
             {
                 StartCoroutine(EventFlow());
@@ -57,14 +73,29 @@ public class SaveTrigger : MonoBehaviour
 
     private IEnumerator EventFlow()
     {
+        alreadyTriggered = true; // 1回限りにする場合はここでロック
+
         Debug.Log("セーブ調べた");
-        //  このタイミングでライト切り替え
+
+        // ライト切り替え
         if (restrictedLight != null) restrictedLight.enabled = false;
         if (normalLight != null) normalLight.enabled = true;
 
+        // プレイヤー停止 & メニュー禁止
         if (player != null) player.enabled = false;
         PauseMenu.blockMenu = true;
+
+        // プレイヤーの向きを下に固定
         if (player != null) player.SetDirection(0);
+
+        // NPC登場
+        if (sceneNpc != null)
+        {
+            sceneNpc.transform.position = npcSpawnPosition;
+            sceneNpc.SetActive(true);
+        }
+        // 将来的にPrefabを使うならこうする
+        // if (npcPrefab != null) Instantiate(npcPrefab, npcSpawnPosition, Quaternion.identity);
 
         yield return new WaitForSeconds(1.5f);
 
@@ -72,6 +103,7 @@ public class SaveTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
+        // アイテム入手
         if (rewardItem != null)
         {
             InventoryManager.Instance.AddItem(rewardItem);
@@ -81,9 +113,11 @@ public class SaveTrigger : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         Debug.Log("キャラ: 『ではまた会おう…』");
+        if (sceneNpc != null) sceneNpc.SetActive(false);
 
         yield return new WaitForSeconds(2f);
 
+        // プレイヤー復帰 & メニュー解禁
         if (player != null) player.enabled = true;
         PauseMenu.blockMenu = false;
     }
