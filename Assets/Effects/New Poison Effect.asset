@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0462424cb8c3a4597b1726c64dec32, type: 3}
-  m_Name: Poison
+  m_Script: {fileID: 11500000, guid: d3ed2eb128d127440b71ee1a2dd3abcc, type: 3}
+  m_Name: New Poison Effect
   m_EditorClassIdentifier: 
-  itemID: 1
-  itemName: Poison
-  description: "\u6FC0\u3084\u3070"
-  isConsumable: 1
-  DebugOwned: 0
-  effects:
-  - {fileID: 11400000, guid: b7cd558be717e4546bab67c415fbf37e, type: 2}
