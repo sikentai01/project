@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerID: 01
-  itemData: {fileID: 11400000, guid: b6703f7d906bd2d4aba6874ed81c15a6, type: 2}
+  itemData: {fileID: 11400000, guid: ae2c57bfa11f96349903ef91a81202b5, type: 2}
   targetObject: {fileID: 505244541}
   requiredDirection: 3
   gimmicks:
