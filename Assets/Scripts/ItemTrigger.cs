@@ -21,6 +21,9 @@ public class ItemTrigger : MonoBehaviour
     [Header("現在の進行度 (セーブ対象)")]
     public int currentStage = 0;
 
+    [Header("アイテム入手後に表示するオブジェクト")]
+    public GameObject objectToShowOnCollect; // ★これを追加
+
     private bool isPlayerNear = false;
     private GridMovement playerMovement;
 
@@ -73,6 +76,12 @@ public class ItemTrigger : MonoBehaviour
                 targetObject.SetActive(false);
             else
                 gameObject.SetActive(false); // Destroy じゃなく非表示
+        }
+
+        // ★アイテム入手後に新しいオブジェクトを表示
+        if (objectToShowOnCollect != null)
+        {
+            objectToShowOnCollect.SetActive(true);
         }
     }
 
