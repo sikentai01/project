@@ -4,45 +4,46 @@ using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static PauseMenu Instance; // ← シングルトン追加
+    public static PauseMenu Instance; // シングルトン
 
     [Header("UI Panels")]
-    public GameObject pauseMenuUI;   // メニュー全体
-    public GameObject charPanel;     // キャラパネル
-    public GameObject itemPanel;     // アイテムパネル
-    public GameObject documentPanel; // 資料パネル (GridとDetailの親)
-    public GameObject optionPanel;   // オプションパネル
-    public GameObject controlPanel;  // 操作説明パネル
-    public GameObject itemInfoPanel; // アイテムバー (上の説明部分)
+    public GameObject pauseMenuUI;
+    public GameObject charPanel;
+    public GameObject itemPanel;
+    public GameObject documentPanel;
+    public GameObject optionPanel;
+    public GameObject controlPanel;
+    public GameObject itemInfoPanel;
 
     [Header("Menu Buttons (左のメニュー用)")]
-    public GameObject firstSelected;    // ESCで最初に選択するボタン (Items)
-    public GameObject documentButton;   // 左メニューの Documents ボタン
-    public GameObject optionButton;     // 左メニューの Options ボタン
-    public GameObject controlButton;    // 左メニューの Controls ボタン
+    public GameObject firstSelected;
+    public GameObject documentButton;
+    public GameObject optionButton;
+    public GameObject controlButton;
 
     [Header("Panel First Buttons (右のパネル用)")]
-    public GameObject firstItemButton;     // ItemPanel内で最初に選択するボタン
-    public GameObject firstDocumentButton; // DocumentPanel内で最初に選択するボタン
-    public GameObject firstOptionButton;   // OptionPanel内で最初に選択するボタン
+    public GameObject firstItemButton;
+    public GameObject firstDocumentButton;
+    public GameObject firstOptionButton;
 
     [Header("Managers")]
-    public DocumentManager documentManager; // Inspectorでセットする
+    public DocumentManager documentManager;
 
     public static bool isPaused = false;
-    private GameObject currentPanel = null;     // 現在開いている右側のパネル
-    private GameObject lastMenuButton = null;   // 直前に開いたメニューのボタン
+    public static bool blockMenu = false; // ★イベント中は true にする
+
+    private GameObject currentPanel = null;
+    private GameObject lastMenuButton = null;
 
     void Awake()
     {
-        // シングルトン設定
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
 
     void Start()
     {
-        CloseAllPanels(); // 全部閉じる
+        CloseAllPanels();
         pauseMenuUI.SetActive(false);
 
         Time.timeScale = 1f;
@@ -51,6 +52,8 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        if (blockMenu) return; // ★イベント中は開けない
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -89,6 +92,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         CloseAllPanels();
+        pauseMenuUI.SetActive(false);
 
         currentPanel = null;
         lastMenuButton = null;
@@ -115,7 +119,6 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("ポーズメニューを開いた");
     }
 
-    // ▼ アイテムパネル
     public void OpenItems()
     {
         charPanel.SetActive(false);
@@ -139,7 +142,6 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("アイテム画面を開いた");
     }
 
-    // ▼ 資料パネル
     public void OpenDocuments()
     {
         charPanel.SetActive(false);
@@ -163,7 +165,6 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("資料画面を開いた");
     }
 
-    // ▼ オプションパネル
     public void OpenOptions()
     {
         SwitchPanel(optionPanel);
@@ -178,7 +179,6 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("オプション画面を開いた");
     }
 
-    // ▼ 操作説明パネル
     public void OpenControls()
     {
         charPanel.SetActive(false);

@@ -109,4 +109,13 @@ public class GridMovement : MonoBehaviour
     {
         return currentDirection;
     }
+
+    public void SetDirection(int dir)
+    {
+        currentDirection = dir;
+        if (animator != null)
+        {
+            animator.SetInteger("Direction", dir);
+        }
+    }
 }

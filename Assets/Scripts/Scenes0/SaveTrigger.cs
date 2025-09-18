@@ -10,7 +10,7 @@ public class SaveTrigger : MonoBehaviour
     public int requiredDirection = 3; // デフォルト: 上向き
 
     [Header("会話イベントで渡すアイテム")]
-    public ItemData rewardItem;   // ← Inspectorで設定する！
+    public ItemData rewardItem;   // Inspectorで設定する
 
     void Start()
     {
@@ -36,10 +36,14 @@ public class SaveTrigger : MonoBehaviour
     {
         Debug.Log("セーブ調べた");
 
-        // 1. プレイヤーの動きを止める
+        // 1. プレイヤーの動きを止める & メニュー禁止
         if (player != null) player.enabled = false;
+        PauseMenu.blockMenu = true;
 
-        yield return new WaitForSeconds(5f);
+        // 向きを下に固定
+        if (player != null) player.SetDirection(0);
+
+        yield return new WaitForSeconds(1.5f);
 
         // 2. 会話ログ（キャラ出現）
         Debug.Log("キャラが現れた: 『よく来たな』");
@@ -54,7 +58,7 @@ public class SaveTrigger : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning(" rewardItem が設定されていません");
+            Debug.LogWarning("rewardItem が設定されていません");
         }
 
         yield return new WaitForSeconds(3f);
@@ -64,8 +68,9 @@ public class SaveTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        // 5. プレイヤーの動きを戻す
+        // 5. プレイヤーの動きを戻す & メニュー解禁
         if (player != null) player.enabled = true;
+        PauseMenu.blockMenu = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
