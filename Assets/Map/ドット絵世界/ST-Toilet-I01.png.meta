@@ -1,0 +1,1131 @@
+fileFormatVersion: 2
+guid: 78abd73b0d31573499886609dd33315d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3272792124953782352
+    second: ST-Toilet-I01_0
+  - first:
+      213: 674390774184762595
+    second: ST-Toilet-I01_1
+  - first:
+      213: -892541638174153384
+    second: ST-Toilet-I01_2
+  - first:
+      213: -8283763991308402950
+    second: ST-Toilet-I01_3
+  - first:
+      213: -5393839837866275471
+    second: ST-Toilet-I01_4
+  - first:
+      213: -8204456300301297909
+    second: ST-Toilet-I01_5
+  - first:
+      213: -5970579715636712324
+    second: ST-Toilet-I01_6
+  - first:
+      213: 1107873426852216537
+    second: ST-Toilet-I01_7
+  - first:
+      213: 1228870688379727014
+    second: ST-Toilet-I01_8
+  - first:
+      213: 843381912654978133
+    second: ST-Toilet-I01_9
+  - first:
+      213: 2006776482572043967
+    second: ST-Toilet-I01_10
+  - first:
+      213: 8674081178279538473
+    second: ST-Toilet-I01_11
+  - first:
+      213: -5506952630676057397
+    second: ST-Toilet-I01_12
+  - first:
+      213: -4030306218576837334
+    second: ST-Toilet-I01_13
+  - first:
+      213: -2306869062613841582
+    second: ST-Toilet-I01_14
+  - first:
+      213: 4437979159777937877
+    second: ST-Toilet-I01_15
+  - first:
+      213: 8170877707136782500
+    second: ST-Toilet-I01_16
+  - first:
+      213: 213367050134414923
+    second: ST-Toilet-I01_17
+  - first:
+      213: 3225812694920456278
+    second: ST-Toilet-I01_18
+  - first:
+      213: -155471823027746624
+    second: ST-Toilet-I01_19
+  - first:
+      213: 6889711995104914071
+    second: ST-Toilet-I01_20
+  - first:
+      213: 6464838478051498322
+    second: ST-Toilet-I01_21
+  - first:
+      213: 7584635938082417132
+    second: ST-Toilet-I01_22
+  - first:
+      213: -3013532872621817605
+    second: ST-Toilet-I01_23
+  - first:
+      213: 6573798909221361014
+    second: ST-Toilet-I01_24
+  - first:
+      213: 768620975414924232
+    second: ST-Toilet-I01_25
+  - first:
+      213: -1001507985573842560
+    second: ST-Toilet-I01_26
+  - first:
+      213: -2689474015296145952
+    second: ST-Toilet-I01_27
+  - first:
+      213: 672582579486112142
+    second: ST-Toilet-I01_28
+  - first:
+      213: 5151325739931056771
+    second: ST-Toilet-I01_29
+  - first:
+      213: 2037768626713442067
+    second: ST-Toilet-I01_30
+  - first:
+      213: 5473192857383426681
+    second: ST-Toilet-I01_31
+  - first:
+      213: -2414714003089101322
+    second: ST-Toilet-I01_32
+  - first:
+      213: 8806952622066768882
+    second: ST-Toilet-I01_33
+  - first:
+      213: -6839135106658037809
+    second: ST-Toilet-I01_34
+  - first:
+      213: 4728428750290616968
+    second: ST-Toilet-I01_35
+  - first:
+      213: -6146408285755152574
+    second: ST-Toilet-I01_36
+  - first:
+      213: -929674072107694353
+    second: ST-Toilet-I01_37
+  - first:
+      213: -5371710800109184980
+    second: ST-Toilet-I01_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ST-Toilet-I01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1087
+        width: 256
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b71f6007e4b492d0800000000000000
+      internalID: -3272792124953782352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_1
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1041
+        width: 25
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ec551706daeb5900800000000000000
+      internalID: 674390774184762595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_2
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 1060
+        width: 26
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8556265eb1e0d93f0800000000000000
+      internalID: -892541638174153384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_3
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 1060
+        width: 26
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afef3e60a882a0d80800000000000000
+      internalID: -8283763991308402950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_4
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 1073
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17d41a8ce3b3525b0800000000000000
+      internalID: -5393839837866275471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_5
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 1066
+        width: 34
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b075355c67ae32e80800000000000000
+      internalID: -8204456300301297909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_6
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 1066
+        width: 33
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7c2252d16d342da0800000000000000
+      internalID: -5970579715636712324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_7
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 1031
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9defe9f0305ff5f00800000000000000
+      internalID: 1107873426852216537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_8
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 1035
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ac63c75163dd0110800000000000000
+      internalID: 1228870688379727014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_9
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 1035
+        width: 29
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c1ac1916b44bb00800000000000000
+      internalID: 843381912654978133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_10
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 1035
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb6805b149089db10800000000000000
+      internalID: 2006776482572043967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_11
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 1031
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92fe048dfd6806870800000000000000
+      internalID: 8674081178279538473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_12
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1031
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc296ad62cf5393b0800000000000000
+      internalID: -5506952630676057397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_13
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 1031
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a250ea109d97118c0800000000000000
+      internalID: -4030306218576837334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_14
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1002
+        width: 49
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25940935fca5cffd0800000000000000
+      internalID: -2306869062613841582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_15
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 997
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d9862b488ed69d30800000000000000
+      internalID: 4437979159777937877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_16
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 997
+        width: 58
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a0db05cbf9c46170800000000000000
+      internalID: 8170877707136782500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_17
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 964
+        width: 28
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b46e80e933806f200800000000000000
+      internalID: 213367050134414923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 831
+        width: 65
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 658eda01e8364cc20800000000000000
+      internalID: 3225812694920456278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_19
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 831
+        width: 85
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c849df5337a7ddf0800000000000000
+      internalID: -155471823027746624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_20
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 967
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79ae9f86e8c2d9f50800000000000000
+      internalID: 6889711995104914071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_21
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 960
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2595986f758b7b950800000000000000
+      internalID: 6464838478051498322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_22
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 934
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce96018533a024960800000000000000
+      internalID: 7584635938082417132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_23
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 927
+        width: 65
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf00a6891d7cd26d0800000000000000
+      internalID: -3013532872621817605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_24
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 879
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6755df84743da3b50800000000000000
+      internalID: 6573798909221361014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_25
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 895
+        width: 65
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c3558e64b0baaa00800000000000000
+      internalID: 768620975414924232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_26
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 863
+        width: 65
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08177281bcde912f0800000000000000
+      internalID: -1001507985573842560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_27
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 831
+        width: 81
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e531ade1a11daad0800000000000000
+      internalID: -2689474015296145952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 767
+        width: 65
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e89b264ea4e755900800000000000000
+      internalID: 672582579486112142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_29
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 767
+        width: 72
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38abae2b77f2d7740800000000000000
+      internalID: 5151325739931056771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_30
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 782
+        width: 97
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 317b0b9f4cb974c10800000000000000
+      internalID: 2037768626713442067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 607
+        width: 65
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a5b83d7efa4fb40800000000000000
+      internalID: 5473192857383426681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_32
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 607
+        width: 180
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fd66bb68663d7ed0800000000000000
+      internalID: -2414714003089101322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 543
+        width: 65
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb1cff9fb4983a70800000000000000
+      internalID: 8806952622066768882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_34
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 543
+        width: 72
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcf8eb41bd28611a0800000000000000
+      internalID: -6839135106658037809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_35
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 558
+        width: 97
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88201d665e0ce9140800000000000000
+      internalID: 4728428750290616968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 431
+        width: 256
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 247eb0baa3293baa0800000000000000
+      internalID: -6146408285755152574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 255
+        width: 256
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe641276b522913f0800000000000000
+      internalID: -929674072107694353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ST-Toilet-I01_38
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 44
+        width: 256
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c28dc53ec79d375b0800000000000000
+      internalID: -5371710800109184980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ST-Toilet-I01_0: -3272792124953782352
+      ST-Toilet-I01_1: 674390774184762595
+      ST-Toilet-I01_10: 2006776482572043967
+      ST-Toilet-I01_11: 8674081178279538473
+      ST-Toilet-I01_12: -5506952630676057397
+      ST-Toilet-I01_13: -4030306218576837334
+      ST-Toilet-I01_14: -2306869062613841582
+      ST-Toilet-I01_15: 4437979159777937877
+      ST-Toilet-I01_16: 8170877707136782500
+      ST-Toilet-I01_17: 213367050134414923
+      ST-Toilet-I01_18: 3225812694920456278
+      ST-Toilet-I01_19: -155471823027746624
+      ST-Toilet-I01_2: -892541638174153384
+      ST-Toilet-I01_20: 6889711995104914071
+      ST-Toilet-I01_21: 6464838478051498322
+      ST-Toilet-I01_22: 7584635938082417132
+      ST-Toilet-I01_23: -3013532872621817605
+      ST-Toilet-I01_24: 6573798909221361014
+      ST-Toilet-I01_25: 768620975414924232
+      ST-Toilet-I01_26: -1001507985573842560
+      ST-Toilet-I01_27: -2689474015296145952
+      ST-Toilet-I01_28: 672582579486112142
+      ST-Toilet-I01_29: 5151325739931056771
+      ST-Toilet-I01_3: -8283763991308402950
+      ST-Toilet-I01_30: 2037768626713442067
+      ST-Toilet-I01_31: 5473192857383426681
+      ST-Toilet-I01_32: -2414714003089101322
+      ST-Toilet-I01_33: 8806952622066768882
+      ST-Toilet-I01_34: -6839135106658037809
+      ST-Toilet-I01_35: 4728428750290616968
+      ST-Toilet-I01_36: -6146408285755152574
+      ST-Toilet-I01_37: -929674072107694353
+      ST-Toilet-I01_38: -5371710800109184980
+      ST-Toilet-I01_4: -5393839837866275471
+      ST-Toilet-I01_5: -8204456300301297909
+      ST-Toilet-I01_6: -5970579715636712324
+      ST-Toilet-I01_7: 1107873426852216537
+      ST-Toilet-I01_8: 1228870688379727014
+      ST-Toilet-I01_9: 843381912654978133
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
