@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 96483970}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.5, y: -9, z: 0}
+  m_LocalPosition: {x: 8.5, y: -9.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -170,7 +170,7 @@ MonoBehaviour:
   targetObject: {fileID: 96483970}
   requiredDirection: 3
   gimmicks:
-  - {fileID: 1073925621}
+  - {fileID: 1073925620}
   currentStage: 0
 --- !u!61 &96483973
 BoxCollider2D:
@@ -216,7 +216,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
 --- !u!4 &112437605 stripped
 Transform:
@@ -1368,7 +1368,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1073925619}
-  - component: {fileID: 1073925621}
+  - component: {fileID: 1073925620}
   m_Layer: 0
   m_Name: a
   m_TagString: Untagged
@@ -1384,14 +1384,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073925618}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 96483971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1073925621
+--- !u!114 &1073925620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1400,7 +1400,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073925618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7b63a83cc5a064fbee1a982d90e153, type: 3}
+  m_Script: {fileID: 11500000, guid: 69538cf0c7b5235488b898f341611007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItem: {fileID: 11400000, guid: 51f5de1a9225864499554f40af76abd2, type: 2}

@@ -2,10 +2,15 @@ using UnityEngine;
 
 public abstract class GimmickBase : MonoBehaviour
 {
-    // ギミック開始処理（子クラスで必ず実装する）
+    // デフォルトは「アイテム不要」
+    public virtual bool NeedsItem => false;
+
+    public virtual bool CanUseItem(ItemData item) { return false; }
+
+    public virtual void UseItem(ItemData item, ItemTrigger trigger) { }
+
     public abstract void StartGimmick(ItemTrigger trigger);
 
-    // ギミック完了時に呼ぶ（共通処理）
     protected void Complete(ItemTrigger trigger)
     {
         trigger.CompleteCurrentGimmick();

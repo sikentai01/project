@@ -24,6 +24,9 @@ public class ItemTrigger : MonoBehaviour
     private bool isPlayerNear = false;
     private GridMovement playerMovement;
 
+    // 外部から参照できるように追加
+    public bool IsPlayerNear => isPlayerNear;
+
     void Update()
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
@@ -81,44 +84,41 @@ public class ItemTrigger : MonoBehaviour
         if (currentStage < gimmicks.Count)
         {
             var gimmick = gimmicks[currentStage];
-            // 必要アイテムを持つギミックの場合
-            if (gimmick is DummyGimmick dummy && dummy.requiredItem == item)
-            {
-                return true;
-            }
+            Debug.Log($"[HasPendingGimmick] {gimmick.name} で {item.itemName} を確認中");
+
+            if (!gimmick.NeedsItem) return false;
+            bool result = gimmick.CanUseItem(item);
+            Debug.Log($"[HasPendingGimmick] 判定結果 = {result}");
+            return result;
         }
         return false;
     }
 
-    // 実際にアイテムをギミックに使う
-    // 実際にアイテムをギミックに使う
     public void UseItemOnGimmick(ItemData item)
     {
-        // プレイヤーが近くにいないと使えない
-        if (!isPlayerNear)
-        {
-            Debug.Log("プレイヤーが範囲外なので使用できない");
-            return;
-        }
+        if (!isPlayerNear) return;
 
-        // 向きが一致していないと使えない
         if (requiredDirection != -1 && playerMovement != null && playerMovement.GetDirection() != requiredDirection)
-        {
-            Debug.Log("方向が合っていないので使用できない");
             return;
-        }
 
-        // ギミックがまだ残っている場合
         if (currentStage < gimmicks.Count)
         {
-            var dummy = gimmicks[currentStage] as DummyGimmick;
-            if (dummy != null)
+            var gimmick = gimmicks[currentStage];
+
+            if (gimmick.NeedsItem)
             {
-                dummy.UseItemForGimmick(item, this);
+                if (gimmick.CanUseItem(item))
+                {
+                    gimmick.UseItem(item, this);
+                }
+                else
+                {
+                    Debug.Log("このアイテムは使えません");
+                }
             }
             else
             {
-                gimmicks[currentStage].StartGimmick(this);
+                gimmick.StartGimmick(this); // アイテム不要はそのまま進行
             }
         }
         else

@@ -48,27 +48,33 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
     }
 
     // Enter（クリック）で使用
+    // Enter（クリック）で使用
     public void OnClickSlot()
     {
         if (currentItem == null) return;
 
-        // まず近くのギミックを探す
-        var nearbyTrigger = FindFirstObjectByType<ItemTrigger>();
-        // ↑ 本当はシングルトンやプレイヤー近くのトリガーだけ参照する形にした方が良い
+        // シーン内のすべての ItemTrigger を取得
+        var triggers = Object.FindObjectsByType<ItemTrigger>(
+            FindObjectsSortMode.None
+        );
 
-        if (nearbyTrigger != null && nearbyTrigger.HasPendingGimmick(currentItem))
+        foreach (var trigger in triggers)
         {
-            // ギミックに渡す
-            nearbyTrigger.UseItemOnGimmick(currentItem);
+            // プレイヤーが近く、かつこのアイテムが有効なら使う
+            if (trigger.IsPlayerNear && trigger.HasPendingGimmick(currentItem))
+            {
+                Debug.Log($"[ItemSlot] {currentItem.itemName} を {trigger.name} に使用");
+                trigger.UseItemOnGimmick(currentItem);
+                PauseMenu.Instance.Resume();
+                return;
+            }
         }
-        else
-        {
-            // ギミックが無いなら普通の効果
-            Debug.Log(currentItem.itemName + " を使用！");
-            currentItem.Use();
-        }
+
+        // どのトリガーにも当てはまらなかったら通常使用
+        Debug.Log($"[ItemSlot] {currentItem.itemName} を通常使用！");
+        currentItem.Use();
 
         PauseMenu.Instance.Resume();
+        Debug.Log("[ItemSlot] OnClickSlot 終了");
     }
-
 }

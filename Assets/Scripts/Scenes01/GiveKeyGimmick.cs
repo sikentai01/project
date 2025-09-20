@@ -1,31 +1,38 @@
 using UnityEngine;
 
-[System.Serializable]
 public class GiveKeyGimmick : GimmickBase
 {
-    [Header("使用するアイテムID（KeyBandのID）")]
-    public string requiredItemID;
+    [Header("必要なアイテム")]
+    public ItemData requiredItem;
 
-    [Header("入手するアイテムデータ")]
-    public ItemData itemToGive;
+    public override bool NeedsItem => true;
 
-    // ギミックの開始時に実行される
-    public override void StartGimmick(ItemTrigger trigger)
+    // このギミックがアイテムを受け付けるか判定
+    public override bool CanUseItem(ItemData item)
     {
-        // 必要なアイテムを持っているかチェック
-        if (InventoryManager.Instance.HasItem(requiredItemID))
-        {
-            // アイテムを消費して入手
-            InventoryManager.Instance.RemoveItemByID(requiredItemID);
-            InventoryManager.Instance.AddItem(itemToGive);
-            Debug.Log(itemToGive.itemName + " を入手しました！");
+        return item == requiredItem;
+    }
 
-            // ギミックが完了したことをトリガーに伝える
-            trigger.CompleteCurrentGimmick();
+    // アイテム使用処理
+    public override void UseItem(ItemData usedItem, ItemTrigger trigger)
+    {
+        if (usedItem == requiredItem)
+        {
+            Debug.Log(requiredItem.itemName + " を使って扉を開けた！");
+            InventoryManager.Instance.RemoveItemByID(requiredItem.itemID);
+
+            // ギミック完了
+            Complete(trigger);
         }
         else
         {
-            Debug.Log("アイテムが足りません。");
+            Debug.Log("このギミックでは使えないアイテムです");
         }
+    }
+
+    // ギミック開始（Enter直押しは無効）
+    public override void StartGimmick(ItemTrigger trigger)
+    {
+        Debug.Log("アイテムスロットから使用してください");
     }
 }
