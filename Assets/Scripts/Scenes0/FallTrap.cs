@@ -39,3 +39,4 @@ public class FallTrap : MonoBehaviour
         }
     }
 }
+//‚¤‚Ü‚­‚¢‚Á‚Ä‚éH
