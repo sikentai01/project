@@ -117,6 +117,16 @@ public class SaveTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        // セーブ済みにフラグを立てる
+        GameFlags.SaveTriggered = true;
+
+        // シーン内のすべての落とし穴を無効化
+        var trap = FindFirstObjectByType<FallTrap>();
+        if (trap != null)
+        {
+            trap.DisableTrap();
+        }
+
         // プレイヤー復帰 & メニュー解禁
         if (player != null) player.enabled = true;
         PauseMenu.blockMenu = false;

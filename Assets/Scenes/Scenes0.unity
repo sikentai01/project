@@ -119,6 +119,40 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &206026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4724812304173876670, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+  m_PrefabInstance: {fileID: 505244540}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &206030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950a8ef883f51384691f567afa67f4f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2030601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1916155817470672837, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+  m_PrefabInstance: {fileID: 505244540}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2030607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950a8ef883f51384691f567afa67f4f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &215798937
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u5FC3\u81D3\u524D"
       objectReference: {fileID: 0}
+    - target: {fileID: 5514811244582169995, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8616160700996035473, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       propertyPath: m_SortingOrder
       value: 12
@@ -403,6 +441,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1712887935}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1916155817470672837, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2030607}
+    - targetCorrespondingSourceObject: {fileID: -4724812304173876670, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 206030}
     - targetCorrespondingSourceObject: {fileID: 671562117153048660, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1814306890}
