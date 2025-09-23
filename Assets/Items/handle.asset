@@ -16,5 +16,5 @@ MonoBehaviour:
   itemName: handle
   description: 
   isConsumable: 1
-  DebugOwned: 1
+  DebugOwned: 0
   effects: []

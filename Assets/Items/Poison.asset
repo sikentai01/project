@@ -18,4 +18,4 @@ MonoBehaviour:
   isConsumable: 1
   DebugOwned: 0
   effects:
-  - {fileID: 11400000, guid: b7cd558be717e4546bab67c415fbf37e, type: 2}
+  - {fileID: 0}
