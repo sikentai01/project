@@ -242,7 +242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7885711473307120589, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -110
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7885711473307120589, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2328,7 +2328,7 @@ PrefabInstance:
       objectReference: {fileID: 573678963}
     - target: {fileID: 5079299828247807668, guid: 0211598a63bb5ce4ebcbd3eaaec43b4e, type: 3}
       propertyPath: allItems.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5079299828247807668, guid: 0211598a63bb5ce4ebcbd3eaaec43b4e, type: 3}
       propertyPath: 'allItems.Array.data[0]'
@@ -2349,7 +2349,7 @@ PrefabInstance:
     - target: {fileID: 5079299828247807668, guid: 0211598a63bb5ce4ebcbd3eaaec43b4e, type: 3}
       propertyPath: 'allItems.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: 6f98d4e9879308148a46dd6ae533ee61, type: 2}
+      objectReference: {fileID: 11400000, guid: df97f2d85124f5a48a588815e6eacf25, type: 2}
     - target: {fileID: 5363766300312148513, guid: 0211598a63bb5ce4ebcbd3eaaec43b4e, type: 3}
       propertyPath: m_Name
       value: InventoryManager

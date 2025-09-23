@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0462424cb8c3a4597b1726c64dec32, type: 3}
   m_Name: handle
   m_EditorClassIdentifier: 
-  itemID: 
-  itemName: 
+  itemID: 4
+  itemName: handle
   description: 
-  isConsumable: 0
+  isConsumable: 1
   DebugOwned: 0
   effects: []
