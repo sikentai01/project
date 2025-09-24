@@ -11,6 +11,15 @@ TextureImporter:
   - first:
       213: 7426240114095144496
     second: "\u809D\u81D3NPC_2"
+  - first:
+      213: 9096647736039068561
+    second: "\u809D\u81D3NPC_3"
+  - first:
+      213: 2930517178310755239
+    second: "\u809D\u81D3NPC_4"
+  - first:
+      213: 296194406519901216
+    second: "\u809D\u81D3NPC_5"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -153,8 +162,8 @@ TextureImporter:
       name: "\u809D\u81D3NPC_2"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 64
         width: 32
         height: 64
       alignment: 0
@@ -171,11 +180,77 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: "\u809D\u81D3NPC_3"
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19358797be8cd3e70800000000000000
+      internalID: 9096647736039068561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u809D\u81D3NPC_4"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a3846dd8d94ba820800000000000000
+      internalID: 2930517178310755239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u809D\u81D3NPC_5"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c83115e3b4c1400800000000000000
+      internalID: 296194406519901216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e915318d385d3634183d407eb2c281be
+    spriteID: baddacd0ec7b9b348b1c3bf953854bad
     internalID: 0
     vertices: []
     indices: 
@@ -190,6 +265,9 @@ TextureImporter:
       "\u809D\u81D3NPC_0": -2885690819059033435
       "\u809D\u81D3NPC_1": 1530344406290379204
       "\u809D\u81D3NPC_2": 7426240114095144496
+      "\u809D\u81D3NPC_3": 9096647736039068561
+      "\u809D\u81D3NPC_4": 2930517178310755239
+      "\u809D\u81D3NPC_5": 296194406519901216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
