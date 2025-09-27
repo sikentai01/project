@@ -141,9 +141,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5248b5b8e9881f42969a4e16dafdad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  core: {fileID: 1091235703}
+  core: {fileID: 27603324}
   charaText: {fileID: 2105053071}
   bodyText: {fileID: 2044759862}
+--- !u!114 &27603322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27603312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b178ba3ef6235c94abe7012ef7bab186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  core: {fileID: 27603324}
+--- !u!114 &27603323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27603312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0224891f347a2204c8ad49f6c7862fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  core: {fileID: 27603324}
+  registry:
+  - conversationId: sample
+    relativePath: Dialogue/sample.txt
+--- !u!114 &27603324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27603312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3a7b73bf4515547817e5b10e575d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &27603325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27603312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5f7428e02bb7341af0f94f2bbe3949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  core: {fileID: 0}
 --- !u!4 &78462038 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5781206809139392302, guid: f1c47ead043b50240929ca46ff099729, type: 3}
@@ -2111,57 +2165,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6027894959963401906, guid: 62f32daca1e91f343b17d9222faf35ed, type: 3}
   m_PrefabInstance: {fileID: 8816550916282005944}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1091235701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1091235702}
-  - component: {fileID: 1091235703}
-  m_Layer: 0
-  m_Name: DialogueCoreRoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1091235702
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091235701}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 27603313}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.000076293945}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1091235703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091235701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3a7b73bf4515547817e5b10e575d3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fileName: sample.txt
-  linesPerPage: 3
-  nextKey: 32
 --- !u!4 &1106194463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9071112310672586884, guid: 0211598a63bb5ce4ebcbd3eaaec43b4e, type: 3}
@@ -2369,8 +2372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c11846fb13f9941b773e9973cbad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyText: {fileID: 0}
-  fileName: sample.txt
 --- !u!114 &2105053071 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9013864960308347818, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
@@ -2673,14 +2674,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5693142110326175650, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1091235702}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1843096381021594322, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       insertIndex: -1
       addedObject: {fileID: 27603317}
+    - targetCorrespondingSourceObject: {fileID: 1843096381021594322, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 27603324}
+    - targetCorrespondingSourceObject: {fileID: 1843096381021594322, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 27603323}
+    - targetCorrespondingSourceObject: {fileID: 1843096381021594322, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 27603322}
+    - targetCorrespondingSourceObject: {fileID: 1843096381021594322, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 27603325}
     - targetCorrespondingSourceObject: {fileID: 5615410137049817044, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2044759864}
