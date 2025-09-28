@@ -552,10 +552,10 @@ PrefabInstance:
       addedObject: {fileID: 1814306890}
     - targetCorrespondingSourceObject: {fileID: 3858278294383985137, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1690165493}
+      addedObject: {fileID: 1690165494}
     - targetCorrespondingSourceObject: {fileID: 3858278294383985137, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1690165494}
+      addedObject: {fileID: 1690165499}
   m_SourcePrefab: {fileID: -2695619058785784247, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
 --- !u!1 &505244541 stripped
 GameObject:
@@ -670,21 +670,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7469800162939513096, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
   m_PrefabInstance: {fileID: 505244540}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1690165493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505244541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 588dd91ff6e1ed5488635249542421b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  router: {fileID: 0}
-  advanceInput: {fileID: 0}
-  conversationId: sample
 --- !u!61 &1690165494
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -731,6 +716,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.7365246, y: 2.4396362}
   m_EdgeRadius: 0
+--- !u!114 &1690165499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505244541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6af42106097d2b42b339bf579f2ec7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adapter: {fileID: 0}
+  conversationId: sample
+  requiredTag: Player
+  key: 101
+  autoStart: 0
 --- !u!1 &1712887934
 GameObject:
   m_ObjectHideFlags: 0
