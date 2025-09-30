@@ -16,5 +16,5 @@ MonoBehaviour:
   itemName: FirstKey
   description: key that mistery Chara give to you
   isConsumable: 1
-  DebugOwned: 0
+  DebugOwned: 1
   effects: []
