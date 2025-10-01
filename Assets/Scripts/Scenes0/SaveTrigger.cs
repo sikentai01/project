@@ -4,6 +4,9 @@ using UnityEngine.Rendering.Universal;
 
 public class SaveTrigger : MonoBehaviour
 {
+    [Header("サウンド設定")]
+    [SerializeField] private AudioClip eventBGM; // イベント中に流すBGM
+
     private bool isPlayerNear = false;
     private GridMovement player;
 
@@ -73,6 +76,11 @@ public class SaveTrigger : MonoBehaviour
 
     private IEnumerator EventFlow()
     {
+        if (SoundManager.Instance != null && eventBGM != null)
+        {
+            SoundManager.Instance.PlayBGM(eventBGM);
+        }
+
         alreadyTriggered = true; // 1回限りにする場合はここでロック
 
         Debug.Log("セーブ調べた");
@@ -130,6 +138,11 @@ public class SaveTrigger : MonoBehaviour
         // プレイヤー復帰 & メニュー解禁
         if (player != null) player.enabled = true;
         PauseMenu.blockMenu = false;
+
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.StopBGM();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
