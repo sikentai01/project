@@ -88,6 +88,10 @@ public class PauseMenu : MonoBehaviour
                 }
                 else
                 {
+                    if (SoundManager.Instance != null && closeSeClip != null)
+                    {
+                        SoundManager.Instance.PlaySE(closeSeClip);
+                    }
                     Resume();
                 }
             }
@@ -100,11 +104,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        if (SoundManager.Instance != null && closeSeClip != null)
-        {
-            SoundManager.Instance.PlaySE(closeSeClip);
-        }
-
         CloseAllPanels();
         pauseMenuUI.SetActive(false);
 
