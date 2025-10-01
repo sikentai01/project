@@ -3,6 +3,8 @@ using TMPro;
 
 public class DocumentSlot : MonoBehaviour
 {
+    [Header("サウンド設定")]
+    [SerializeField] private AudioClip clickSeClip;
     private DocumentManager.DocumentData currentDoc;
     public TMP_Text titleText;   // スロットに表示するタイトル
 
@@ -31,6 +33,10 @@ public class DocumentSlot : MonoBehaviour
     {
         if (currentDoc != null)
         {
+            if (SoundManager.Instance != null && clickSeClip != null)
+            {
+                SoundManager.Instance.PlaySE(clickSeClip);
+            }
             int index = System.Array.IndexOf(DocumentManager.Instance.documents, currentDoc);
             if (index >= 0)
             {
