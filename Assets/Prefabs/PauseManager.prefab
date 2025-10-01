@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c053623a0e5cbf488f2ebbd589a2533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openSeClip: {fileID: 8300000, guid: 6a6518ba841788c49abd1394d12d79bd, type: 3}
+  closeSeClip: {fileID: 8300000, guid: fa2e96ab9284af34b9f1cc4436210125, type: 3}
+  selectSeClip: {fileID: 8300000, guid: 6a6518ba841788c49abd1394d12d79bd, type: 3}
   pauseMenuUI: {fileID: 0}
   charPanel: {fileID: 0}
   itemPanel: {fileID: 0}

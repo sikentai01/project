@@ -6,6 +6,11 @@ public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance; // シングルトン
 
+    [Header("サウンド設定")]
+    [SerializeField] private AudioClip openSeClip;   // メニューを開く/閉じる時
+    [SerializeField] private AudioClip closeSeClip;  // メニューを閉じる時（オプションとして）
+    [SerializeField] private AudioClip selectSeClip; // メニュー選択/パネル切り替え時
+
     [Header("UI Panels")]
     public GameObject pauseMenuUI;
     public GameObject charPanel;
@@ -64,6 +69,10 @@ public class PauseMenu : MonoBehaviour
                 }
                 else if (currentPanel != null)
                 {
+                    if (SoundManager.Instance != null && closeSeClip != null)
+                    {
+                        SoundManager.Instance.PlaySE(closeSeClip);
+                    }
                     if (currentPanel == itemPanel && itemInfoPanel != null)
                         itemInfoPanel.SetActive(false);
 
@@ -91,6 +100,11 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        if (SoundManager.Instance != null && closeSeClip != null)
+        {
+            SoundManager.Instance.PlaySE(closeSeClip);
+        }
+
         CloseAllPanels();
         pauseMenuUI.SetActive(false);
 
@@ -106,6 +120,11 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        if (SoundManager.Instance != null && openSeClip != null)
+        {
+            SoundManager.Instance.PlaySE(openSeClip);
+        }
+
         pauseMenuUI.SetActive(true);
         charPanel.SetActive(true);
         currentPanel = null;
@@ -121,6 +140,10 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenItems()
     {
+        if (SoundManager.Instance != null && selectSeClip != null)
+        {
+            SoundManager.Instance.PlaySE(selectSeClip);
+        }
         charPanel.SetActive(false);
         if (currentPanel != null) currentPanel.SetActive(false);
 
@@ -144,6 +167,10 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenDocuments()
     {
+        if (SoundManager.Instance != null && selectSeClip != null)
+        {
+            SoundManager.Instance.PlaySE(selectSeClip);
+        }
         charPanel.SetActive(false);
 
         if (documentManager != null)
@@ -167,6 +194,10 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenOptions()
     {
+        if (SoundManager.Instance != null && selectSeClip != null)
+        {
+            SoundManager.Instance.PlaySE(selectSeClip);
+        }
         SwitchPanel(optionPanel);
         lastMenuButton = optionButton;
 
@@ -181,6 +212,10 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenControls()
     {
+        if (SoundManager.Instance != null && selectSeClip != null)
+        {
+            SoundManager.Instance.PlaySE(selectSeClip);
+        }
         charPanel.SetActive(false);
         if (currentPanel != null) currentPanel.SetActive(false);
 
