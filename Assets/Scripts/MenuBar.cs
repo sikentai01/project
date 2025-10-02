@@ -33,6 +33,7 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Managers")]
     public DocumentManager documentManager;
+    public OptionPanelManager optionPanelManager;
 
     public static bool isPaused = false;
     public static bool blockMenu = false; // ÅöÉCÉxÉìÉgíÜÇÕ true Ç…Ç∑ÇÈ
@@ -200,6 +201,10 @@ public class PauseMenu : MonoBehaviour
         SwitchPanel(optionPanel);
         lastMenuButton = optionButton;
 
+        if (optionPanelManager != null)
+        {
+            optionPanelManager.InitializeSliders();
+        }
         if (firstOptionButton != null)
         {
             EventSystem.current.SetSelectedGameObject(null);
