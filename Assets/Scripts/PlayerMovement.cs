@@ -28,7 +28,7 @@ public class GridMovement : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        // アニメーションを制御するロジックを分離
+        // アニメーションを制御するロジック
         if (horizontalInput != 0 || verticalInput != 0)
         {
             animator.SetBool("Move_motion", true);
@@ -61,28 +61,49 @@ public class GridMovement : MonoBehaviour
         }
         else
         {
+            //動いていない時
             animator.SetBool("Move_motion", false);
         }
 
         // 移動ロジック
+
+        // 縦と横の入力が同時にある場合動かんようにした
+        if (horizontalInput != 0 && verticalInput != 0)
+        {
+            horizontalInput = 0;
+            verticalInput = 0;
+            animator.SetBool("Move_motion", false);
+        }
+
+        //以下移動判定
         if (!isMoving && (horizontalInput != 0 || verticalInput != 0))
         {
             Vector3 nextPos = transform.position + new Vector3(horizontalInput * gridSize, verticalInput * gridSize, 0);
 
+            //移動可
             if (!IsOccupied(nextPos))
             {
                 targetPosition = nextPos;
                 isMoving = true;
             }
+            //移動不可、障害物とかね、モーションとめるだけ
             else
             {
                 animator.SetBool("Move_motion", false);
             }
         }
 
+        //ここから移動
+        // ダッシュ！！
+        float currentMoveSpeed = moveSpeed;
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            // Shiftキーが押されている場合、速度2倍！お得！
+            currentMoveSpeed = moveSpeed * 2f;
+        }
         if (isMoving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * gridSize * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentMoveSpeed * gridSize * Time.deltaTime);
 
             if (transform.position == targetPosition)
             {
@@ -91,6 +112,7 @@ public class GridMovement : MonoBehaviour
         }
     }
 
+    //当たり判定等
     bool IsOccupied(Vector3 nextPos)
     {
         Vector3 checkPos = nextPos + new Vector3(0, -0.5f, 0);
@@ -105,6 +127,7 @@ public class GridMovement : MonoBehaviour
         return false;
     }
 
+    //以下アイテムの管轄
     public int GetDirection()
     {
         return currentDirection;
