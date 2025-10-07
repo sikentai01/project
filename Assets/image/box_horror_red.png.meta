@@ -103,12 +103,12 @@ TextureImporter:
       name: box_horror_red_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 778
-        height: 193
+        x: 1
+        y: 8
+        width: 770
+        height: 185
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f0e7f31a5b639474c9ce1f272f58cabc
     internalID: 0
     vertices: []
     indices: 
