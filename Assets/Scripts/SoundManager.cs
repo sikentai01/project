@@ -3,44 +3,79 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    // どこからでもアクセスするためのシングルトンインスタンス
     public static SoundManager Instance { get; private set; }
 
-    [Header("■ Audio Mixer 設定")]
+    [Header(" Audio Mixer 設定")]
     [SerializeField] private AudioMixer audioMixer;
     private const string BGM_VOLUME_PARAM = "BGMVolume";
     private const string SE_VOLUME_PARAM = "SEVolume";
 
-    // PlayerPrefsで使用するキー
-    private const string BGM_KEY = "BGM_Volume";
-    private const string SE_KEY = "SE_Volume";
+    private const string BGM_KEY = "BGM_Level";
+    private const string SE_KEY = "SE_Level";
 
-    [Header("■ Audio Source 設定")]
-    [SerializeField] private AudioSource bgmSource; // BGM再生用 (OutputをBGM Mixerグループへ)
-    [SerializeField] private AudioSource seSource;  // SE再生用 (OutputをSE Mixerグループへ)
+    [Header(" Audio Source 設定")]
+    [SerializeField] private AudioSource bgmSource;
+    [SerializeField] private AudioSource seSource;
 
     private void Awake()
     {
-        // シングルトンの初期化（永続化はBootstrapに任せる）
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject); // 二重生成防止
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
-        // ゲーム開始時、保存された音量をロードする
         LoadVolumeSettings();
     }
 
+    // --- BGM（整数化対応） ---
+    public void SetBGMLevel(float level)
+    {
+        int intLevel = Mathf.RoundToInt(level);
+        float dB = ConvertLevelToDecibel(intLevel);
+        audioMixer.SetFloat(BGM_VOLUME_PARAM, dB);
 
-    // --- BGM 制御 (AudioClipを直接引数で受け取る) ---
+        PlayerPrefs.SetInt(BGM_KEY, intLevel);
+        PlayerPrefs.Save();
+    }
 
+    // --- SE（整数化対応） ---
+    public void SetSELevel(float level)
+    {
+        int intLevel = Mathf.RoundToInt(level);
+        float dB = ConvertLevelToDecibel(intLevel);
+        audioMixer.SetFloat(SE_VOLUME_PARAM, dB);
+
+        PlayerPrefs.SetInt(SE_KEY, intLevel);
+        PlayerPrefs.Save();
+    }
+
+    // --- 保存読み込み ---
+    private void LoadVolumeSettings()
+    {
+        int bgmLevel = PlayerPrefs.GetInt(BGM_KEY, 4); // デフォルト=4（標準）
+        int seLevel = PlayerPrefs.GetInt(SE_KEY, 4);
+
+        SetBGMLevel(bgmLevel);
+        SetSELevel(seLevel);
+    }
+
+    // --- 8段階をdBに変換 ---
+    private float ConvertLevelToDecibel(int level)
+    {
+        float volume = (level / 8f) * 2f;
+
+        // log(0)回避
+        if (volume <= 0f)
+            return -80f; // 無音扱い
+
+        // 線形倍率  デシベル
+        float dB = Mathf.Log10(volume) * 20f;
+        return dB;
+    }
+
+
+    // --- 再生系 ---
     public void PlayBGM(AudioClip clip)
     {
         if (clip == null) return;
@@ -49,66 +84,11 @@ public class SoundManager : MonoBehaviour
         bgmSource.Play();
     }
 
-    public void StopBGM() { bgmSource.Stop(); }
-
-
-    // --- SE 制御 (AudioClipを直接引数で受け取る) ---
+    public void StopBGM() => bgmSource.Stop();
 
     public void PlaySE(AudioClip clip)
     {
         if (clip == null) return;
-        // SEは重ねて鳴らすため PlayOneShot を使用
         seSource.PlayOneShot(clip);
-    }
-
-    // --- 全体音量制御 (メニュー画面のスライダー連携用) ---
-
-    /// <summary>
-    /// BGMの全体音量を設定し、PlayerPrefsに保存する (SliderのOnValueChangedに設定)
-    /// </summary>
-    public void SetBGMVolume(float volume)
-    {
-        // スライダー値 (0-1) を対数dBスケールに変換
-        float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20f;
-        audioMixer.SetFloat(BGM_VOLUME_PARAM, dB);
-
-        // 設定を保存
-        PlayerPrefs.SetFloat(BGM_KEY, volume);
-        PlayerPrefs.Save();
-    }
-
-    /// <summary>
-    /// SEの全体音量を設定し、PlayerPrefsに保存する (SliderのOnValueChangedに設定)
-    /// </summary>
-    public void SetSEVolume(float volume)
-    {
-        // スライダー値 (0-1) を対数dBスケールに変換
-        float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20f;
-        audioMixer.SetFloat(SE_VOLUME_PARAM, dB);
-
-        // 設定を保存
-        PlayerPrefs.SetFloat(SE_KEY, volume);
-        PlayerPrefs.Save();
-    }
-
-    /// <summary>
-    /// 保存された音量をロードし、ミキサーに反映させる
-    /// </summary>
-    private void LoadVolumeSettings()
-    {
-        // デフォルト値 (1.0 = 最大音量)
-        float defaultVolume = 1.0f;
-
-        // BGM音量をロードし、ミキサーにセット
-        // PlayerPrefs.GetFloatは、キーが存在しない場合、デフォルト値を使用する
-        float bgmVol = PlayerPrefs.GetFloat(BGM_KEY, defaultVolume);
-        SetBGMVolume(bgmVol);
-
-        // SE音量をロードし、ミキサーにセット
-        float seVol = PlayerPrefs.GetFloat(SE_KEY, defaultVolume);
-        SetSEVolume(seVol);
-
-        // 注意: ロードした値をUIスライダーに反映させる処理は、
-        //       スライダーを制御する OptionPanelManager のような別のスクリプトで行ってください。
     }
 }
