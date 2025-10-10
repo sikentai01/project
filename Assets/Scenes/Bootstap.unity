@@ -405,6 +405,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7885711473093842741}
   m_SourcePrefab: {fileID: 100100000, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
+--- !u!114 &485941062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4530068689335812028, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
+  m_PrefabInstance: {fileID: 485941061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024732067769792822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &573678956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -413,6 +424,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2141668574}
     m_Modifications:
+    - target: {fileID: 505760230145045231, guid: ed58d31535c2c1f4d9382b8e32929759, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505760230145045231, guid: ed58d31535c2c1f4d9382b8e32929759, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 505760230145045231, guid: ed58d31535c2c1f4d9382b8e32929759, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 609121317601659402, guid: ed58d31535c2c1f4d9382b8e32929759, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -541,6 +564,22 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1715431610}
+    - target: {fileID: 3367651423561576373, guid: ed58d31535c2c1f4d9382b8e32929759, type: 3}
+      propertyPath: 'playerLights.Array.data[0]'
+      value: 
+      objectReference: {fileID: 485941062}
+    - target: {fileID: 3367651423561576373, guid: ed58d31535c2c1f4d9382b8e32929759, type: 3}
+      propertyPath: 'playerLights.Array.data[1]'
+      value: 
+      objectReference: {fileID: 659820073}
+    - target: {fileID: 4320696373114725753, guid: ed58d31535c2c1f4d9382b8e32929759, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320696373114725753, guid: ed58d31535c2c1f4d9382b8e32929759, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4332964855791422186, guid: ed58d31535c2c1f4d9382b8e32929759, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.000061035156
