@@ -13,16 +13,16 @@ public class PlayerLightManager : MonoBehaviour
     private const string PLAYER_LIGHT_KEY = "PlayerLight_Level";
 
     // スライダー段階ごとの明るさ倍率
-    private readonly float[] intensityLevels = { 0.5f, 0.75f, 1.0f, 1.25f, 1.5f };
+    private readonly float[] intensityLevels = {0.25f, 0.5f, 0.75f, 1.0f, 1.25f, 1.5f,1.75f };
 
     void Start()
     {
         // スライダー設定
         lightSlider.minValue = 1;
-        lightSlider.maxValue = 5;
+        lightSlider.maxValue = 7;
         lightSlider.wholeNumbers = true;
 
-        int savedLevel = PlayerPrefs.GetInt(PLAYER_LIGHT_KEY, 3);
+        int savedLevel = PlayerPrefs.GetInt(PLAYER_LIGHT_KEY, 4);
         lightSlider.SetValueWithoutNotify(savedLevel);
         lightSlider.onValueChanged.AddListener(OnLightChanged);
 
@@ -51,6 +51,6 @@ public class PlayerLightManager : MonoBehaviour
         }
 
         if (lightValueText != null)
-            lightValueText.text = $"{level}/5";
+            lightValueText.text = $"{level}/7";
     }
 }
