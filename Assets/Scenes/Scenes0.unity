@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b54e6ef9e2b7954e8f73f74ef59dfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventBGM: {fileID: 0}
   requiredDirection: 3
   rewardItem: {fileID: 11400000, guid: ae2c57bfa11f96349903ef91a81202b5, type: 2}
   sceneNpc: {fileID: 1834187833}
@@ -938,7 +939,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 14
-  m_Sprite: {fileID: -829720180, guid: 8dd751fbcd3ea6547b6cd98be2fe7a32, type: 3}
+  m_Sprite: {fileID: 8049665039775526793, guid: abc8a3d70b80e9442952d1e76abc6692, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
