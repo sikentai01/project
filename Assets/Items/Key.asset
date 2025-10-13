@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Key
   m_EditorClassIdentifier: 
   itemID: 3
-  itemName: Key
+  itemName: "\u9375"
   description: 
   isConsumable: 1
   DebugOwned: 0

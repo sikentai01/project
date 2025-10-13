@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: handle
   m_EditorClassIdentifier: 
   itemID: 4
-  itemName: handle
+  itemName: "\u53D6\u3063\u624B"
   description: 
   isConsumable: 1
   DebugOwned: 0

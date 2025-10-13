@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poison
   m_EditorClassIdentifier: 
   itemID: 1
-  itemName: Poison
+  itemName: "\u6BD2\u74F6"
   description: "\u6FC0\u3084\u3070"
   isConsumable: 1
   DebugOwned: 0

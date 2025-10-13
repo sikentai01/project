@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KeyBand
   m_EditorClassIdentifier: 
   itemID: 2
-  itemName: KeyBand
+  itemName: "\u9375\u675F"
   description: 
   isConsumable: 1
   DebugOwned: 0
