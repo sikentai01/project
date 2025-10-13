@@ -16,5 +16,5 @@ MonoBehaviour:
   itemName: "\u53D6\u3063\u624B"
   description: 
   isConsumable: 1
-  DebugOwned: 0
+  DebugOwned: 1
   effects: []
