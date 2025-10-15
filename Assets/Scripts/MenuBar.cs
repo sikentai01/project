@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -58,7 +59,38 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (blockMenu) return; // ★イベント中は開けない
+        // --- メニューを無効化するシーン群 ---
+        string[] lockScenes = { "Title", "GameOver" };
+        bool isMenuLocked = false;
+        bool isPlayableSceneLoaded = false;
+
+        int sceneCount = SceneManager.sceneCount;
+
+        for (int i = 0; i < sceneCount; i++)
+        {
+            Scene s = SceneManager.GetSceneAt(i);
+
+            // TitleやGameOverが1つでもロードされていたら無条件でメニュー無効
+            if (lockScenes.Contains(s.name))
+            {
+                isMenuLocked = true;
+                break;
+            }
+
+            // ゲームシーン（Scene0とか）があるかも確認
+            if (s.name.StartsWith("Scene"))
+            {
+                isPlayableSceneLoaded = true;
+            }
+        }
+
+        // Title/GameOverがあれば絶対に開かない
+        if (isMenuLocked)
+            return;
+
+        // Scene系が無い場合（ゲーム外）も開かない
+        if (!isPlayableSceneLoaded)
+            return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -254,7 +286,16 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("ゲーム終了");
-        Application.Quit();
+        Debug.Log("タイトルに戻る");
+
+        Time.timeScale = 1f;
+        CloseAllPanels();
+        pauseMenuUI.SetActive(false);
+        isPaused = false;
+
+        // Additive構成を考慮して、RoomLoader経由でロード
+        RoomLoader.LoadRoom("Title", null);
     }
+
+
 }

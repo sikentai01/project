@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class TitleMenuManager : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class TitleMenuManager : MonoBehaviour
 
     private void Start()
     {
-        // タイトル開始時に START ボタンを選択状態にする
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstSelectedButton);
     }
@@ -21,28 +21,38 @@ public class TitleMenuManager : MonoBehaviour
     /// </summary>
     public void OnStartGame()
     {
-        // シーン名かビルドインデックスどちらでもOK（ここでは名前で指定）
-        SceneManager.LoadScene("Scenes0");
+        Debug.Log("ゲーム開始");
+
+        // Additiveロード（Bootstrapを保持）
+        RoomLoader.LoadRoom("Scenes0",null);
+
+        // Titleを後から破棄
+        StartCoroutine(UnloadTitleScene());
     }
 
-    /// <summary>
-    /// 「つづきから」ボタン用（未実装でもOK）
-    /// </summary>
+    private IEnumerator UnloadTitleScene()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Scene current = SceneManager.GetSceneByName("Title");
+        if (current.IsValid() && current.isLoaded)
+        {
+            SceneManager.UnloadSceneAsync(current);
+            Debug.Log("Titleシーンを破棄しました");
+        }
+    }
+
     public void OnLoadGame()
     {
         Debug.Log("ロード機能は後で追加予定");
     }
 
-    /// <summary>
-    /// 「終了」ボタンを押したとき
-    /// </summary>
     public void OnExitGame()
     {
         Debug.Log("ゲーム終了");
-        Application.Quit();
-
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // エディタ中なら再生停止
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
 #endif
     }
 }

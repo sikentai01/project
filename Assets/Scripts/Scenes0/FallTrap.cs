@@ -24,8 +24,24 @@ public class FallTrap : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("プレイヤーが落とし穴に落ちた！");
-            // ここでゲームオーバー処理
-            SceneManager.LoadScene("GameOver");
+
+            //  RoomLoaderを使ってGameOverをAdditiveでロード
+            RoomLoader.LoadRoom("GameOver", null);
+
+            // 現在のシーンをアンロード（Additive構成の整理）
+            StartCoroutine(UnloadCurrentScene());
+        }
+    }
+
+    private System.Collections.IEnumerator UnloadCurrentScene()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Scene current = SceneManager.GetActiveScene();
+        if (current.IsValid() && current.isLoaded && current.name.StartsWith("Scene"))
+        {
+            SceneManager.UnloadSceneAsync(current);
+            Debug.Log($"{current.name} を破棄しました");
         }
     }
 
@@ -39,4 +55,3 @@ public class FallTrap : MonoBehaviour
         }
     }
 }
-//うまくいってる？
