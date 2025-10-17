@@ -6,7 +6,8 @@ public class FloorType : MonoBehaviour
     {
         Tile,
         Mat,
-        Dirt
+        Dirt,
+        Wood
     }
 
     [Header("‚±‚Ì°‚Ìí—Ş")]

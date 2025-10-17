@@ -10,6 +10,7 @@ public class GridMovement : MonoBehaviour
     public AudioClip tileFootstep;
     public AudioClip matFootstep;
     public AudioClip dirtFootstep;
+    public AudioClip woodFootstep; // Å© ñÿÇÃë´âπí«â¡
     public float stepInterval = 0.35f;
 
     private Vector3 targetPosition;
@@ -142,6 +143,7 @@ public class GridMovement : MonoBehaviour
         {
             case FloorType.SurfaceType.Mat: clip = matFootstep; break;
             case FloorType.SurfaceType.Dirt: clip = dirtFootstep; break;
+            case FloorType.SurfaceType.Wood: clip = woodFootstep; break;
             default: clip = tileFootstep; break;
         }
 
