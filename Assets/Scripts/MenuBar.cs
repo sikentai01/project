@@ -92,6 +92,9 @@ public class PauseMenu : MonoBehaviour
         if (!isPlayableSceneLoaded)
             return;
 
+        if (PauseMenu.blockMenu)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
