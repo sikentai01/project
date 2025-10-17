@@ -1,3 +1,4 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class GridMovement : MonoBehaviour
@@ -5,11 +6,18 @@ public class GridMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float gridSize = 1f;
 
+    [Header("足音設定")]
+    public AudioClip tileFootstep;
+    public AudioClip matFootstep;
+    public AudioClip dirtFootstep;
+    public float stepInterval = 0.35f;
+
     private Vector3 targetPosition;
     private bool isMoving = false;
     private Animator animator;
 
     private int currentDirection = 0;
+    private float footstepTimer = 0f; // 足音間隔用タイマー
 
     void Start()
     {
@@ -105,11 +113,40 @@ public class GridMovement : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentMoveSpeed * gridSize * Time.deltaTime);
 
+            // 足音制御（移動中のみ）
+            footstepTimer += Time.deltaTime;
+            if (footstepTimer >= stepInterval)
+            {
+                PlayFootstepSound();
+                footstepTimer = 0f;
+            }
+
             if (transform.position == targetPosition)
             {
                 isMoving = false;
             }
         }
+    }
+
+    // ---- 足音を鳴らす処理 ----
+    void PlayFootstepSound()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.0f);
+        if (hit.collider == null) return;
+
+        FloorType floor = hit.collider.GetComponent<FloorType>();
+        if (floor == null || SoundManager.Instance == null) return;
+
+        AudioClip clip = null;
+        switch (floor.surfaceType)
+        {
+            case FloorType.SurfaceType.Mat: clip = matFootstep; break;
+            case FloorType.SurfaceType.Dirt: clip = dirtFootstep; break;
+            default: clip = tileFootstep; break;
+        }
+
+        if (clip != null)
+            SoundManager.Instance.PlaySE(clip);
     }
 
     //当たり判定等
