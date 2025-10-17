@@ -7,7 +7,8 @@ public class FloorType : MonoBehaviour
         Tile,
         Mat,
         Dirt,
-        Wood
+        Wood,
+        Glass
     }
 
     [Header("‚±‚Ì°‚Ìí—Ş")]
