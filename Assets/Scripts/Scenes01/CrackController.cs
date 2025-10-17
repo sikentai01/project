@@ -15,7 +15,7 @@ public class CrackController : MonoBehaviour
             }
 
             // このトリガーは一度しか使わないため、無効化
-            gameObject.SetActive(false);
+            
         }
     }
 }
