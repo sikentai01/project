@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2705152039393778233}
   - component: {fileID: 2518232244198891656}
   - component: {fileID: 4150447377324204158}
+  - component: {fileID: 473973730336513394}
   m_Layer: 0
   m_Name: GameBootstrap
   m_TagString: Untagged
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8775072212a3bf419919ff39d81c695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRoomSceneName: Scene0
+  startRoomSceneName: Scenes0
   startSpawnName: SpawnPoint
 --- !u!114 &4150447377324204158
 MonoBehaviour:
@@ -59,5 +60,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa0c495d0be7624b9cbed09937d4e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallbackSpawnName: Spawn_Default
-  clearAfterUse: 1
+  roomRootName: Roomroot
+--- !u!114 &473973730336513394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7311764276210365247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c262966ca6f00b4c9a615adb7b53aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preloadScenes:
+  - Title
+  - Scenes0
+  - Scenes01
+  - Scenes02
+  - GameOver

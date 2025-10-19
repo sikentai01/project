@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ItemTrigger : MonoBehaviour
 {
@@ -24,11 +24,13 @@ public class ItemTrigger : MonoBehaviour
     private bool isPlayerNear = false;
     private GridMovement playerMovement;
 
-    // 外部から参照できるように追加
     public bool IsPlayerNear => isPlayerNear;
 
     void Update()
     {
+        if (PauseMenu.isPaused) return;
+        if (SaveSlotUIManager.Instance != null && SaveSlotUIManager.Instance.IsOpen()) return;
+
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
             // 向きチェック
@@ -78,7 +80,7 @@ public class ItemTrigger : MonoBehaviour
         }
     }
 
-    // このトリガーが「アイテム使用に対応しているか」を判定
+    //  このトリガーが「アイテム使用に対応しているか」を判定
     public bool HasPendingGimmick(ItemData item)
     {
         if (currentStage < gimmicks.Count)
@@ -94,6 +96,7 @@ public class ItemTrigger : MonoBehaviour
         return false;
     }
 
+    //  アイテムをギミックに使用
     public void UseItemOnGimmick(ItemData item)
     {
         if (!isPlayerNear) return;
@@ -118,7 +121,7 @@ public class ItemTrigger : MonoBehaviour
             }
             else
             {
-                gimmick.StartGimmick(this); // アイテム不要はそのまま進行
+                gimmick.StartGimmick(this); // アイテム不要ギミック
             }
         }
         else

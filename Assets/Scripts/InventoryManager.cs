@@ -1,6 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class InventorySaveData
+{
+    public List<string> ownedItemIDs = new List<string>();
+}
+
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
@@ -26,7 +32,7 @@ public class InventoryManager : MonoBehaviour
     {
         slots = slotParent.GetComponentsInChildren<ItemSlot>();
 
-        // ▼ ここで DebugOwned チェック
+        // ▼ DebugOwned チェック
         foreach (var item in allItems)
         {
             if (item != null && item.DebugOwned && !items.Contains(item))
@@ -42,17 +48,17 @@ public class InventoryManager : MonoBehaviour
     /// <summary> アイテム追加 </summary>
     public void AddItem(ItemData item)
     {
-        if (!items.Contains(item)) // 重複登録防止
+        if (!items.Contains(item))
         {
             items.Add(item);
             RefreshUI();
         }
     }
 
-    /// <summary> アイテム削除 (ID で削除) </summary>
+    /// <summary> アイテム削除 </summary>
     public void RemoveItemByID(string itemID)
     {
-        var target = items.Find(i => i.itemID == itemID); // ← 修正済み: itemID で検索
+        var target = items.Find(i => i.itemID == itemID);
         if (target != null)
         {
             items.Remove(target);
@@ -60,21 +66,10 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    /// <summary> アイテム使用 </summary>
-    public void UseItem(int slotIndex)
-    {
-        if (slotIndex < 0 || slotIndex >= items.Count) return;
-
-        var target = items[slotIndex];
-        if (target != null)
-        {
-            target.Use(); // ScriptableObject の Use()
-        }
-    }
-
-    /// <summary> UI 更新 </summary>
+    /// <summary> UI更新 </summary>
     void RefreshUI()
     {
+        if (slots == null) return;
         for (int i = 0; i < slots.Length; i++)
         {
             if (i < items.Count)
@@ -83,18 +78,56 @@ public class InventoryManager : MonoBehaviour
                 slots[i].ClearSlot();
         }
     }
+
     public bool HasItem(string itemID)
     {
-        // インベントリの各アイテムをチェック
         foreach (var item in items)
         {
-            // もしアイテムIDが引数と一致すればtrueを返す
             if (item.itemID == itemID)
-            {
                 return true;
-            }
         }
-        // 見つからなければfalseを返す
         return false;
     }
+
+    // ===== セーブデータ作成 =====
+    public InventorySaveData SaveData()
+    {
+        var data = new InventorySaveData();
+
+        foreach (var item in items)
+        {
+            if (!string.IsNullOrEmpty(item.itemID))
+                data.ownedItemIDs.Add(item.itemID);
+        }
+
+        Debug.Log($"[InventoryManager] {data.ownedItemIDs.Count} 件のアイテムを保存しました");
+        return data;
+    }
+
+    // ===== セーブデータ読み込み =====
+    public void LoadData(InventorySaveData data)
+    {
+        items.Clear();
+
+        foreach (var id in data.ownedItemIDs)
+        {
+            var found = allItems.Find(i => i.itemID == id);
+            if (found != null)
+                items.Add(found);
+            else
+                Debug.LogWarning($"[InventoryManager] ID {id} のアイテムが見つかりません");
+        }
+
+        RefreshUI();
+        Debug.Log("[InventoryManager] インベントリデータをロードしました");
+    }
+
+    // ===== 初期化 =====
+    public void ClearAll()
+    {
+        items.Clear();
+        RefreshUI();
+        Debug.Log("[InventoryManager] インベントリを初期化しました");
+    }
+
 }

@@ -45,6 +45,6 @@ public class BrightnessManager : MonoBehaviour
             globalLight.intensity = brightness;
 
         if (brightnessText != null)
-            brightnessText.text = $"{level}/7"; // 任意で表示（UIに）
+            brightnessText.text = $"{level} / 7"; // 任意で表示（UIに）
     }
 }

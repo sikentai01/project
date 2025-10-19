@@ -106,6 +106,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   gridSize: 1
+  tileFootstep: {fileID: 8300000, guid: 80cb3d5b5a0321248bc082d599e85273, type: 3}
+  matFootstep: {fileID: 8300000, guid: a6857fcc077df2843a1ebce72c187589, type: 3}
+  dirtFootstep: {fileID: 0}
+  stepInterval: 0.35
 --- !u!61 &2585505381898205407
 BoxCollider2D:
   m_ObjectHideFlags: 0

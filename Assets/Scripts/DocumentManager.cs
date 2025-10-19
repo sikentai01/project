@@ -1,5 +1,12 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class DocumentSaveData
+{
+    public List<string> obtainedIDs = new List<string>();
+}
 
 public class DocumentManager : MonoBehaviour
 {
@@ -12,7 +19,7 @@ public class DocumentManager : MonoBehaviour
         public string title;        // タイトル
         [TextArea(3, 10)]
         public string body;         // 本文
-        public bool obtained;       // 入手済みかどうか（Inspectorで設定 or マップで入手）
+        public bool obtained;       // 入手済みかどうか
     }
 
     [Header("資料データ")]
@@ -42,12 +49,6 @@ public class DocumentManager : MonoBehaviour
             slots = GetComponentsInChildren<DocumentSlot>(true);
         }
 
-        //Debug.Log("登録されているスロット数: " + slots.Length);
-        //for (int i = 0; i < slots.Length; i++)
-        //{
-        //    Debug.Log($"Slot {i}: " + slots[i]);
-        //}
-
         if (documentDetailPanel != null)
             documentDetailPanel.SetActive(false);
 
@@ -60,7 +61,7 @@ public class DocumentManager : MonoBehaviour
         var doc = System.Array.Find(documents, d => d.documentID == id);
         if (doc == null)
         {
-            Debug.LogWarning($"ID {id} の資料が見つかりません");
+            Debug.LogWarning($"[DocumentManager] ID {id} の資料が見つかりません");
             return;
         }
 
@@ -69,7 +70,7 @@ public class DocumentManager : MonoBehaviour
         doc.obtained = true;
         doc.title = title;
 
-        Debug.Log($"資料「{title}」を入手しました！");
+        Debug.Log($"[DocumentManager] 資料「{title}」を入手しました！");
         RefreshUI();
     }
 
@@ -130,4 +131,44 @@ public class DocumentManager : MonoBehaviour
         IsDetailOpen = false;
         currentIndex = -1;
     }
+
+    // ===== セーブデータ作成 =====
+    public DocumentSaveData SaveData()
+    {
+        var data = new DocumentSaveData();
+
+        foreach (var doc in documents)
+        {
+            if (doc.obtained)
+                data.obtainedIDs.Add(doc.documentID);
+        }
+
+        Debug.Log($"[DocumentManager] {data.obtainedIDs.Count} 件の資料を保存しました");
+        return data;
+    }
+
+    // ===== セーブデータ読み込み =====
+    public void LoadData(DocumentSaveData data)
+    {
+        foreach (var doc in documents)
+        {
+            doc.obtained = data.obtainedIDs.Contains(doc.documentID);
+        }
+
+        RefreshUI();
+        Debug.Log("[DocumentManager] 資料データをロードしました");
+    }
+
+    // ===== 初期化 =====
+    public void ClearAll()
+    {
+        foreach (var doc in documents)
+        {
+            doc.obtained = false;
+        }
+
+        RefreshUI();
+        Debug.Log("[DocumentManager] 全資料を初期化しました");
+    }
+
 }

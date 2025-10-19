@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -54,11 +55,55 @@ public class PauseMenu : MonoBehaviour
 
         Time.timeScale = 1f;
         isPaused = false;
+        blockMenu = false;
     }
 
     void Update()
     {
-        if (blockMenu) return; // ★イベント中は開けない
+        // --- メニューを無効化するシーン群 ---
+        string[] lockScenes = { "Title", "GameOver" };
+        bool isMenuLocked = false;
+        bool isPlayableSceneLoaded = false;
+
+        int sceneCount = SceneManager.sceneCount;
+
+        for (int i = 0; i < sceneCount; i++)
+        {
+            Scene s = SceneManager.GetSceneAt(i);
+
+            //  ここを修正！
+            // Title や GameOver がロードされていても、そのRootが全部非アクティブなら無視
+            if (lockScenes.Contains(s.name))
+            {
+                bool anyActive = s.GetRootGameObjects().Any(go => go.activeInHierarchy);
+                if (anyActive)
+                {
+                    isMenuLocked = true;
+                    break;
+                }
+            }
+
+            // ゲームシーン（Scene0とか）があるかも確認
+            if (s.name.StartsWith("Scenes"))
+            {
+                isPlayableSceneLoaded = true;
+            }
+        }
+
+        // Title/GameOverがあれば絶対に開かない
+        if (isMenuLocked)
+            return;
+
+        // Scene系が無い場合（ゲーム外）も開かない
+        if (!isPlayableSceneLoaded)
+            return;
+
+        // === セーブスロットなどのUIが開いている時、または直後 ===
+        if (PauseMenu.blockMenu ||
+            (SaveSlotUIManager.Instance != null &&
+            (SaveSlotUIManager.Instance.IsOpen() || SaveSlotUIManager.Instance.IsRecentlyClosed())))
+            return;
+
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -254,7 +299,44 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("ゲーム終了");
-        Application.Quit();
+        Debug.Log("タイトルに戻る");
+
+        Time.timeScale = 1f;
+        CloseAllPanels();
+        pauseMenuUI.SetActive(false);
+        isPaused = false;
+
+        // 現在のScene系を全部非アクティブにする
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene s = SceneManager.GetSceneAt(i);
+            if (s.name.StartsWith("Scenes"))
+            {
+                foreach (var root in s.GetRootGameObjects())
+                {
+                    root.SetActive(false);
+                }
+            }
+        }
+
+        // Titleを再表示
+        Scene titleScene = SceneManager.GetSceneByName("Title");
+        if (titleScene.isLoaded)
+        {
+            foreach (var root in titleScene.GetRootGameObjects())
+            {
+                root.SetActive(true);
+            }
+            Debug.Log("[PauseMenu] 既存のTitleシーンを再有効化");
+        }
+        else
+        {
+            Debug.Log("[PauseMenu] Titleが未ロードのためロードします");
+            SceneManager.LoadSceneAsync("Title", LoadSceneMode.Additive);
+        }
+
+        Debug.Log("タイトルへ戻る完了");
     }
+
+
 }

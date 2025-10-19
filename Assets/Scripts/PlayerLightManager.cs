@@ -51,6 +51,6 @@ public class PlayerLightManager : MonoBehaviour
         }
 
         if (lightValueText != null)
-            lightValueText.text = $"{level}/7";
+            lightValueText.text = $"{level} / 7";
     }
 }
