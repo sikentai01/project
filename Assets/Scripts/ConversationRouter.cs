@@ -8,14 +8,20 @@ public class ConversationRouter : MonoBehaviour
     [Serializable]
     public class Entry
     {
+        [Header("会話ID (ConversationTriggerのIDと一致させる)")]
         public string conversationId;
-        public string relativePath; // 例: "story/intro_001.txt"
+
+        [Header("StreamingAssets 相対パス (例: story/intro_001.txt)")]
+        public string relativePath;
+
+        [Header("直接参照する場合はこちらにドラッグ (任意)")]
+        public TextAsset textAsset;
     }
 
     [Header("参照")]
     [SerializeField] private DialogueCore core;
 
-    [Header("ID→StreamingAssets 相対パス")]
+    [Header("会話ID → ファイル参照")]
     [SerializeField] private List<Entry> registry = new List<Entry>();
 
     private readonly Queue<string> queue = new Queue<string>();
@@ -48,57 +54,57 @@ public class ConversationRouter : MonoBehaviour
         var id = queue.Dequeue();
         pendingIds.Remove(id);
 
-        string rel = ResolveRelativePath(id);
-        if (string.IsNullOrEmpty(rel))
+        // ① TextAsset参照 or ② Registry相対パス or ③ ID自動探索 の順に解決
+        string text = ResolveConversationText(id);
+
+        if (string.IsNullOrEmpty(text))
         {
-            Debug.LogWarning($"[Router] ID '{id}' に相対パス未登録。");
+            Debug.LogWarning($"[Router] ID '{id}' に対応する会話データが見つかりません。");
             TryStartNext();
             return;
         }
 
-        string full = Path.Combine(Application.streamingAssetsPath, rel);
-
-#if UNITY_ANDROID && !UNITY_EDITOR
-        // Android は jar 内。必要なら UnityWebRequest で非同期読み込みに。
-        StartCoroutine(LoadAndroid(full, id));
-#else
-        try
-        {
-            string text = File.ReadAllText(full, System.Text.Encoding.UTF8);
-            isActive = true;
-            core.StartConversation(id, text); // ← string 版を呼ぶ
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"[Router] 読み込み失敗: {full}\n{e}");
-            TryStartNext();
-        }
-#endif
+        isActive = true;
+        core.StartConversation(id, text);
     }
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-    private System.Collections.IEnumerator LoadAndroid(string fullPath, string id)
+    private string ResolveConversationText(string id)
     {
-        using (var req = UnityEngine.Networking.UnityWebRequest.Get(fullPath))
+        // ① 登録されたEntryを検索
+        foreach (var e in registry)
         {
-            yield return req.SendWebRequest();
-            if (req.result != UnityEngine.Networking.UnityWebRequest.Result.Success)
+            if (e.conversationId == id)
             {
-                Debug.LogError($"[Router] Android 読込失敗: {fullPath}\n{req.error}");
-                TryStartNext();
-                yield break;
-            }
-            isActive = true;
-            core.StartConversation(id, req.downloadHandler.text);
-        }
-    }
-#endif
+                // TextAsset優先
+                if (e.textAsset != null)
+                {
+                    Debug.Log($"[Router] TextAsset '{e.textAsset.name}' から読み込み (ID:{id})");
+                    return e.textAsset.text;
+                }
 
-    private string ResolveRelativePath(string id)
-    {
-        for (int i = 0; i < registry.Count; i++)
-            if (registry[i].conversationId == id)
-                return registry[i].relativePath;
+                // 相対パス指定がある場合
+                if (!string.IsNullOrEmpty(e.relativePath))
+                {
+                    string full = Path.Combine(Application.streamingAssetsPath, e.relativePath);
+                    if (File.Exists(full))
+                    {
+                        Debug.Log($"[Router] StreamingAssets/{e.relativePath} から読み込み (ID:{id})");
+                        return File.ReadAllText(full, System.Text.Encoding.UTF8);
+                    }
+                }
+
+                break;
+            }
+        }
+
+        // ② 登録なし：IDをそのままファイル名として扱う
+        string auto = Path.Combine(Application.streamingAssetsPath, id + ".txt");
+        if (File.Exists(auto))
+        {
+            Debug.Log($"[Router] 登録なし: '{id}.txt' を自動検出");
+            return File.ReadAllText(auto, System.Text.Encoding.UTF8);
+        }
+
         return null;
     }
 

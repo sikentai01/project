@@ -144,6 +144,7 @@ MonoBehaviour:
   core: {fileID: 27603324}
   charaText: {fileID: 2105053071}
   bodyText: {fileID: 2044759862}
+  typeSpeed: 0.03
 --- !u!114 &27603322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +174,7 @@ MonoBehaviour:
   registry:
   - conversationId: sample
     relativePath: Dialogue/sample.txt
+    textAsset: {fileID: 0}
 --- !u!114 &27603324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   router: {fileID: 27603323}
   advanceInput: {fileID: 27603322}
-  defaultConversationId: sample
+  defaultConversationId: 
 --- !u!114 &27603330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2474,32 +2476,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0dc53b6066c6974e8fab4b4e62e3b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2044759860 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5615410137049817044, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
-  m_PrefabInstance: {fileID: 4240164595130135428}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2044759862 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
   m_PrefabInstance: {fileID: 4240164595130135428}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044759860}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2044759864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044759860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c11846fb13f9941b773e9973cbad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2075239564 stripped
@@ -2908,6 +2893,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8298330506351485988, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298330506351485988, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 9013864960308347818, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: m_fontColor.b
       value: 0.7058824
@@ -2961,9 +2954,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1843096381021594322, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       insertIndex: -1
       addedObject: {fileID: 27603329}
-    - targetCorrespondingSourceObject: {fileID: 5615410137049817044, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2044759864}
   m_SourcePrefab: {fileID: 100100000, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
 --- !u!1 &5024732067769792822 stripped
 GameObject:
