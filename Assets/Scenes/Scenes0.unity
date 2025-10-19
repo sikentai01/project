@@ -907,6 +907,7 @@ GameObject:
   - component: {fileID: 1678947926}
   - component: {fileID: 1678947928}
   - component: {fileID: 1678947927}
+  - component: {fileID: 1678947929}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -936,13 +937,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678947925}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2a3f764657a3d8408cd080c2c67c3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggerID: 01
-  itemData: {fileID: 11400000, guid: ae2c57bfa11f96349903ef91a81202b5, type: 2}
+  itemData: {fileID: 11400000, guid: 6f98d4e9879308148a46dd6ae533ee61, type: 2}
   targetObject: {fileID: 505244541}
   requiredDirection: 3
   gimmicks:
@@ -994,6 +995,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &1678947929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678947925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c152124cae6d7924b9153c1fac2dd582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveSeClip: {fileID: 0}
+  saveEffect: {fileID: 0}
 --- !u!4 &1690165488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7469800162939513096, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}

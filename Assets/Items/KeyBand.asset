@@ -16,5 +16,5 @@ MonoBehaviour:
   itemName: "\u9375\u675F"
   description: 
   isConsumable: 1
-  DebugOwned: 1
+  DebugOwned: 0
   effects: []

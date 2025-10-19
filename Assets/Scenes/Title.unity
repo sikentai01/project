@@ -203,8 +203,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1285067758}
-        m_TargetAssemblyTypeName: TitleMenuManager, Assembly-CSharp
-        m_MethodName: OnStartGame
+        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+        m_MethodName: OnStartButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 228056939}
   - component: {fileID: 228056938}
   m_Layer: 5
-  m_Name: Load_Button
+  m_Name: ContinueButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,8 +336,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1285067758}
-        m_TargetAssemblyTypeName: TitleMenuManager, Assembly-CSharp
-        m_MethodName: OnLoadGame
+        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+        m_MethodName: OnContinueButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -469,8 +469,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1285067758}
-        m_TargetAssemblyTypeName: TitleMenuManager, Assembly-CSharp
-        m_MethodName: OnExitGame
+        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+        m_MethodName: OnExitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -906,6 +906,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097962a1bd20c764ea52c910ddf8dc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startButton: {fileID: 154308477}
+  continueButton: {fileID: 228056938}
+  exitButton: {fileID: 807065022}
   firstSelectedButton: {fileID: 154308475}
 --- !u!1 &1341472392
 GameObject:

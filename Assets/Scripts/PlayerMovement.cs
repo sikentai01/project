@@ -29,11 +29,10 @@ public class GridMovement : MonoBehaviour
 
     void Update()
     {
-        if (PauseMenu.isPaused)
+        if (PauseMenu.isPaused || GameOverController.isGameOver || TitleManager.isTitleActive)
         {
-            // ポーズ中はアニメーションを停止
             animator.SetBool("Move_motion", false);
-            return; // 以降の処理をすべてスキップ
+            return;
         }
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
@@ -182,4 +181,22 @@ public class GridMovement : MonoBehaviour
             animator.SetInteger("Direction", dir);
         }
     }
+
+    public void SetPositionAndDirection(Vector3 position, int direction)
+    {
+        // 位置を設定
+        transform.position = position;
+
+        // 向きを設定（SetDirectionを利用）
+        SetDirection(direction);
+
+        // 向き反映の視覚更新（もし不要なら消してOK）
+        UpdateDirectionVisual();
+    }
+
+    private void UpdateDirectionVisual()
+    {
+        // 見た目の向き調整やスプライト反転など（未使用でもOK）
+    }
+
 }

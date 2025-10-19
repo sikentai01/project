@@ -1,42 +1,33 @@
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
-    public Tilemap tilemap;
+    public Transform target; // 追従する対象（プレイヤー）
 
     private Camera cam;
-    private float halfHeight;
-    private float halfWidth;
+    private float smoothSpeed = 10f;
 
     void Start()
     {
         cam = GetComponent<Camera>();
-        halfHeight = cam.orthographicSize;
-        halfWidth = halfHeight * cam.aspect;
     }
 
     void LateUpdate()
     {
-        if (target != null)
+        if (target == null)
         {
-            Vector3 newPos = target.position;
-            newPos.z = transform.position.z;
-
-            if (tilemap != null)
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
             {
-                Bounds bounds = tilemap.localBounds;
-
-                newPos.x = Mathf.Clamp(newPos.x,
-                                       bounds.min.x + halfWidth,
-                                       bounds.max.x - halfWidth);
-                newPos.y = Mathf.Clamp(newPos.y,
-                                       bounds.min.y + halfHeight,
-                                       bounds.max.y - halfHeight);
+                target = player.transform;
+                Debug.Log("[CameraFollow] Player取得成功: " + target.name);
             }
-
-            transform.position = newPos;
+            return;
         }
+
+        // シンプルな追従（カメラ位置をプレイヤーに合わせる）
+        Vector3 newPos = target.position;
+        newPos.z = transform.position.z; // カメラのZは固定
+        transform.position = Vector3.Lerp(transform.position, newPos, smoothSpeed * Time.deltaTime);
     }
 }
