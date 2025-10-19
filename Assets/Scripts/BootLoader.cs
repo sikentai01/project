@@ -8,7 +8,7 @@ public class BootLoader : MonoBehaviour
     private static BootLoader _instance;
     public static BootLoader Instance => _instance;
 
-    private Dictionary<string, Scene> loadedScenes = new Dictionary<string, Scene>();
+    public Dictionary<string, Scene> loadedScenes = new Dictionary<string, Scene>();
 
     [Header("起動時にロードしておくシーン")]
     public List<string> preloadScenes = new List<string> { "Title", "Scenes0", "Scenes01", "Scenes02", "GameOver" };

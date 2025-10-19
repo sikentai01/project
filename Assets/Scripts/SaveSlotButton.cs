@@ -28,15 +28,39 @@ public class SaveSlotButton : MonoBehaviour
 
         if (isLoadMode)
         {
-            // --- ロード ---
+            // ==========================
+            //  ロードモード処理
+            // ==========================
             var data = SaveSystem.LoadGame(slotNumber);
             if (data != null)
             {
-                Debug.Log($"[SaveSlotButton] スロット{slotNumber}をロード中...");
-                GameBootstrap.loadedData = data;
+                Debug.Log($"[SaveSlotButton] スロット{slotNumber}ロード開始：{data.sceneName}");
 
-                // Bootstrapを維持したままゲームシーンをAdditiveロード
-                SceneManager.LoadSceneAsync(data.sceneName, LoadSceneMode.Additive);
+                // BootLoader取得
+                var boot = FindFirstObjectByType<BootLoader>();
+                if (boot == null)
+                {
+                    Debug.LogError("[SaveSlotButton] BootLoaderが見つかりません！");
+                    return;
+                }
+
+                // --- すべてのシーンをOFFにして対象シーンだけON ---
+                foreach (var kv in boot.loadedScenes)
+                    boot.SetSceneActive(kv.Key, kv.Key == data.sceneName);
+
+                // --- アクティブシーンを切り替え ---
+                var targetScene = SceneManager.GetSceneByName(data.sceneName);
+                if (targetScene.IsValid())
+                {
+                    SceneManager.SetActiveScene(targetScene);
+                    Debug.Log($"[SaveSlotButton] アクティブシーンを {data.sceneName} に変更しました。");
+                }
+
+                // --- GameBootstrapを動的生成してロード適用 ---
+                GameBootstrap.loadedData = data;
+                new GameObject("GameBootstrap").AddComponent<GameBootstrap>();
+
+                Debug.Log($"[SaveSlotButton] BootLoader経由で {data.sceneName} のロードを開始しました。");
             }
             else
             {
@@ -45,19 +69,27 @@ public class SaveSlotButton : MonoBehaviour
         }
         else
         {
-            // --- セーブ ---
+            // ==========================
+            //  セーブモード処理
+            // ==========================
             var player = FindFirstObjectByType<GridMovement>();
             if (player != null)
             {
-                SaveSystem.SaveGame(slotNumber,
+                SaveSystem.SaveGame(
+                    slotNumber,
                     SceneManager.GetActiveScene().name,
                     player.transform.position,
-                    player.GetDirection());
+                    player.GetDirection()
+                );
                 Debug.Log($"[SaveSlotButton] スロット{slotNumber}にセーブしました。");
+            }
+            else
+            {
+                Debug.LogWarning("[SaveSlotButton] プレイヤーが見つかりません。セーブ失敗。");
             }
         }
 
-        // 閉じる
+        // --- UIを閉じる ---
         if (SaveSlotUIManager.Instance != null)
             SaveSlotUIManager.Instance.ClosePanel();
 

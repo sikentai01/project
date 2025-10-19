@@ -3,20 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour
 {
-    public static bool isGameOver = false; // ←★追加：ゲームオーバーフラグ
+    public static bool isGameOver = false; // ←★ 追加：全体から参照できるフラグ
 
     [SerializeField] private AudioClip confirmSeClip;
 
     void OnEnable()
     {
-        isGameOver = true;
-        Time.timeScale = 0f; // ←★ゲーム内の動きを止める
+        isGameOver = true; // 有効化されたらゲームオーバー状態ON
+        Debug.Log("[GameOverController] ゲームオーバー状態になりました");
     }
 
     void OnDisable()
     {
-        isGameOver = false;
-        Time.timeScale = 1f; // ←★再開時戻す
+        isGameOver = false; // 無効化されたら解除
+        Debug.Log("[GameOverController] ゲームオーバー状態解除");
     }
 
     void Update()
@@ -25,6 +25,7 @@ public class GameOverController : MonoBehaviour
         {
             Debug.Log("[GameOverController] タイトルに戻る");
 
+            // 効果音
             if (SoundManager.Instance != null && confirmSeClip != null)
                 SoundManager.Instance.PlaySE(confirmSeClip);
 
@@ -34,7 +35,7 @@ public class GameOverController : MonoBehaviour
 
     private void ReturnToTitle()
     {
-        // ゲームシーンを全て非アクティブ化
+        // ゲームシーンを全部非アクティブ化
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
             Scene s = SceneManager.GetSceneAt(i);
@@ -45,7 +46,7 @@ public class GameOverController : MonoBehaviour
             }
         }
 
-        // GameOver UIを非表示
+        // GameOver自体非表示
         Scene current = SceneManager.GetSceneByName("GameOver");
         if (current.isLoaded)
         {
@@ -65,6 +66,6 @@ public class GameOverController : MonoBehaviour
             SceneManager.LoadSceneAsync("Title", LoadSceneMode.Additive);
         }
 
-        Debug.Log("[GameOverController] タイトルへの復帰完了");
+        Debug.Log("[GameOverController] タイトル復帰完了");
     }
 }

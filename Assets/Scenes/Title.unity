@@ -910,6 +910,7 @@ MonoBehaviour:
   continueButton: {fileID: 228056938}
   exitButton: {fileID: 807065022}
   firstSelectedButton: {fileID: 154308475}
+  fadeCanvas: {fileID: 0}
 --- !u!1 &1341472392
 GameObject:
   m_ObjectHideFlags: 0

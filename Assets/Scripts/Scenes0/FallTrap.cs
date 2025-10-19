@@ -6,6 +6,23 @@ public class FallTrap : MonoBehaviour
 {
     private Collider2D trapCollider;
 
+    void OnEnable()
+    {
+        trapCollider = GetComponent<Collider2D>();
+
+        // はじめから時には強制ON
+        if (GameFlags.Instance == null || !GameFlags.Instance.HasFlag("SaveTriggered"))
+        {
+            trapCollider.isTrigger = true;
+            Debug.Log("[FallTrap] フラグなし → トリガー再有効化");
+        }
+        else
+        {
+            trapCollider.isTrigger = false;
+            Debug.Log("[FallTrap] セーブ後 → トリガー無効化（壁）");
+        }
+    }
+
     void Start()
     {
         trapCollider = GetComponent<Collider2D>();
