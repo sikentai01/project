@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 public class SaveTrigger : MonoBehaviour
 {
     [Header("サウンド設定")]
-    [SerializeField] private AudioClip eventBGM; // イベント中に流すBGM
+    [SerializeField] private AudioClip eventBGM;
 
     private bool isPlayerNear = false;
     private GridMovement player;
@@ -16,30 +16,26 @@ public class SaveTrigger : MonoBehaviour
     [Header("会話イベントで渡すアイテム")]
     public ItemData rewardItem;
 
-    // ライト（Inspectorでドラッグ不要、Startで自動取得）
     private Light2D normalLight;
     private Light2D restrictedLight;
 
     [Header("NPC関連（シーン内の仮置き用）")]
-    public GameObject sceneNpc;        // シーン内に置いた仮NPC
-    public Vector2 npcSpawnPosition;   // Inspectorで直接座標入力
-
-    // 将来的にPrefabでやる場合
-    // public GameObject npcPrefab;
+    public GameObject sceneNpc;
+    public Vector2 npcSpawnPosition;
 
     [Header("1回きりにするか")]
-    public bool oneTimeOnly = true;    // trueなら1回限り
+    public bool oneTimeOnly = true;
     private bool alreadyTriggered = false;
 
     void OnEnable()
     {
-        // GameFlagsが初期化済みで「SaveTriggered」フラグが無ければリセット
         if (GameFlags.Instance != null && !GameFlags.Instance.HasFlag("SaveTriggered"))
         {
             alreadyTriggered = false;
             Debug.Log("[SaveTrigger] フラグ未設定のため再有効化");
         }
     }
+
     void Start()
     {
         player = FindFirstObjectByType<GridMovement>();
@@ -59,13 +55,6 @@ public class SaveTrigger : MonoBehaviour
         }
 
         if (sceneNpc != null) sceneNpc.SetActive(false);
-
-        // ★ はじめから時の再有効化チェック！
-        if (!GameFlags.Instance.HasFlag("SaveTriggered"))
-        {
-            alreadyTriggered = false;
-            Debug.Log("[SaveTrigger] フラグ未発動なので再使用可能にしました。");
-        }
     }
 
     void Update()
@@ -87,72 +76,65 @@ public class SaveTrigger : MonoBehaviour
 
     private IEnumerator EventFlow()
     {
+        alreadyTriggered = true;
+        Debug.Log("[SaveTrigger] イベント開始");
+
+        // ---- BGM再生 ----
         if (SoundManager.Instance != null && eventBGM != null)
-        {
             SoundManager.Instance.PlayBGM(eventBGM);
-        }
 
-        alreadyTriggered = true; // 1回限りにする場合はここでロック
-
-        Debug.Log("セーブ調べた");
-
-        // ライト切り替え
+        // ---- ライト切り替え ----
         if (restrictedLight != null) restrictedLight.enabled = false;
         if (normalLight != null) normalLight.enabled = true;
 
-        // プレイヤー停止 & メニュー禁止
+        // ---- プレイヤー停止 & メニュー禁止 ----
         if (player != null) player.enabled = false;
         PauseMenu.blockMenu = true;
+        player?.SetDirection(0);
 
-        // プレイヤーの向きを下に固定
-        if (player != null) player.SetDirection(0);
-
-        // NPC登場
+        // ---- NPC出現 ----
         if (sceneNpc != null)
         {
             sceneNpc.transform.position = npcSpawnPosition;
             sceneNpc.SetActive(true);
         }
-        // 将来的にPrefabを使うならこうする
-        // if (npcPrefab != null) Instantiate(npcPrefab, npcSpawnPosition, Quaternion.identity);
 
-        yield return new WaitForSeconds(1.5f);
+        // ----  会話イベントを再生 ----
+        if (ConversationHub.Instance != null)
+        {
+            ConversationHub.Instance.Fire("talk_001");
+            yield return new WaitUntil(() => !IsConversationActive());
+        }
 
-        Debug.Log("キャラが現れた: 『よく来たな』");
-
-        yield return new WaitForSeconds(3f);
-
-        // アイテム入手
+        // ---- 会話終了後にアイテム渡す ----
         if (rewardItem != null)
         {
             InventoryManager.Instance.AddItem(rewardItem);
-            Debug.Log($"キャラからアイテム『{rewardItem.itemName}』を受け取った！");
+            Debug.Log($"[SaveTrigger] アイテム『{rewardItem.itemName}』を入手！");
         }
 
-        yield return new WaitForSeconds(3f);
-
-        Debug.Log("キャラ: 『ではまた会おう…』");
+        // ---- NPC消える ----
         if (sceneNpc != null) sceneNpc.SetActive(false);
 
-        yield return new WaitForSeconds(2f);
-
-        GameFlags.Instance.SetFlag("SaveTriggered");
-
-        // シーン内のすべての落とし穴を無効化
+        // ---- 落とし穴無効化 ----
         var trap = FindFirstObjectByType<FallTrap>();
-        if (trap != null)
-        {
-            trap.DisableTrap();
-        }
+        if (trap != null) trap.DisableTrap();
 
-        // プレイヤー復帰 & メニュー解禁
+        // ---- 復帰処理 ----
+        GameFlags.Instance.SetFlag("SaveTriggered");
         if (player != null) player.enabled = true;
         PauseMenu.blockMenu = false;
 
         if (SoundManager.Instance != null)
-        {
             SoundManager.Instance.StopBGM();
-        }
+
+        Debug.Log("[SaveTrigger] イベント終了");
+    }
+
+    private bool IsConversationActive()
+    {
+        var core = FindObjectOfType<DialogueCore>();
+        return core != null && core.enabled;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
