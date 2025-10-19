@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class BootLoader : MonoBehaviour
 {
     private static BootLoader _instance;
-    public static BootLoader Instance => _instance; // ←これを追加！
+    public static BootLoader Instance => _instance;
 
     private Dictionary<string, Scene> loadedScenes = new Dictionary<string, Scene>();
 
@@ -29,7 +29,7 @@ public class BootLoader : MonoBehaviour
         StartCoroutine(PreloadScenes());
     }
 
-    private System.Collections.IEnumerator PreloadScenes()
+    private IEnumerator PreloadScenes()
     {
         foreach (var name in preloadScenes)
         {
@@ -37,6 +37,7 @@ public class BootLoader : MonoBehaviour
             {
                 var op = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
                 while (!op.isDone) yield return null;
+
                 var scene = SceneManager.GetSceneByName(name);
                 loadedScenes[name] = scene;
                 SetSceneActive(name, name == "Title"); // 起動時はTitleだけON
@@ -70,21 +71,50 @@ public class BootLoader : MonoBehaviour
         var scene = loadedScenes["Scenes0"];
         SceneManager.SetActiveScene(scene);
 
-        // ★ ここではまだタイトルのUIが残ってる可能性があるので
-        // コルーチンで1フレーム遅延させて解除する
-        Instance.StartCoroutine(DelayedMenuUnlock());
+        // シーンの切り替え後、1フレーム待って初期化
+        StartCoroutine(InitializePlayerAfterSceneLoad());
     }
 
-    private IEnumerator DelayedMenuUnlock()
+    private IEnumerator InitializePlayerAfterSceneLoad()
     {
-        yield return null; // 1フレーム待つ
+        yield return null; // シーン切り替えの完了を待つ
+
+        // --- プレイヤー探す ---
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogWarning("[BootLoader] プレイヤーが見つかりません。");
+            yield break;
+        }
+
+        // --- SpawnPoint探す ---
+        var spawn = GameObject.Find("SpawnPoint");
+        if (spawn != null)
+        {
+            player.transform.position = spawn.transform.position;
+
+            var move = player.GetComponent<GridMovement>();
+            if (move != null)
+            {
+                move.SetDirection(0); // 下向きリセット
+            }
+
+            Debug.Log("[BootLoader] プレイヤー位置をSpawnPointに初期化完了");
+        }
+        else
+        {
+            Debug.LogWarning("[BootLoader] SpawnPointが見つかりませんでした。");
+        }
+
+        // --- メニューブロック解除 ---
         PauseMenu.blockMenu = false;
-        Debug.Log("[BootLoader] メニューブロック解除（Scene切り替え後）");
+        Debug.Log("[BootLoader] メニューブロック解除（初期化後）");
     }
 
     public void ReturnToTitle()
     {
         Debug.Log("[BootLoader] タイトルに戻ります…");
+
         foreach (var kv in loadedScenes)
         {
             if (kv.Key != "Title")

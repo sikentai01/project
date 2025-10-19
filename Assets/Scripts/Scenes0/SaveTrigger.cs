@@ -1,11 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using System.Collections;
 
 public class SaveTrigger : MonoBehaviour
 {
     [Header("サウンド設定")]
-    [SerializeField] private AudioClip eventBGM;
+    [SerializeField] private AudioClip eventBGM; // イベント中に流すBGM
 
     private bool isPlayerNear = false;
     private GridMovement player;
@@ -16,17 +16,30 @@ public class SaveTrigger : MonoBehaviour
     [Header("会話イベントで渡すアイテム")]
     public ItemData rewardItem;
 
+    // ライト（Inspectorでドラッグ不要、Startで自動取得）
     private Light2D normalLight;
     private Light2D restrictedLight;
 
-    [Header("NPC関連")]
-    public GameObject sceneNpc;
-    public Vector2 npcSpawnPosition;
+    [Header("NPC関連（シーン内の仮置き用）")]
+    public GameObject sceneNpc;        // シーン内に置いた仮NPC
+    public Vector2 npcSpawnPosition;   // Inspectorで直接座標入力
+
+    // 将来的にPrefabでやる場合
+    // public GameObject npcPrefab;
 
     [Header("1回きりにするか")]
-    public bool oneTimeOnly = true;
+    public bool oneTimeOnly = true;    // trueなら1回限り
     private bool alreadyTriggered = false;
 
+    void OnEnable()
+    {
+        // GameFlagsが初期化済みで「SaveTriggered」フラグが無ければリセット
+        if (GameFlags.Instance != null && !GameFlags.Instance.HasFlag("SaveTriggered"))
+        {
+            alreadyTriggered = false;
+            Debug.Log("[SaveTrigger] フラグ未設定のため再有効化");
+        }
+    }
     void Start()
     {
         player = FindFirstObjectByType<GridMovement>();
@@ -46,6 +59,13 @@ public class SaveTrigger : MonoBehaviour
         }
 
         if (sceneNpc != null) sceneNpc.SetActive(false);
+
+        // ★ はじめから時の再有効化チェック！
+        if (!GameFlags.Instance.HasFlag("SaveTriggered"))
+        {
+            alreadyTriggered = false;
+            Debug.Log("[SaveTrigger] フラグ未発動なので再使用可能にしました。");
+        }
     }
 
     void Update()
@@ -58,6 +78,10 @@ public class SaveTrigger : MonoBehaviour
             {
                 StartCoroutine(EventFlow());
             }
+            else
+            {
+                Debug.Log("向きが違うので調べられない");
+            }
         }
     }
 
@@ -68,41 +92,60 @@ public class SaveTrigger : MonoBehaviour
             SoundManager.Instance.PlayBGM(eventBGM);
         }
 
-        alreadyTriggered = true;
+        alreadyTriggered = true; // 1回限りにする場合はここでロック
+
         Debug.Log("セーブ調べた");
 
+        // ライト切り替え
         if (restrictedLight != null) restrictedLight.enabled = false;
         if (normalLight != null) normalLight.enabled = true;
 
+        // プレイヤー停止 & メニュー禁止
         if (player != null) player.enabled = false;
         PauseMenu.blockMenu = true;
 
+        // プレイヤーの向きを下に固定
         if (player != null) player.SetDirection(0);
 
+        // NPC登場
         if (sceneNpc != null)
         {
             sceneNpc.transform.position = npcSpawnPosition;
             sceneNpc.SetActive(true);
         }
+        // 将来的にPrefabを使うならこうする
+        // if (npcPrefab != null) Instantiate(npcPrefab, npcSpawnPosition, Quaternion.identity);
 
         yield return new WaitForSeconds(1.5f);
 
+        Debug.Log("キャラが現れた: 『よく来たな』");
+
+        yield return new WaitForSeconds(3f);
+
+        // アイテム入手
         if (rewardItem != null)
         {
             InventoryManager.Instance.AddItem(rewardItem);
-            Debug.Log($"アイテム『{rewardItem.itemName}』を入手！");
+            Debug.Log($"キャラからアイテム『{rewardItem.itemName}』を受け取った！");
         }
+
+        yield return new WaitForSeconds(3f);
+
+        Debug.Log("キャラ: 『ではまた会おう…』");
+        if (sceneNpc != null) sceneNpc.SetActive(false);
 
         yield return new WaitForSeconds(2f);
 
-        if (sceneNpc != null) sceneNpc.SetActive(false);
-
-        yield return new WaitForSeconds(1f);
-
-        //  フラグ登録（セーブ済み）
         GameFlags.Instance.SetFlag("SaveTriggered");
 
+        // シーン内のすべての落とし穴を無効化
+        var trap = FindFirstObjectByType<FallTrap>();
+        if (trap != null)
+        {
+            trap.DisableTrap();
+        }
 
+        // プレイヤー復帰 & メニュー解禁
         if (player != null) player.enabled = true;
         PauseMenu.blockMenu = false;
 
