@@ -60,7 +60,6 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"[PauseMenu] Update実行中: block={blockMenu}, isPaused={isPaused}");
         // --- メニューを無効化するシーン群 ---
         string[] lockScenes = { "Title", "GameOver" };
         bool isMenuLocked = false;
