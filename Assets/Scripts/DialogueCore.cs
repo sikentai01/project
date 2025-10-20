@@ -5,6 +5,20 @@ using UnityEngine;
 
 public class DialogueCore : MonoBehaviour
 {
+    public static DialogueCore Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // UI側（既存の DialogueUI）が購読するイベント
     public event Action<string> OnSpeakerChanged;
     public event Action<string[]> OnLinesReady;
@@ -116,12 +130,12 @@ public class DialogueCore : MonoBehaviour
     }
 
     private static string NormalizeLine(string s)
-{
-    if (s == null) return string.Empty;
+    {
+        if (s == null) return string.Empty;
 
-    s = s.Replace('\u3000', ' ');
-    return s.Trim();
-}
+        s = s.Replace('\u3000', ' ');
+        return s.Trim();
+    }
 
 
     private static bool TryParseSpeakerLine(string line, out string speaker, out string body)

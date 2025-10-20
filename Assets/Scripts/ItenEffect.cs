@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class ItemEffect : ScriptableObject
 {
-    // 使用できるかどうか（デフォルトは常に使える）
+    // 使用可能判定（必要ならオーバーライド）
     public virtual bool CanExecute(ItemData item) => true;
 
-    // 実際の効果
+    // 実行（各エフェクトごとに具体化）
     public abstract void Execute(ItemData item);
 }

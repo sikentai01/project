@@ -1,8 +1,10 @@
+using System.Collections;
+using System.IO;
 using UnityEngine;
 
 public class ItemTrigger : MonoBehaviour
 {
-    [Header("このトリガー固有のID（セーブ用にユニークに設定）")]
+    [Header("このトリガー固有のID（GameFlagsに登録）")]
     public string triggerID;
 
     [Header("拾えるアイテムデータ")]
@@ -14,93 +16,96 @@ public class ItemTrigger : MonoBehaviour
     [Header("必要な向き (0=下,1=左,2=右,3=上, -1=制限なし)")]
     public int requiredDirection = -1;
 
-    [Header("現在の進行度 (0=未取得, 1=取得済)")]
-    public int currentStage = 0;
+    [Header("拾った後も調べられる？")]
+    public bool canInspectAfterCollected = false;
 
-    [Header("拾った時に再生するサウンド（任意）")]
-    public AudioClip pickupSE;
+    [Header("システムメッセージファイル名（StreamingAssets/SystemWindow以下）")]
+    public string[] systemMessageFiles;
+
+    [Header("テキスト再生中にプレイヤーを停止するか")]
+    public bool freezeDuringText = true;
 
     private bool isPlayerNear = false;
     private GridMovement playerMovement;
+    private int currentStage = 0;
 
-    public bool IsPlayerNear => isPlayerNear;
-
-    private void Start()
+    void Start()
     {
-        UpdateVisual();
+        // === フラグによる状態復元 ===
+        if (GameFlags.Instance != null && GameFlags.Instance.HasFlag(triggerID))
+        {
+            currentStage = 1;
+            UpdateVisualState();
+        }
+        else
+        {
+            currentStage = 0;
+            UpdateVisualState();
+        }
     }
 
-    private void Update()
+    void Update()
     {
         if (PauseMenu.isPaused) return;
         if (SaveSlotUIManager.Instance != null && SaveSlotUIManager.Instance.IsOpen()) return;
 
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
-            // 向きチェック
             if (requiredDirection != -1 && playerMovement != null &&
                 playerMovement.GetDirection() != requiredDirection)
                 return;
 
-            // 未取得のときのみ拾える
             if (currentStage == 0)
                 CollectItem();
+            else if (canInspectAfterCollected)
+                StartCoroutine(PlaySystemTextRoutine());
         }
     }
 
-    // === アイテム入手処理 ===
     private void CollectItem()
     {
-        if (itemData == null) return;
-
-        // ① アイテム追加
-        InventoryManager.Instance.AddItem(itemData);
-        Debug.Log($"[ItemTrigger] {itemData.itemName} を入手！");
-
-        // ② 状態更新
-        currentStage = 1;
-        UpdateVisual();
-
-        // ③ 効果音再生（任意）
-        if (SoundManager.Instance != null && pickupSE != null)
-            SoundManager.Instance.PlaySE(pickupSE);
-
-        // ④ アニメーション通知（GameFlagsは使わない）
-        var reactions = FindObjectsByType<GimmickReactionTarget>(FindObjectsSortMode.None);
-        foreach (var r in reactions)
+        if (itemData != null)
         {
-            r.ReactToTrigger(triggerID);
+            InventoryManager.Instance.AddItem(itemData);
+            GameFlags.Instance?.SetFlag(triggerID);
+            currentStage = 1;
+
+            UpdateVisualState();
+            StartCoroutine(PlaySystemTextRoutine());
+        }
+    }
+
+    private IEnumerator PlaySystemTextRoutine()
+    {
+        if (freezeDuringText && playerMovement != null)
+            playerMovement.enabled = false;
+
+        foreach (var fileName in systemMessageFiles)
+        {
+            string fullPath = Path.Combine(Application.streamingAssetsPath, "SystemWindow", fileName + ".txt");
+            if (!File.Exists(fullPath)) continue;
+
+            string text = File.ReadAllText(fullPath);
+            DialogueCore.Instance?.StartConversation(fileName, text);
+            yield return new WaitUntil(() => !IsConversationActive());
         }
 
-        Debug.Log($"[ItemTrigger] {triggerID} 完了。進行度={currentStage}");
+        if (freezeDuringText && playerMovement != null)
+            playerMovement.enabled = true;
     }
 
-    // === 見た目を切り替え ===
-    private void UpdateVisual()
+    private bool IsConversationActive()
     {
-        if (targetObject != null)
-            targetObject.SetActive(currentStage == 0);
+        var core = FindObjectOfType<DialogueCore>();
+        return core != null && core.enabled;
     }
 
-    // === セーブ用データ作成 ===
-    public SaveSystem.GimmickProgressData SaveProgress()
+    private void UpdateVisualState()
     {
-        return new SaveSystem.GimmickProgressData
-        {
-            triggerID = triggerID,
-            stage = currentStage
-        };
+        if (targetObject == null) return;
+        targetObject.SetActive(currentStage == 0 || canInspectAfterCollected);
     }
 
-    // === ロード時に進行度を反映 ===
-    public void LoadProgress(int stage)
-    {
-        currentStage = stage;
-        UpdateVisual();
-        Debug.Log($"[ItemTrigger] {triggerID} の進行度を {currentStage} に復元しました");
-    }
-
-    // === プレイヤー接触判定 ===
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -118,4 +123,29 @@ public class ItemTrigger : MonoBehaviour
             playerMovement = null;
         }
     }
+
+    // ==========================================
+    //  セーブ用データ構造と復元用メソッド
+    // ==========================================
+    public ItemTriggerSaveData SaveProgress()
+    {
+        return new ItemTriggerSaveData
+        {
+            triggerID = this.triggerID,
+            currentStage = this.currentStage
+        };
+    }
+
+    public void LoadProgress(int stage)
+    {
+        this.currentStage = stage;
+        UpdateVisualState();
+    }
+}
+
+[System.Serializable]
+public class ItemTriggerSaveData
+{
+    public string triggerID;
+    public int currentStage;
 }

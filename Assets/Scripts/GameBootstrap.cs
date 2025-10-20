@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ロード直後にセーブデータをゲームへ反映する適用クラス。
+/// ロード直後にセーブデータをゲームへ反映するクラス。
 /// SaveSlotButton から生成され、適用後に自壊します。
 /// </summary>
 public class GameBootstrap : MonoBehaviour
@@ -48,17 +48,37 @@ public class GameBootstrap : MonoBehaviour
         // ===== ギミック進行度の復元 =====
         if (loadedData.gimmickProgressList != null && loadedData.gimmickProgressList.Count > 0)
         {
-            var triggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
+            var gimmicks = Object.FindObjectsByType<GimmickBase>(FindObjectsSortMode.None);
             foreach (var g in loadedData.gimmickProgressList)
             {
-                var t = triggers.FirstOrDefault(x => x.triggerID == g.triggerID);
-                if (t != null)
+                var gimmick = gimmicks.FirstOrDefault(x => x.gimmickID == g.gimmickID);
+                if (gimmick != null)
                 {
-                    t.LoadProgress(g.stage);
+                    gimmick.LoadProgress(g.stage);
+                    Debug.Log($"[GameBootstrap] ギミック {g.gimmickID} を Stage={g.stage} に復元しました");
                 }
                 else
                 {
-                    Debug.LogWarning($"[GameBootstrap] triggerID={g.triggerID} の ItemTrigger が見つかりませんでした");
+                    Debug.LogWarning($"[GameBootstrap] gimmickID={g.gimmickID} の Gimmick が見つかりませんでした");
+                }
+            }
+        }
+
+        // ===== アイテムトリガー進行度の復元 =====
+        if (loadedData.itemTriggerList != null && loadedData.itemTriggerList.Count > 0)
+        {
+            var itemTriggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
+            foreach (var i in loadedData.itemTriggerList)
+            {
+                var trigger = itemTriggers.FirstOrDefault(x => x.triggerID == i.triggerID);
+                if (trigger != null)
+                {
+                    trigger.LoadProgress(i.currentStage);
+                    Debug.Log($"[GameBootstrap] アイテム {i.triggerID} を Stage={i.currentStage} に復元しました");
+                }
+                else
+                {
+                    Debug.LogWarning($"[GameBootstrap] triggerID={i.triggerID} の ItemTrigger が見つかりませんでした");
                 }
             }
         }

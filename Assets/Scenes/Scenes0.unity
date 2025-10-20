@@ -946,7 +946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1612029940}
   - component: {fileID: 1612029942}
-  - component: {fileID: 1612029941}
+  - component: {fileID: 1612029943}
   m_Layer: 0
   m_Name: Sample001Flags
   m_TagString: Untagged
@@ -969,24 +969,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 326917836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1612029941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1612029939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2a3f764657a3d8408cd080c2c67c3c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerID: sample001
-  itemData: {fileID: 11400000, guid: 51f5de1a9225864499554f40af76abd2, type: 2}
-  targetObject: {fileID: 1522696697}
-  requiredDirection: 3
-  currentStage: 0
-  pickupSE: {fileID: 0}
 --- !u!61 &1612029942
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1033,6 +1015,27 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &1612029943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612029939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a3f764657a3d8408cd080c2c67c3c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerID: sample001
+  itemData: {fileID: 11400000, guid: 461f0b51958a97749a93580072463039, type: 2}
+  targetObject: {fileID: 1522696697}
+  requiredDirection: 3
+  currentStage: 0
+  systemMessageFiles:
+  - sample 1
+  - talk_001 1
+  freezeDuringText: 1
 --- !u!1 &1678947925
 GameObject:
   m_ObjectHideFlags: 0

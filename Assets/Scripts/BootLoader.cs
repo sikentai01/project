@@ -14,7 +14,7 @@ public class BootLoader : MonoBehaviour
     public List<string> preloadScenes = new List<string> { "Title", "Scenes0", "Scenes01", "Scenes02", "GameOver" };
 
 #if UNITY_EDITOR
-    [Header(" デバッグ起動設定（エディタ専用）")]
+    [Header("デバッグ起動設定（エディタ専用）")]
     [Tooltip("デバッグ時のみタイトルをスキップして直接このシーンを有効化します")]
     [SerializeField] private bool enableDebugStart = false;
 
@@ -41,36 +41,52 @@ public class BootLoader : MonoBehaviour
         StartCoroutine(PreloadScenes());
     }
 
-
-
     private IEnumerator PreloadScenes()
     {
 #if UNITY_EDITOR
+        // ===============================
+        // デバッグスキップモード
+        // ===============================
         if (enableDebugStart && !string.IsNullOrEmpty(debugSceneName))
         {
-            Debug.Log($"[BootLoader] デバッグスキップ: '{debugSceneName}' を Additive モードでロードします。");
+            Debug.Log($"[BootLoader] デバッグスキップ起動: '{debugSceneName}' を直接ロードします。");
 
-            // Titleシーンを無効化（Additiveで残ってるなら）
+            // TitleをOFF
             SetSceneActive("Title", false);
 
-            // 対象シーンを Additive でロード
+            // シーンロード
             AsyncOperation op = SceneManager.LoadSceneAsync(debugSceneName, LoadSceneMode.Additive);
-            op.completed += _ =>
+            yield return new WaitUntil(() => op.isDone);
+
+            var scene = SceneManager.GetSceneByName(debugSceneName);
+            if (scene.IsValid())
             {
-                var scene = SceneManager.GetSceneByName(debugSceneName);
-                if (scene.IsValid())
-                {
-                    SceneManager.SetActiveScene(scene);
-                    Debug.Log($"[BootLoader] '{debugSceneName}' をアクティブシーンに設定");
-                }
+                SceneManager.SetActiveScene(scene);
+                Debug.Log($"[BootLoader] '{debugSceneName}' をアクティブシーンに設定しました。");
+            }
 
-                // プレイヤー初期化（SpawnPoint無視でプレハブ位置使用）
-                StartCoroutine(InitializePlayerAfterSceneLoad());
-            };
+            // ===== ここでセーブデータ自動ロードを追加 =====
+            var data = SaveSystem.LoadGame(0);
+            if (data != null)
+            {
+                Debug.Log("[BootLoader] セーブデータが存在したためロード開始。");
+                GameBootstrap.loadedData = data;
+                new GameObject("GameBootstrap").AddComponent<GameBootstrap>();
+            }
+            else
+            {
+                Debug.LogWarning("[BootLoader] セーブデータが存在しません。空状態で開始します。");
+            }
 
-            yield break; // 通常の Additive 全ロード処理をスキップ
+            // プレイヤー初期化
+            StartCoroutine(InitializePlayerAfterSceneLoad());
+            yield break;
         }
 #endif
+
+        // ===============================
+        // 通常起動（タイトルから）
+        // ===============================
         foreach (var name in preloadScenes)
         {
             if (!SceneManager.GetSceneByName(name).isLoaded)
@@ -80,50 +96,12 @@ public class BootLoader : MonoBehaviour
 
                 var scene = SceneManager.GetSceneByName(name);
                 loadedScenes[name] = scene;
-                SetSceneActive(name, name == "Title"); // 起動時はTitleだけON
+                SetSceneActive(name, name == "Title");
             }
         }
 
-        Debug.Log("[BootLoader] すべてのシーンを事前ロード完了。Title表示中。");
-
-#if UNITY_EDITOR
-        // デバッグスキップ有効ならタイトルを無効化して指定シーンを有効化
-        if (enableDebugStart && !string.IsNullOrEmpty(debugSceneName))
-        {
-            yield return new WaitForSeconds(waitForBoot);
-            DebugSkipToScene(debugSceneName);
-        }
-#endif
+        Debug.Log("[BootLoader] すべてのシーンをプリロード完了。Title表示中。");
     }
-
-#if UNITY_EDITOR
-    /// <summary>
-    /// デバッグスキップで指定シーンを有効化する
-    /// </summary>
-    private void DebugSkipToScene(string sceneName)
-    {
-        if (!loadedScenes.ContainsKey(sceneName))
-        {
-            Debug.LogWarning($"[BootLoader] デバッグシーン '{sceneName}' がプリロードされていません。preloadScenes に追加してください。");
-            return;
-        }
-
-        Debug.Log($"[BootLoader]  デバッグモード有効: Titleをスキップして '{sceneName}' をアクティブ化します。");
-
-        // TitleをOFF
-        SetSceneActive("Title", false);
-
-        // 対象シーンをON
-        SetSceneActive(sceneName, true);
-
-        // アクティブシーン設定
-        var scene = loadedScenes[sceneName];
-        SceneManager.SetActiveScene(scene);
-
-        // プレイヤー初期化
-        StartCoroutine(InitializePlayerAfterSceneLoad());
-    }
-#endif
 
     public void SetSceneActive(string sceneName, bool active)
     {
@@ -140,26 +118,21 @@ public class BootLoader : MonoBehaviour
     {
         Debug.Log("[BootLoader] はじめから開始");
 
-        // まずタイトルを非表示
+        // Titleを非表示
         SetSceneActive("Title", false);
-
-        // Scene0を有効化
         SetSceneActive("Scenes0", true);
 
         var scene = loadedScenes["Scenes0"];
         SceneManager.SetActiveScene(scene);
 
-        // --- ここを追加 ---
-        Debug.Log("[BootLoader] はじめからのため進行度をリセット中…");
+        // 進行度リセット
+        Debug.Log("[BootLoader] はじめからのため進行度をリセット中...");
         var triggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
         foreach (var t in triggers)
-        {
-            t.LoadProgress(0);  // 進行度を強制的に0に戻す
-        }
+            t.LoadProgress(0);
 
-        GameFlags.Instance?.ClearAllFlags(); // ←必要ならフラグもリセット
+        GameFlags.Instance?.ClearAllFlags();
 
-        // プレイヤー初期化
         StartCoroutine(InitializePlayerAfterSceneLoad());
     }
 
@@ -175,10 +148,9 @@ public class BootLoader : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        // デバッグスキップ時はSpawnPointを無視し、プレハブ座標を使用
         if (enableDebugStart)
         {
-            Debug.Log($"[BootLoader] デバッグスキップ中のため、SpawnPoint無視。プレハブ初期座標 {player.transform.position} を使用します。");
+            Debug.Log("[BootLoader] デバッグスキップ中のため、SpawnPoint無視でプレハブ座標使用。");
         }
         else
 #endif
@@ -189,18 +161,13 @@ public class BootLoader : MonoBehaviour
                 player.transform.position = spawn.transform.position;
                 Debug.Log("[BootLoader] プレイヤー位置をSpawnPointに初期化完了");
             }
-            else
-            {
-                Debug.LogWarning("[BootLoader] SpawnPointが見つかりませんでした。プレハブ初期位置を使用します。");
-            }
         }
 
         var move = player.GetComponent<GridMovement>();
-        if (move != null)
-            move.SetDirection(0);
+        if (move != null) move.SetDirection(0);
 
         PauseMenu.blockMenu = false;
-        Debug.Log("[BootLoader] メニューブロック解除（初期化後）");
+        Debug.Log("[BootLoader] メニューブロック解除");
     }
 
     public void ReturnToTitle()
