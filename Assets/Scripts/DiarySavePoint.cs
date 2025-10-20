@@ -82,4 +82,5 @@ public class DiarySavePoint : MonoBehaviour
         if (other.CompareTag("Player"))
             isPlayerNear = false;
     }
+
 }

@@ -246,7 +246,7 @@ Transform:
   m_GameObject: {fileID: 321293297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.5, y: -7, z: 0}
+  m_LocalPosition: {x: 12.5, y: -110, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1031,7 +1031,7 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 461f0b51958a97749a93580072463039, type: 2}
   targetObject: {fileID: 1522696697}
   requiredDirection: 3
-  currentStage: 0
+  canInspectAfterCollected: 0
   systemMessageFiles:
   - sample 1
   - talk_001 1
