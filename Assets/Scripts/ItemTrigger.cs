@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemTrigger : MonoBehaviour
@@ -9,22 +8,34 @@ public class ItemTrigger : MonoBehaviour
     [Header("拾えるアイテムデータ")]
     public ItemData itemData;
 
-    [Header("見た目を消すオブジェクト（机や松明など）")]
+    [Header("見た目を消すオブジェクト（任意）")]
     public GameObject targetObject;
 
     [Header("必要な向き (0=下,1=左,2=右,3=上, -1=制限なし)")]
     public int requiredDirection = -1;
 
-    [Header("ギミック (任意)")]
-    public List<GimmickBase> gimmicks = new List<GimmickBase>();
-
-    [Header("現在の進行度 (セーブ対象)")]
+    [Header("現在の進行度 (0=未取得, 1=取得済)")]
     public int currentStage = 0;
 
     private bool isPlayerNear = false;
     private GridMovement playerMovement;
 
     public bool IsPlayerNear => isPlayerNear;
+
+    private void Start()
+    {
+        // --- ロード時に見た目を復元 ---
+        if (currentStage == 0)
+        {
+            if (targetObject != null)
+                targetObject.SetActive(true);
+        }
+        else
+        {
+            if (targetObject != null)
+                targetObject.SetActive(false);
+        }
+    }
 
     void Update()
     {
@@ -40,32 +51,13 @@ public class ItemTrigger : MonoBehaviour
                 return;
             }
 
-            // ギミックが残っている場合
-            if (currentStage < gimmicks.Count)
-            {
-                Debug.Log($"ギミック {currentStage} 開始");
-                gimmicks[currentStage].StartGimmick(this);
-            }
-            else
-            {
+            // 未取得のときのみ拾える
+            if (currentStage == 0)
                 CollectItem();
-            }
         }
     }
 
-    // ギミック完了時
-    public void CompleteCurrentGimmick()
-    {
-        currentStage++;
-        Debug.Log($"進行段階が {currentStage} になった");
-
-        if (currentStage >= gimmicks.Count)
-        {
-            CollectItem();
-        }
-    }
-
-    // アイテム入手
+    // --- アイテム入手処理 ---
     public void CollectItem()
     {
         if (itemData != null)
@@ -73,60 +65,15 @@ public class ItemTrigger : MonoBehaviour
             InventoryManager.Instance.AddItem(itemData);
             Debug.Log(itemData.itemName + " を入手！");
 
+            currentStage = 1; // 拾ったので進行度更新
+
             if (targetObject != null)
                 targetObject.SetActive(false);
             else
                 gameObject.SetActive(false);
-        }
-    }
 
-    //  このトリガーが「アイテム使用に対応しているか」を判定
-    public bool HasPendingGimmick(ItemData item)
-    {
-        if (currentStage < gimmicks.Count)
-        {
-            var gimmick = gimmicks[currentStage];
-            Debug.Log($"[HasPendingGimmick] {gimmick.name} で {item.itemName} を確認中");
-
-            if (!gimmick.NeedsItem) return false;
-            bool result = gimmick.CanUseItem(item);
-            Debug.Log($"[HasPendingGimmick] 判定結果 = {result}");
-            return result;
-        }
-        return false;
-    }
-
-    //  アイテムをギミックに使用
-    public void UseItemOnGimmick(ItemData item)
-    {
-        if (!isPlayerNear) return;
-
-        if (requiredDirection != -1 && playerMovement != null && playerMovement.GetDirection() != requiredDirection)
-            return;
-
-        if (currentStage < gimmicks.Count)
-        {
-            var gimmick = gimmicks[currentStage];
-
-            if (gimmick.NeedsItem)
-            {
-                if (gimmick.CanUseItem(item))
-                {
-                    gimmick.UseItem(item, this);
-                }
-                else
-                {
-                    Debug.Log("このアイテムは使えません");
-                }
-            }
-            else
-            {
-                gimmick.StartGimmick(this); // アイテム不要ギミック
-            }
-        }
-        else
-        {
-            CollectItem();
+            // セーブ連動するならここでGameFlagsに登録も可
+            GameFlags.Instance?.SetFlag(triggerID);
         }
     }
 
@@ -146,5 +93,36 @@ public class ItemTrigger : MonoBehaviour
             isPlayerNear = false;
             playerMovement = null;
         }
+    }
+
+    // =======================
+    //  セーブ／ロード対応追加
+    // =======================
+    public SaveSystem.GimmickProgressData SaveProgress()
+    {
+        return new SaveSystem.GimmickProgressData
+        {
+            triggerID = this.triggerID,
+            stage = this.currentStage
+        };
+    }
+
+    public void LoadProgress(int savedStage)
+    {
+        currentStage = savedStage;
+
+        // --- 見た目を進行度に合わせて復元 ---
+        if (currentStage == 0)
+        {
+            if (targetObject != null)
+                targetObject.SetActive(true);
+        }
+        else
+        {
+            if (targetObject != null)
+                targetObject.SetActive(false);
+        }
+
+        Debug.Log($"[ItemTrigger] {triggerID} の進行度を {currentStage} に復元しました。");
     }
 }

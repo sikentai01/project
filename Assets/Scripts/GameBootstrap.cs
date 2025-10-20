@@ -1,63 +1,72 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// ロード直後にセーブデータをゲームへ反映する適用クラス。
+/// SaveSlotButton から生成され、適用後に自壊します。
+/// </summary>
 public class GameBootstrap : MonoBehaviour
 {
-    public static SaveSystem.SaveData loadedData;
+    public static SaveSystem.SaveData loadedData; // SaveSlotButton から代入される
 
-    private void Start()
+    private IEnumerator Start()
     {
         if (loadedData == null)
         {
-            Debug.Log("[GameBootstrap] ロードデータが存在しません。通常起動を続行。");
-            return;
+            Debug.LogWarning("[GameBootstrap] loadedData がありません。何も適用しません。");
+            Destroy(gameObject);
+            yield break;
         }
 
-        Debug.Log("[GameBootstrap] ロードデータ適用開始");
+        // 1フレーム待ってシーン内オブジェクトの生成完了を待つ
+        yield return null;
 
-        // BootLoaderを取得
-        var boot = FindFirstObjectByType<BootLoader>();
-        if (boot == null)
-        {
-            Debug.LogError("[GameBootstrap] BootLoaderが見つかりません！");
-            return;
-        }
-
-        // Titleを非表示にし、ロード対象シーンを有効化
-        foreach (var kv in boot.loadedScenes)
-            boot.SetSceneActive(kv.Key, kv.Key == loadedData.sceneName);
-
-        // アクティブシーン変更
-        var targetScene = SceneManager.GetSceneByName(loadedData.sceneName);
-        if (targetScene.IsValid())
-            SceneManager.SetActiveScene(targetScene);
-
-        // === データ反映 ===
-        var player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            player.transform.position = loadedData.playerPosition;
-            var move = player.GetComponent<GridMovement>();
-            if (move != null)
-            {
-                move.SetDirection(loadedData.playerDirection);
-                move.enabled = true;
-            }
-        }
-
+        // ===== インベントリ・ドキュメント・フラグ適用 =====
         if (InventoryManager.Instance != null && loadedData.inventoryData != null)
             InventoryManager.Instance.LoadData(loadedData.inventoryData);
+
         if (DocumentManager.Instance != null && loadedData.documentData != null)
             DocumentManager.Instance.LoadData(loadedData.documentData);
+
         if (GameFlags.Instance != null && loadedData.flagData != null)
             GameFlags.Instance.LoadFlags(loadedData.flagData);
 
-        TitleManager.isTitleActive = false;
-        PauseMenu.blockMenu = false;
-        GameOverController.isGameOver = false;
+        // ===== プレイヤー位置・向き =====
+        var player = Object.FindFirstObjectByType<GridMovement>();
+        if (player != null)
+        {
+            player.transform.position = loadedData.playerPosition;
+            player.SetDirection(loadedData.playerDirection);
+        }
+        else
+        {
+            Debug.LogWarning("[GameBootstrap] プレイヤーが見つかりません（位置・向き適用スキップ）");
+        }
 
-        Debug.Log($"[GameBootstrap] {loadedData.sceneName} の状態を復元しました。");
+        // ===== ギミック進行度の復元 =====
+        if (loadedData.gimmickProgressList != null && loadedData.gimmickProgressList.Count > 0)
+        {
+            var triggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
+            foreach (var g in loadedData.gimmickProgressList)
+            {
+                var t = triggers.FirstOrDefault(x => x.triggerID == g.triggerID);
+                if (t != null)
+                {
+                    t.LoadProgress(g.stage);
+                }
+                else
+                {
+                    Debug.LogWarning($"[GameBootstrap] triggerID={g.triggerID} の ItemTrigger が見つかりませんでした");
+                }
+            }
+        }
 
+        Debug.Log("[GameBootstrap] セーブデータの適用が完了しました");
+
+        // 片付け
         loadedData = null;
+        Destroy(gameObject);
     }
 }

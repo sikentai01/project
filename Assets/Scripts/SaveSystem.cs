@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.IO;
+using System.Collections.Generic; // [NEW]
 
 public static class SaveSystem
 {
@@ -23,8 +24,19 @@ public static class SaveSystem
             playerDirection = playerDir,
             inventoryData = InventoryManager.Instance != null ? InventoryManager.Instance.SaveData() : new InventorySaveData(),
             documentData = DocumentManager.Instance != null ? DocumentManager.Instance.SaveData() : new DocumentSaveData(),
-            flagData = GameFlags.Instance != null ? GameFlags.Instance.SaveFlags() : new FlagSaveData()
+            flagData = GameFlags.Instance != null ? GameFlags.Instance.SaveFlags() : new FlagSaveData(),
+            gimmickProgressList = new List<GimmickProgressData>() // [NEW]
         };
+
+        // [NEW] シーン内の全 ItemTrigger から進行度を収集
+        var triggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
+        foreach (var t in triggers)
+        {
+            if (!string.IsNullOrEmpty(t.triggerID))
+            {
+                data.gimmickProgressList.Add(t.SaveProgress());
+            }
+        }
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetSavePath(slotNumber), json);
@@ -98,5 +110,17 @@ public static class SaveSystem
         public InventorySaveData inventoryData;
         public DocumentSaveData documentData;
         public FlagSaveData flagData;
+
+        // ---- ここから追加 ----
+        public List<GimmickProgressData> gimmickProgressList = new List<GimmickProgressData>(); // [NEW]
+        // ----------------------
+    }
+
+    // [NEW] ギミック進行度1件分
+    [System.Serializable]
+    public class GimmickProgressData
+    {
+        public string triggerID;
+        public int stage;
     }
 }

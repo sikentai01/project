@@ -149,6 +149,17 @@ public class BootLoader : MonoBehaviour
         var scene = loadedScenes["Scenes0"];
         SceneManager.SetActiveScene(scene);
 
+        // --- ここを追加 ---
+        Debug.Log("[BootLoader] はじめからのため進行度をリセット中…");
+        var triggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
+        foreach (var t in triggers)
+        {
+            t.LoadProgress(0);  // 進行度を強制的に0に戻す
+        }
+
+        GameFlags.Instance?.ClearAllFlags(); // ←必要ならフラグもリセット
+
+        // プレイヤー初期化
         StartCoroutine(InitializePlayerAfterSceneLoad());
     }
 

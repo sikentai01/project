@@ -7,12 +7,7 @@ public abstract class GimmickBase : MonoBehaviour
 
     public virtual bool CanUseItem(ItemData item) { return false; }
 
-    public virtual void UseItem(ItemData item, ItemTrigger trigger) { }
+    public virtual void UseItem(ItemData item) { }
 
-    public abstract void StartGimmick(ItemTrigger trigger);
-
-    protected void Complete(ItemTrigger trigger)
-    {
-        trigger.CompleteCurrentGimmick();
-    }
+    public abstract void StartGimmick();
 }
