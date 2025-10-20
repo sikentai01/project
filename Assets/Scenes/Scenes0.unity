@@ -985,8 +985,8 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 51f5de1a9225864499554f40af76abd2, type: 2}
   targetObject: {fileID: 1522696697}
   requiredDirection: 3
-  gimmicks: []
   currentStage: 0
+  pickupSE: {fileID: 0}
 --- !u!61 &1612029942
 BoxCollider2D:
   m_ObjectHideFlags: 0
