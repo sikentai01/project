@@ -8,6 +8,10 @@ public class DiarySavePoint : MonoBehaviour
     [Header("演出")]
     [SerializeField] private GameObject saveEffect;  // 光るエフェクトなど（任意）
 
+    [Header("向き指定")]
+    [Tooltip("0=下, 1=左, 2=右, 3=上, -1=どの向きでもOK")]
+    [SerializeField] private int requiredDirection = -1;
+
     private bool isPlayerNear = false;
     private GridMovement player;
 
@@ -26,15 +30,26 @@ public class DiarySavePoint : MonoBehaviour
         // プレイヤーが近くにいて Enterキー が押されたらセーブスロットUIを開く
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
-            OpenSaveUI();
+            // 向き判定
+            int playerDir = player.GetDirection();
+            if (requiredDirection == -1 || playerDir == requiredDirection)
+            {
+                OpenSaveUI();
+            }
+            else
+            {
+                Debug.Log("プレイヤーの向きが合っていないためセーブできません。");
+            }
         }
     }
 
     private void OpenSaveUI()
     {
+        // 効果音再生
         if (SoundManager.Instance != null && saveSeClip != null)
             SoundManager.Instance.PlaySE(saveSeClip);
 
+        // 演出
         if (saveEffect != null)
         {
             saveEffect.SetActive(true);

@@ -1009,6 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveSeClip: {fileID: 0}
   saveEffect: {fileID: 0}
+  requiredDirection: 3
 --- !u!4 &1690165488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7469800162939513096, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
