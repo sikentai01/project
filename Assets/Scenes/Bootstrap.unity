@@ -2948,11 +2948,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 473973730336513394, guid: bacf627e96afa1643bcde884287fc4b0, type: 3}
       propertyPath: debugSceneName
-      value: Scenes0
+      value: Scenes01
       objectReference: {fileID: 0}
     - target: {fileID: 473973730336513394, guid: bacf627e96afa1643bcde884287fc4b0, type: 3}
       propertyPath: enableDebugStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2705152039393778233, guid: bacf627e96afa1643bcde884287fc4b0, type: 3}
       propertyPath: m_LocalPosition.x
