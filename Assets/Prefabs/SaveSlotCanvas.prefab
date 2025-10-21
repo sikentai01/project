@@ -450,7 +450,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 2
   slotLabel: {fileID: 2053538523741733961}
-  parentCanvas: {fileID: 182916708944543888}
   clickSeClip: {fileID: 8300000, guid: 6a6518ba841788c49abd1394d12d79bd, type: 3}
 --- !u!1 &2940674746539163040
 GameObject:
@@ -872,7 +871,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 3
   slotLabel: {fileID: 3932059446452289862}
-  parentCanvas: {fileID: 182916708944543888}
   clickSeClip: {fileID: 8300000, guid: 6a6518ba841788c49abd1394d12d79bd, type: 3}
 --- !u!1 &5040534902585109302
 GameObject:
@@ -1222,7 +1220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 4
   slotLabel: {fileID: 385568911047630332}
-  parentCanvas: {fileID: 182916708944543888}
   clickSeClip: {fileID: 8300000, guid: 6a6518ba841788c49abd1394d12d79bd, type: 3}
 --- !u!1 &8524353906518960663
 GameObject:
@@ -1372,7 +1369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 1
   slotLabel: {fileID: 1603306167373258330}
-  parentCanvas: {fileID: 182916708944543888}
   clickSeClip: {fileID: 8300000, guid: 6a6518ba841788c49abd1394d12d79bd, type: 3}
 --- !u!1 &8586180758810999722
 GameObject:

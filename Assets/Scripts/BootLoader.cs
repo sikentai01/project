@@ -58,14 +58,12 @@ public class BootLoader : MonoBehaviour
         {
             Debug.Log($"[BootLoader] デバッグスキップ有効: {debugSceneName}をアクティブ化");
 
-            // すべてのシーンを一度無効化
             foreach (var kv in loadedScenes)
                 SetSceneActive(kv.Key, false);
 
             // Bootstrapは残す
             SetSceneActive("Bootstrap", true);
 
-            // 指定されたデバッグシーンを有効化
             if (loadedScenes.ContainsKey(debugSceneName))
             {
                 SetSceneActive(debugSceneName, true);
@@ -74,8 +72,6 @@ public class BootLoader : MonoBehaviour
             }
 
             yield return new WaitForSeconds(waitForBoot);
-
-            // プレイヤー位置保持
             StartCoroutine(InitializePlayerAfterSceneLoad(true));
             yield break;
         }
@@ -134,6 +130,7 @@ public class BootLoader : MonoBehaviour
         if (move != null)
             move.SetDirection(0);
     }
+
     // ============================
     // はじめから開始
     // ============================
@@ -182,5 +179,62 @@ public class BootLoader : MonoBehaviour
 
         var titleScene = loadedScenes["Title"];
         SceneManager.SetActiveScene(titleScene);
+    }
+
+    // ============================
+    //  ドアからのシーン切り替え（新規追加）
+    // ============================
+    public void RequestSceneSwitch(string sceneName, string spawnPointName)
+    {
+        StartCoroutine(SwitchSceneRoutine(sceneName, spawnPointName));
+    }
+
+    private IEnumerator SwitchSceneRoutine(string sceneName, string spawnPointName)
+    {
+        Debug.Log($"[BootLoader] シーン切替要求: {sceneName} → Spawn='{spawnPointName}'");
+
+        yield return null; // 1フレーム待機してから切替
+
+        if (!loadedScenes.ContainsKey(sceneName))
+        {
+            var async = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            while (!async.isDone) yield return null;
+
+            var newScene = SceneManager.GetSceneByName(sceneName);
+            if (newScene.IsValid())
+            {
+                loadedScenes[sceneName] = newScene;
+                Debug.Log($"[BootLoader] {sceneName} を Additiveロード完了");
+            }
+        }
+
+        // --- 全シーンのON/OFF制御 ---
+        foreach (var kv in loadedScenes)
+        {
+            bool active = kv.Key == sceneName;
+            SetSceneActive(kv.Key, active);
+        }
+
+        // --- シーンアクティブ設定 ---
+        var targetScene = loadedScenes[sceneName];
+        SceneManager.SetActiveScene(targetScene);
+
+        // --- プレイヤー移動 ---
+        yield return new WaitForEndOfFrame();
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            var spawn = GameObject.Find(spawnPointName);
+            if (spawn != null)
+            {
+                player.transform.position = spawn.transform.position;
+                Physics2D.SyncTransforms();
+                Debug.Log($"[BootLoader] プレイヤーを {spawnPointName} に移動 ({sceneName})");
+            }
+            else
+            {
+                Debug.LogWarning($"[BootLoader] SpawnPoint '{spawnPointName}' が見つかりません");
+            }
+        }
     }
 }

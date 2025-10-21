@@ -202,7 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7b63a83cc5a064fbee1a982d90e153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredItem: {fileID: 11400000, guid: ae2c57bfa11f96349903ef91a81202b5, type: 2}
 --- !u!1 &266163789 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2066129916533129437, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
@@ -246,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 321293297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.5, y: -110, z: 0}
+  m_LocalPosition: {x: 9.5, y: -7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -755,13 +754,10 @@ PrefabInstance:
       addedObject: {fileID: 505244543}
     - targetCorrespondingSourceObject: {fileID: -19512430726885012, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1824675462}
-    - targetCorrespondingSourceObject: {fileID: -19512430726885012, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1824675463}
     - targetCorrespondingSourceObject: {fileID: -19512430726885012, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1824675464}
+      addedObject: {fileID: 1824675469}
     - targetCorrespondingSourceObject: {fileID: 671562117153048660, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1814306890}
@@ -1347,26 +1343,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -19512430726885012, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
   m_PrefabInstance: {fileID: 505244540}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1824675462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824675456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d349e1bdedbff8745b87a30686889675, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetScene: Scenes01
-  targetSpawn: Door_1_out
-  openKey: 101
-  requireFlag: 0
-  flagRef:
-    Value: 0
-  doorAnimator: {fileID: 0}
-  doorSE: {fileID: 0}
 --- !u!61 &1824675463
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1413,7 +1389,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1023254, y: 1.0560112}
   m_EdgeRadius: 0
---- !u!114 &1824675464
+--- !u!114 &1824675469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1425,14 +1401,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d349e1bdedbff8745b87a30686889675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gimmickID: Secne0_Heart1_Door1
+  currentStage: 0
+  moveType: 1
   targetScene: Scenes01
-  targetSpawn: Door_1_out
-  openKey: 101
-  requireFlag: 0
-  flagRef:
-    Value: 0
+  targetPointName: Secne0_Heart1_Door1_Spawn
+  targetPoint: {fileID: 0}
+  requiredKeyID: Secne0_Heart1_Door1
+  unlockFlag: 
+  requiredDirection: 0
   doorAnimator: {fileID: 0}
-  doorSE: {fileID: 0}
+  openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
+  lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
+  unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
+  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u3066\u958B\u304B\u306A\u3044\u2026"
+  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!1 &1834187833
 GameObject:
   m_ObjectHideFlags: 0
