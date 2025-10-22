@@ -143,7 +143,7 @@ public class DoorController : GimmickBase
 
         // 効果音再生（設定されていれば）
         if (unlockSE) SoundManager.Instance?.PlaySE(unlockSE);
-        if (openSE) SoundManager.Instance?.PlaySE(openSE);
+        
 
         // 進行度保存済みにする
         return true;
