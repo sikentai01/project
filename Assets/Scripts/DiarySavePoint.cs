@@ -24,6 +24,14 @@ public class DiarySavePoint : MonoBehaviour
 
     void Update()
     {
+        //  BootLoader式Additive対応: プレイヤーがまだ見つかっていない場合、遅延で再取得
+        if (player == null)
+        {
+            player = FindFirstObjectByType<GridMovement>();
+            if (player == null)
+                return; // まだロードされていないならスキップ
+        }
+
         if (PauseMenu.isPaused) return;
         if (SaveSlotUIManager.Instance != null && SaveSlotUIManager.Instance.IsOpen()) return;
 
@@ -74,13 +82,18 @@ public class DiarySavePoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             isPlayerNear = true;
+            //  ここでも確実にプレイヤー参照を更新
+            player = other.GetComponent<GridMovement>();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             isPlayerNear = false;
+        }
     }
-
 }
