@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="15" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="28" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="15" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="29" nextobjectid="1">
  <tileset firstgid="1" source="black.tsx"/>
  <tileset firstgid="2" source="EuropeanI-B01.tsx"/>
  <tileset firstgid="258" source="Wall01-01.tsx"/>
@@ -16,6 +16,8 @@
  <tileset firstgid="1771" source="Inside-Town-A5.tsx"/>
  <tileset firstgid="1899" source="黒百合.tsx"/>
  <tileset firstgid="1903" source="肝臓ギミック2.tsx"/>
+ <tileset firstgid="1907" source="肝臓ギミック3.tsx"/>
+ <tileset firstgid="1919" source="肝臓ギミック3影.tsx"/>
  <layer id="1" name="壁周り" width="15" height="22" locked="1">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -458,7 +460,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="14" name="肝臓ギミック" width="15" height="22" locked="1">
+ <layer id="14" name="光源用装置" width="15" height="22" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -466,9 +468,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,867,0,0,0,
-0,0,0,0,0,867,0,0,0,0,0,883,0,0,0,
-0,0,0,0,0,883,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1908,0,0,0,0,
+0,0,0,0,0,1907,0,0,0,0,1920,0,0,0,0,
+0,0,0,0,0,1920,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
