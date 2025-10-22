@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0462424cb8c3a4597b1726c64dec32, type: 3}
-  m_Name: KeyBand
+  m_Script: {fileID: 11500000, guid: 7976ef32c9e2cbb41a046b6183e8a6c9, type: 3}
+  m_Name: KeyEffect
   m_EditorClassIdentifier: 
-  itemID: 2
-  itemName: "\u9375\u675F"
-  description: 
-  isConsumable: 1
-  DebugOwned: 0
-  effects:
-  - {fileID: 11400000, guid: fbf17aa83b143b440813d428fa0508af, type: 2}
+  targetGimmickID: Key
