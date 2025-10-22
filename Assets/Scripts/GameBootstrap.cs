@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// ロード直後にセーブデータをゲームへ反映するクラス。
 /// SaveSlotButton から生成され、適用後に自壊します。
+/// Additiveロード構成にも対応。
 /// </summary>
 public class GameBootstrap : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class GameBootstrap : MonoBehaviour
             yield break;
         }
 
-        // 1フレーム待ってシーン内オブジェクトの生成完了を待つ
+        // 1フレーム待ってAdditiveロードの完了を待つ
         yield return null;
 
         // ===== インベントリ・ドキュメント・フラグ適用 =====
@@ -34,7 +35,7 @@ public class GameBootstrap : MonoBehaviour
             GameFlags.Instance.LoadFlags(loadedData.flagData);
 
         // ===== プレイヤー位置・向き =====
-        var player = Object.FindFirstObjectByType<GridMovement>();
+        var player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<GridMovement>();
         if (player != null)
         {
             player.transform.position = loadedData.playerPosition;
@@ -48,10 +49,10 @@ public class GameBootstrap : MonoBehaviour
         // ===== ギミック進行度の復元 =====
         if (loadedData.gimmickProgressList != null && loadedData.gimmickProgressList.Count > 0)
         {
-            var gimmicks = Object.FindObjectsByType<GimmickBase>(FindObjectsSortMode.None);
+            var allGimmicks = Resources.FindObjectsOfTypeAll<GimmickBase>();
             foreach (var g in loadedData.gimmickProgressList)
             {
-                var gimmick = gimmicks.FirstOrDefault(x => x.gimmickID == g.gimmickID);
+                var gimmick = allGimmicks.FirstOrDefault(x => x.gimmickID == g.gimmickID && x.gameObject.scene.isLoaded);
                 if (gimmick != null)
                 {
                     gimmick.LoadProgress(g.stage);
@@ -67,10 +68,10 @@ public class GameBootstrap : MonoBehaviour
         // ===== アイテムトリガー進行度の復元 =====
         if (loadedData.itemTriggerList != null && loadedData.itemTriggerList.Count > 0)
         {
-            var itemTriggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
+            var allTriggers = Resources.FindObjectsOfTypeAll<ItemTrigger>();
             foreach (var i in loadedData.itemTriggerList)
             {
-                var trigger = itemTriggers.FirstOrDefault(x => x.triggerID == i.triggerID);
+                var trigger = allTriggers.FirstOrDefault(x => x.triggerID == i.triggerID && x.gameObject.scene.isLoaded);
                 if (trigger != null)
                 {
                     trigger.LoadProgress(i.currentStage);
@@ -85,7 +86,6 @@ public class GameBootstrap : MonoBehaviour
 
         Debug.Log("[GameBootstrap] セーブデータの適用が完了しました");
 
-        // 片付け
         loadedData = null;
         Destroy(gameObject);
     }

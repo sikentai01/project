@@ -218,7 +218,35 @@ public class DoorController : GimmickBase
     {
         this.currentStage = stage;
 
-        if (doorAnimator != null && currentStage == 1)
-            doorAnimator.Play("DoorOpen", 0, 1f);
+        // =====================
+        // 🔧 初期化時の自動開放ロジック
+        // =====================
+
+        // 鍵が必要なドア
+        if (!string.IsNullOrEmpty(requiredKeyID))
+        {
+            // もしプレイヤーがすでにその鍵を所持していたら、解錠済みにする
+            if (InventoryManager.Instance != null && InventoryManager.Instance.HasItem(requiredKeyID))
+            {
+                currentStage = 1;
+                Debug.Log($"[Door] {gimmickID}: 鍵 {requiredKeyID} を所持しているため、自動開放状態に設定");
+            }
+        }
+        else
+        {
+            // 鍵不要ドアは常に開いた状態にする
+            currentStage = 1;
+        }
+
+        // =====================
+        // 🔧 アニメーション反映
+        // =====================
+        if (doorAnimator != null)
+        {
+            if (currentStage == 1)
+                doorAnimator.Play("DoorOpen", 0, 1f); // 開いた状態で復元
+            else
+                doorAnimator.Play("DoorClose", 0, 1f); // 閉じた状態（必要なら）
+        }
     }
 }

@@ -20,25 +20,31 @@ public static class SaveSystem
             documentData = DocumentManager.Instance != null ? DocumentManager.Instance.SaveData() : new DocumentSaveData(),
             flagData = GameFlags.Instance != null ? GameFlags.Instance.SaveFlags() : new FlagSaveData(),
             gimmickProgressList = new List<GimmickSaveData>(),
-            itemTriggerList = new List<ItemTriggerSaveData>() //  追加！
+            itemTriggerList = new List<ItemTriggerSaveData>()
         };
 
         // === ギミック進行度 ===
-        var gimmicks = Object.FindObjectsByType<GimmickBase>(FindObjectsSortMode.None);
-        foreach (var g in gimmicks)
+        var allGimmicks = Resources.FindObjectsOfTypeAll<GimmickBase>();
+        foreach (var g in allGimmicks)
         {
-            if (!string.IsNullOrEmpty(g.gimmickID))
-                data.gimmickProgressList.Add(g.SaveProgress());
+            // Prefabアセットや未ロードシーンを除外
+            if (string.IsNullOrEmpty(g.gimmickID)) continue;
+            if (g.gameObject.scene == null || !g.gameObject.scene.isLoaded) continue;
+
+            data.gimmickProgressList.Add(g.SaveProgress());
         }
 
         // === アイテムトリガー進行度 ===
-        var triggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
-        foreach (var t in triggers)
+        var allTriggers = Resources.FindObjectsOfTypeAll<ItemTrigger>();
+        foreach (var t in allTriggers)
         {
-            if (!string.IsNullOrEmpty(t.triggerID))
-                data.itemTriggerList.Add(t.SaveProgress());
+            if (string.IsNullOrEmpty(t.triggerID)) continue;
+            if (t.gameObject.scene == null || !t.gameObject.scene.isLoaded) continue;
+
+            data.itemTriggerList.Add(t.SaveProgress());
         }
 
+        // === JSON出力 ===
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetSavePath(slotNumber), json);
         Debug.Log($"[SaveSystem] セーブ完了: ギミック={data.gimmickProgressList.Count}, アイテム={data.itemTriggerList.Count}");
@@ -68,6 +74,6 @@ public static class SaveSystem
         public FlagSaveData flagData;
 
         public List<GimmickSaveData> gimmickProgressList = new List<GimmickSaveData>();
-        public List<ItemTriggerSaveData> itemTriggerList = new List<ItemTriggerSaveData>(); // これがないとエラー
+        public List<ItemTriggerSaveData> itemTriggerList = new List<ItemTriggerSaveData>();
     }
 }
