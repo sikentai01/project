@@ -1401,14 +1401,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d349e1bdedbff8745b87a30686889675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gimmickID: Secne0_Heart1_Door1
+  gimmickID: Secne0_Heart1_Door01
   currentStage: 0
   moveType: 1
   targetScene: Scenes01
   targetPointName: Secne0_Heart1_Door1_Spawn
   targetPoint: {fileID: 0}
+  gimmickID: Secne0_Heart1_Door1
+  currentStage: 0
   requiredKeyID: Secne0_Heart1_Door1
-  unlockFlag: 
   requiredDirection: 0
   doorAnimator: {fileID: 0}
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}

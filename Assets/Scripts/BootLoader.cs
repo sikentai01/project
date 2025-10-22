@@ -134,33 +134,41 @@ public class BootLoader : MonoBehaviour
     // ============================
     // はじめから開始
     // ============================
+    // はじめから開始処理の中
     public void StartGame()
     {
         Debug.Log("[BootLoader] はじめから開始");
 
-        // タイトル非表示
         SetSceneActive("Title", false);
-
-        // 最初のシーン（Scenes0など）を有効化
         SetSceneActive("Scenes0", true);
 
-        // アクティブシーン設定
         var scene = loadedScenes["Scenes0"];
         SceneManager.SetActiveScene(scene);
 
         Debug.Log("[BootLoader] 進行度リセット & 初期化中...");
 
-        // アイテムトリガー初期化
+        // 鍵付きドアだけリセット
+        var doors = Object.FindObjectsByType<DoorController>(FindObjectsSortMode.None);
+        foreach (var d in doors)
+        {
+            if (!string.IsNullOrEmpty(d.GetRequiredKeyID()))
+            {
+                d.LoadProgress(0); // 閉状態に戻す
+                Debug.Log($"[BootLoader] {d.name}（鍵付き）をリセット");
+            }
+            else
+            {
+                Debug.Log($"[BootLoader] {d.name}（鍵不要）を維持");
+            }
+        }
+
         var triggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
         foreach (var t in triggers)
         {
             t.LoadProgress(0);
         }
 
-        // フラグリセット
         GameFlags.Instance?.ClearAllFlags();
-
-        // プレイヤー初期化
         StartCoroutine(InitializePlayerAfterSceneLoad(false));
     }
 

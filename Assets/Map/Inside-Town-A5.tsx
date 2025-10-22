@@ -111,4 +111,19 @@
    <object id="1" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
+ <tile id="105">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32" rotation="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="113">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
+ <tile id="121">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="32" height="32"/>
+  </objectgroup>
+ </tile>
 </tileset>
