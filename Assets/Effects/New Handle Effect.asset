@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0462424cb8c3a4597b1726c64dec32, type: 3}
-  m_Name: handle
+  m_Script: {fileID: 11500000, guid: b477e91264151d44a88f629ecfec62ed, type: 3}
+  m_Name: New Handle Effect
   m_EditorClassIdentifier: 
-  itemID: 4
-  itemName: "\u53D6\u3063\u624B"
-  description: 
-  isConsumable: 1
-  DebugOwned: 1
-  effects:
-  - {fileID: 11400000, guid: 283f289ea7769ef40b411e6550788537, type: 2}
