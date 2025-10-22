@@ -10,11 +10,7 @@ using System.Collections;
 /// </summary>
 public class DoorController : GimmickBase
 {
-    public enum DoorMoveType
-    {
-        SameScene,
-        ChangeScene
-    }
+    public enum DoorMoveType { SameScene, ChangeScene }
 
     [Header("移動設定")]
     [SerializeField] private DoorMoveType moveType = DoorMoveType.SameScene;
@@ -54,14 +50,15 @@ public class DoorController : GimmickBase
     private bool isPlayerNear = false;
     private bool isProcessing = false;
 
-    // =====================
-    // Getter for BootLoader用
-    // =====================
+    // BootLoader から鍵判定に使う
     public string GetRequiredKeyID() => requiredKeyID;
 
-    // =====================
-    // トリガー検知
-    // =====================
+    private void OnEnable()
+    {
+        // 途中で停止したコルーチン等の影響を受けないよう毎回リセット
+        isProcessing = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -78,25 +75,28 @@ public class DoorController : GimmickBase
         playerMove = null;
     }
 
-    // =====================
-    // Update（キー入力）
-    // =====================
     private void Update()
     {
+        // 参照が切れていたら毎フレームでも取り直す
+        if (player == null)
+        {
+            var found = GameObject.FindGameObjectWithTag("Player");
+            if (found != null)
+            {
+                player = found.transform;
+                playerMove = player.GetComponent<GridMovement>();
+            }
+        }
+
         if (!isPlayerNear || player == null || isProcessing) return;
 
         if (CheckInputDirection())
         {
-            if (currentStage == 0)
-                TryUnlock();
-            else
-                StartCoroutine(OpenDoorAndMove());
+            if (currentStage == 0) TryUnlock();
+            else StartCoroutine(OpenDoorAndMove());
         }
     }
 
-    // =====================
-    // 向きチェック
-    // =====================
     private bool CheckInputDirection()
     {
         bool pressed = false;
@@ -111,9 +111,6 @@ public class DoorController : GimmickBase
         return (playerMove.GetDirection() == requiredDirection && dir == requiredDirection);
     }
 
-    // =====================
-    // 鍵解除ロジック
-    // =====================
     private void TryUnlock()
     {
         if (!string.IsNullOrEmpty(requiredKeyID))
@@ -122,47 +119,47 @@ public class DoorController : GimmickBase
             {
                 InventoryManager.Instance.RemoveItemByID(requiredKeyID);
                 currentStage = 1;
-                Debug.Log($"[Door] ギミックID {gimmickID} を Stage={currentStage} に設定");
 
                 string itemName = InventoryManager.Instance.allItems
                     .Find(i => i.itemID == requiredKeyID)?.itemName ?? "鍵";
 
                 Debug.Log($"[Door] {string.Format(systemTextWhenUnlocked, itemName)}");
-                SoundManager.Instance?.PlaySE(unlockSE);
-                SoundManager.Instance?.PlaySE(openSE);
+                if (unlockSE) SoundManager.Instance?.PlaySE(unlockSE);
+                if (openSE) SoundManager.Instance?.PlaySE(openSE);
 
                 StartCoroutine(OpenDoorAndMove());
             }
             else
             {
                 Debug.Log($"[Door] {systemTextWhenLocked}");
-                SoundManager.Instance?.PlaySE(lockedSE);
+                if (lockedSE) SoundManager.Instance?.PlaySE(lockedSE);
                 doorAnimator?.SetTrigger("Locked");
             }
         }
         else
         {
+            // 鍵不要は常時開放
             currentStage = 1;
-            Debug.Log($"[Door] 鍵不要ドア {gimmickID} は常時開放状態");
             StartCoroutine(OpenDoorAndMove());
         }
     }
 
-    // =====================
-    // 開閉・移動処理
-    // =====================
     private IEnumerator OpenDoorAndMove()
     {
         isProcessing = true;
 
+        // アニメーションが用意できるまで else 側を消せばOK
         if (doorAnimator != null)
         {
             doorAnimator.SetTrigger("Open");
             yield return new WaitForSeconds(0.6f);
         }
-        else yield return new WaitForSeconds(0.6f);
+        else
+        {
+            yield return new WaitForSeconds(0.6f);
+        }
 
-        SoundManager.Instance?.PlaySE(openSE);
+        if (openSE) SoundManager.Instance?.PlaySE(openSE);
 
         if (moveType == DoorMoveType.SameScene)
         {
@@ -172,24 +169,28 @@ public class DoorController : GimmickBase
                 Physics2D.SyncTransforms();
                 Debug.Log($"[Door] 同一シーン内で {targetPoint.name} に移動");
             }
-            else Debug.LogWarning("[Door] targetPoint 未指定 or Player 不在");
+            else
+            {
+                Debug.LogWarning("[Door] targetPoint 未指定 or Player 不在");
+            }
         }
-        else yield return StartCoroutine(TransitionToScene());
+        else
+        {
+            // BootLoader にまかせる
+            yield return StartCoroutine(TransitionToScene());
+        }
 
         isProcessing = false;
     }
 
-    // =====================
-    // シーン遷移
-    // =====================
     private IEnumerator TransitionToScene()
     {
         Debug.Log($"[DoorController] BootLoader経由でシーン遷移開始: {targetScene}");
-
         if (BootLoader.Instance != null)
         {
             BootLoader.Instance.RequestSceneSwitch(targetScene, targetPointName);
-            yield return new WaitForSeconds(0.5f);
+            // BootLoader がプレイヤー移動まで面倒を見るのでここでは軽く待つだけ
+            yield return new WaitForSeconds(0.1f);
         }
         else
         {
@@ -198,55 +199,37 @@ public class DoorController : GimmickBase
             if (spawn != null && player != null)
                 player.position = spawn.transform.position;
         }
-
         Physics2D.SyncTransforms();
     }
 
-    // =====================
-    // セーブ・ロード対応
-    // =====================
+    // ===== セーブ・ロード =====
     public override GimmickSaveData SaveProgress()
     {
-        return new GimmickSaveData
-        {
-            gimmickID = this.gimmickID,
-            stage = this.currentStage
-        };
+        return new GimmickSaveData { gimmickID = this.gimmickID, stage = this.currentStage };
     }
 
     public override void LoadProgress(int stage)
     {
-        this.currentStage = stage;
+        currentStage = stage;
 
-        // =====================
-        // 🔧 初期化時の自動開放ロジック
-        // =====================
-
-        // 鍵が必要なドア
-        if (!string.IsNullOrEmpty(requiredKeyID))
+        // ロード時の自動開放規則：鍵不要は常時 1、鍵付きは鍵所持なら 1
+        if (string.IsNullOrEmpty(requiredKeyID))
         {
-            // もしプレイヤーがすでにその鍵を所持していたら、解錠済みにする
-            if (InventoryManager.Instance != null && InventoryManager.Instance.HasItem(requiredKeyID))
-            {
-                currentStage = 1;
-                Debug.Log($"[Door] {gimmickID}: 鍵 {requiredKeyID} を所持しているため、自動開放状態に設定");
-            }
+            currentStage = 1;
         }
-        else
+        else if (InventoryManager.Instance != null && InventoryManager.Instance.HasItem(requiredKeyID))
         {
-            // 鍵不要ドアは常に開いた状態にする
             currentStage = 1;
         }
 
-        // =====================
-        // 🔧 アニメーション反映
-        // =====================
+        // アニメーター同期（なければ無視）
         if (doorAnimator != null)
         {
-            if (currentStage == 1)
-                doorAnimator.Play("DoorOpen", 0, 1f); // 開いた状態で復元
-            else
-                doorAnimator.Play("DoorClose", 0, 1f); // 閉じた状態（必要なら）
+            if (currentStage == 1) doorAnimator.Play("DoorOpen", 0, 1f);
+            else doorAnimator.Play("DoorClose", 0, 1f);
         }
+
+        // 途中で中断されていた場合に備えリセット
+        isProcessing = false;
     }
 }

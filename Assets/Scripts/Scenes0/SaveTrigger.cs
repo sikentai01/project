@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class SaveTrigger : MonoBehaviour
+public class SaveTrigger : MonoBehaviour, ISceneInitializable
 {
     [Header("サウンド設定")]
     [SerializeField] private AudioClip eventBGM;
@@ -27,50 +27,38 @@ public class SaveTrigger : MonoBehaviour
     public bool oneTimeOnly = true;
     private bool alreadyTriggered = false;
 
-    void OnEnable()
+    private const string FLAG_ID = "SaveTriggered";
+
+    private void OnEnable()
     {
-        if (GameFlags.Instance != null && !GameFlags.Instance.HasFlag("SaveTriggered"))
+        StartCoroutine(DeferredFlagSync());
+    }
+
+    private IEnumerator DeferredFlagSync()
+    {
+        yield return null; // GameBootstrapのロード完了を1フレーム待つ
+        if (GameFlags.Instance != null)
         {
-            alreadyTriggered = false;
-            Debug.Log("[SaveTrigger] フラグ未設定のため再有効化");
+            alreadyTriggered = GameFlags.Instance.HasFlag(FLAG_ID);
+            Debug.Log($"[SaveTrigger] DeferredFlagSync: {FLAG_ID}={alreadyTriggered}");
         }
     }
 
-    void Start()
+    private void Start()
     {
-        player = FindFirstObjectByType<GridMovement>();
-
-        if (player != null)
-        {
-            normalLight = player.GetComponent<Light2D>();
-            var childLights = player.GetComponentsInChildren<Light2D>(true);
-            foreach (var l in childLights)
-            {
-                if (l.name == "RestrictedLight")
-                    restrictedLight = l;
-            }
-
-            if (restrictedLight != null) restrictedLight.enabled = true;
-            if (normalLight != null) normalLight.enabled = false;
-        }
-
-        if (sceneNpc != null) sceneNpc.SetActive(false);
+        InitializeTrigger();
     }
 
-    void Update()
+    private void Update()
     {
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
             if (oneTimeOnly && alreadyTriggered) return;
 
             if (requiredDirection == -1 || player.GetDirection() == requiredDirection)
-            {
                 StartCoroutine(EventFlow());
-            }
             else
-            {
-                Debug.Log("向きが違うので調べられない");
-            }
+                Debug.Log("[SaveTrigger] 向きが違うので調べられない");
         }
     }
 
@@ -79,54 +67,43 @@ public class SaveTrigger : MonoBehaviour
         alreadyTriggered = true;
         Debug.Log("[SaveTrigger] イベント開始");
 
-        // ---- BGM再生 ----
-        if (SoundManager.Instance != null && eventBGM != null)
-            SoundManager.Instance.PlayBGM(eventBGM);
+        SoundManager.Instance?.PlayBGM(eventBGM);
 
-        // ---- ライト切り替え ----
         if (restrictedLight != null) restrictedLight.enabled = false;
         if (normalLight != null) normalLight.enabled = true;
 
-        // ---- プレイヤー停止 & メニュー禁止 ----
         if (player != null) player.enabled = false;
         PauseMenu.blockMenu = true;
         player?.SetDirection(0);
 
-        // ---- NPC出現 ----
         if (sceneNpc != null)
         {
             sceneNpc.transform.position = npcSpawnPosition;
             sceneNpc.SetActive(true);
         }
 
-        // ----  会話イベントを再生 ----
         if (ConversationHub.Instance != null)
         {
             ConversationHub.Instance.Fire("talk_001");
             yield return new WaitUntil(() => !IsConversationActive());
         }
 
-        // ---- 会話終了後にアイテム渡す ----
-        if (rewardItem != null)
+        if (rewardItem != null && InventoryManager.Instance != null)
         {
             InventoryManager.Instance.AddItem(rewardItem);
             Debug.Log($"[SaveTrigger] アイテム『{rewardItem.itemName}』を入手！");
         }
 
-        // ---- NPC消える ----
         if (sceneNpc != null) sceneNpc.SetActive(false);
 
-        // ---- 落とし穴無効化 ----
         var trap = FindFirstObjectByType<FallTrap>();
-        if (trap != null) trap.DisableTrap();
+        trap?.DisableTrap();
 
-        // ---- 復帰処理 ----
-        GameFlags.Instance.SetFlag("SaveTriggered");
+        GameFlags.Instance?.SetFlag(FLAG_ID);
+
         if (player != null) player.enabled = true;
         PauseMenu.blockMenu = false;
-
-        if (SoundManager.Instance != null)
-            SoundManager.Instance.StopBGM();
+        SoundManager.Instance?.StopBGM();
 
         Debug.Log("[SaveTrigger] イベント終了");
     }
@@ -145,5 +122,40 @@ public class SaveTrigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player")) isPlayerNear = false;
+    }
+
+    private void InitializeTrigger()
+    {
+        player = FindFirstObjectByType<GridMovement>();
+        if (player == null) return;
+
+        normalLight = player.GetComponent<Light2D>();
+        var childLights = player.GetComponentsInChildren<Light2D>(true);
+        foreach (var l in childLights)
+        {
+            if (l.name == "RestrictedLight")
+                restrictedLight = l;
+        }
+
+        if (!alreadyTriggered)
+        {
+            if (restrictedLight != null) restrictedLight.enabled = true;
+            if (normalLight != null) normalLight.enabled = false;
+        }
+        else
+        {
+            if (restrictedLight != null) restrictedLight.enabled = false;
+            if (normalLight != null) normalLight.enabled = true;
+        }
+
+        if (sceneNpc != null) sceneNpc.SetActive(false);
+
+        Debug.Log($"[SaveTrigger] 初期化完了 (Triggered={alreadyTriggered})");
+    }
+
+    public void InitializeSceneAfterLoad()
+    {
+        Debug.Log("[SaveTrigger] InitializeSceneAfterLoad 呼び出し");
+        InitializeTrigger();
     }
 }

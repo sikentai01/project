@@ -5,7 +5,6 @@ public class GameFlags : MonoBehaviour
 {
     public static GameFlags Instance;
 
-    // 現在のフラグを保持（例：アイテム取得やギミック進行）
     private HashSet<string> flags = new HashSet<string>();
 
     private void Awake()
@@ -21,11 +20,6 @@ public class GameFlags : MonoBehaviour
         }
     }
 
-    // ======================
-    // フラグ操作系
-    // ======================
-
-    // フラグをセット
     public void SetFlag(string flagName)
     {
         if (!flags.Contains(flagName))
@@ -35,13 +29,8 @@ public class GameFlags : MonoBehaviour
         }
     }
 
-    // フラグを持っているか確認
-    public bool HasFlag(string flagName)
-    {
-        return flags.Contains(flagName);
-    }
+    public bool HasFlag(string flagName) => flags.Contains(flagName);
 
-    // フラグ削除
     public void RemoveFlag(string flagName)
     {
         if (flags.Contains(flagName))
@@ -51,18 +40,12 @@ public class GameFlags : MonoBehaviour
         }
     }
 
-    // 全削除（初期化）
     public void ClearAllFlags()
     {
         flags.Clear();
         Debug.Log("[GameFlags] 全フラグをクリアしました");
     }
 
-    // ======================
-    //  セーブ・ロード用
-    // ======================
-
-    // セーブデータを作成
     public FlagSaveData SaveFlags()
     {
         var data = new FlagSaveData();
@@ -71,7 +54,6 @@ public class GameFlags : MonoBehaviour
         return data;
     }
 
-    // セーブデータを読み込み
     public void LoadFlags(FlagSaveData data)
     {
         flags.Clear();
@@ -79,9 +61,8 @@ public class GameFlags : MonoBehaviour
         if (data?.activeFlags != null)
         {
             foreach (string f in data.activeFlags)
-            {
                 flags.Add(f);
-            }
+
             Debug.Log($"[GameFlags] {flags.Count} 件のフラグを復元しました");
         }
         else
@@ -91,9 +72,6 @@ public class GameFlags : MonoBehaviour
     }
 }
 
-// =======================
-// セーブデータ構造体
-// =======================
 [System.Serializable]
 public class FlagSaveData
 {

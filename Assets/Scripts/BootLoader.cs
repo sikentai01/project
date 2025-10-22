@@ -38,7 +38,6 @@ public class BootLoader : MonoBehaviour
 
     private IEnumerator PreloadScenes()
     {
-        // --- 全シーンAdditiveロード ---
         foreach (var name in preloadScenes)
         {
             if (!SceneManager.GetSceneByName(name).isLoaded)
@@ -53,16 +52,12 @@ public class BootLoader : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        // --- デバッグスキップが有効な場合 ---
         if (enableDebugStart && !string.IsNullOrEmpty(debugSceneName))
         {
             Debug.Log($"[BootLoader] デバッグスキップ有効: {debugSceneName}をアクティブ化");
 
-            foreach (var kv in loadedScenes)
-                SetSceneActive(kv.Key, false);
-
-            // Bootstrapは残す
-            SetSceneActive("Bootstrap", true);
+            foreach (var kv in loadedScenes) SetSceneActive(kv.Key, false);
+            SetSceneActive("Bootstrap", true); // 残す（ある場合）
 
             if (loadedScenes.ContainsKey(debugSceneName))
             {
@@ -77,14 +72,12 @@ public class BootLoader : MonoBehaviour
         }
 #endif
 
-        // --- 通常起動 ---
         Debug.Log("[BootLoader] 通常起動: Titleのみ有効化");
         foreach (var kv in loadedScenes)
         {
             bool active = kv.Key == "Title";
             SetSceneActive(kv.Key, active);
         }
-
         var titleScene = loadedScenes["Title"];
         SceneManager.SetActiveScene(titleScene);
     }
@@ -94,8 +87,7 @@ public class BootLoader : MonoBehaviour
         if (!loadedScenes.ContainsKey(sceneName)) return;
 
         var scene = loadedScenes[sceneName];
-        foreach (var root in scene.GetRootGameObjects())
-            root.SetActive(active);
+        foreach (var root in scene.GetRootGameObjects()) root.SetActive(active);
 
         Debug.Log($"[BootLoader] {sceneName} を {(active ? "有効化" : "無効化")} にしました。");
     }
@@ -127,14 +119,10 @@ public class BootLoader : MonoBehaviour
         }
 
         var move = player.GetComponent<GridMovement>();
-        if (move != null)
-            move.SetDirection(0);
+        if (move != null) move.SetDirection(0);
     }
 
-    // ============================
-    // はじめから開始
-    // ============================
-    // はじめから開始処理の中
+    // ===== はじめから =====
     public void StartGame()
     {
         Debug.Log("[BootLoader] はじめから開始");
@@ -147,34 +135,31 @@ public class BootLoader : MonoBehaviour
 
         Debug.Log("[BootLoader] 進行度リセット & 初期化中...");
 
-        // 鍵付きドアだけリセット
+        // 鍵付きドアだけリセット（鍵不要ドアは開いたまま）
         var doors = Object.FindObjectsByType<DoorController>(FindObjectsSortMode.None);
         foreach (var d in doors)
         {
             if (!string.IsNullOrEmpty(d.GetRequiredKeyID()))
             {
-                d.LoadProgress(0); // 閉状態に戻す
+                d.LoadProgress(0);
                 Debug.Log($"[BootLoader] {d.name}（鍵付き）をリセット");
             }
             else
             {
-                Debug.Log($"[BootLoader] {d.name}（鍵不要）を維持");
+                d.LoadProgress(1);
+                Debug.Log($"[BootLoader] {d.name}（鍵不要）を開いたまま維持");
             }
         }
 
+        // アイテムトリガー初期化
         var triggers = Object.FindObjectsByType<ItemTrigger>(FindObjectsSortMode.None);
-        foreach (var t in triggers)
-        {
-            t.LoadProgress(0);
-        }
+        foreach (var t in triggers) t.LoadProgress(0);
 
         GameFlags.Instance?.ClearAllFlags();
         StartCoroutine(InitializePlayerAfterSceneLoad(false));
     }
 
-    // ============================
-    // タイトルに戻る
-    // ============================
+    // ===== タイトルへ =====
     public void ReturnToTitle()
     {
         Debug.Log("[BootLoader] タイトルに戻ります...");
@@ -184,14 +169,11 @@ public class BootLoader : MonoBehaviour
             bool active = kv.Key == "Title";
             SetSceneActive(kv.Key, active);
         }
-
         var titleScene = loadedScenes["Title"];
         SceneManager.SetActiveScene(titleScene);
     }
 
-    // ============================
-    //  ドアからのシーン切り替え（新規追加）
-    // ============================
+    // ===== ドアからのシーン切替 =====
     public void RequestSceneSwitch(string sceneName, string spawnPointName)
     {
         StartCoroutine(SwitchSceneRoutine(sceneName, spawnPointName));
@@ -201,7 +183,7 @@ public class BootLoader : MonoBehaviour
     {
         Debug.Log($"[BootLoader] シーン切替要求: {sceneName} → Spawn='{spawnPointName}'");
 
-        yield return null; // 1フレーム待機してから切替
+        yield return null; // 1フレーム待機
 
         if (!loadedScenes.ContainsKey(sceneName))
         {
@@ -216,23 +198,28 @@ public class BootLoader : MonoBehaviour
             }
         }
 
-        // --- 全シーンのON/OFF制御 ---
+        // 全シーンのON/OFF
         foreach (var kv in loadedScenes)
         {
             bool active = kv.Key == sceneName;
             SetSceneActive(kv.Key, active);
         }
 
-        // --- シーンアクティブ設定 ---
+        // アクティブ設定
         var targetScene = loadedScenes[sceneName];
         SceneManager.SetActiveScene(targetScene);
 
-        // --- プレイヤー移動 ---
+        // プレイヤー移動（SpawnPointが現れるまで待つ）
         yield return new WaitForEndOfFrame();
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            var spawn = GameObject.Find(spawnPointName);
+            // 最大2秒だけ待つ（無限待ちは避ける）
+            float timeout = Time.realtimeSinceStartup + 2f;
+            GameObject spawn = null;
+            while (Time.realtimeSinceStartup < timeout && (spawn = GameObject.Find(spawnPointName)) == null)
+                yield return null;
+
             if (spawn != null)
             {
                 player.transform.position = spawn.transform.position;
