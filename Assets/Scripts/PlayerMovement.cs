@@ -184,13 +184,8 @@ public class GridMovement : MonoBehaviour
 
     public void SetPositionAndDirection(Vector3 position, int direction)
     {
-        // 位置を設定
         transform.position = position;
-
-        // 向きを設定（SetDirectionを利用）
         SetDirection(direction);
-
-        // 向き反映の視覚更新（もし不要なら消してOK）
         UpdateDirectionVisual();
     }
 
@@ -198,5 +193,4 @@ public class GridMovement : MonoBehaviour
     {
         // 見た目の向き調整やスプライト反転など（未使用でもOK）
     }
-
 }
