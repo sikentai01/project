@@ -107,8 +107,8 @@ public class GridMovement : MonoBehaviour
         float currentMoveSpeed = moveSpeed;
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            // Shiftキーが押されている場合、速度2倍！お得！
-            currentMoveSpeed = moveSpeed * 2f;
+            // Shiftキーが押されている場合、速度1.7倍！お得！
+            currentMoveSpeed = moveSpeed * 1.7f;
         }
         if (isMoving)
         {

@@ -558,8 +558,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!1001 &159138589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -643,6 +641,18 @@ PrefabInstance:
     - target: {fileID: -5702070536588360157, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.008858586
+      objectReference: {fileID: 0}
+    - target: {fileID: -2859051545363438469, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -1702397516713478046, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
+      propertyPath: m_SortingOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -1346433654478723031, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
+      propertyPath: m_SortingOrder
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -565341735726605829, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -869,8 +879,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!4 &183690703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 226109214794267219, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
@@ -1133,8 +1141,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!61 &194709893
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1402,8 +1408,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!1 &284825342 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7027782318072954697, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
@@ -1481,8 +1485,6 @@ MonoBehaviour:
   openSE: {fileID: 0}
   lockedSE: {fileID: 0}
   unlockSE: {fileID: 0}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!1 &300934246
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,8 +2031,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!1 &591374808
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,8 +2234,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!61 &748015121
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2507,8 +2505,6 @@ MonoBehaviour:
   openSE: {fileID: 0}
   lockedSE: {fileID: 0}
   unlockSE: {fileID: 0}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!4 &834177014 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5855049833400116317, guid: a994c799db257164e8471a44a55f2ea3, type: 3}
@@ -2722,8 +2718,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!1 &911135295
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,8 +3026,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!61 &1025780653
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3998,11 +3990,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7305516196774012846, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5243628699320328947, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4369914322698786852, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
       propertyPath: m_Name
       value: _Esophagus
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302161498015773590, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5193592098862651060, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4047,6 +4047,10 @@ PrefabInstance:
     - target: {fileID: 7144168555740421781, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640586953001811026, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4105,8 +4109,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!61 &1585027479
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4989,8 +4991,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!1001 &2020342326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5201,8 +5201,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u308B\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!1 &2029406060
 GameObject:
   m_ObjectHideFlags: 0
