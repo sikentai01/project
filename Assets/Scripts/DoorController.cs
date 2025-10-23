@@ -74,7 +74,7 @@ public class DoorController : GimmickBase
     // =====================================================
     private void Update()
     {
-        if (!isPlayerNear || playerMove == null || isProcessing) return;
+        if (!isPlayerNear || playerMove == null || isProcessing||PauseMenu.isPaused) return;
 
         if (CheckInputDirection())
         {
@@ -155,6 +155,9 @@ public class DoorController : GimmickBase
     private IEnumerator OpenDoorAndMove()
     {
         isProcessing = true;
+        PauseMenu.blockMenu = true;
+        var move = player?.GetComponent<GridMovement>();
+        if (move != null) move.enabled = false;
         yield return new WaitForSeconds(0.4f);
 
         if (openSE) SoundManager.Instance?.PlaySE(openSE);
@@ -179,7 +182,8 @@ public class DoorController : GimmickBase
             else
                 Debug.LogWarning("[Door] BootLoader未設定のためシーン切替スキップ");
         }
-
+        PauseMenu.blockMenu = false;
+        if (move != null) move.enabled = true;
         isProcessing = false;
     }
 
