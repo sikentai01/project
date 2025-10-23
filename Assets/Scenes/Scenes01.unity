@@ -264,12 +264,10 @@ MonoBehaviour:
   currentStage: 0
   rewardItemData: {fileID: 11400000, guid: 1f8f946b9d695434287628f53b88a83f, type: 2}
   rewardObject: {fileID: 0}
-  triggersToDisable:
-  - {fileID: 1248830342}
-  - {fileID: 1474544484}
-  - {fileID: 883839085}
-  - {fileID: 779891767}
+  isRepeatable: 1
+  triggersToDisable: []
   doorToLock: {fileID: 128796588}
+  gameOverControllerObject: {fileID: 0}
 --- !u!4 &112437605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7096493662822837099, guid: a994c799db257164e8471a44a55f2ea3, type: 3}
@@ -2664,8 +2662,10 @@ MonoBehaviour:
   currentStage: 0
   rewardItemData: {fileID: 11400000, guid: 461f0b51958a97749a93580072463039, type: 2}
   rewardObject: {fileID: 0}
+  isRepeatable: 0
   triggersToDisable: []
   doorToLock: {fileID: 0}
+  gameOverControllerObject: {fileID: 0}
 --- !u!4 &860786910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5193592098862651060, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
@@ -3011,8 +3011,10 @@ MonoBehaviour:
   currentStage: 0
   rewardItemData: {fileID: 11400000, guid: 51f5de1a9225864499554f40af76abd2, type: 2}
   rewardObject: {fileID: 0}
+  isRepeatable: 0
   triggersToDisable: []
   doorToLock: {fileID: 0}
+  gameOverControllerObject: {fileID: 0}
 --- !u!1 &943123169
 GameObject:
   m_ObjectHideFlags: 0
