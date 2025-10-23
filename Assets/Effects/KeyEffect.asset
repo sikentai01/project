@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: KeyEffect
   m_EditorClassIdentifier: 
   targetGimmickID: Key
+  requiredDirection: 3

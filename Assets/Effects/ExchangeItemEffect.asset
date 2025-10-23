@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ExchangeItemEffect
   m_EditorClassIdentifier: 
   targetGimmickID: KeyBand1
+  requiredDirection: 1
