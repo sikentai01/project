@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerID: sample001
-  itemData: {fileID: 11400000, guid: 461f0b51958a97749a93580072463039, type: 2}
+  itemData: {fileID: 11400000, guid: 1c1411113f9cd764fb2209df1a9c19f0, type: 2}
   targetObject: {fileID: 1522696697}
   requiredDirection: 3
   canInspectAfterCollected: 0
@@ -1407,7 +1407,7 @@ MonoBehaviour:
   targetScene: Scenes01
   targetPointName: Secne0_Heart1_Door1_Spawn
   targetPoint: {fileID: 0}
-  gimmickID: Secne0_Heart1_Door1
+  gimmickID: Secne0_Heart1_Door01
   currentStage: 0
   requiredKeyID: Secne0_Heart1_Door1
   requiredDirection: 0
@@ -1415,8 +1415,6 @@ MonoBehaviour:
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
   lockedSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
   unlockSE: {fileID: 8300000, guid: 0789d3a077be9794282af2e1baf68e6b, type: 3}
-  systemTextWhenLocked: "\u9375\u304C\u304B\u304B\u3063\u3066\u3044\u3066\u958B\u304B\u306A\u3044\u2026"
-  systemTextWhenUnlocked: "{0}\u3067\u9375\u3092\u958B\u3051\u305F"
 --- !u!1 &1834187833
 GameObject:
   m_ObjectHideFlags: 0
