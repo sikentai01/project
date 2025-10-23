@@ -644,6 +644,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u5FC3\u81D3\u524D"
       objectReference: {fileID: 0}
+    - target: {fileID: 5399921937890557935, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+      propertyPath: m_AnimationFrameRate
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5459354576287755834, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -719,6 +723,10 @@ PrefabInstance:
     - target: {fileID: 6935869043711289743, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984569818042039526, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8616160700996035473, guid: 4bb8ee0bd72bea940b19273cab9ed11c, type: 3}
       propertyPath: m_SortingOrder
