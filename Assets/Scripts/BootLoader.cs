@@ -120,6 +120,7 @@ public class BootLoader : MonoBehaviour
 
         var move = player.GetComponent<GridMovement>();
         if (move != null) move.SetDirection(0);
+        PauseMenu.blockMenu = false;
     }
 
     // ===== ‚Í‚¶‚ß‚©‚ç =====
