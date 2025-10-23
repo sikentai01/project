@@ -5694,7 +5694,7 @@ MonoBehaviour:
   gimmickID: GlassStep
   currentStage: 0
   gimmickID: 
-  requiredSteps: 3
+  requiredSteps: 0
   targetObjectToActivate: {fileID: 90096882}
   requiredFlagID: PoisonTrigger
   activeFlagID: FLAG_WBC_ACTIVE
