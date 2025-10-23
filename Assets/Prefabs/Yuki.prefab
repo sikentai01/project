@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9007820541379976760}
   - component: {fileID: 4530068689335812028}
   - component: {fileID: 6285907461042592009}
+  - component: {fileID: 5091357189551530884}
   m_Layer: 0
   m_Name: Yuki
   m_TagString: Player
@@ -109,6 +110,8 @@ MonoBehaviour:
   tileFootstep: {fileID: 8300000, guid: 80cb3d5b5a0321248bc082d599e85273, type: 3}
   matFootstep: {fileID: 8300000, guid: a6857fcc077df2843a1ebce72c187589, type: 3}
   dirtFootstep: {fileID: 0}
+  woodFootstep: {fileID: 0}
+  GlassFootstep: {fileID: 0}
   stepInterval: 0.35
 --- !u!61 &2585505381898205407
 BoxCollider2D:
@@ -244,3 +247,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5091357189551530884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024732067848838614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a832d7c09c4975b4fb29ac432d825fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalLight: {fileID: 0}
+  restrictedLight: {fileID: 4530068689335812028}
+  flashlightItemID: item_flashlight

@@ -242,6 +242,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yuki
       objectReference: {fileID: 0}
+    - target: {fileID: 5091357189551530884, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
+      propertyPath: normalLight
+      value: 
+      objectReference: {fileID: 659820073}
+    - target: {fileID: 5091357189551530884, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
+      propertyPath: flashlightItemID
+      value: flashlight
+      objectReference: {fileID: 0}
     - target: {fileID: 6634847764944034231, guid: 444f22de8b6d16a4a8da7df1cb20bf95, type: 3}
       propertyPath: m_Enabled
       value: 1

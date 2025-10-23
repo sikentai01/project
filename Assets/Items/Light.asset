@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0462424cb8c3a4597b1726c64dec32, type: 3}
   m_Name: Light
   m_EditorClassIdentifier: 
-  itemID: Parmanent_Light
+  itemID: flashlight
   itemName: "\u61D0\u4E2D\u96FB\u706F"
   description: "\u4EEE\u9762\u306E\u5C11\u5973\u304B\u3089\u6E21\u3055\u308C\u305F\u6700\u521D\u306E\u30A2\u30A4\u30C6\u30E0\u3002\u5468\u308A\u3092\u7167\u3089\u3059\u3002"
   isConsumable: 1

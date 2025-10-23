@@ -16,9 +16,6 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
     [Header("会話イベントで渡すアイテム")]
     public ItemData rewardItem;
 
-    private Light2D normalLight;
-    private Light2D restrictedLight;
-
     [Header("NPC関連（シーン内の仮置き用）")]
     public GameObject sceneNpc;
     public Vector2 npcSpawnPosition;
@@ -68,9 +65,6 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
         Debug.Log("[SaveTrigger] イベント開始");
 
         SoundManager.Instance?.PlayBGM(eventBGM);
-
-        if (restrictedLight != null) restrictedLight.enabled = false;
-        if (normalLight != null) normalLight.enabled = true;
 
         if (player != null) player.enabled = false;
         PauseMenu.blockMenu = true;
@@ -128,25 +122,6 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
     {
         player = FindFirstObjectByType<GridMovement>();
         if (player == null) return;
-
-        normalLight = player.GetComponent<Light2D>();
-        var childLights = player.GetComponentsInChildren<Light2D>(true);
-        foreach (var l in childLights)
-        {
-            if (l.name == "RestrictedLight")
-                restrictedLight = l;
-        }
-
-        if (!alreadyTriggered)
-        {
-            if (restrictedLight != null) restrictedLight.enabled = true;
-            if (normalLight != null) normalLight.enabled = false;
-        }
-        else
-        {
-            if (restrictedLight != null) restrictedLight.enabled = false;
-            if (normalLight != null) normalLight.enabled = true;
-        }
 
         if (sceneNpc != null) sceneNpc.SetActive(false);
 
