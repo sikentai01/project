@@ -2787,6 +2787,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_text
+      value: "\u3053\u3093\u306B\u3061\u306F\n\u79C1\u306F\u30C6\u30B9\u30C8\u30C6\u30AD\u30B9\u30C8\u3067\u3059\nhello\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_fontSize
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_margin.y
+      value: -2.9724731
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.6981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.6981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.6981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4289901234
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824067098662552692, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5693142110326175650, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: m_Pivot.x
       value: 0
