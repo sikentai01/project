@@ -13,9 +13,6 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
     [Header("必要な方向 (0=下, 1=左, 2=右, 3=上, -1=制限なし)")]
     public int requiredDirection = 3;
 
-    [Header("会話イベントで渡すアイテム")]
-    public ItemData rewardItem;
-
     [Header("NPC関連（シーン内の仮置き用）")]
     public GameObject sceneNpc;
     public Vector2 npcSpawnPosition;
@@ -64,11 +61,20 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
         alreadyTriggered = true;
         Debug.Log("[SaveTrigger] イベント開始");
 
-        SoundManager.Instance?.PlayBGM(eventBGM);
-
         if (player != null) player.enabled = false;
         PauseMenu.blockMenu = true;
+        // --- セーブUIを開く（閲覧専用モード） ---
+        if (SaveSlotUIManager.Instance != null)
+        {
+            SaveSlotUIManager.Instance.OpenViewOnlyPanel();
+            Debug.Log("[SaveTrigger] 閲覧専用セーブスロットを開きました。");
+
+            //  プレイヤーが閉じるまで待機
+            yield return new WaitUntil(() => !SaveSlotUIManager.Instance.IsOpen());
+            Debug.Log("[SaveTrigger] セーブスロットが閉じられました。");
+        }
         player.SetDirection(0);
+        SoundManager.Instance?.PlayBGM(eventBGM);
 
         if (sceneNpc != null)
         {
@@ -82,18 +88,13 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
             yield return new WaitUntil(() => !IsConversationActive());
         }
 
-        if (rewardItem != null && InventoryManager.Instance != null)
-        {
-            InventoryManager.Instance.AddItem(rewardItem);
-            Debug.Log($"[SaveTrigger] アイテム『{rewardItem.itemName}』を入手！");
-        }
-
         if (sceneNpc != null) sceneNpc.SetActive(false);
 
         var trap = FindFirstObjectByType<FallTrap>();
         trap?.DisableTrap();
 
         GameFlags.Instance?.SetFlag(FLAG_ID);
+        GameFlags.Instance?.SetFlag("DiaryEventUnlocked");
 
         if (player != null) player.enabled = true;
         PauseMenu.blockMenu = false;

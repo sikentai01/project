@@ -14,6 +14,7 @@ public class SaveSlotButton : MonoBehaviour
     [SerializeField] private AudioClip clickSeClip;
 
     private bool isLoadMode = false;
+    private bool isViewOnly = false; //  追加
 
     private void Start()
     {
@@ -26,6 +27,13 @@ public class SaveSlotButton : MonoBehaviour
         if (SoundManager.Instance != null && clickSeClip != null)
             SoundManager.Instance.PlaySE(clickSeClip);
 
+        //  閲覧専用モードでは何もしない
+        if (isViewOnly)
+        {
+            Debug.Log($"[SaveSlotButton] スロット{slotNumber}は閲覧専用モードのため無効。");
+            return;
+        }
+
         if (isLoadMode)
         {
             // ==========================
@@ -36,7 +44,6 @@ public class SaveSlotButton : MonoBehaviour
             {
                 Debug.Log($"[SaveSlotButton] スロット{slotNumber}ロード開始：{data.sceneName}");
 
-                // BootLoader取得
                 var boot = FindFirstObjectByType<BootLoader>();
                 if (boot == null)
                 {
@@ -44,11 +51,9 @@ public class SaveSlotButton : MonoBehaviour
                     return;
                 }
 
-                // --- すべてのシーンをOFFにして対象シーンだけON ---
                 foreach (var kv in boot.loadedScenes)
                     boot.SetSceneActive(kv.Key, kv.Key == data.sceneName);
 
-                // --- アクティブシーンを切り替え ---
                 var targetScene = SceneManager.GetSceneByName(data.sceneName);
                 if (targetScene.IsValid())
                 {
@@ -56,11 +61,8 @@ public class SaveSlotButton : MonoBehaviour
                     Debug.Log($"[SaveSlotButton] アクティブシーンを {data.sceneName} に変更しました。");
                 }
 
-                // --- GameBootstrapを動的生成してロード適用 ---
                 GameBootstrap.loadedData = data;
                 new GameObject("GameBootstrap").AddComponent<GameBootstrap>();
-
-                Debug.Log($"[SaveSlotButton] BootLoader経由で {data.sceneName} のロードを開始しました。");
             }
             else
             {
@@ -89,23 +91,30 @@ public class SaveSlotButton : MonoBehaviour
             }
         }
 
-        // --- UIを閉じる ---
         if (SaveSlotUIManager.Instance != null)
             SaveSlotUIManager.Instance.ClosePanel();
 
         UpdateLabel();
     }
 
-    public void SetMode(bool loadMode)
+    // ======================================================
+    //  モード設定（ビュー対応）
+    // ======================================================
+    public void SetMode(bool loadMode, bool viewOnly = false)
     {
         isLoadMode = loadMode;
+        isViewOnly = viewOnly;
         UpdateLabel();
     }
 
     private void UpdateLabel()
     {
         if (slotLabel == null) return;
-        string modeText = isLoadMode ? "ロード" : "セーブ";
+
+        string modeText = isViewOnly ? "閲覧" :
+                          isLoadMode ? "ロード" :
+                          "セーブ";
+
         slotLabel.text = $"スロット {slotNumber} （{modeText}）";
     }
 }

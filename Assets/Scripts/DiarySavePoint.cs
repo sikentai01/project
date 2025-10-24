@@ -12,6 +12,10 @@ public class DiarySavePoint : MonoBehaviour
     [Tooltip("0=下, 1=左, 2=右, 3=上, -1=どの向きでもOK")]
     [SerializeField] private int requiredDirection = -1;
 
+    [Header("イベント専用日記かどうか")]
+    [Tooltip("イベント後にしかセーブできない日記ならチェックを入れる")]
+    [SerializeField] private bool requiresUnlockFlag = false;
+
     private bool isPlayerNear = false;
     private GridMovement player;
 
@@ -24,24 +28,34 @@ public class DiarySavePoint : MonoBehaviour
 
     void Update()
     {
-        //  BootLoader式Additive対応: プレイヤーがまだ見つかっていない場合、遅延で再取得
+        // BootLoader式Additive対応
         if (player == null)
         {
             player = FindFirstObjectByType<GridMovement>();
             if (player == null)
-                return; // まだロードされていないならスキップ
+                return;
         }
 
         if (PauseMenu.isPaused) return;
         if (SaveSlotUIManager.Instance != null && SaveSlotUIManager.Instance.IsOpen()) return;
 
-        // プレイヤーが近くにいて Enterキー が押されたらセーブスロットUIを開く
         if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
-            // 向き判定
             int playerDir = player.GetDirection();
             if (requiredDirection == -1 || playerDir == requiredDirection)
             {
+                // --- フラグ確認 ---
+                if (requiresUnlockFlag)
+                {
+                    if (GameFlags.Instance == null || !GameFlags.Instance.HasFlag("DiaryEventUnlocked"))
+                    {
+                        Debug.Log("[DiarySavePoint] この日記はまだ記録できない。イベントが必要です。");
+                        // 任意でシステムメッセージなど表示可
+                        // SystemMessage.Show("まだ記録できないようだ…");
+                        return;
+                    }
+                }
+
                 OpenSaveUI();
             }
             else
@@ -84,7 +98,6 @@ public class DiarySavePoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = true;
-            //  ここでも確実にプレイヤー参照を更新
             player = other.GetComponent<GridMovement>();
         }
     }

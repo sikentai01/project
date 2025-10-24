@@ -10,6 +10,7 @@ public class SaveSlotUIManager : MonoBehaviour
     [SerializeField] private GameObject saveSlotCanvas;
 
     private bool isLoadMode = false;
+    private bool isViewOnly = false; //  追加
     private bool isOpen = false;
     private bool recentlyClosed = false;
 
@@ -38,20 +39,33 @@ public class SaveSlotUIManager : MonoBehaviour
     }
 
     // ======================
-    // セーブモードで開く
+    // 通常セーブモード
     // ======================
     public void OpenSavePanel()
     {
         isLoadMode = false;
+        isViewOnly = false; //  通常
         OpenPanelInternal();
     }
 
     // ======================
-    // ロードモードで開く
+    // ロードモード
     // ======================
     public void OpenLoadPanel()
     {
         isLoadMode = true;
+        isViewOnly = false; // ロードは通常動作
+        OpenPanelInternal();
+    }
+
+
+    // ======================
+    // ビュー専用モード（セーブ禁止）
+    // ======================
+    public void OpenViewOnlyPanel()
+    {
+        isLoadMode = false;
+        isViewOnly = true; //  ここが肝心
         OpenPanelInternal();
     }
 
@@ -67,7 +81,7 @@ public class SaveSlotUIManager : MonoBehaviour
 
         var buttons = saveSlotCanvas.GetComponentsInChildren<SaveSlotButton>(true);
         foreach (var btn in buttons)
-            btn.SetMode(isLoadMode);
+            btn.SetMode(isLoadMode, isViewOnly); //  新しい引数対応
 
         // --- 最初のスロットを選択 ---
         if (buttons.Length > 0 && EventSystem.current != null)
@@ -79,7 +93,7 @@ public class SaveSlotUIManager : MonoBehaviour
         if (PauseMenu.Instance != null)
             PauseMenu.blockMenu = true;
 
-        Debug.Log($"[SaveSlotUIManager] {(isLoadMode ? "ロード" : "セーブ")}スロットを開きました。");
+        Debug.Log($"[SaveSlotUIManager] {(isViewOnly ? "閲覧専用" : isLoadMode ? "ロード" : "セーブ")}モードでスロットを開きました。");
     }
 
     // ======================
@@ -91,8 +105,9 @@ public class SaveSlotUIManager : MonoBehaviour
 
         saveSlotCanvas.SetActive(false);
         isOpen = false;
+        isViewOnly = false; //  閉じたらリセット
 
-        // --- メニューを再有効化 ---
+        // --- メニュー再許可 ---
         if (PauseMenu.Instance != null)
         {
             PauseMenu.blockMenu = false;
@@ -100,22 +115,9 @@ public class SaveSlotUIManager : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        // --- ゲーム中はプレイヤー再有効化 ---
         var player = FindFirstObjectByType<GridMovement>();
         if (player != null)
             player.enabled = true;
-
-        // --- タイトル画面でロード閉じたとき ---
-        if (isLoadMode && EventSystem.current != null)
-        {
-            var continueButton = GameObject.Find("ContinueButton"); // タイトルシーン上の名前に合わせる
-            if (continueButton != null)
-            {
-                EventSystem.current.SetSelectedGameObject(null);
-                EventSystem.current.SetSelectedGameObject(continueButton);
-                Debug.Log("[SaveSlotUIManager] カーソルを続きからに戻しました。");
-            }
-        }
 
         recentlyClosed = true;
         StartCoroutine(ResetRecentlyClosed());
@@ -131,4 +133,5 @@ public class SaveSlotUIManager : MonoBehaviour
 
     public bool IsOpen() => isOpen;
     public bool IsRecentlyClosed() => recentlyClosed;
+    public bool IsViewOnly() => isViewOnly; //  他クラスからも確認可
 }
