@@ -19,14 +19,11 @@ public class DialogueCore : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    // UI側（既存の DialogueUI）が購読するイベント
+
+    // ===== イベント群 =====
     public event Action<string> OnSpeakerChanged;
     public event Action<string[]> OnLinesReady;
-
-    // 進行通知（Router向け）
     public event Action<string> OnConversationEnded;
-
-    // 将来の立ち絵切替など
     public event Action<string> OnPortraitChanged;
 
     private string currentConversationId;
@@ -40,7 +37,7 @@ public class DialogueCore : MonoBehaviour
         public List<string> lines = new List<string>(); // 最大3行
     }
 
-    // --- 開始API（どちらも残してOK） ---
+    // ===== 会話開始 =====
     public void StartConversation(string id, TextAsset textAsset)
     {
         if (textAsset == null) { Debug.LogWarning("[DialogueCore] TextAsset=null"); Finish(id); return; }
@@ -66,7 +63,7 @@ public class DialogueCore : MonoBehaviour
         ShowPage(next);
     }
 
-    // ===== 解析：空行区切り / 最大3行 / 話者混在不可 / #Give即時 =====
+    // ===== 解析処理 =====
     private void BuildPages(string raw)
     {
         if (string.IsNullOrEmpty(raw)) return;
@@ -74,7 +71,6 @@ public class DialogueCore : MonoBehaviour
         string text = raw.Replace("\r\n", "\n").Replace("\r", "\n");
         var lines = text.Split('\n');
         string currentSpeaker = null;
-
         Page currentPage = null;
 
         void FlushPageIfAny()
@@ -118,9 +114,9 @@ public class DialogueCore : MonoBehaviour
                 continue;
             }
 
-            // 通常行：現在の話者で追加（未設定なら仮のナレーション）
+            // 通常行：現在の話者で追加（未設定ならナレーション）
             if (string.IsNullOrEmpty(currentSpeaker))
-                currentSpeaker = "Narration"; // 仕様保留のため暫定
+                currentSpeaker = "Narration";
 
             EnsurePage(ref currentPage, currentSpeaker);
             AddLineAndSplitIfNeeded(ref currentPage, line);
@@ -132,11 +128,9 @@ public class DialogueCore : MonoBehaviour
     private static string NormalizeLine(string s)
     {
         if (s == null) return string.Empty;
-
         s = s.Replace('\u3000', ' ');
         return s.Trim();
     }
-
 
     private static bool TryParseSpeakerLine(string line, out string speaker, out string body)
     {
@@ -154,42 +148,65 @@ public class DialogueCore : MonoBehaviour
 
     private static bool IsCommand(string line) => line.StartsWith("#");
 
+    // ===== コマンド処理 =====
     private void ExecuteCommand(string line)
     {
-        // 最小実装：#Give <id> [title=...]
-        if (line.StartsWith("#Give", StringComparison.OrdinalIgnoreCase))
-        {
-            var match = Regex.Match(line, @"^#Give\s+(\S+)(?:\s+title=(.+))?$", RegexOptions.IgnoreCase);
-            if (match.Success)
-            {
-                string id = match.Groups[1].Value;
-                string title = match.Groups.Count >= 3 ? match.Groups[2].Value : null;
+        if (!line.StartsWith("#")) return;
 
-                try
-                {
-                    if (DocumentManager.Instance != null)
-                    {
-                        if (!string.IsNullOrEmpty(title))
-                            DocumentManager.Instance.AddDocument(id, title);
-                        else
-                            DocumentManager.Instance.AddDocument(id, "");
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"[DialogueCore] DocumentManager.Instance=null (#Give {id})");
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"[DialogueCore] #Give 例外: {e}");
-                }
-            }
+        string cmdLine = line.Trim();
+        string[] parts = cmdLine.Substring(1).Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length == 0) return;
+
+        string command = parts[0].ToLowerInvariant();
+        string args = parts.Length > 1 ? parts[1] : "";
+
+        switch (command)
+        {
+            case "give":
+                CmdGiveItem(args);
+                break;
+
+            default:
+                Debug.LogWarning($"[DialogueCore] 未対応コマンド: {command}");
+                break;
+        }
+    }
+
+    // ===== #Give アイテム付与 =====
+    private void CmdGiveItem(string args)
+    {
+        string itemId = (args ?? "").Trim();
+        if (string.IsNullOrEmpty(itemId))
+        {
+            Debug.LogWarning("[DialogueCore] #Give 書式不正: itemId が空です");
             return;
         }
 
-        // 将来拡張コマンドはここに
+        var inv = InventoryManager.Instance;
+        if (inv == null)
+        {
+            Debug.LogWarning("[DialogueCore] InventoryManager.Instance が見つかりません");
+            return;
+        }
+
+        ItemData item = inv.allItems.Find(i => i != null && i.itemID == itemId);
+        if (item == null)
+        {
+            Debug.LogWarning($"[DialogueCore] #Give 失敗: itemId='{itemId}' が見つかりません");
+            return;
+        }
+
+        if (inv.HasItem(itemId))
+        {
+            Debug.Log($"[DialogueCore] #Give スキップ: 既に所持 itemId='{itemId}'");
+            return;
+        }
+
+        inv.AddItem(item);
+        Debug.Log($"[DialogueCore] #Give → AddItem 成功: itemId='{itemId}', itemName='{item.itemName}'");
     }
 
+    // ===== ページ制御 =====
     private void EnsurePage(ref Page page, string speaker)
     {
         if (page == null) page = new Page { speaker = speaker };
