@@ -21,16 +21,13 @@ public class ItemToggleGimmick : GimmickBase
     [Header("対応するGimmickTriggerのID")] // Enterキー入力の範囲を特定するために使用
     public string triggerIDToMonitor;
 
-    // ★★★ 追加フィールド ★★★
-    [Header("所持時にStage 0にリセットするアイテムID")]
-    public string resetIfHasItemID = "";
-    // ★★★ ここまで ★★★
+    // ★ リセット機能のフィールドは今回は無視して、ロジックのみ修正します
 
     private GimmickTrigger associatedTrigger; // 監視対象のトリガー
 
     // Enterキー入力の有効範囲チェックに使う
     private bool IsPlayerNear => associatedTrigger != null && associatedTrigger.IsPlayerNear;
-    private bool isLoaded = false;
+    // private bool isLoaded = false; // 不要になったため削除
 
     private void Awake()
     {
@@ -40,6 +37,7 @@ public class ItemToggleGimmick : GimmickBase
             var triggers = FindObjectsByType<GimmickTrigger>(FindObjectsSortMode.None);
             foreach (var trigger in triggers)
             {
+                // GimmickTriggerはGimmickIDを持っています
                 if (trigger.gimmickID == triggerIDToMonitor)
                 {
                     associatedTrigger = trigger;
@@ -59,11 +57,7 @@ public class ItemToggleGimmick : GimmickBase
         // currentStageに基づいて初期状態を設定（LoadProgressで上書きされる可能性あり）
         UpdateVisualState();
 
-        // ★★★ ロード後の状態チェックを StartCoroutine で実行 ★★★
-        if (gimmickID != "") // IDが設定されているギミックのみチェック
-        {
-            StartCoroutine(CheckInventoryAndApplyLoadState());
-        }
+        // LoadProgressの後にInventoryManagerチェックが必要なら、ここでStartCoroutineを呼ぶ
     }
 
     private void Update()
@@ -118,6 +112,8 @@ public class ItemToggleGimmick : GimmickBase
         }
 
         // ギミック解除とアイテム復元
+        // ※ ここでのAddItemが InventoryManagerの HasItemチェックと連動し、矛盾が生じる場合は
+        //    AddItem処理を TryRestoreItemAndHide の呼び出し元で制御する必要があります。
         InventoryManager.Instance.AddItem(toggleItemData);
         Debug.Log($"[ItemToggleGimmick] ギミック解除。{toggleItemData.itemName} を復元しました (Stage 0)。");
 
@@ -150,39 +146,12 @@ public class ItemToggleGimmick : GimmickBase
 
     public override void LoadProgress(int stage)
     {
-        // LoadProgressでは、セーブデータの値 (stage) をそのまま適用するのみ
-        // リセット処理は CheckInventoryAndApplyLoadState() に任せる
-        this.currentStage = stage;
+        // ★★★ 修正点: 親クラス (GimmickBase) の実装を呼び出し、セーブデータ通りの進行段階を復元する ★★★
+        base.LoadProgress(stage);
+
+        // ロードされた進行段階に基づいて見た目を更新
         UpdateVisualState();
-        isLoaded = true;
-    }
 
-    // ★★★ ItemTriggerと同様の遅延チェックロジック（ロード後の矛盾解消） ★★★
-    private IEnumerator CheckInventoryAndApplyLoadState()
-    {
-        // InventoryManager が初期化されるまで待機
-        while (InventoryManager.Instance == null)
-        {
-            yield return null;
-        }
-
-        // InventoryManagerがセーブデータロードを完了するのを待つための猶予
-        yield return new WaitForSeconds(0.1f);
-
-        // 既に LoadProgress でセーブデータが適用されているはずなので、その状態をチェック
-
-        string itemID = resetIfHasItemID;
-        if (!string.IsNullOrEmpty(itemID) && InventoryManager.Instance != null)
-        {
-            bool isItemInInventory = InventoryManager.Instance.HasItem(itemID);
-
-            if (isItemInInventory)
-            {
-                // アイテムを持っている場合は、セーブデータの値が何であれ Stage 0 に強制リセット
-                this.currentStage = 0;
-                UpdateVisualState();
-                Debug.Log($"[ItemToggleGimmick:{gimmickID}] **遅延チェック完了**: アイテム所持により Stage 0 にリセットしました。");
-            }
-        }
+        Debug.Log($"[ItemToggleGimmick: {gimmickID}] ロード完了: セーブ値 {stage} を復元しました。");
     }
 }
