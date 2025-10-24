@@ -1,110 +1,74 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro; // TextMeshProを使用するため
+using System;
 
 public class GimmickCanvasController : MonoBehaviour
 {
-    public static GimmickCanvasController Instance { get; private set; }
+    // ★ Button (2) - Button (3) - Button (4) - Button の Text (TMP) への参照を想定 ★
+    [Header("ボタンテキストの参照")]
+    public TMP_Text[] buttonLabels = new TMP_Text[4];
 
-    [Header("キャンバス本体")]
-    public Canvas canvasRoot;
+    [Header("中央テキストパネル")]
+    public TMP_Text centerTextPanel; // ★ 会話パネルの代わりに中央パネルとして使用
 
-    [Header("ボタン群（インスペクターで割り当て）")]
-    public Button[] buttons;
+    [Header("連動するボタンシーケンスギミック")]
+    public ButtonSequenceGimmick sequenceGimmick;
 
-    // 現在このキャンバスを使用中のギミック
-    private ButtonSequenceGimmick activeGimmick;
+    private static GimmickCanvasController instance;
+    public static GimmickCanvasController Instance => instance;
 
-    private void Awake()
+    void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
-            return;
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        if (canvasRoot == null)
-            canvasRoot = GetComponentInChildren<Canvas>();
-
-        HideCanvas();
     }
 
-    // ===============================
-    //  基本表示制御
-    // ===============================
-    public void ShowCanvas(ButtonSequenceGimmick gimmick)
+    /// <summary>
+    /// 中央テキストパネルにメッセージを設定する（会話システム流用なし）
+    /// </summary>
+    public void SetCenterMessage(string message)
     {
-        activeGimmick = gimmick;
-
-        if (canvasRoot != null)
-            canvasRoot.enabled = true;
-
-        // ボタン押下時のリスナー設定
-        for (int i = 0; i < buttons.Length; i++)
+        if (centerTextPanel != null)
         {
-            int index = i;
-            buttons[i].onClick.RemoveAllListeners();
-            buttons[i].onClick.AddListener(() =>
-            {
-                OnButtonPressed(index);
-            });
+            centerTextPanel.text = message;
+        }
+    }
+
+    /// <summary>
+    /// 指定されたインデックスのボタンにテキストを設定する
+    /// </summary>
+    public void SetButtonText(int index, string text)
+    {
+        if (buttonLabels.Length > index && buttonLabels[index] != null)
+        {
+            buttonLabels[index].text = text;
+        }
+    }
+    // ... (OnAnyButtonClick, HideCanvas はそのまま) ...
+
+    /// <summary>
+    /// ボタンクリックイベントをギミックに転送する (Unityイベントから設定する)
+    /// </summary>
+    public void OnAnyButtonClick(int index)
+    {
+        if (sequenceGimmick != null)
+        {
+            sequenceGimmick.OnButtonClick(index);
+        }
+        else
+        {
+            Debug.LogWarning("[GimmickCanvas] ButtonSequenceGimmickが設定されていません。");
         }
     }
 
     public void HideCanvas()
     {
-        if (canvasRoot != null)
-            canvasRoot.enabled = false;
-
-        activeGimmick = null;
-    }
-
-    // ===============================
-    //  ボタン制御
-    // ===============================
-    private void OnButtonPressed(int index)
-    {
-        // 紐づいているギミックに通知
-        if (activeGimmick != null)
-        {
-            activeGimmick.OnButtonClick(index);
-        }
-        else
-        {
-            Debug.LogWarning("[GimmickCanvasController] アクティブなギミックが未設定です。");
-        }
-    }
-
-    /// <summary>
-    /// 指定インデックスのボタンにテキストを設定
-    /// </summary>
-    public void SetButtonText(int index, string text)
-    {
-        if (buttons == null || index < 0 || index >= buttons.Length)
-        {
-            Debug.LogWarning($"[GimmickCanvasController] 無効なボタンインデックス: {index}");
-            return;
-        }
-
-        var tmp = buttons[index].GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        if (tmp != null)
-            tmp.text = text;
-        else
-            Debug.LogWarning($"[GimmickCanvasController] ボタン {index} に TextMeshProUGUI が見つかりません。");
-    }
-
-    /// <summary>
-    /// すべてのボタンテキストを一括で設定
-    /// </summary>
-    public void SetAllButtonTexts(string[] texts)
-    {
-        if (buttons == null) return;
-
-        for (int i = 0; i < buttons.Length && i < texts.Length; i++)
-        {
-            SetButtonText(i, texts[i]);
-        }
+        gameObject.SetActive(false);
     }
 }

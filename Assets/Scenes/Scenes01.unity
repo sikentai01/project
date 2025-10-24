@@ -160,23 +160,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -5107428073490194859, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
   m_PrefabInstance: {fileID: 786540221}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &67640994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67640988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a2df5fba82b7c4aa7460fa8813f9e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gimmickID: Experience
-  currentStage: 0
-  rewardItemData: {fileID: 11400000, guid: 8ceec67496b2eee449f7afbdb7f41e92, type: 2}
-  initialConversationId: "\u6B63\u3057\u304F\u9078\u3079"
-  correctSequence: 00000000010000000200000003000000
 --- !u!61 &67640995
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3228,9 +3211,6 @@ PrefabInstance:
       addedObject: {fileID: 786540224}
     - targetCorrespondingSourceObject: {fileID: -3459361674775673979, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 67640994}
-    - targetCorrespondingSourceObject: {fileID: -3459361674775673979, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 67640995}
     - targetCorrespondingSourceObject: {fileID: -2109422993193043551, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
       insertIndex: -1
@@ -3410,7 +3390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 844206162}
   - component: {fileID: 844206164}
-  - component: {fileID: 844206163}
+  - component: {fileID: 844206165}
   m_Layer: 0
   m_Name: ExperimentTrigger
   m_TagString: Untagged
@@ -3433,20 +3413,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 67640989}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &844206163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844206161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b354e6ad07c6447b4e6240a36c3747, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gimmickID: ExperienceTrigger
-  targetGimmick: {fileID: 67640994}
 --- !u!61 &844206164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3493,6 +3459,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &844206165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844206161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a2df5fba82b7c4aa7460fa8813f9e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gimmickID: Experimet
+  currentStage: 0
+  initialMessage: "\u6B63\u3057\u3044\u9806\u5E8F\u3067\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+  correctSequence: 00000000010000000200000003000000
+  gimmickCanvasRoot: {fileID: 0}
 --- !u!4 &860786910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5193592098862651060, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
