@@ -20,7 +20,7 @@ public class DialogueCore : MonoBehaviour
         }
     }
 
-    // ===== イベント群 =====
+    // === イベント ===
     public event Action<string> OnSpeakerChanged;
     public event Action<string[]> OnLinesReady;
     public event Action<string> OnConversationEnded;
@@ -40,7 +40,12 @@ public class DialogueCore : MonoBehaviour
     // ===== 会話開始 =====
     public void StartConversation(string id, TextAsset textAsset)
     {
-        if (textAsset == null) { Debug.LogWarning("[DialogueCore] TextAsset=null"); Finish(id); return; }
+        if (textAsset == null)
+        {
+            Debug.LogWarning("[DialogueCore] TextAsset=null");
+            Finish(id);
+            return;
+        }
         StartConversation(id, textAsset.text);
     }
 
@@ -51,7 +56,11 @@ public class DialogueCore : MonoBehaviour
         pageIndex = -1;
 
         BuildPages(rawText);
-        if (pages.Count == 0) { Finish(id); return; }
+        if (pages.Count == 0)
+        {
+            Finish(id);
+            return;
+        }
         ShowPage(0);
     }
 
@@ -59,11 +68,15 @@ public class DialogueCore : MonoBehaviour
     {
         if (pages.Count == 0) return;
         int next = pageIndex + 1;
-        if (next >= pages.Count) { Finish(currentConversationId); return; }
+        if (next >= pages.Count)
+        {
+            Finish(currentConversationId);
+            return;
+        }
         ShowPage(next);
     }
 
-    // ===== 解析処理 =====
+    // ===== ページ構築 =====
     private void BuildPages(string raw)
     {
         if (string.IsNullOrEmpty(raw)) return;
@@ -71,6 +84,7 @@ public class DialogueCore : MonoBehaviour
         string text = raw.Replace("\r\n", "\n").Replace("\r", "\n");
         var lines = text.Split('\n');
         string currentSpeaker = null;
+
         Page currentPage = null;
 
         void FlushPageIfAny()
@@ -84,25 +98,25 @@ public class DialogueCore : MonoBehaviour
         {
             string line = NormalizeLine(lines[i]);
 
-            // 空行 = ブロック区切り
+            // 空行 = 改ページ
             if (string.IsNullOrEmpty(line))
             {
                 FlushPageIfAny();
                 continue;
             }
 
-            // コマンド（表示しない）
+            // コマンド処理 (#Giveなど)
             if (IsCommand(line))
             {
                 ExecuteCommand(line);
                 continue;
             }
 
-            // 「名前: 本文」なら話者切替を判定
+            // 「名前: 本文」形式
             if (TryParseSpeakerLine(line, out var maybeSpeaker, out var maybeBody))
             {
                 if (!string.IsNullOrEmpty(currentSpeaker) && currentSpeaker != maybeSpeaker)
-                    FlushPageIfAny(); // 混在不可 → 改ページ
+                    FlushPageIfAny();
 
                 currentSpeaker = maybeSpeaker;
 
@@ -114,7 +128,7 @@ public class DialogueCore : MonoBehaviour
                 continue;
             }
 
-            // 通常行：現在の話者で追加（未設定ならナレーション）
+            // 通常文（話者未設定ならナレーション扱い）
             if (string.IsNullOrEmpty(currentSpeaker))
                 currentSpeaker = "Narration";
 
@@ -128,7 +142,7 @@ public class DialogueCore : MonoBehaviour
     private static string NormalizeLine(string s)
     {
         if (s == null) return string.Empty;
-        s = s.Replace('\u3000', ' ');
+        s = s.Replace('\u3000', ' '); // 全角スペース→半角
         return s.Trim();
     }
 
@@ -148,65 +162,42 @@ public class DialogueCore : MonoBehaviour
 
     private static bool IsCommand(string line) => line.StartsWith("#");
 
-    // ===== コマンド処理 =====
+    // ===== コマンド処理 (#Giveなど) =====
     private void ExecuteCommand(string line)
     {
-        if (!line.StartsWith("#")) return;
-
-        string cmdLine = line.Trim();
-        string[] parts = cmdLine.Substring(1).Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
-        if (parts.Length == 0) return;
-
-        string command = parts[0].ToLowerInvariant();
-        string args = parts.Length > 1 ? parts[1] : "";
-
-        switch (command)
+        // #Give <itemID>
+        if (line.StartsWith("#Give", StringComparison.OrdinalIgnoreCase))
         {
-            case "give":
-                CmdGiveItem(args);
-                break;
+            var match = Regex.Match(line, @"^#Give\s+(\S+)", RegexOptions.IgnoreCase);
+            if (match.Success)
+            {
+                string itemID = match.Groups[1].Value;
 
-            default:
-                Debug.LogWarning($"[DialogueCore] 未対応コマンド: {command}");
-                break;
+                // InventoryManagerに渡す
+                if (InventoryManager.Instance != null)
+                {
+                    var found = InventoryManager.Instance.allItems.Find(i => i.itemID == itemID);
+                    if (found != null)
+                    {
+                        InventoryManager.Instance.AddItem(found);
+                        Debug.Log($"[DialogueCore] #Give → AddItem 成功: itemId='{itemID}', itemName='{found.itemName}'");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[DialogueCore] #Give: itemID='{itemID}' に該当するアイテムが見つかりません。");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"[DialogueCore] InventoryManager.Instance が存在しません (#Give {itemID})");
+                }
+            }
+            return;
         }
+
+        // 将来的に #Sound, #Effect など拡張予定ならここに追加
     }
 
-    // ===== #Give アイテム付与 =====
-    private void CmdGiveItem(string args)
-    {
-        string itemId = (args ?? "").Trim();
-        if (string.IsNullOrEmpty(itemId))
-        {
-            Debug.LogWarning("[DialogueCore] #Give 書式不正: itemId が空です");
-            return;
-        }
-
-        var inv = InventoryManager.Instance;
-        if (inv == null)
-        {
-            Debug.LogWarning("[DialogueCore] InventoryManager.Instance が見つかりません");
-            return;
-        }
-
-        ItemData item = inv.allItems.Find(i => i != null && i.itemID == itemId);
-        if (item == null)
-        {
-            Debug.LogWarning($"[DialogueCore] #Give 失敗: itemId='{itemId}' が見つかりません");
-            return;
-        }
-
-        if (inv.HasItem(itemId))
-        {
-            Debug.Log($"[DialogueCore] #Give スキップ: 既に所持 itemId='{itemId}'");
-            return;
-        }
-
-        inv.AddItem(item);
-        Debug.Log($"[DialogueCore] #Give → AddItem 成功: itemId='{itemId}', itemName='{item.itemName}'");
-    }
-
-    // ===== ページ制御 =====
     private void EnsurePage(ref Page page, string speaker)
     {
         if (page == null) page = new Page { speaker = speaker };
@@ -235,5 +226,17 @@ public class DialogueCore : MonoBehaviour
     private void Finish(string id)
     {
         OnConversationEnded?.Invoke(id);
+    }
+
+    // ====== 🧩 追加: 現在ページをUIに再送信する ======
+    public void PushCurrentToUI()
+    {
+        if (pages == null || pages.Count == 0 || pageIndex < 0 || pageIndex >= pages.Count)
+            return;
+
+        var p = pages[pageIndex];
+        OnSpeakerChanged?.Invoke(p.speaker);
+        OnPortraitChanged?.Invoke(p.speaker);
+        OnLinesReady?.Invoke(p.lines.ToArray());
     }
 }

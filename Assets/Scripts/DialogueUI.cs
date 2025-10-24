@@ -18,18 +18,35 @@ public class DialogueUI : MonoBehaviour
 
         if (core)
         {
-            core.OnSpeakerChanged += s => { if (charaText) charaText.text = s; };
+            // イベント購読設定
+            core.OnSpeakerChanged += s =>
+            {
+                if (charaText) charaText.text = s;
+            };
+
             core.OnLinesReady += lines =>
             {
                 if (typingCoroutine != null) StopCoroutine(typingCoroutine);
-                isTyping = false; skipRequested = false;
-                typingCoroutine = StartCoroutine(TypeLines(lines));
+                isTyping = false;
+                skipRequested = false;
+                typingCoroutine = StartCoroutine(TypeLines(lines ?? System.Array.Empty<string>()));
             };
+
+            // ★追加：最初の会話開始直後に名前が出ない対策
+            StartCoroutine(DelayedSync());
         }
         else
         {
             Debug.LogError("[DialogueUI] Core が見つかりません。");
         }
+    }
+
+    // ===== 最初のページを反映（UI同期用） =====
+    private IEnumerator DelayedSync()
+    {
+        yield return null; // フレームを1つ待ってCore初期化を待機
+        if (core != null)
+            core.PushCurrentToUI(); // ← Core側のヘルパーを呼ぶ
     }
 
     void Update()
@@ -46,29 +63,33 @@ public class DialogueUI : MonoBehaviour
         isTyping = true;
         skipRequested = false;
 
-        string fixedPrefix = ""; // ← 確定済みの前行たち
-
+        string fixedPrefix = ""; // ← 既に確定した行
         foreach (var line in lines)
         {
-            string current = ""; // ← いま打っている行
+            string current = ""; // ← 現在タイプ中の行
 
-            // 毎フレーム「prefix + 現在の部分」だけを描く
             string prefixPlus = string.IsNullOrEmpty(fixedPrefix) ? "" : fixedPrefix + "\n";
 
             foreach (char c in line)
             {
-                if (skipRequested) { current = line; break; }
+                if (skipRequested)
+                {
+                    current = line;
+                    break;
+                }
 
                 current += c;
-                bodyText.text = prefixPlus + current; // ← 前行は固定、今行だけ伸ばす
+                bodyText.text = prefixPlus + current;
                 yield return new WaitForSeconds(typeSpeed);
             }
 
-            // 行を確定して prefix に吸収
-            fixedPrefix = string.IsNullOrEmpty(fixedPrefix) ? line : fixedPrefix + "\n" + line;
-            bodyText.text = fixedPrefix;
+            // 行確定
+            fixedPrefix = string.IsNullOrEmpty(fixedPrefix)
+                ? line
+                : fixedPrefix + "\n" + line;
 
-            skipRequested = false; // 次の行はまたタイプする
+            bodyText.text = fixedPrefix;
+            skipRequested = false;
         }
 
         isTyping = false;
