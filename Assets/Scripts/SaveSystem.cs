@@ -23,6 +23,8 @@ public static class SaveSystem
             itemTriggerList = new List<ItemTriggerSaveData>()
         };
 
+        data.playtime = Time.timeSinceLevelLoad + (GameFlags.Instance?.GetFloat("TotalPlayTime") ?? 0f);
+
         // === ギミック進行度 ===
         var allGimmicks = Resources.FindObjectsOfTypeAll<GimmickBase>();
         foreach (var g in allGimmicks)
@@ -66,6 +68,7 @@ public static class SaveSystem
     [System.Serializable]
     public class SaveData
     {
+        public float playtime;
         public string sceneName;
         public Vector3 playerPosition;
         public int playerDirection;

@@ -73,6 +73,7 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
             yield return new WaitUntil(() => !SaveSlotUIManager.Instance.IsOpen());
             Debug.Log("[SaveTrigger] セーブスロットが閉じられました。");
         }
+        PauseMenu.blockMenu = true;
         player.SetDirection(0);
         SoundManager.Instance?.PlayBGM(eventBGM);
 

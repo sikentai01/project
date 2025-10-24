@@ -81,13 +81,17 @@ public class SaveSlotUIManager : MonoBehaviour
 
         var buttons = saveSlotCanvas.GetComponentsInChildren<SaveSlotButton>(true);
         foreach (var btn in buttons)
-            btn.SetMode(isLoadMode, isViewOnly); //  新しい引数対応
+            btn.SetMode(isLoadMode, isViewOnly);
 
-        // --- 最初のスロットを選択 ---
-        if (buttons.Length > 0 && EventSystem.current != null)
+        // --- 最後に使ったスロット番号を読み込み ---
+        int lastSlot = PlayerPrefs.GetInt("LastUsedSlot", 1);
+        lastSlot = Mathf.Clamp(lastSlot, 1, buttons.Length);
+
+        // --- カーソルを最後のスロットに合わせる ---
+        if (EventSystem.current != null)
         {
             EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(buttons[0].gameObject);
+            EventSystem.current.SetSelectedGameObject(buttons[lastSlot - 1].gameObject);
         }
 
         if (PauseMenu.Instance != null)

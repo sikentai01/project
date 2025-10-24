@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class SaveSlotButton : MonoBehaviour
 {
@@ -9,12 +10,13 @@ public class SaveSlotButton : MonoBehaviour
 
     [Header("UI参照")]
     [SerializeField] private TMP_Text slotLabel;
+    [SerializeField] private TMP_Text detailLabel; // ← 追加：プレイ時間やシーン名表示用
 
     [Header("サウンド設定")]
     [SerializeField] private AudioClip clickSeClip;
 
     private bool isLoadMode = false;
-    private bool isViewOnly = false; //  追加
+    private bool isViewOnly = false;
 
     private void Start()
     {
@@ -23,11 +25,9 @@ public class SaveSlotButton : MonoBehaviour
 
     public void OnClickSlot()
     {
-        // --- 効果音 ---
         if (SoundManager.Instance != null && clickSeClip != null)
             SoundManager.Instance.PlaySE(clickSeClip);
 
-        //  閲覧専用モードでは何もしない
         if (isViewOnly)
         {
             Debug.Log($"[SaveSlotButton] スロット{slotNumber}は閲覧専用モードのため無効。");
@@ -36,14 +36,9 @@ public class SaveSlotButton : MonoBehaviour
 
         if (isLoadMode)
         {
-            // ==========================
-            //  ロードモード処理
-            // ==========================
             var data = SaveSystem.LoadGame(slotNumber);
             if (data != null)
             {
-                Debug.Log($"[SaveSlotButton] スロット{slotNumber}ロード開始：{data.sceneName}");
-
                 var boot = FindFirstObjectByType<BootLoader>();
                 if (boot == null)
                 {
@@ -56,13 +51,12 @@ public class SaveSlotButton : MonoBehaviour
 
                 var targetScene = SceneManager.GetSceneByName(data.sceneName);
                 if (targetScene.IsValid())
-                {
                     SceneManager.SetActiveScene(targetScene);
-                    Debug.Log($"[SaveSlotButton] アクティブシーンを {data.sceneName} に変更しました。");
-                }
 
                 GameBootstrap.loadedData = data;
                 new GameObject("GameBootstrap").AddComponent<GameBootstrap>();
+
+                PlayerPrefs.SetInt("LastUsedSlot", slotNumber); // ★ロード時も記録
             }
             else
             {
@@ -71,9 +65,6 @@ public class SaveSlotButton : MonoBehaviour
         }
         else
         {
-            // ==========================
-            //  セーブモード処理
-            // ==========================
             var player = FindFirstObjectByType<GridMovement>();
             if (player != null)
             {
@@ -84,6 +75,8 @@ public class SaveSlotButton : MonoBehaviour
                     player.GetDirection()
                 );
                 Debug.Log($"[SaveSlotButton] スロット{slotNumber}にセーブしました。");
+
+                PlayerPrefs.SetInt("LastUsedSlot", slotNumber); // ★最後に使ったスロットを記録
             }
             else
             {
@@ -97,9 +90,6 @@ public class SaveSlotButton : MonoBehaviour
         UpdateLabel();
     }
 
-    // ======================================================
-    //  モード設定（ビュー対応）
-    // ======================================================
     public void SetMode(bool loadMode, bool viewOnly = false)
     {
         isLoadMode = loadMode;
@@ -115,6 +105,23 @@ public class SaveSlotButton : MonoBehaviour
                           isLoadMode ? "ロード" :
                           "セーブ";
 
-        slotLabel.text = $"スロット {slotNumber} （{modeText}）";
+        // --- セーブデータ情報読み込み ---
+        var data = SaveSystem.LoadGame(slotNumber);
+
+        if (data != null)
+        {
+            string sceneName = data.sceneName;
+            TimeSpan playTime = TimeSpan.FromSeconds(data.playtime);
+            string timeText = $"{(int)playTime.TotalHours:D2}:{playTime.Minutes:D2}:{playTime.Seconds:D2}";
+            slotLabel.text = $"スロット {slotNumber} （{modeText}）";
+            if (detailLabel != null)
+                detailLabel.text = $"{sceneName}\n{timeText}";
+        }
+        else
+        {
+            slotLabel.text = $"スロット {slotNumber} （{modeText}）";
+            if (detailLabel != null)
+                detailLabel.text = "NO DATA";
+        }
     }
 }
