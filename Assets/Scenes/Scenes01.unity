@@ -150,6 +150,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 128796587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &67640988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3459361674775673979, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
+  m_PrefabInstance: {fileID: 786540221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &67640989 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5107428073490194859, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
+  m_PrefabInstance: {fileID: 786540221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &67640994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67640988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a2df5fba82b7c4aa7460fa8813f9e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gimmickID: Experience
+  currentStage: 0
+  rewardItemData: {fileID: 11400000, guid: 8ceec67496b2eee449f7afbdb7f41e92, type: 2}
+  initialConversationId: "\u6B63\u3057\u304F\u9078\u3079"
+  correctSequence: 00000000010000000200000003000000
 --- !u!1 &90096882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,7 +2643,6 @@ MonoBehaviour:
   - {fileID: 548721672}
   offObjects: []
   triggerIDToMonitor: Light
-  resetIfHasItemID: flashlight
 --- !u!1 &669214058
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,6 +3149,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -5107428073490194859, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 844206162}
     - targetCorrespondingSourceObject: {fileID: 2482177316925955475, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1181531777}
@@ -3151,6 +3180,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7152870184674082710, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
       insertIndex: -1
       addedObject: {fileID: 786540224}
+    - targetCorrespondingSourceObject: {fileID: -3459361674775673979, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 67640994}
     - targetCorrespondingSourceObject: {fileID: -2109422993193043551, guid: 0177639cc9865124c9058a3de8c4b380, type: 3}
       insertIndex: -1
       addedObject: {fileID: 904243998}
@@ -3319,6 +3351,99 @@ MonoBehaviour:
   triggersToDisable: []
   doorToLock: {fileID: 0}
   gameOverControllerObject: {fileID: 0}
+--- !u!1 &844206161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 844206162}
+  - component: {fileID: 844206164}
+  - component: {fileID: 844206163}
+  m_Layer: 0
+  m_Name: ExperimentTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &844206162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844206161}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.5, y: -12.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 67640989}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &844206163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844206161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b354e6ad07c6447b4e6240a36c3747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gimmickID: ExperienceTrigger
+  targetGimmick: {fileID: 67640994}
+--- !u!61 &844206164
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844206161}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!4 &860786910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5193592098862651060, guid: ecacc180b238eac4497e7e80d9ec03d1, type: 3}
@@ -4761,7 +4886,6 @@ MonoBehaviour:
   - {fileID: 661344959}
   offObjects: []
   triggerIDToMonitor: Light2
-  resetIfHasItemID: flashlight
 --- !u!1 &1474544483
 GameObject:
   m_ObjectHideFlags: 0

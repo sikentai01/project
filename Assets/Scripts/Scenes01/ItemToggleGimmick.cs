@@ -154,4 +154,17 @@ public class ItemToggleGimmick : GimmickBase
 
         Debug.Log($"[ItemToggleGimmick: {gimmickID}] ロード完了: セーブ値 {stage} を復元しました。");
     }
+    // どこかのスクリプト内 (例)
+
+    void ShowGimmickMenu()
+    {
+        if (GimmickCanvasController.Instance != null)
+        {
+            // 4つのボタンそれぞれにテキストを設定
+            GimmickCanvasController.Instance.SetButtonText(0, "調べる");
+            GimmickCanvasController.Instance.SetButtonText(1, "鍵を使う");
+            GimmickCanvasController.Instance.SetButtonText(2, "ドアを開ける");
+            GimmickCanvasController.Instance.SetButtonText(3, "戻る");
+        }
+    }
 }
