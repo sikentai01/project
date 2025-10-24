@@ -218,45 +218,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2705152039393778233, guid: bacf627e96afa1643bcde884287fc4b0, type: 3}
   m_PrefabInstance: {fileID: 5442684248326868564}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &294565955 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 89643222899700248, guid: 2fe0ef6376fae764ab1000d8e8487222, type: 3}
-  m_PrefabInstance: {fileID: 3351598584845634787}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &294565956 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9073605826397011238, guid: 2fe0ef6376fae764ab1000d8e8487222, type: 3}
   m_PrefabInstance: {fileID: 3351598584845634787}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &294565964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294565955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3a7b73bf4515547817e5b10e575d3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &294565965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294565955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0224891f347a2204c8ad49f6c7862fba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  core: {fileID: 294565964}
-  registry:
-  - conversationId: "\u6B63\u89E3"
-    relativePath: "Dialogue/\u6B63\u3057\u304F\u9078\u3079.txt"
-    textAsset: {fileID: 0}
 --- !u!114 &396265190 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5834923814936984036, guid: 0ae542e41d0a5a04bb7ac3d6ea00470a, type: 3}
@@ -3029,13 +2995,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9073605826397011238, guid: 2fe0ef6376fae764ab1000d8e8487222, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1930467921}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 89643222899700248, guid: 2fe0ef6376fae764ab1000d8e8487222, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 294565964}
-    - targetCorrespondingSourceObject: {fileID: 89643222899700248, guid: 2fe0ef6376fae764ab1000d8e8487222, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 294565965}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fe0ef6376fae764ab1000d8e8487222, type: 3}
 --- !u!1001 &3465707625807661655
 PrefabInstance:
