@@ -2917,7 +2917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[2].relativePath
@@ -2928,12 +2928,20 @@ PrefabInstance:
       value: SystemWindow/talk_001.txt
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[4].relativePath
+      value: "Dialogue/\u53D6\u3063\u624B.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[2].conversationId
       value: sample 1
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[3].conversationId
       value: talk_001 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[4].conversationId
+      value: "\u53D6\u3063\u624B"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
