@@ -57,14 +57,14 @@ public class ItemExchangeGimmick : GimmickBase
         // 1. ドアを閉鎖 (currentStageを0に設定) - 毎回実行する
         if (doorToLock != null)
         {
-            // DoorControllerの LoadProgress(0) を呼び出し、状態を閉鎖（Stage 0）に設定
             doorToLock.LoadProgress(0);
             Debug.Log($"[ItemExchangeGimmick] {doorToLock.gameObject.name} を閉鎖しました (Stage 0)。");
         }
 
-        // 2. 報酬アイテムを追加 (これも毎回実行)
+        // 2. 報酬アイテムを追加 (これが問題の核心なのでログを強化)
+        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] **アイテム追加処理を開始**。報酬ID: {rewardItemData.itemID}");
         InventoryManager.Instance.AddItem(rewardItemData);
-        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] {rewardItemData.name} ({rewardItemData.itemID}) をインベントリに追加しました。");
+        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] **アイテム追加処理を完了**。報酬: {rewardItemData.itemName} をインベントリに追加しました。");
 
 
         // 3. 初回のみ実行する特殊なサイドエフェクトの処理
@@ -80,7 +80,7 @@ public class ItemExchangeGimmick : GimmickBase
                 Debug.Log("[ItemExchangeGimmick] 初回実行 → ゲームオーバー起動");
             }
 
-            // C. 進行度を更新（完了とする）：これによりセーブされ、次回以降のこのブロックはスキップされる
+            // C. 進行度を更新（完了とする）
             this.currentStage = 1;
             Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 初回完了(Stage 1)に設定しました。");
         }
@@ -93,7 +93,7 @@ public class ItemExchangeGimmick : GimmickBase
             Debug.Log($"[ItemExchangeGimmick: {gimmickID}] {rewardObject.name} を表示しました。");
         }
 
-        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 交換完了: {rewardItemData.itemName} の入手処理完了。");
+        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 交換処理成功。");
 
         return true;
     }
@@ -103,7 +103,6 @@ public class ItemExchangeGimmick : GimmickBase
     /// </summary>
     private void DisableTriggers()
     {
-        // ... (DisableTriggers の中身は変更なし) ...
         foreach (var trigger in triggersToDisable)
         {
             if (trigger != null)
@@ -124,7 +123,7 @@ public class ItemExchangeGimmick : GimmickBase
         base.LoadProgress(stage);
 
         // ロード時にギミックが完了している場合、報酬の見た目とトリガーの状態を復元
-        if (this.currentStage >= 1 && !isRepeatable) // 繰り返し不可のギミックのみロード時状態復元
+        if (this.currentStage >= 1 && !isRepeatable)
         {
             if (rewardObject != null)
             {
