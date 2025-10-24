@@ -1,24 +1,30 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 /// <summary>
 /// アイテム使用とEnterキーで状態をトグルし、アイテムの消費・復元を行うギミック
-/// Stage 0: 待機状態 (オブジェクト非表示、アイテムが手元にある状態)
-/// Stage 1: 設置状態 (オブジェクト表示、アイテムが消費された状態)
+/// Stage 0: 待機状態 (オブジェクトがOFF)
+/// Stage 1: 設置状態 (オブジェクトがON)
 /// </summary>
 public class ItemToggleGimmick : GimmickBase
 {
     [Header("このギミックでトグルするアイテムデータ")]
     public ItemData toggleItemData;
 
-    [Header("表示/非表示を切り替えるターゲット")]
-    public GameObject targetObject;
+    [Header("表示/非表示を切り替えるオブジェクト群")]
+    public GameObject[] targetObjects; // Stage 1でONになるグループ
+
+    [Header("表示/非表示を逆に切り替えるオブジェクト群 (Stage 1でOFF)")]
+    public GameObject[] offObjects; // Stage 1でOFFになるグループ
 
     [Header("対応するGimmickTriggerのID")] // Enterキー入力の範囲を特定するために使用
     public string triggerIDToMonitor;
 
     private GimmickTrigger associatedTrigger; // 監視対象のトリガー
-    private bool isInitialized = false;
+
+    // Enterキー入力の有効範囲チェックに使う
+    private bool IsPlayerNear => associatedTrigger != null && associatedTrigger.IsPlayerNear;
 
     private void Awake()
     {
@@ -28,6 +34,7 @@ public class ItemToggleGimmick : GimmickBase
             var triggers = FindObjectsByType<GimmickTrigger>(FindObjectsSortMode.None);
             foreach (var trigger in triggers)
             {
+                // GimmickTriggerはGimmickIDを持っていませんが、ここでは仮にTargetGimmickIDと同一視します
                 if (trigger.gimmickID == triggerIDToMonitor)
                 {
                     associatedTrigger = trigger;
@@ -44,18 +51,16 @@ public class ItemToggleGimmick : GimmickBase
 
     private void Start()
     {
+        // currentStageに基づいて初期状態を設定
         UpdateVisualState();
     }
 
     private void Update()
     {
-        // プレイヤーの接近判定を associatedTrigger 経由で行う
-        bool isPlayerInZone = associatedTrigger != null && associatedTrigger.IsPlayerNear;
-
         // 設置状態 (Stage 1) でプレイヤーが範囲内にいる場合に Enter キー入力を検出
-        if (currentStage == 1 && isPlayerInZone && Input.GetKeyDown(KeyCode.Return))
+        if (currentStage == 1 && IsPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
-            // 設置状態から待機状態へトグルする
+            // 設置状態から待機状態へトグルする (アイテム復元＆非表示)
             TryRestoreItemAndHide();
         }
     }
@@ -69,11 +74,11 @@ public class ItemToggleGimmick : GimmickBase
     /// </summary>
     public bool TryPlaceAndConsumeItem()
     {
-        if (currentStage != 0) return false;
+        if (currentStage != 0) return false; // 既に設置済みの場合は失敗
 
-        if (targetObject == null || toggleItemData == null)
+        if (targetObjects.Length == 0 || toggleItemData == null)
         {
-            Debug.LogWarning("[ItemToggleGimmick] ターゲットまたはアイテムが未設定です。");
+            Debug.LogWarning("[ItemToggleGimmick] ターゲットオブジェクトまたはアイテムが未設定です。");
             return false;
         }
 
@@ -93,11 +98,11 @@ public class ItemToggleGimmick : GimmickBase
     /// </summary>
     private void TryRestoreItemAndHide()
     {
-        if (currentStage != 1) return;
+        if (currentStage != 1) return; // 設置済みでなければ失敗
 
-        if (targetObject == null || toggleItemData == null)
+        if (toggleItemData == null)
         {
-            Debug.LogWarning("[ItemToggleGimmick] ターゲットまたはアイテムが未設定です。");
+            Debug.LogWarning("[ItemToggleGimmick] トグルアイテムが未設定です。アイテム復元できません。");
             return;
         }
 
@@ -115,10 +120,21 @@ public class ItemToggleGimmick : GimmickBase
 
     private void UpdateVisualState()
     {
-        if (targetObject == null) return;
+        bool shouldBeActive = (currentStage == 1); // Stage 1ならON、0ならOFF
 
-        // Stage 1 なら表示、Stage 0 なら非表示
-        targetObject.SetActive(currentStage == 1);
+        // targetObjects: Stage 1でONになるグループ
+        foreach (var obj in targetObjects)
+        {
+            if (obj != null)
+                obj.SetActive(shouldBeActive);
+        }
+
+        // offObjects: Stage 1でOFFになるグループ
+        foreach (var obj in offObjects)
+        {
+            if (obj != null)
+                obj.SetActive(!shouldBeActive);
+        }
     }
 
     public override void LoadProgress(int stage)
