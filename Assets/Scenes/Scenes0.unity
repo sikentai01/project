@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b54e6ef9e2b7954e8f73f74ef59dfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventBGM: {fileID: 0}
+  eventBGM: {fileID: 8300000, guid: b4a5ed86abf4e0c46bff82ce5b683710, type: 3}
   requiredDirection: 3
   rewardItem: {fileID: 11400000, guid: ae2c57bfa11f96349903ef91a81202b5, type: 2}
   sceneNpc: {fileID: 1834187833}
