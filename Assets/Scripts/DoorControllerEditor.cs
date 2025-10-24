@@ -9,9 +9,20 @@ public class DoorControllerEditor : Editor
     {
         serializedObject.Update();
 
-        EditorGUILayout.LabelField("ギミック設定", EditorStyles.boldLabel);
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("gimmickID"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("currentStage"));
+        // --- ギミック情報 ---
+        var gimmickID = serializedObject.FindProperty("gimmickID");
+        var currentStage = serializedObject.FindProperty("currentStage");
+
+        if (gimmickID != null && currentStage != null)
+        {
+            EditorGUILayout.LabelField("ギミック設定", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(gimmickID);
+            EditorGUILayout.PropertyField(currentStage);
+        }
+        else
+        {
+            EditorGUILayout.HelpBox("親クラス(GimmickBase)のギミック情報を使用中", MessageType.Info);
+        }
 
         EditorGUILayout.Space();
         var moveTypeProp = serializedObject.FindProperty("moveType");
@@ -43,10 +54,19 @@ public class DoorControllerEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("lockedSE"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("unlockSE"));
 
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("システムテキスト", EditorStyles.boldLabel);
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("systemTextWhenLocked"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("systemTextWhenUnlocked"));
+        // システムテキストが存在するか安全チェック
+        var systemTextWhenLocked = serializedObject.FindProperty("systemTextWhenLocked");
+        var systemTextWhenUnlocked = serializedObject.FindProperty("systemTextWhenUnlocked");
+
+        if (systemTextWhenLocked != null || systemTextWhenUnlocked != null)
+        {
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("システムテキスト", EditorStyles.boldLabel);
+            if (systemTextWhenLocked != null)
+                EditorGUILayout.PropertyField(systemTextWhenLocked);
+            if (systemTextWhenUnlocked != null)
+                EditorGUILayout.PropertyField(systemTextWhenUnlocked);
+        }
 
         serializedObject.ApplyModifiedProperties();
     }

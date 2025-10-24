@@ -17,10 +17,6 @@ public class DoorController : GimmickBase
     [SerializeField] private string targetPointName = "SpawnPoint";
     [SerializeField] private Transform targetPoint;
 
-    [Header("ギミック情報")]
-    public string gimmickID = "";
-    public int currentStage = 0;
-
     [Header("鍵設定")]
     [Tooltip("必要な鍵アイテムID（空なら常時開放）")]
     [SerializeField] private string requiredKeyID = "";

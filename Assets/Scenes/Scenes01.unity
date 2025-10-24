@@ -754,8 +754,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 519290832}
-  gimmickID: Scene1_Liver2_Door
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 1
   doorAnimator: {fileID: 0}
@@ -1082,13 +1080,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gimmickID: Scene1_Stomach1_Door3
-  currentStage: 1
+  currentStage: 0
   moveType: 0
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 1070853572}
-  gimmickID: Scene1_Stomach1_Door3
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 2
   doorAnimator: {fileID: 0}
@@ -1354,8 +1350,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: Scene01_hallway1_Spawn
   targetPoint: {fileID: 1021671406}
-  gimmickID: Secne1_hallway1_Door2
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 0
   doorAnimator: {fileID: 0}
@@ -1654,8 +1648,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 591374809}
-  gimmickID: Scene1_Stomach1_Door1
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 3
   doorAnimator: {fileID: 0}
@@ -1731,8 +1723,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 59387031}
-  gimmickID: Scene1_Liver1_Door1
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 2
   doorAnimator: {fileID: 0}
@@ -2378,8 +2368,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 943123170}
-  gimmickID: Secne1_hallway1_Door1
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 3
   doorAnimator: {fileID: 0}
@@ -2954,8 +2942,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 1181531777}
-  gimmickID: Scene1_Gallbladder_Door1
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 3
   doorAnimator: {fileID: 0}
@@ -3342,8 +3328,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 300934247}
-  gimmickID: Scene1_Liver1_Door2
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 2
   doorAnimator: {fileID: 0}
@@ -3748,8 +3732,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 1007306879}
-  gimmickID: Scene1_Liver1_Door3
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 0
   doorAnimator: {fileID: 0}
@@ -4061,8 +4043,6 @@ MonoBehaviour:
   targetScene: Scene03
   targetPointName: SpawnPoint
   targetPoint: {fileID: 0}
-  gimmickID: Scene1_Stomach1_Door4
-  currentStage: 0
   requiredKeyID: a
   requiredDirection: 0
   doorAnimator: {fileID: 0}
@@ -5608,8 +5588,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 1511323830}
-  gimmickID: Secne1_EsoPhagus_Door3
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 0
   doorAnimator: {fileID: 0}
@@ -6731,8 +6709,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 2037252002}
-  gimmickID: Scene1_Stomach1_Door2
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 1
   doorAnimator: {fileID: 0}
@@ -6953,8 +6929,6 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 1036480376}
-  gimmickID: Scene1_Spleen_Door1
-  currentStage: 1
   requiredKeyID: 
   requiredDirection: 1
   doorAnimator: {fileID: 0}
