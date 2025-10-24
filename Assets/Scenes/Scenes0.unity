@@ -1044,8 +1044,7 @@ MonoBehaviour:
   requiredDirection: 3
   canInspectAfterCollected: 0
   systemMessageFiles:
-  - sample 1
-  - talk_001 1
+  - "\u61D0\u4E2D\u96FB\u706F\u5165\u624B"
   freezeDuringText: 1
 --- !u!1 &1678947925
 GameObject:

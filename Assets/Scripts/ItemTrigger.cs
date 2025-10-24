@@ -79,7 +79,9 @@ public class ItemTrigger : MonoBehaviour
         if (freezeDuringText && playerMovement != null)
             playerMovement.enabled = false;
 
-        // ★↓↓↓↓ここだけ書き換え↓↓↓↓
+        // ★ BootLoaderによる初期化待ち（←これを追加）
+        yield return new WaitUntil(() => BootLoader.HasBooted);
+
         foreach (var fileName in systemMessageFiles)
         {
             string fullPath = Path.Combine(Application.streamingAssetsPath, "SystemWindow", fileName + ".txt");
@@ -89,23 +91,18 @@ public class ItemTrigger : MonoBehaviour
                 continue;
             }
 
-            string text = File.ReadAllText(fullPath, System.Text.Encoding.UTF8);
+            string conversationId = Path.GetFileNameWithoutExtension(fileName);
 
-            var adapter = ConversationTriggerAdapter.Instance ??
-                          Object.FindObjectOfType<ConversationTriggerAdapter>(true);
-
-            if (adapter != null)
+            if (ConversationHub.Instance != null)
             {
-                // “txtの中身を直接会話UIに送る”
-                adapter.FireRawText(text, fileName, true);
-                Debug.Log($"[ItemTrigger] SystemWindow テキスト {fileName} を表示");
+                ConversationHub.Instance.Fire(conversationId);
+                Debug.Log($"[ItemTrigger] Dialogue 会話開始: {conversationId}");
             }
             else
             {
-                Debug.LogWarning("[ItemTrigger] ConversationTriggerAdapter が見つかりません。");
+                Debug.LogWarning("[ItemTrigger] ConversationHub が見つからないため会話を開始できません。");
             }
 
-            // 会話が終わるまで待機（必要に応じて調整）
             yield return new WaitUntil(() => !IsConversationActive());
         }
         // ★↑↑↑↑ここだけ書き換え↑↑↑↑

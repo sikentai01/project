@@ -28,6 +28,7 @@ public class BootLoader : MonoBehaviour
     private bool isFading = false;
     public static bool IsTransitioning { get; set; } = false;
     public static bool IsPlayerSpawning { get; private set; } = false; // Å©Åö í«â¡
+    public static bool HasBooted { get; private set; } = false;
 
     private void Awake()
     {
@@ -187,6 +188,7 @@ public class BootLoader : MonoBehaviour
 
         var titleScene = loadedScenes["Title"];
         SceneManager.SetActiveScene(titleScene);
+        HasBooted = true;
     }
 
     public void SetSceneActive(string sceneName, bool active)
