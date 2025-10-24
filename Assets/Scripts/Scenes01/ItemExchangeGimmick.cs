@@ -25,6 +25,15 @@ public class ItemExchangeGimmick : GimmickBase
     public GameObject gameOverControllerObject;
 
 
+    private void Start()
+    {
+        // currentStageに基づいて初期状態を設定
+        // LoadProgressが呼ばれる前に、Inspectorで設定されたcurrentStage(通常は0)で初期化される
+        // LoadProgressが呼ばれたらその値で上書きされ、UpdateVisualState()が呼ばれる
+        UpdateVisualState();
+    }
+
+
     /// <summary>
     /// アイテム交換処理を実行する
     /// </summary>
@@ -33,54 +42,53 @@ public class ItemExchangeGimmick : GimmickBase
     {
         Debug.Log($"[ItemExchangeGimmick: {gimmickID}] ExecuteExchangeが呼ばれました。");
 
-        // 既に完了済み（currentStageが1以上）かつ、繰り返し不可(isRepeatable=false)なら失敗
-        if (!isRepeatable && this.currentStage >= 1)
+        // 1. 既に完了済み（currentStageが1以上）かつ、繰り返し不可(isRepeatable=false)なら失敗
+        if (currentStage >= 1 && !isRepeatable)
         {
-            Debug.Log($"[ItemExchangeGimmick: {gimmickID}] ギミックは既に完了しています。実行をスキップします。");
+            Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 既に完了済みで繰り返し不可のため、失敗。");
             return false;
         }
 
-        if (rewardItemData == null)
+        // 2. 報酬アイテムをインベントリに追加
+        if (rewardItemData != null)
         {
-            Debug.LogWarning($"[ItemExchangeGimmick: {gimmickID}] 報酬アイテムが設定されていません。失敗。");
-            return false;
+            if (InventoryManager.Instance != null)
+            {
+                InventoryManager.Instance.AddItem(rewardItemData);
+                Debug.Log($"[ItemExchangeGimmick: {gimmickID}] {rewardItemData.itemName} をインベントリに追加しました。");
+            }
+            else
+            {
+                Debug.LogWarning("[ItemExchangeGimmick] InventoryManager.Instanceがnullです。");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[ItemExchangeGimmick] rewardItemDataが設定されていません。");
         }
 
-        if (InventoryManager.Instance == null)
+
+        // 3. 初回実行時 (Stage 0) のみサイドエフェクトを実行
+        if (currentStage == 0)
         {
-            Debug.LogError($"[ItemExchangeGimmick: {gimmickID}] InventoryManagerがNULLです。アイテムを追加できません。");
-            return false;
-        }
-
-        // --- 成功処理 ---
-
-        // 1. ドアを閉鎖 (currentStageを0に設定) - 毎回実行する
-        if (doorToLock != null)
-        {
-            doorToLock.LoadProgress(0);
-            Debug.Log($"[ItemExchangeGimmick] {doorToLock.gameObject.name} を閉鎖しました (Stage 0)。");
-        }
-
-        // 2. 報酬アイテムを追加 (これが問題の核心なのでログを強化)
-        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] **アイテム追加処理を開始**。報酬ID: {rewardItemData.itemID}");
-        InventoryManager.Instance.AddItem(rewardItemData);
-        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] **アイテム追加処理を完了**。報酬: {rewardItemData.itemName} をインベントリに追加しました。");
-
-
-        // 3. 初回のみ実行する特殊なサイドエフェクトの処理
-        if (this.currentStage == 0) // currentStage が 0 (初期状態) の場合のみ実行
-        {
-            // A. トリガーを無効化
+            // A. トリガーの無効化
             DisableTriggers();
 
-            // B. ゲームオーバー処理の実行
+            // B. ドアの施錠
+            if (doorToLock != null)
+            {
+                doorToLock.currentStage = 0; // ドアを閉じる (DoorController側で見た目を更新する想定)
+                Debug.Log($"[ItemExchangeGimmick: {gimmickID}] {doorToLock.gameObject.name} を施錠しました。");
+            }
+
+            // C. ゲームオーバーコントローラーをアクティブ化
             if (gameOverControllerObject != null)
             {
                 gameOverControllerObject.SetActive(true);
-                Debug.Log("[ItemExchangeGimmick] 初回実行 → ゲームオーバー起動");
+                Debug.Log($"[ItemExchangeGimmick: {gimmickID}] {gameOverControllerObject.name} をアクティブにしました。");
             }
 
-            // C. 進行度を更新（完了とする）
+            // D. 進行度を更新（完了とする）
             this.currentStage = 1;
             Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 初回完了(Stage 1)に設定しました。");
         }
@@ -92,6 +100,8 @@ public class ItemExchangeGimmick : GimmickBase
             rewardObject.SetActive(true);
             Debug.Log($"[ItemExchangeGimmick: {gimmickID}] {rewardObject.name} を表示しました。");
         }
+
+        // Stage 1 になった後の繰り返し交換時は currentStage の変更はなし
 
         Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 交換処理成功。");
 
@@ -118,19 +128,33 @@ public class ItemExchangeGimmick : GimmickBase
         }
     }
 
+    /// <summary>
+    /// 現在の進行段階に基づきオブジェクトの状態を更新
+    /// </summary>
+    private void UpdateVisualState()
+    {
+        // 報酬オブジェクトの表示/非表示を currentStage に基づいて決定
+        if (rewardObject != null)
+        {
+            // Stage 1以上なら表示
+            rewardObject.SetActive(currentStage >= 1);
+        }
+
+        // その他の視覚的な変化が必要であればここに追加
+    }
+
+    // =====================================================
+    // セーブ・ロード
+    // =====================================================
+
     public override void LoadProgress(int stage)
     {
+        // ★★★ 修正点: 親クラス (GimmickBase) の実装を呼び出し、セーブデータ通りの進行段階を復元する ★★★
         base.LoadProgress(stage);
 
-        // ロード時にギミックが完了している場合、報酬の見た目とトリガーの状態を復元
-        if (this.currentStage >= 1 && !isRepeatable)
-        {
-            if (rewardObject != null)
-            {
-                rewardObject.SetActive(true);
-            }
-            // 完了状態ならトリガーも無効化を復元
-            DisableTriggers();
-        }
+        // ロードされた進行段階に基づいて見た目を更新
+        UpdateVisualState();
+
+        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] ロード完了: セーブ値 {stage} を復元しました。");
     }
 }

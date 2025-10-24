@@ -2616,6 +2616,7 @@ MonoBehaviour:
   - {fileID: 548721672}
   offObjects: []
   triggerIDToMonitor: Light
+  resetIfHasItemID: flashlight
 --- !u!1 &669214058
 GameObject:
   m_ObjectHideFlags: 0
@@ -4760,6 +4761,7 @@ MonoBehaviour:
   - {fileID: 661344959}
   offObjects: []
   triggerIDToMonitor: Light2
+  resetIfHasItemID: flashlight
 --- !u!1 &1474544483
 GameObject:
   m_ObjectHideFlags: 0
