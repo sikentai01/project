@@ -19,3 +19,4 @@ MonoBehaviour:
   DebugOwned: 0
   effects:
   - {fileID: 11400000, guid: ef9d33ceff76b2048b42a23130c19a7d, type: 2}
+  - {fileID: 11400000, guid: ddbd12194e3275940a81d85918c359dc, type: 2}
