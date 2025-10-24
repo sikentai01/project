@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 [CreateAssetMenu(menuName = "Gimmick/Exchange Item Effect", fileName = "ExchangeItemEffect")]
 public class ExchangeItemEffect : GimmickEffectBase
@@ -9,15 +11,20 @@ public class ExchangeItemEffect : GimmickEffectBase
     [Header("必要な向き (0=下, 1=左, 2=右, 3=上, -1=制限なし)")]
     public int requiredDirection = -1;
 
-    [Header("ギミック成功時に再生するSE")]
-    public AudioClip successSeClip; // ★ 新規追加フィールド
+    // ギミック起動に使用する会話ID
+    [Header("アイテム使用時に開始する会話ID")]
+    public string conversationId = "";
 
-    /// <summary>
-    /// アイテムが使用可能か判定する。向きとコライダー範囲内をチェック。
-    /// </summary>
+    [Header("ギミック成功時に再生するSE")]
+    public AudioClip successSeClip;
+
+    private static Dictionary<string, Action<string>> activeCallbacks = new Dictionary<string, Action<string>>();
+
+    // CanExecute() のロジックは変更なし
+
     public override bool CanExecute(ItemData item)
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
+        var player = UnityEngine.GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
 
         // 1. 向きのチェック
@@ -34,7 +41,7 @@ public class ExchangeItemEffect : GimmickEffectBase
         }
 
         // 2. コライダー範囲のチェック
-        var triggers = Object.FindObjectsByType<GimmickTrigger>(FindObjectsSortMode.None);
+        var triggers = UnityEngine.Object.FindObjectsByType<GimmickTrigger>(FindObjectsSortMode.None);
         foreach (var trigger in triggers)
         {
             if (!trigger.IsPlayerNear) continue;
@@ -53,31 +60,81 @@ public class ExchangeItemEffect : GimmickEffectBase
         return false;
     }
 
+
     public override void Execute(ItemData usedItem)
     {
-        bool success = TryInvokeNearbyGimmick<ItemExchangeGimmick>(gimmick =>
+        var gimmick = FindNearbyGimmick<ItemExchangeGimmick>();
+        if (gimmick == null || DialogueCore.Instance == null || string.IsNullOrEmpty(conversationId))
         {
-            if (!string.IsNullOrEmpty(targetGimmickID) && gimmick.gimmickID != targetGimmickID)
-                return;
+            Debug.LogWarning("[ExchangeItemEffect] ギミック/Core/会話IDのいずれかが不足しています。");
+            return;
+        }
 
-            // アイテム交換処理を実行
+        if (activeCallbacks.ContainsKey(conversationId))
+        {
+            DialogueCore.Instance.OnConversationEnded -= activeCallbacks[conversationId];
+            activeCallbacks.Remove(conversationId);
+        }
+
+        // 3. 会話終了時に実行するアクションを定義
+        Action<string> onConvEnd = null;
+        onConvEnd = (finishedId) =>
+        {
+            if (finishedId != conversationId) return;
+
+            // ギミック起動、SE再生、アイテム削除
             if (gimmick.ExecuteExchange())
             {
-                // ★ SE再生処理の追加 ★
+                // ★★★ CS0571 エラー修正箇所 ★★★
                 if (SoundManager.Instance != null && successSeClip != null)
                 {
                     SoundManager.Instance.PlaySE(successSeClip);
-                    Debug.Log($"[ExchangeItemEffect] SE再生: {successSeClip.name}");
+                    Debug.Log($"[ExchangeItemEffect] 会話終了後 SE再生: {successSeClip.name}");
                 }
 
-                // 成功した場合のみアイテムを削除
+                // アイテム削除
                 InventoryManager.Instance.RemoveItemByID(usedItem.itemID);
             }
-        });
 
-        if (!success)
+            // リスナー解除
+            DialogueCore.Instance.OnConversationEnded -= onConvEnd;
+            activeCallbacks.Remove(conversationId);
+            Debug.Log($"[ExchangeItemEffect] 会話終了処理完了 ({conversationId})");
+        };
+
+        // 4. イベントリスナーを登録
+        DialogueCore.Instance.OnConversationEnded += onConvEnd;
+        activeCallbacks.Add(conversationId, onConvEnd);
+
+        // 5. 会話を開始 (ConversationHub経由)
+        if (ConversationHub.Instance != null)
         {
-            Debug.LogWarning($"[ExchangeItemEffect] 近くに対象のギミックが見つかりません。アイテムは削除されませんでした。");
+            ConversationHub.Instance.Fire(conversationId);
+            Debug.Log($"[ExchangeItemEffect] 会話開始: {conversationId}");
         }
+        else
+        {
+            Debug.LogWarning("[ExchangeItemEffect] ConversationHubが見つからないため会話を開始できません。");
+        }
+    }
+
+    // 近くのギミックを見つけるヘルパー
+    private T FindNearbyGimmick<T>() where T : GimmickBase
+    {
+        var triggers = UnityEngine.Object.FindObjectsByType<GimmickTrigger>(FindObjectsSortMode.None);
+        foreach (var trigger in triggers)
+        {
+            if (!trigger.IsPlayerNear) continue;
+
+            var gimmick = trigger.GetGimmick<T>();
+            if (gimmick != null)
+            {
+                if (string.IsNullOrEmpty(targetGimmickID) || gimmick.gimmickID == targetGimmickID)
+                {
+                    return gimmick;
+                }
+            }
+        }
+        return null;
     }
 }
