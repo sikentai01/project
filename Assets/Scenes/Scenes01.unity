@@ -1085,7 +1085,7 @@ MonoBehaviour:
   targetScene: 
   targetPointName: SpawnPoint
   targetPoint: {fileID: 1070853572}
-  requiredKeyID: 
+  requiredKeyID: 3
   requiredDirection: 2
   doorAnimator: {fileID: 0}
   openSE: {fileID: 8300000, guid: 2066e0d819c74914f9b279698e3adec2, type: 3}
