@@ -15,6 +15,6 @@ MonoBehaviour:
   itemID: 7
   itemName: "\u6C34\u5165\u308A\u74F6"
   description: "\u304A\u3044\u3057\u305D\u3046\u306A\u6C34"
-  isConsumable: 0
+  isConsumable: 1
   DebugOwned: 0
   effects: []

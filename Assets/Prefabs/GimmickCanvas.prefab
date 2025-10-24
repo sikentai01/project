@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2365017987374069924}
   - component: {fileID: 7096886169484350202}
   - component: {fileID: 8522738875434388910}
-  - component: {fileID: 379501085640789718}
   m_Layer: 0
   m_Name: GimmickCanvas
   m_TagString: Untagged
@@ -103,20 +102,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &379501085640789718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 89643222899700248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9041181f555cb0a478515ba61435ea50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasRoot: {fileID: 0}
-  buttons: []
 --- !u!1 &358554872388037926
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +194,7 @@ GameObject:
   - component: {fileID: 6259177715246583287}
   - component: {fileID: 3227190020013004082}
   m_Layer: 0
-  m_Name: Button (2)
+  m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,12 +271,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 2097200591704744442}
+    m_SelectOnDown: {fileID: 3227190020013004082}
+    m_SelectOnLeft: {fileID: 3227190020013004082}
+    m_SelectOnRight: {fileID: 273623358350222435}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -382,7 +367,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u25A0"
+  m_text: "\u5DE6\u4E0B\u306E\u30DC\u30BF\u30F3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 444bd0699f89f1142aec26f9636882c4, type: 2}
   m_sharedMaterial: {fileID: 8402858186396548899, guid: 444bd0699f89f1142aec26f9636882c4, type: 2}
@@ -391,8 +376,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4290032820
+  m_fontColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -409,8 +394,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -518,7 +503,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xD7"
+  m_text: "\u53F3\u4E0A\u306E\u30DC\u30BF\u30F3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 444bd0699f89f1142aec26f9636882c4, type: 2}
   m_sharedMaterial: {fileID: 8402858186396548899, guid: 444bd0699f89f1142aec26f9636882c4, type: 2}
@@ -527,8 +512,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4290032820
+  m_fontColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -545,8 +530,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -602,7 +587,7 @@ GameObject:
   - component: {fileID: 3030770951069166828}
   - component: {fileID: 2097200591704744442}
   m_Layer: 0
-  m_Name: Button (4)
+  m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -679,12 +664,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 2097200591704744442}
+    m_SelectOnDown: {fileID: 3227190020013004082}
+    m_SelectOnLeft: {fileID: 2097200591704744442}
+    m_SelectOnRight: {fileID: 3933774207945371133}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -723,7 +708,7 @@ GameObject:
   - component: {fileID: 6644845800015129692}
   - component: {fileID: 3933774207945371133}
   m_Layer: 0
-  m_Name: Button (3)
+  m_Name: Button4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -800,12 +785,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 3933774207945371133}
+    m_SelectOnDown: {fileID: 273623358350222435}
+    m_SelectOnLeft: {fileID: 2097200591704744442}
+    m_SelectOnRight: {fileID: 3933774207945371133}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -844,7 +829,7 @@ GameObject:
   - component: {fileID: 9157459664843897995}
   - component: {fileID: 273623358350222435}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Button3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -921,12 +906,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 3933774207945371133}
+    m_SelectOnDown: {fileID: 273623358350222435}
+    m_SelectOnLeft: {fileID: 3227190020013004082}
+    m_SelectOnRight: {fileID: 273623358350222435}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1017,7 +1002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u25B2"
+  m_text: "\u5DE6\u4E0A\u306E\u30DC\u30BF\u30F3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 444bd0699f89f1142aec26f9636882c4, type: 2}
   m_sharedMaterial: {fileID: 8402858186396548899, guid: 444bd0699f89f1142aec26f9636882c4, type: 2}
@@ -1026,8 +1011,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4290032820
+  m_fontColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1044,8 +1029,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1153,7 +1138,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u25CB"
+  m_text: "\u53F3\u4E0B\u306E\u30DC\u30BF\u30F3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 444bd0699f89f1142aec26f9636882c4, type: 2}
   m_sharedMaterial: {fileID: 8402858186396548899, guid: 444bd0699f89f1142aec26f9636882c4, type: 2}
@@ -1162,8 +1147,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4290032820
+  m_fontColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1180,8 +1165,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

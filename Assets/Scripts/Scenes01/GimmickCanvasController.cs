@@ -11,6 +11,9 @@ public class GimmickCanvasController : MonoBehaviour
     [Header("ボタン群（インスペクターで割り当て）")]
     public Button[] buttons;
 
+    // 現在このキャンバスを使用中のギミック
+    private ButtonSequenceGimmick activeGimmick;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,19 +34,48 @@ public class GimmickCanvasController : MonoBehaviour
     // ===============================
     //  基本表示制御
     // ===============================
-    public void ShowCanvas()
+    public void ShowCanvas(ButtonSequenceGimmick gimmick)
     {
-        if (canvasRoot != null) canvasRoot.enabled = true;
+        activeGimmick = gimmick;
+
+        if (canvasRoot != null)
+            canvasRoot.enabled = true;
+
+        // ボタン押下時のリスナー設定
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            int index = i;
+            buttons[i].onClick.RemoveAllListeners();
+            buttons[i].onClick.AddListener(() =>
+            {
+                OnButtonPressed(index);
+            });
+        }
     }
 
     public void HideCanvas()
     {
-        if (canvasRoot != null) canvasRoot.enabled = false;
+        if (canvasRoot != null)
+            canvasRoot.enabled = false;
+
+        activeGimmick = null;
     }
 
     // ===============================
     //  ボタン制御
     // ===============================
+    private void OnButtonPressed(int index)
+    {
+        // 紐づいているギミックに通知
+        if (activeGimmick != null)
+        {
+            activeGimmick.OnButtonClick(index);
+        }
+        else
+        {
+            Debug.LogWarning("[GimmickCanvasController] アクティブなギミックが未設定です。");
+        }
+    }
 
     /// <summary>
     /// 指定インデックスのボタンにテキストを設定

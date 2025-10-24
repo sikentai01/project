@@ -1,7 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class ButtonSequenceGimmick : GimmickBase
 {
     [Header("ギミック設定")]
@@ -11,119 +13,122 @@ public class ButtonSequenceGimmick : GimmickBase
     public string initialConversationId;
 
     [Header("正解のボタン順序 (インデックス 0～3)")]
-    [Tooltip("クリックすべきボタンのインデックスを順番に設定")]
     public List<int> correctSequence = new List<int> { 0, 1, 2, 3 };
 
     private List<int> inputSequence = new List<int>();
     private GimmickCanvasController canvasController;
 
-    private bool initialized = false;
+    private bool isPlayerNear = false;
+    private bool isActive = false; // 現在キャンバス操作中かどうか
 
-    // -----------------------------------------------------
-    private void Start()
+    // =====================================================
+    private IEnumerator Start()
     {
-        StartCoroutine(WaitForBootstrapAndCanvas());
-    }
-
-    private System.Collections.IEnumerator WaitForBootstrapAndCanvas()
-    {
-        yield return new WaitUntil(() =>
-            BootLoader.HasBooted &&
-            GimmickCanvasController.Instance != null);
+        yield return new WaitUntil(() => BootLoader.HasBooted);
 
         canvasController = GimmickCanvasController.Instance;
-        InitializeGimmick();
-        initialized = true;
-    }
+        inputSequence.Clear();
 
-    private void InitializeGimmick()
-    {
-        if (currentStage == 0)
-        {
-            inputSequence.Clear();
-            DisplayConversationPage(initialConversationId);
-        }
-        else if (currentStage < correctSequence.Count)
-        {
+        if (currentStage > 0)
             inputSequence = Enumerable.Repeat(0, currentStage).ToList();
-            DisplayConversationPage($"{initialConversationId}_{currentStage}");
-        }
-        else
+
+        Debug.Log($"[Gimmick] {gimmickID} 初期化完了 stage={currentStage}");
+    }
+
+
+    private void Update()
+    {
+        if (!isPlayerNear) return;
+        if (PauseMenu.isPaused) return;
+        if (BootLoader.IsPlayerSpawning) return;
+
+        // === Enterキー入力 ===
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            inputSequence = Enumerable.Repeat(0, correctSequence.Count).ToList();
-            DisplayConversationPage($"{initialConversationId}_Completed");
+            if (!isActive)
+            {
+                OpenCanvas();
+            }
         }
     }
 
-    // -----------------------------------------------------
-    // UI操作用関数（ボタン押下時に呼ばれる）
+    private void OpenCanvas()
+    {
+        if (canvasController == null)
+        {
+            Debug.LogWarning("[ButtonSequenceGimmick] CanvasController が見つかりません。");
+            return;
+        }
+
+        isActive = true;
+        canvasController.ShowCanvas(this);
+        DisplayConversationPage(initialConversationId);
+    }
+
+    // =====================================================
+    //  ボタン押下イベント（CanvasControllerから呼ばれる）
+    // =====================================================
     public void OnButtonClick(int clickedIndex)
     {
-        if (!initialized) return;
-        if (currentStage >= correctSequence.Count) return; // 完了済み
-
-        int expected = correctSequence[currentStage];
-        if (clickedIndex == expected)
+        if (currentStage >= correctSequence.Count)
         {
-            inputSequence.Add(clickedIndex);
-            currentStage++;
+            CloseCanvas();
+            return;
+        }
 
-            if (currentStage == correctSequence.Count)
+        if (inputSequence.Count == currentStage)
+        {
+            int expectedIndex = correctSequence[currentStage];
+
+            if (clickedIndex == expectedIndex)
             {
-                CompleteGimmick();
-                return;
+                inputSequence.Add(clickedIndex);
+                currentStage++;
+
+                if (currentStage == correctSequence.Count)
+                {
+                    CompleteGimmick();
+                    return;
+                }
+
+                Debug.Log($"[Sequence] 正解。次のステップへ ({currentStage}/{correctSequence.Count})");
+                DisplayConversationPage($"{initialConversationId}_{currentStage}");
             }
-
-            Debug.Log($"[Sequence] 正解: {currentStage}/{correctSequence.Count}");
-            DisplayConversationPage($"{initialConversationId}_{currentStage}");
+            else
+            {
+                // 不正解 → リセット
+                inputSequence.Clear();
+                currentStage = 0;
+                Debug.Log($"[Sequence] 不正解。リセット。");
+                DisplayConversationPage(initialConversationId);
+            }
         }
-        else
-        {
-            ResetSequence();
-        }
-    }
-
-    // -----------------------------------------------------
-    private void ResetSequence()
-    {
-        inputSequence.Clear();
-        currentStage = 0;
-        Debug.Log("[Sequence] 不正解 → リセット");
-        DisplayConversationPage(initialConversationId);
     }
 
     private void CompleteGimmick()
     {
-        Debug.Log("[Sequence] ギミック完了！");
-
         if (rewardItemData != null && InventoryManager.Instance != null)
         {
             InventoryManager.Instance.AddItem(rewardItemData);
-            Debug.Log($"[Sequence] 報酬 {rewardItemData.itemName} を入手！");
+            Debug.Log($"[Sequence] ギミック完了！報酬 {rewardItemData.itemName} を入手しました。");
         }
 
         DisplayConversationPage($"{initialConversationId}_Completed");
-        canvasController?.HideCanvas();
+        CloseCanvas();
     }
 
-    // -----------------------------------------------------
-    // セーブ・ロード
-    public override GimmickSaveData SaveProgress()
+    private void CloseCanvas()
     {
-        var data = base.SaveProgress();
-        data.stage = currentStage;
-        return data;
+        if (canvasController != null)
+            canvasController.HideCanvas();
+
+        isActive = false;
     }
 
-    public override void LoadProgress(int stage)
-    {
-        base.LoadProgress(stage);
-        InitializeGimmick();
-    }
-
-    // -----------------------------------------------------
-    // 会話呼び出し
-    public void DisplayConversationPage(string conversationId)
+    // =====================================================
+    //  会話表示（DialogueCore / ConversationHub 経由）
+    // =====================================================
+    private void DisplayConversationPage(string conversationId)
     {
         if (ConversationHub.Instance != null)
         {
@@ -131,7 +136,40 @@ public class ButtonSequenceGimmick : GimmickBase
         }
         else
         {
-            Debug.LogWarning($"[Sequence] ConversationHubが見つかりません。ID: {conversationId}");
+            Debug.LogWarning($"[Sequence] ConversationHub が見つかりません。会話ID: {conversationId}");
         }
+    }
+
+    // =====================================================
+    //  プレイヤー接近判定（ギミック自身で管理）
+    // =====================================================
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+            isPlayerNear = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNear = false;
+            if (isActive)
+                CloseCanvas();
+        }
+    }
+
+    // =====================================================
+    //  セーブ / ロード（共通化）
+    // =====================================================
+    public override void LoadProgress(int stage)
+    {
+        base.LoadProgress(stage);
+
+        inputSequence.Clear();
+        if (stage > 0)
+            inputSequence = Enumerable.Repeat(0, stage).ToList();
+
+        Debug.Log($"[Gimmick] {gimmickID} LoadProgress: {stage}");
     }
 }
