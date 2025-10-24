@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetGimmickID: KeyBand1
   requiredDirection: 1
+  successSeClip: {fileID: 8300000, guid: f1ccd761bdb29f948ac5eababa06be49, type: 3}
