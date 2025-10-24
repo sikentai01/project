@@ -68,7 +68,7 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
 
         if (player != null) player.enabled = false;
         PauseMenu.blockMenu = true;
-        player?.SetDirection(0);
+        player.SetDirection(0);
 
         if (sceneNpc != null)
         {
