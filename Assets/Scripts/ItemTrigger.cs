@@ -4,25 +4,13 @@ using UnityEngine;
 
 public class ItemTrigger : MonoBehaviour
 {
-    [Header("‚±‚ÌƒgƒŠƒK[ŒÅ—L‚ÌIDiGameFlags‚É“o˜^j")]
+    // ======== å…ƒã‚³ãƒ¼ãƒ‰éƒ¨åˆ†ã¯ãã®ã¾ã¾ç¶­æŒ ========
     public string triggerID;
-
-    [Header("E‚¦‚éƒAƒCƒeƒ€ƒf[ƒ^")]
     public ItemData itemData;
-
-    [Header("Œ©‚½–Ú‚ğÁ‚·ƒIƒuƒWƒFƒNƒgi”CˆÓj")]
     public GameObject targetObject;
-
-    [Header("•K—v‚ÈŒü‚« (0=‰º,1=¶,2=‰E,3=ã, -1=§ŒÀ‚È‚µ)")]
     public int requiredDirection = -1;
-
-    [Header("E‚Á‚½Œã‚à’²‚×‚ç‚ê‚éH")]
     public bool canInspectAfterCollected = false;
-
-    [Header("ƒVƒXƒeƒ€ƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹–¼iStreamingAssets/SystemWindowˆÈ‰ºj")]
     public string[] systemMessageFiles;
-
-    [Header("ƒeƒLƒXƒgÄ¶’†‚ÉƒvƒŒƒCƒ„[‚ğ’â~‚·‚é‚©")]
     public bool freezeDuringText = true;
 
     private bool isPlayerNear = false;
@@ -31,7 +19,6 @@ public class ItemTrigger : MonoBehaviour
 
     void Start()
     {
-        // === ƒtƒ‰ƒO‚É‚æ‚éó‘Ô•œŒ³ ===
         if (GameFlags.Instance != null && GameFlags.Instance.HasFlag(triggerID))
         {
             currentStage = 1;
@@ -80,15 +67,36 @@ public class ItemTrigger : MonoBehaviour
         if (freezeDuringText && playerMovement != null)
             playerMovement.enabled = false;
 
+        // â˜…â†“â†“â†“â†“ã“ã“ã ã‘æ›¸ãæ›ãˆâ†“â†“â†“â†“
         foreach (var fileName in systemMessageFiles)
         {
             string fullPath = Path.Combine(Application.streamingAssetsPath, "SystemWindow", fileName + ".txt");
-            if (!File.Exists(fullPath)) continue;
+            if (!File.Exists(fullPath))
+            {
+                Debug.LogWarning($"[ItemTrigger] ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“: {fullPath}");
+                continue;
+            }
 
-            string text = File.ReadAllText(fullPath);
-            DialogueCore.Instance?.StartConversation(fileName, text);
+            string text = File.ReadAllText(fullPath, System.Text.Encoding.UTF8);
+
+            var adapter = ConversationTriggerAdapter.Instance ??
+                          Object.FindObjectOfType<ConversationTriggerAdapter>(true);
+
+            if (adapter != null)
+            {
+                // â€œtxtã®ä¸­èº«ã‚’ç›´æ¥ä¼šè©±UIã«é€ã‚‹â€
+                adapter.FireRawText(text, fileName, true);
+                Debug.Log($"[ItemTrigger] SystemWindow ãƒ†ã‚­ã‚¹ãƒˆ {fileName} ã‚’è¡¨ç¤º");
+            }
+            else
+            {
+                Debug.LogWarning("[ItemTrigger] ConversationTriggerAdapter ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚");
+            }
+
+            // ä¼šè©±ãŒçµ‚ã‚ã‚‹ã¾ã§å¾…æ©Ÿï¼ˆå¿…è¦ã«å¿œã˜ã¦èª¿æ•´ï¼‰
             yield return new WaitUntil(() => !IsConversationActive());
         }
+        // â˜…â†‘â†‘â†‘â†‘ã“ã“ã ã‘æ›¸ãæ›ãˆâ†‘â†‘â†‘â†‘
 
         if (freezeDuringText && playerMovement != null)
             playerMovement.enabled = true;
@@ -124,9 +132,6 @@ public class ItemTrigger : MonoBehaviour
         }
     }
 
-    // ==========================================
-    //  ƒZ[ƒu—pƒf[ƒ^\‘¢‚Æ•œŒ³—pƒƒ\ƒbƒh
-    // ==========================================
     public ItemTriggerSaveData SaveProgress()
     {
         return new ItemTriggerSaveData
