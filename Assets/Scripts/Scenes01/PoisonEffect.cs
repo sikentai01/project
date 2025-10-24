@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/Effects/Poisoning Effect", fileName = "PoisoningEffect")]
 public class PoisoningEffect : ItemEffect
 {
-    [Header("使用後にアクティブにするGameOverコントローラー")]
-    public GameObject gameOverControllerObject;
+    // [Header("使用後にアクティブにするGameOverコントローラー")]
+    // public GameObject gameOverControllerObject; // ★ このフィールドは不要になります
 
     [Header("使用時にインベントリから削除するか")]
     public bool isConsumable = true;
@@ -31,16 +31,17 @@ public class PoisoningEffect : ItemEffect
             Debug.Log($"[PoisoningEffect] {usedItem.itemName} を使用し、削除しました。");
         }
 
-        // 2. ゲームオーバー処理の実行
-        if (gameOverControllerObject != null)
+        // 2. ゲームオーバー処理の実行 (BootLoaderによるシーン切り替え)
+        if (BootLoader.Instance != null)
         {
-            // GameOverController.csがアタッチされたゲームオブジェクトをアクティブにする
-            gameOverControllerObject.SetActive(true);
-            Debug.Log("[PoisoningEffect] 毒瓶を使用 → ゲームオーバーを起動");
+            // BootLoader経由でGameOverシーンに即座に切り替える
+            BootLoader.Instance.SwitchSceneInstant("GameOver");
+            Debug.Log("[PoisoningEffect] 毒瓶を使用 → GameOverシーンへ即時切り替え");
         }
         else
         {
-            Debug.LogError("[PoisoningEffect] GameOverControllerオブジェクトが設定されていません。");
+            // BootLoaderがない場合は、従来の処理の代替ログを出力
+            Debug.LogError("[PoisoningEffect] BootLoader.Instanceが見つかりません。GameOver処理をスキップしました。");
         }
     }
 }
