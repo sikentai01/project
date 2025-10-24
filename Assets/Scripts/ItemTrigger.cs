@@ -16,23 +16,35 @@ public class ItemTrigger : MonoBehaviour
     private bool isPlayerNear = false;
     private GridMovement playerMovement;
     private int currentStage = 0;
+    private bool initialized = false;
 
-    void Start()
+    private void OnEnable()
     {
+        StartCoroutine(DelayedInit());
+    }
+
+    private IEnumerator DelayedInit()
+    {
+        yield return null; // BootLoaderやGameFlagsの初期化完了待ち
+
         if (GameFlags.Instance != null && GameFlags.Instance.HasFlag(triggerID))
         {
             currentStage = 1;
-            UpdateVisualState();
         }
         else
         {
             currentStage = 0;
-            UpdateVisualState();
         }
+
+        UpdateVisualState(); // ←★ 見た目反映を確実に呼ぶ
+        initialized = true;
+
+        Debug.Log($"[ItemTrigger] 初期化完了: {triggerID}, currentStage={currentStage}");
     }
 
     void Update()
     {
+        if (!initialized) return;
         if (PauseMenu.isPaused) return;
         if (SaveSlotUIManager.Instance != null && SaveSlotUIManager.Instance.IsOpen()) return;
 
