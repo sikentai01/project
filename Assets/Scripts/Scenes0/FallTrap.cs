@@ -10,7 +10,7 @@ public class FallTrap : MonoBehaviour
     {
         trapCollider = GetComponent<Collider2D>();
 
-        // はじめから時には強制ON
+        // はじめから時には強制ON（SaveTriggeredが無いならトリガー有効）
         if (GameFlags.Instance == null || !GameFlags.Instance.HasFlag("SaveTriggered"))
         {
             trapCollider.isTrigger = true;
@@ -39,6 +39,20 @@ public class FallTrap : MonoBehaviour
         // トリガーでない場合は無視
         if (!trapCollider.isTrigger) return;
 
+        //  BootLoaderでプレイヤー初期移動中なら発動しない
+        if (BootLoader.IsPlayerSpawning)
+        {
+            Debug.Log("[FallTrap] プレイヤー初期移動中 → 無視");
+            return;
+        }
+
+        // すでにGameOver遷移中なら重複防止
+        if (BootLoader.IsTransitioning)
+        {
+            Debug.Log("[FallTrap] シーン遷移中のため無視");
+            return;
+        }
+
         if (other.CompareTag("Player"))
         {
             Debug.Log("[FallTrap] プレイヤーが落とし穴に落下 → GameOverへ");
@@ -47,6 +61,7 @@ public class FallTrap : MonoBehaviour
             var move = other.GetComponent<GridMovement>();
             if (move != null)
             {
+                move.ForceStopMovement(); // ★ 確実に停止
                 move.enabled = false;
                 Debug.Log("[FallTrap] プレイヤー操作を停止しました");
             }
@@ -58,49 +73,11 @@ public class FallTrap : MonoBehaviour
 
     private IEnumerator ShowGameOverRoutine()
     {
+        // 落下演出などのため少し待機
         yield return new WaitForSeconds(0.5f);
 
-        // BootLoaderを取得
-        var boot = FindObjectOfType<BootLoader>();
-        if (boot == null)
-        {
-            Debug.LogWarning("[FallTrap] BootLoaderが見つかりません。GameOverを直接有効化します。");
-        }
-
-        // Sceneを直接操作（Additive構成に対応）
-        Scene gameOverScene = SceneManager.GetSceneByName("GameOver");
-        if (gameOverScene.IsValid() && gameOverScene.isLoaded)
-        {
-            // GameOverシーンをON
-            foreach (var root in gameOverScene.GetRootGameObjects())
-                root.SetActive(true);
-
-            Debug.Log("[FallTrap] 既存のGameOverシーンを再有効化しました");
-        }
-        else
-        {
-            // 未ロードならロード
-            Debug.Log("[FallTrap] GameOverシーンを新規ロードします");
-            yield return SceneManager.LoadSceneAsync("GameOver", LoadSceneMode.Additive);
-        }
-
-        // ゲームシーン（Scene系）を非アクティブに
-        for (int i = 0; i < SceneManager.sceneCount; i++)
-        {
-            Scene s = SceneManager.GetSceneAt(i);
-            if (s.name.StartsWith("Scene"))
-            {
-                foreach (var root in s.GetRootGameObjects())
-                    root.SetActive(false);
-            }
-        }
-
-        // 確実にGameOverがアクティブになるよう設定
-        Scene goScene = SceneManager.GetSceneByName("GameOver");
-        if (goScene.IsValid())
-            SceneManager.SetActiveScene(goScene);
-
-        Debug.Log("[FallTrap] ゲームシーン非表示 → GameOver表示完了");
+        Debug.Log("[FallTrap] GameOverシーンへ切替要求");
+        BootLoader.Instance.SwitchSceneInstant("GameOver"); // ★ BootLoaderの即切替メソッドを使用
     }
 
     // ====== 落とし穴を「無効化」 ======

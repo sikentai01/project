@@ -193,4 +193,16 @@ public class GridMovement : MonoBehaviour
     {
         // 見た目の向き調整やスプライト反転など（未使用でもOK）
     }
+    public void ForceStopMovement()
+    {
+        isMoving = false;
+        targetPosition = transform.position;
+        footstepTimer = 0f;
+        // アニメーションも確実に停止
+        if (animator != null)
+        {
+            animator.SetBool("Move_motion", false);
+        }
+    }
+
 }

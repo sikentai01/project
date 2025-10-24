@@ -26,6 +26,8 @@ public class BootLoader : MonoBehaviour
 #endif
 
     private bool isFading = false;
+    public static bool IsTransitioning { get; set; } = false;
+    public static bool IsPlayerSpawning { get; private set; } = false; // ←★ 追加
 
     private void Awake()
     {
@@ -236,6 +238,7 @@ public class BootLoader : MonoBehaviour
     {
         Debug.Log("[BootLoader] はじめから開始");
         PauseMenu.blockMenu = true;
+        IsPlayerSpawning = true; // ←★ プレイヤー初期移動中フラグON
 
         var player = GameObject.FindGameObjectWithTag("Player");
         var move = player?.GetComponent<GridMovement>();
@@ -270,6 +273,7 @@ public class BootLoader : MonoBehaviour
         move = player?.GetComponent<GridMovement>();
         if (move != null) move.enabled = true; // キャラ移動再開
 
+        IsPlayerSpawning = false; // ←★ 初期化完了後フラグ解除
         Debug.Log("[BootLoader] ゲーム開始完了");
     }
 
@@ -331,5 +335,62 @@ public class BootLoader : MonoBehaviour
                 Physics2D.SyncTransforms();
             }
         }
+    }
+    // ===================================================
+    //  即時シーン切り替え（GameOver・タイトル用）
+    // ===================================================
+    public void SwitchSceneInstant(string targetSceneName)
+    {
+        StartCoroutine(SwitchSceneInstantRoutine(targetSceneName));
+    }
+
+    private IEnumerator SwitchSceneInstantRoutine(string targetSceneName)
+    {
+        Debug.Log($"[BootLoader] 即時シーン切り替え開始: {targetSceneName}");
+
+        // プレイヤー停止＋リセット
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            var move = player.GetComponent<GridMovement>();
+            if (move != null)
+            {
+                move.enabled = false;
+                move.ForceStopMovement();
+            }
+        }
+
+        yield return null;
+
+        // シーン切り替え
+        if (!loadedScenes.ContainsKey(targetSceneName))
+        {
+            var async = SceneManager.LoadSceneAsync(targetSceneName, LoadSceneMode.Additive);
+            while (!async.isDone) yield return null;
+            loadedScenes[targetSceneName] = SceneManager.GetSceneByName(targetSceneName);
+        }
+
+        foreach (var kv in loadedScenes)
+        {
+            bool active = kv.Key == targetSceneName;
+            SetSceneActive(kv.Key, active);
+        }
+
+        SceneManager.SetActiveScene(loadedScenes[targetSceneName]);
+        Physics2D.SyncTransforms();
+        Input.ResetInputAxes();
+
+        // 終了後に移動再開
+        if (player != null)
+        {
+            var move = player.GetComponent<GridMovement>();
+            if (move != null)
+            {
+                move.enabled = true;
+                move.ForceStopMovement();
+            }
+        }
+
+        Debug.Log($"[BootLoader] 即時シーン切り替え完了: {targetSceneName}");
     }
 }

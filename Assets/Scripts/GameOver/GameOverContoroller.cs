@@ -23,15 +23,13 @@ public class GameOverController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Debug.Log("[GameOverController] ƒ^ƒCƒgƒ‹‚É–ß‚é");
-
-            // Œø‰Ê‰¹
             if (SoundManager.Instance != null && confirmSeClip != null)
                 SoundManager.Instance.PlaySE(confirmSeClip);
 
-            ReturnToTitle();
+            BootLoader.Instance.SwitchSceneInstant("Title");
         }
     }
+
 
     private void ReturnToTitle()
     {
