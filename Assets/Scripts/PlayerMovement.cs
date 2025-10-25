@@ -12,7 +12,7 @@ public class GridMovement : MonoBehaviour
     public AudioClip dirtFootstep;
     public AudioClip woodFootstep; // ← 木の足音追加
     public AudioClip GlassFootstep;
-    public float stepInterval = 0.35f;
+    public float stepInterval = 0.1f;
 
     private Vector3 targetPosition;
     private bool isMoving = false;
@@ -20,6 +20,7 @@ public class GridMovement : MonoBehaviour
 
     private int currentDirection = 0;
     private float footstepTimer = 0f; // 足音間隔用タイマー
+    private AudioClip currentFootstepClip; // ← ★足音を記憶する変数を追加
 
     void Start()
     {
@@ -94,6 +95,7 @@ public class GridMovement : MonoBehaviour
             {
                 targetPosition = nextPos;
                 isMoving = true;
+                DetermineFootstepSound(targetPosition);
             }
             //移動不可、障害物とかね、モーションとめるだけ
             else
@@ -132,24 +134,45 @@ public class GridMovement : MonoBehaviour
     // ---- 足音を鳴らす処理 ----
     void PlayFootstepSound()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.0f);
-        if (hit.collider == null) return;
-
-        FloorType floor = hit.collider.GetComponent<FloorType>();
-        if (floor == null || SoundManager.Instance == null) return;
-
-        AudioClip clip = null;
-        switch (floor.surfaceType)
+        if (currentFootstepClip != null && SoundManager.Instance != null)
         {
-            case FloorType.SurfaceType.Mat: clip = matFootstep; break;
-            case FloorType.SurfaceType.Dirt: clip = dirtFootstep; break;
-            case FloorType.SurfaceType.Wood: clip = woodFootstep; break;
-            case FloorType.SurfaceType.Glass: clip = GlassFootstep; break;
-            default: clip = tileFootstep; break;
+            SoundManager.Instance.PlaySE(currentFootstepClip);
+        }
+    }
+    //--移動先の足音を判定する
+    void DetermineFootstepSound(Vector3 destination)
+    {
+        int layerMask = LayerMask.GetMask("Ground");
+
+        // IsOccupied と同様に、スプライト中心(destination)から -1.0f オフセットした「足元」を基準にする
+        Vector3 rayStartPos = destination + new Vector3(0, -0.5f, 0);
+
+        // Raycastは「足元」から真下に短く撃てば十分（例：0.5f）
+        RaycastHit2D hit = Physics2D.Raycast(rayStartPos, Vector2.down, 0.5f, layerMask);
+
+        // --- 元の PlayFootstepSound の中身をここに移植 ---
+        if (hit.collider == null)
+        {
+            currentFootstepClip = tileFootstep; // 見つからなければデフォルト
+            return;
         }
 
-        if (clip != null)
-            SoundManager.Instance.PlaySE(clip);
+        FloorType floor = hit.collider.GetComponent<FloorType>();
+        if (floor == null)
+        {
+            currentFootstepClip = tileFootstep; // FloorTypeがなければデフォルト
+            return;
+        }
+
+        // clip ではなく currentFootstepClip に記憶させる
+        switch (floor.surfaceType)
+        {
+            case FloorType.SurfaceType.Mat: currentFootstepClip = matFootstep; break;
+            case FloorType.SurfaceType.Dirt: currentFootstepClip = dirtFootstep; break;
+            case FloorType.SurfaceType.Wood: currentFootstepClip = woodFootstep; break;
+            case FloorType.SurfaceType.Glass: currentFootstepClip = GlassFootstep; break;
+            default: currentFootstepClip = tileFootstep; break;
+        }
     }
 
     //当たり判定等
