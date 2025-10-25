@@ -2921,7 +2921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[2].relativePath
@@ -2956,6 +2956,10 @@ PrefabInstance:
       value: "Systemwindow/\u6BD2\u74F6.txt"
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[10].relativePath
+      value: "Systemwindow/\u30B7\u30F3\u30AF.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[2].conversationId
       value: sample 1
       objectReference: {fileID: 0}
@@ -2986,6 +2990,10 @@ PrefabInstance:
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[9].conversationId
       value: "\u6BD2\u74F6"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[10].conversationId
+      value: "\u30B7\u30F3\u30AF"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
