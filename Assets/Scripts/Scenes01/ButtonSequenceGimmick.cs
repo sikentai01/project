@@ -1,88 +1,126 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
+using System.Collections; // ã‚³ãƒ«ãƒ¼ãƒãƒ³ã®ãŸã‚ã«å¿…è¦
 
 /// <summary>
-/// ƒ{ƒ^ƒ“‚Ì‡˜ƒNƒŠƒbƒN‚ÆƒeƒLƒXƒg•\¦‚ğ§Œä‚·‚éƒMƒ~ƒbƒN
+/// ãƒœã‚¿ãƒ³ã®é †åºã‚¯ãƒªãƒƒã‚¯ã¨ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºã‚’åˆ¶å¾¡ã™ã‚‹ã‚®ãƒŸãƒƒã‚¯
 /// </summary>
 public class ButtonSequenceGimmick : GimmickBase
 {
-    [Header("‰Šú/ƒŠƒZƒbƒg‚É•\¦‚·‚éƒƒbƒZ[ƒW")]
-    public string initialMessage = "³‚µ‚¢‡˜‚Åƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B";
+    [Header("åˆæœŸ/ãƒªã‚»ãƒƒãƒˆæ™‚ã«è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸")]
+    public string initialMessage = "æ­£ã—ã„é †åºã§ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚";
 
-    [Header("³‰ğ‚Ìƒ{ƒ^ƒ“‡˜ (ƒCƒ“ƒfƒbƒNƒX 0`3)")]
-    [Tooltip("ƒNƒŠƒbƒN‚·‚×‚«ƒ{ƒ^ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ‡”Ô‚Éİ’è")]
+    [Header("æ­£è§£ã®ãƒœã‚¿ãƒ³é †åº (ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ 0ï½3)")]
+    [Tooltip("ã‚¯ãƒªãƒƒã‚¯ã™ã¹ããƒœã‚¿ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’é †ç•ªã«è¨­å®š")]
     public List<int> correctSequence = new List<int> { 0, 1, 2, 3 };
 
-    // UI˜AŒgƒtƒB[ƒ‹ƒh
-    [Header("UIŠÖ˜A")]
-    public GameObject gimmickCanvasRoot;
+    // UIé€£æºãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+    // [Header("UIé–¢é€£")] // ä»¥å‰ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¯å‰Šé™¤
+    // public GameObject gimmickCanvasRoot;Â 
 
-    private bool isPlayerNear = false;
-    private GimmickCanvasController canvasController;
+    // â˜…â˜…â˜… æ–°è¦è¿½åŠ ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ â˜…â˜…â˜…
+    [Header("å®Œäº†æ™‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¢ã‚¯ã‚·ãƒ§ãƒ³")]
+    [Tooltip("å³åº§ã«è¡¨ç¤ºã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
+    public GameObject objectToShow;
+    [Tooltip("0.5ç§’å¾Œã«éè¡¨ç¤ºã«ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
+    public GameObject objectToHideAfterDelay;
+Â  Â  // â˜…â˜…â˜… ã“ã“ã¾ã§ â˜…â˜…â˜…
 
-    // currentStage ‚ÍƒMƒ~ƒbƒN‚Ìis“x
+Â  Â  private bool isPlayerNear = false;
     private List<int> inputSequence = new List<int>();
 
     void Awake()
     {
-        canvasController = FindObjectOfType<GimmickCanvasController>();
-    }
+Â  Â  Â  Â  // GimmickCanvasControllerã¸ã®ä¾å­˜ã‚’å‰Šé™¤
+Â  Â  }
 
     void Start()
     {
-        // currentStage‚ª0‚Ìê‡AƒCƒ“ƒvƒbƒgƒV[ƒPƒ“ƒX‚ğƒNƒŠƒA
-        if (currentStage <= correctSequence.Count)
-        {
-            inputSequence.Clear();
-        }
+        InitializeClickableObjects();
+        UpdateObjectVisibility(currentStage > 0);
 
-        // ‹N“®Ï‚İ (currentStage > 0) ‚Ìê‡ACanvas‚ğ”ñ•\¦‚É‚µ‚Ä‚¨‚­
-        if (currentStage > 0 && canvasController != null)
-        {
-            HideGimmickCanvas();
-        }
-    }
-
-    // =====================================================
-    // ššš ƒMƒ~ƒbƒN‹N“® (GimmickBase‚Ìƒƒ\ƒbƒh‚Å‚Í‚È‚¢) ššš
-    // =====================================================
-
-    /// <summary>
-    /// EnterƒL[‘€ì‚È‚Ç‚ÅAƒMƒ~ƒbƒN‚ğ‹N“®‚·‚é (override‚ğíœ)
-    /// </summary>
-    public void StartSequence() // š StartGimmick‚©‚ç–¼Ì•ÏX
-    {
+        // å®Œäº†çŠ¶æ…‹ã§ã‚ã‚Œã°ã€æ–°ã—ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®çŠ¶æ…‹ã‚‚åæ˜ 
         if (currentStage >= correctSequence.Count + 1)
         {
-            DisplayMessage("ƒMƒ~ƒbƒN‚ÍŠù‚É‰ğœ‚³‚ê‚Ä‚¢‚Ü‚·B");
-            return;
-        }
-
-        // --- ‰‰ñ‹N“®/ƒŠƒZƒbƒg‚Ìˆ— ---
-        if (currentStage < 1)
-        {
-            this.currentStage = 1; // ‹N“®ó‘Ô‚É‚·‚é (Stage 1)
-            inputSequence.Clear();
-            DisplayMessage(initialMessage);
+            ApplyCompletionState(true);
         }
         else
         {
-            // Šù‚É‹N“®ó‘Ô‚Ìê‡AŒ»İ‚ÌƒXƒeƒbƒv‚Ìƒqƒ“ƒg‚ğÄ•\¦
-            DisplayMessage($"ƒXƒeƒbƒv {inputSequence.Count + 1} ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+            // åˆæœŸçŠ¶æ…‹ã§ã¯ objectToShow/objectToHideAfterDelay ã‚’éè¡¨ç¤º/è¡¨ç¤ºã«è¨­å®š
+            ApplyCompletionState(false);
         }
-
-        ShowGimmickCanvas();
     }
 
-    // ... (OnTriggerEnter/Exit2D, Update, OnButtonClick ‚ÍÈ—ª) ...
+Â  Â  // =====================================================
+Â  Â  // â˜…â˜…â˜… ãƒˆãƒªã‚¬ãƒ¼æ©Ÿèƒ½ã®çµ±åˆ (GimmickTriggerã®ä»£æ›¿) â˜…â˜…â˜…
+Â  Â  // =====================================================
 
-    // GimmickCanvasController‚ªƒ{ƒ^ƒ“ƒNƒŠƒbƒN‚ÅŒÄ‚Ño‚·ƒƒ\ƒbƒh
+Â  Â  private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNear = true;
+
+Â  Â  Â  Â  Â  Â  // æ—¢ã«èµ·å‹•æ¸ˆã¿ã®å ´åˆã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã™ãã«è¡¨ç¤ºï¼ˆEnterã‚­ãƒ¼ä¸è¦ï¼‰
+Â  Â  Â  Â  Â  Â  if (currentStage >= 1)
+            {
+                UpdateObjectVisibility(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNear = false;
+
+            // ç¯„å›²å¤–ã«å‡ºãŸã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’éè¡¨ç¤ºã«æˆ»ã™
+            UpdateObjectVisibility(false);
+        }
+    }
+
+    void Update()
+    {
+        if (currentStage >= correctSequence.Count + 1) return;
+
+        // Enterã‚­ãƒ¼å…¥åŠ›ã«ã‚ˆã‚‹ã‚®ãƒŸãƒƒã‚¯èµ·å‹•
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
+        {
+            StartSequence();
+        }
+    }
+
+Â  Â  // =====================================================
+Â  Â  // ã‚®ãƒŸãƒƒã‚¯èµ·å‹•ã¨ãƒœã‚¿ãƒ³æ“ä½œ
+Â  Â  // =====================================================
+
+Â  Â  public void StartSequence()
+    {
+        if (currentStage >= correctSequence.Count + 1)
+        {
+            Debug.Log("ã‚®ãƒŸãƒƒã‚¯ã¯æ—¢ã«è§£é™¤ã•ã‚Œã¦ã„ã¾ã™ã€‚");
+            return;
+        }
+
+        if (currentStage < 1)
+        {
+            this.currentStage = 1;
+            inputSequence.Clear();
+            Debug.Log($"[Sequence] START: {initialMessage}");
+        }
+        else
+        {
+            Debug.Log($"[Sequence] {inputSequence.Count + 1} ã‚¹ãƒ†ãƒƒãƒ—ç›®ã€‚");
+        }
+
+        UpdateObjectVisibility(true); // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¡¨ç¤º
+Â  Â  }
+
     public void OnButtonClick(int clickedIndex)
     {
-        if (currentStage < 1) return;
-        if (currentStage >= correctSequence.Count + 1) return;
+        if (!IsSequenceActive()) return;
 
         int currentStep = inputSequence.Count;
 
@@ -92,113 +130,135 @@ public class ButtonSequenceGimmick : GimmickBase
 
             if (clickedIndex == expectedIndex)
             {
-                // ³‰ğˆ—
-                inputSequence.Add(clickedIndex);
+Â  Â  Â  Â  Â  Â  Â  Â  // æ­£è§£å‡¦ç†
+Â  Â  Â  Â  Â  Â  Â  Â  inputSequence.Add(clickedIndex);
                 this.currentStage++;
 
                 if (this.currentStage >= correctSequence.Count + 1)
                 {
-                    CompleteGimmick();
-                    return;
+                    CompleteGimmick(); // å ±é…¬ãªã—ã®å®Œäº†å‡¦ç†
+Â  Â  Â  Â  Â  Â  Â  Â  Â  Â  return;
                 }
 
-                // Ÿ‚ÌƒeƒLƒXƒg‚ğ•\¦
-                Debug.Log($"[Sequence] ³‰ğBŸ‚ÌƒXƒeƒbƒv‚Ö ({inputSequence.Count}/{correctSequence.Count})");
-                DisplayMessage($"³‰ğIƒXƒeƒbƒv {inputSequence.Count + 1} ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+                Debug.Log($"[Sequence] æ­£è§£ï¼ã‚¹ãƒ†ãƒƒãƒ— {inputSequence.Count}/{correctSequence.Count}");
             }
             else
             {
-                // •s³‰ğˆ—
-                inputSequence.Clear();
+Â  Â  Â  Â  Â  Â  Â  Â  // ä¸æ­£è§£å‡¦ç†
+Â  Â  Â  Â  Â  Â  Â  Â  inputSequence.Clear();
                 this.currentStage = 1;
-                Debug.Log($"[Sequence] •s³‰ğBƒV[ƒPƒ“ƒX‚ğƒŠƒZƒbƒg‚µ‚Ü‚µ‚½B");
-                DisplayMessage("•s³‰ğ‚Å‚·BÅ‰‚©‚ç‚â‚è’¼‚µ‚Ä‚­‚¾‚³‚¢B");
+                Debug.Log($"[Sequence] ä¸æ­£è§£ã€‚ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã—ãŸã€‚");
             }
         }
     }
 
-
     private void CompleteGimmick()
     {
-        DisplayMessage("ƒMƒ~ƒbƒN‰ğœ¬Œ÷I");
+        Debug.Log("ã‚®ãƒŸãƒƒã‚¯è§£é™¤æˆåŠŸï¼");
 
-        if (canvasController != null)
-        {
-            canvasController.HideCanvas();
-        }
+        // 1. ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¡¨ç¤º/éè¡¨ç¤ºã‚’å³åº§ã«åˆ‡ã‚Šæ›¿ãˆã‚‹
+        UpdateObjectVisibility(false); // ã‚¯ãƒªãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’éè¡¨ç¤ºã«ã™ã‚‹
 
+        // 2. â˜…â˜…â˜… é…å»¶å‡¦ç†ã®é–‹å§‹ â˜…â˜…â˜…
+        StartCoroutine(ExecuteDelayedActions());
+
+        // 3. é€²è¡Œåº¦ã‚’æœ€çµ‚æ®µéšã«è¨­å®šï¼ˆã‚»ãƒ¼ãƒ–ç”¨ï¼‰
         this.currentStage = correctSequence.Count + 1;
-        Debug.Log($"[Sequence] ƒMƒ~ƒbƒN‰ğœŠ®—¹I");
     }
 
-    // ... (Show/HideGimmickCanvas, DisplayMessage ‚ÍÈ—ª) ...
-    public void DisplayMessage(string message)
+Â  Â  // =====================================================
+Â  Â  // â˜…â˜…â˜… é…å»¶å‡¦ç†ç”¨ã‚³ãƒ«ãƒ¼ãƒãƒ³ â˜…â˜…â˜…
+Â  Â  // =====================================================
+
+Â  Â  private IEnumerator ExecuteDelayedActions()
     {
-        if (canvasController != null)
+Â  Â  Â  Â  // 1. objectToShowã‚’å³åº§ã«è¡¨ç¤º
+Â  Â  Â  Â  ApplyCompletionState(true);
+
+        // 2. 0.5ç§’å¾…æ©Ÿ
+        yield return new WaitForSeconds(0.5f);
+
+Â  Â  Â  Â  // 3. objectToHideAfterDelayã‚’éè¡¨ç¤ºã«ã™ã‚‹
+Â  Â  Â  Â  if (objectToHideAfterDelay != null)
         {
-            canvasController.SetCenterMessage(message);
+            objectToHideAfterDelay.SetActive(false);
+            Debug.Log("[Sequence] 0.5ç§’å¾Œã€é…å»¶å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’éè¡¨ç¤ºã«ã—ã¾ã—ãŸã€‚");
         }
     }
 
-    public void ShowGimmickCanvas()
+    /// <summary>
+    Â  Â  /// å®Œäº†çŠ¶æ…‹ã«åŸºã¥ãã€æ–°è¦è¿½åŠ ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®çŠ¶æ…‹ã‚’æ›´æ–°
+    Â  Â  /// </summary>
+    private void ApplyCompletionState(bool isCompleted)
     {
-        if (canvasController != null) canvasController.gameObject.SetActive(true);
+        if (objectToShow != null)
+        {
+Â  Â  Â  Â  Â  Â  // objectToShowã¯å®Œäº†æ™‚ã«è¡¨ç¤º
+Â  Â  Â  Â  Â  Â  objectToShow.SetActive(isCompleted);
+        }
+
+        // objectToHideAfterDelayã¯ã€å®Œäº†ç›´å¾Œï¼ˆisCompleted=trueï¼‰ã¯ãã®ã¾ã¾ã«ã—ã€
+        // ã‚³ãƒ«ãƒ¼ãƒãƒ³ã§éè¡¨ç¤ºã«ã™ã‚‹ã€‚åˆæœŸçŠ¶æ…‹(isCompleted=false)ã¯è¡¨ç¤ºã«ã—ã¦ãŠãã€‚
+        if (objectToHideAfterDelay != null)
+        {
+            objectToHideAfterDelay.SetActive(!isCompleted);
+        }
     }
 
-    public void HideGimmickCanvas()
-    {
-        if (canvasController != null) canvasController.gameObject.SetActive(false);
-    }
 
     // =====================================================
-    // GimmickBase‚Ìƒƒ\ƒbƒh
+    // ãƒ˜ãƒ«ãƒ‘ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰ (InitializeClickableObjects, UpdateObjectVisibility, IsSequenceActive, LoadProgress ã¯çœç•¥)
     // =====================================================
 
-    // GimmickBase‚É‚Í StartGimmick ‚Í‚È‚¢‚Ì‚ÅA’ŠÛƒNƒ‰ƒXGimmickBase‚Ìƒƒ\ƒbƒh‚ÍÈ—ª‚µ‚Ü‚·B
-    // StartGimmick‚ª•K—v‚Èê‡‚ÍAˆÈ‰º‚Ìƒ_ƒ~[ƒƒ\ƒbƒh‚ğì¬‚µ‚Ä‚­‚¾‚³‚¢B
+    // ã‚¯ãƒªãƒƒã‚¯å¯èƒ½ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®é…åˆ—
+    public SequenceClickableObject[] clickableObjects = new SequenceClickableObject[4];
 
-    // public override void StartGimmick(ItemTrigger trigger) { /* ˆ—‚È‚µ */ }
-
-
-    // ššš GimmickTrigger‚Ì–ğŠ„‚ğ‘ã‘Ö‚·‚éƒƒ\ƒbƒh‚Í‚»‚Ì‚Ü‚ÜˆÛ ššš
-    private void OnTriggerEnter2D(Collider2D other)
+    private void InitializeClickableObjects()
     {
-        if (other.CompareTag("Player"))
+        for (int i = 0; i < clickableObjects.Length; i++)
         {
-            isPlayerNear = true;
-            if (currentStage >= 1 && canvasController != null) ShowGimmickCanvas();
+            if (clickableObjects[i] != null)
+            {
+                clickableObjects[i].targetGimmick = this;
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void UpdateObjectVisibility(bool isVisible)
     {
-        if (other.CompareTag("Player"))
+        foreach (var obj in clickableObjects)
         {
-            isPlayerNear = false;
-            HideGimmickCanvas();
+            if (obj != null)
+            {
+                obj.gameObject.SetActive(isVisible);
+            }
         }
     }
 
-    void Update()
+    public bool IsSequenceActive()
     {
-        if (currentStage >= correctSequence.Count + 1) return;
-        if (isPlayerNear && Input.GetKeyDown(KeyCode.Return))
-        {
-            StartSequence(); // C³Œã‚Ìƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ
-        }
+        return currentStage >= 1 && currentStage < correctSequence.Count + 1;
     }
 
     public override void LoadProgress(int stage)
     {
+        // â˜…â˜…â˜… GimmickBaseã®å¾©å…ƒãƒ­ã‚¸ãƒƒã‚¯ã‚’å‘¼ã³å‡ºã™ â˜…â˜…â˜…
         base.LoadProgress(stage);
 
-        // ƒ[ƒhŒã‚Ì•œŒ³ˆ—
+        // ãƒ­ãƒ¼ãƒ‰å¾Œã®å¾©å…ƒå‡¦ç†
         inputSequence.Clear();
 
-        // currentStage‚ª1ˆÈã‚Ìê‡AƒCƒ“ƒvƒbƒgƒV[ƒPƒ“ƒX‚ğ•œŒ³
+        // currentStageãŒ1ä»¥ä¸Šã®å ´åˆã€ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¾©å…ƒ
         if (currentStage > 0 && currentStage <= correctSequence.Count)
         {
             inputSequence = Enumerable.Repeat(0, currentStage - 1).ToList();
         }
+
+        bool completed = currentStage >= correctSequence.Count + 1;
+
+        // ãƒ­ãƒ¼ãƒ‰å¾Œã«çŠ¶æ…‹ã‚’åæ˜ 
+        UpdateObjectVisibility(!completed);
+        ApplyCompletionState(completed);
+        InitializeClickableObjects();
     }
 }
