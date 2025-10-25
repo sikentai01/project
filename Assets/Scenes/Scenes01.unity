@@ -1085,6 +1085,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1245734045985400336, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 159138596}
+    - targetCorrespondingSourceObject: {fileID: 1245734045985400336, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 183690704}
     - targetCorrespondingSourceObject: {fileID: -8099967724870353582, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2016851720}
@@ -1214,6 +1217,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 226109214794267219, guid: f8d68dffebf13e2408365ec9966902fe, type: 3}
   m_PrefabInstance: {fileID: 159138589}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &183690704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159138593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b354e6ad07c6447b4e6240a36c3747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gimmickID: KeyBandDoor
+  targetGimmick: {fileID: 0}
 --- !u!1001 &194709890
 PrefabInstance:
   m_ObjectHideFlags: 0
