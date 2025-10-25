@@ -6076,7 +6076,7 @@ MonoBehaviour:
   gimmickID: WhiteBloodCell
   currentStage: 0
   targetObject: {fileID: 90096882}
-  requiredFlagID: 
+  requiredFlagID: PoisonTrigger
   activateOnFlag: 1
 --- !u!1 &1536854847
 GameObject:
