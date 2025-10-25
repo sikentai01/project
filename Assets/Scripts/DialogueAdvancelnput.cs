@@ -21,7 +21,7 @@ public class DialogueAdvanceInput : MonoBehaviour
     void Update()
     {
         if (!isActive || core == null) return;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             core.NextPage();
         }

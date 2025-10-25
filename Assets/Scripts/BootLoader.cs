@@ -277,6 +277,15 @@ public class BootLoader : MonoBehaviour
 
         IsPlayerSpawning = false; // ←★ 初期化完了後フラグ解除
         Debug.Log("[BootLoader] ゲーム開始完了");
+        yield return new WaitForSeconds(0.1f); // ちょっと待ってから開く（安全策）
+
+        var pauseMenu = PauseMenu.Instance;
+        if (pauseMenu != null)
+        {
+            pauseMenu.Pause();         // 通常のメニューを開く
+            pauseMenu.OpenControls();  // 「操作説明」タブに切り替え
+            Debug.Log("[BootLoader] 操作説明タブを自動で開きました (Escで閉じる)");
+        }
     }
 
     // ===================================================

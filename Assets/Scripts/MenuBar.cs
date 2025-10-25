@@ -163,7 +163,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("ƒQ[ƒ€ÄŠJ");
     }
 
-    void Pause()
+    public void Pause()
     {
         if (SoundManager.Instance != null && openSeClip != null)
         {
