@@ -22,6 +22,19 @@ public class ButtonSequenceGimmick : GimmickBase
     [Tooltip("0.5秒後に非表示にするオブジェクト")]
     public GameObject objectToHideAfterDelay;
     // ★★★ ここまで ★★★
+    [Header("フィードバック用会話ID")]
+    [Tooltip("正解時のフィードバック会話ID")]
+    public string correctFeedbackId = "SEQUENCE_CORRECT"; // ★ 新規/修正
+    [Tooltip("不正解時のフィードバック会話ID")]
+    public string incorrectFeedbackId = "SEQUENCE_INCORRECT"; // ★ 新規/修正
+
+    // ButtonSequenceGimmick.cs のフィールド部分に追加
+
+    [Header("リトライ設定")]
+    [Tooltip("不正解時にリセットされるまでの許容回数。")]
+    public int maxRetriesBeforeReset = 3;
+
+    private int retryCount = 0; // ★★★ CS0103 エラーを解消 ★★★
 
     [Header("クリック可能なオブジェクト群")]
     public SequenceClickableObject[] clickableObjects = new SequenceClickableObject[4];
@@ -44,6 +57,18 @@ public class ButtonSequenceGimmick : GimmickBase
         {
             StartCoroutine(CheckForResetOnStart());
         }
+    }
+
+    // ButtonSequenceGimmick.cs のどこかにメソッドを追加
+
+    /// <summary>
+    /// 中央パネルにテキストを表示するヘルパーメソッド
+    /// (UI非依存版ではDebug.Logとして機能)
+    /// </summary>
+    public void DisplayMessage(string message) // ★★★ CS0103 エラーを解消 ★★★
+    {
+        // UIが削除されたため、コンソールにログを出力するロジックに置き換えます
+        Debug.Log($"[Sequence Message] {message}");
     }
 
     // =====================================================
@@ -173,6 +198,8 @@ public class ButtonSequenceGimmick : GimmickBase
         UpdateObjectVisibility(true); // オブジェクトを表示
     }
 
+    // ButtonSequenceGimmick.cs の OnButtonClick メソッドのみ
+
     public void OnButtonClick(int clickedIndex)
     {
         if (!IsSequenceActive()) return;
@@ -185,25 +212,50 @@ public class ButtonSequenceGimmick : GimmickBase
 
             if (clickedIndex == expectedIndex)
             {
-                // 正解処理
+                // --- 正解処理 ---
+                DisplayFeedbackText(correctFeedbackId); // ★ TEXTフィードバック
+                retryCount = 0;
+
                 inputSequence.Add(clickedIndex);
                 this.currentStage++;
+                // ... (省略: 完了チェック) ...
 
-                Debug.Log($"[Sequence] 正解！ステップ {inputSequence.Count}/{correctSequence.Count}");
-
-                if (this.currentStage >= correctSequence.Count + 1)
-                {
-                    CompleteGimmick(); // 報酬なしの完了処理
-                    return;
-                }
+                // 次のテキストを表示
+                DisplayMessage($"正解！ステップ {inputSequence.Count} / {correctSequence.Count} を入力してください。");
             }
             else
             {
-                // 不正解処理
-                inputSequence.Clear();
-                this.currentStage = 1;
-                Debug.Log($"[Sequence] 不正解。シーケンスをリセットしました。");
+                // --- 不正解処理 (リトライ判定) ---
+                DisplayFeedbackText(incorrectFeedbackId); // ★ TEXTフィードバック
+                retryCount++;
+
+                if (retryCount >= maxRetriesBeforeReset)
+                {
+                    // リトライ回数を超過したため、シーケンスをリセット
+                    inputSequence.Clear();
+                    this.currentStage = 1;
+                    retryCount = 0;
+                    DisplayMessage("不正解。リトライ回数を超過したためリセットしました。");
+                }
+                else
+                {
+                    // リトライ回数内のため、ギミックを継続
+                    DisplayMessage($"不正解。リトライ残り {maxRetriesBeforeReset - retryCount} 回。");
+                }
             }
+        }
+    }
+
+    /// <summary>
+    /// フィードバック用の短い会話を表示する (DialogueCoreを使用)
+    /// </summary>
+    private void DisplayFeedbackText(string conversationId)
+    {
+        if (ConversationHub.Instance != null && !string.IsNullOrEmpty(conversationId))
+        {
+            ConversationHub.Instance.Fire(conversationId);
+            // ※ DialogueCoreのOnConversationEndedイベントが、メインのパズルテキスト表示を
+            //   停止させないように、Coreのロジックによっては調整が必要です。
         }
     }
 
@@ -325,6 +377,9 @@ public class ButtonSequenceGimmick : GimmickBase
         }
 
         bool completed = currentStage >= correctSequence.Count + 1;
+
+        // ★★★ 追加: retryCountはロード時、常に初期化する ★★★
+        this.retryCount = 0;
 
         // ロード後に状態を反映
         UpdateObjectVisibility(!completed);

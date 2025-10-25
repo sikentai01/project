@@ -3923,9 +3923,12 @@ MonoBehaviour:
   gimmickID: Experimet
   currentStage: 0
   initialMessage: "\u6B63\u3057\u3044\u9806\u5E8F\u3067\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
-  correctSequence: 00000000020000000300000001000000
+  correctSequence: 000000000200000003000000010000000000000003000000
   objectToShow: {fileID: 122827659}
   objectToHideAfterDelay: {fileID: 844206161}
+  correctSE: {fileID: 8300000, guid: 9cd57f1ef9cccd84ca4950f84129b896, type: 3}
+  incorrectSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
+  maxRetriesBeforeReset: 6
   clickableObjects:
   - {fileID: 2124120596}
   - {fileID: 636849475}
