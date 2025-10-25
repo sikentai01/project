@@ -2085,7 +2085,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338338905}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f48334413568da84b9a5257abeb65638, type: 3}
   m_Name: 
@@ -2093,9 +2093,9 @@ MonoBehaviour:
   adapter: {fileID: 0}
   conversationId: "\u53D6\u3063\u624B"
   requiredTag: Player
-  key: 101
+  key: 279
   autoStart: 0
-  requiredDirection: -1
+  requiredDirection: 1
 --- !u!61 &338338908
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2103,7 +2103,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338338905}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -3926,8 +3926,8 @@ MonoBehaviour:
   correctSequence: 000000000200000003000000010000000000000003000000
   objectToShow: {fileID: 122827659}
   objectToHideAfterDelay: {fileID: 844206161}
-  correctSE: {fileID: 8300000, guid: 9cd57f1ef9cccd84ca4950f84129b896, type: 3}
-  incorrectSE: {fileID: 8300000, guid: 25ce3a2d97af8f84a880de4080b8139a, type: 3}
+  correctFeedbackId: SEQUENCE_SUCCESS
+  incorrectFeedbackId: SEQUENCE_FAILURE
   maxRetriesBeforeReset: 6
   clickableObjects:
   - {fileID: 2124120596}

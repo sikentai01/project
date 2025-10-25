@@ -91,6 +91,7 @@ public class ItemExchangeGimmick : GimmickBase
             // D. 進行度を更新（完了とする）
             this.currentStage = 1;
             Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 初回完了(Stage 1)に設定しました。");
+            TriggerChildConversation();
         }
 
 
@@ -128,19 +129,90 @@ public class ItemExchangeGimmick : GimmickBase
         }
     }
 
+    private void TriggerChildConversation()
+    {
+        // 子オブジェクトに ConversationTrigger があるかチェック（非アクティブ含む）
+        var trigger = GetComponentInChildren<ConversationTrigger>(true);
+        if (trigger == null)
+        {
+            Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 子オブジェクトに会話トリガーが見つかりません。");
+            return;
+        }
+
+        // 会話トリガーが非アクティブならONにする
+        bool wasInactive = !trigger.gameObject.activeSelf;
+        if (wasInactive)
+        {
+            trigger.gameObject.SetActive(true);
+            Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 会話トリガーを一時的に有効化しました。");
+        }
+
+        // 会話アダプターを取得
+        var adapter = ConversationTriggerAdapter.Instance ?? FindObjectOfType<ConversationTriggerAdapter>(true);
+        if (adapter == null)
+        {
+            Debug.LogWarning("[ItemExchangeGimmick] ConversationTriggerAdapterが見つかりません。");
+            return;
+        }
+
+        // 会話IDをリフレクションで取得
+        var convIdField = typeof(ConversationTrigger).GetField("conversationId",
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        string convId = convIdField?.GetValue(trigger) as string;
+
+        // 会話を開始
+        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 会話を自動開始: {convId}");
+        if (!string.IsNullOrEmpty(convId))
+            adapter.Fire(convId);
+        else
+            adapter.FireDefault();
+
+        // --- 会話終了後にトリガーを再び非アクティブ化 ---
+        if (DialogueCore.Instance != null)
+        {
+            void OnConvEnd(string id)
+            {
+                // 同じ会話IDだったらOFFに戻す
+                if (string.IsNullOrEmpty(convId) || id == convId)
+                {
+                    if (wasInactive && trigger != null)
+                    {
+                        trigger.gameObject.SetActive(false);
+                        Debug.Log($"[ItemExchangeGimmick: {gimmickID}] 会話終了 → トリガーを再び非アクティブ化。");
+                    }
+
+                    DialogueCore.Instance.OnConversationEnded -= OnConvEnd;
+                }
+            }
+
+            DialogueCore.Instance.OnConversationEnded -= OnConvEnd; // 二重登録防止
+            DialogueCore.Instance.OnConversationEnded += OnConvEnd;
+        }
+    }
+
+
+
     /// <summary>
     /// 現在の進行段階に基づきオブジェクトの状態を更新
     /// </summary>
     private void UpdateVisualState()
     {
-        // 報酬オブジェクトの表示/非表示を currentStage に基づいて決定
+        // 報酬オブジェクトが設定されている場合、進行度に応じてON/OFF
         if (rewardObject != null)
         {
-            // Stage 1以上なら表示
-            rewardObject.SetActive(currentStage >= 1);
+            if (currentStage >= 1)
+            {
+                // Stage1以上 → 報酬を表示
+                rewardObject.SetActive(true);
+                Debug.Log($"[ItemExchangeGimmick: {gimmickID}] Stage {currentStage}: 報酬オブジェクトを表示しました。");
+            }
+            else
+            {
+                // Stage0 → 元の状態に戻す（報酬は非表示）
+                rewardObject.SetActive(false);
+                Debug.Log($"[ItemExchangeGimmick: {gimmickID}] Stage {currentStage}: 報酬オブジェクトを非表示に戻しました。");
+            }
         }
-
-        // その他の視覚的な変化が必要であればここに追加
     }
 
     // =====================================================
