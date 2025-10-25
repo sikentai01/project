@@ -1707,7 +1707,8 @@ MonoBehaviour:
   targetObject: {fileID: 521347592}
   requiredDirection: 0
   canInspectAfterCollected: 0
-  systemMessageFiles: []
+  systemMessageFiles:
+  - "\u6BD2\u74F6"
   freezeDuringText: 1
 --- !u!1 &255451144 stripped
 GameObject:
@@ -2320,7 +2321,8 @@ MonoBehaviour:
   targetObject: {fileID: 979454400}
   requiredDirection: 2
   canInspectAfterCollected: 0
-  systemMessageFiles: []
+  systemMessageFiles:
+  - "\u53D6\u3063\u624B\u30A2\u30A4\u30C6\u30E0"
   freezeDuringText: 1
 --- !u!1 &427454695 stripped
 GameObject:

@@ -2921,7 +2921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.size
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[2].relativePath
@@ -2944,6 +2944,18 @@ PrefabInstance:
       value: "Systemwindow/\u61D0\u4E2D\u96FB\u706F\u5165\u624B.txt"
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[7].relativePath
+      value: "Systemwindow/\u53D6\u3063\u624B\u30A2\u30A4\u30C6\u30E0.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[8].relativePath
+      value: "Systemwindow/\u30CF\u30FC\u30C8\u306E\u6249.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[9].relativePath
+      value: "Systemwindow/\u6BD2\u74F6.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[2].conversationId
       value: sample 1
       objectReference: {fileID: 0}
@@ -2962,6 +2974,18 @@ PrefabInstance:
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[6].conversationId
       value: "\u61D0\u4E2D\u96FB\u706F\u5165\u624B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[7].conversationId
+      value: "\u53D6\u3063\u624B\u30A2\u30A4\u30C6\u30E0"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[8].conversationId
+      value: "\u30CF\u30FC\u30C8\u306E\u6249"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[9].conversationId
+      value: "\u6BD2\u74F6"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

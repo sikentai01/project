@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 5
   itemName: "\u6BD2\u74F6"
-  description: "\u304A\u524D\u3082\u4E00\u7DD2"
+  description: "\u304A\u524D\u3082\u98F2\u3081"
   isConsumable: 0
   DebugOwned: 0
   effects:
