@@ -879,6 +879,7 @@ MonoBehaviour:
   requiredTag: Player
   key: 13
   autoStart: 0
+  requiredDirection: -1
 --- !u!61 &505244547
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -886,7 +887,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505244545}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1191,6 +1192,7 @@ MonoBehaviour:
   requiredTag: Player
   key: 101
   autoStart: 0
+  requiredDirection: -1
 --- !u!1 &1712887934
 GameObject:
   m_ObjectHideFlags: 0
