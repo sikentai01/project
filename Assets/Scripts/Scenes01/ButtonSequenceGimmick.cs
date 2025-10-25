@@ -5,6 +5,9 @@ using System.Collections;
 
 /// <summary>
 /// ボタンの順序クリックを制御するギミック (UI非依存)
+/// Stage 0: 未開始/リセット
+/// Stage 1: 起動済み (ボタン入力待ち)
+/// Stage > CorrectSequence.Count: 完了済み
 /// </summary>
 public class ButtonSequenceGimmick : GimmickBase
 {
@@ -21,26 +24,24 @@ public class ButtonSequenceGimmick : GimmickBase
     public GameObject objectToShow;
     [Tooltip("0.5秒後に非表示にするオブジェクト")]
     public GameObject objectToHideAfterDelay;
-    // ★★★ ここまで ★★★
-    [Header("フィードバック用会話ID")]
-    [Tooltip("正解時のフィードバック会話ID")]
-    public string correctFeedbackId = "SEQUENCE_CORRECT"; // ★ 新規/修正
-    [Tooltip("不正解時のフィードバック会話ID")]
-    public string incorrectFeedbackId = "SEQUENCE_INCORRECT"; // ★ 新規/修正
 
-    // ButtonSequenceGimmick.cs のフィールド部分に追加
+    // ★★★ リトライ/フィードバック用のフィールドを追加 ★★★
+    [Header("フィードバック設定")]
+    public string correctFeedbackId = "SEQUENCE_SUCCESS";
+    public string incorrectFeedbackId = "SEQUENCE_FAILURE";
 
     [Header("リトライ設定")]
-    [Tooltip("不正解時にリセットされるまでの許容回数。")]
-    public int maxRetriesBeforeReset = 3;
+    public int maxRetriesBeforeReset = 3; // 不正解時にリセットされるまでの許容回数
+    private int retryCount = 0; // 現在の不正解回数
+    // ★★★ ここまで ★★★
 
-    private int retryCount = 0; // ★★★ CS0103 エラーを解消 ★★★
 
     [Header("クリック可能なオブジェクト群")]
     public SequenceClickableObject[] clickableObjects = new SequenceClickableObject[4];
 
     private bool isPlayerNear = false;
     private List<int> inputSequence = new List<int>();
+
 
     void Awake()
     {
@@ -57,18 +58,6 @@ public class ButtonSequenceGimmick : GimmickBase
         {
             StartCoroutine(CheckForResetOnStart());
         }
-    }
-
-    // ButtonSequenceGimmick.cs のどこかにメソッドを追加
-
-    /// <summary>
-    /// 中央パネルにテキストを表示するヘルパーメソッド
-    /// (UI非依存版ではDebug.Logとして機能)
-    /// </summary>
-    public void DisplayMessage(string message) // ★★★ CS0103 エラーを解消 ★★★
-    {
-        // UIが削除されたため、コンソールにログを出力するロジックに置き換えます
-        Debug.Log($"[Sequence Message] {message}");
     }
 
     // =====================================================
@@ -107,22 +96,17 @@ public class ButtonSequenceGimmick : GimmickBase
     // =====================================================
     private IEnumerator CheckForResetOnStart()
     {
-        // SaveSystemが初期化されるのを待機
         yield return null;
 
-        // スロット1のデータを確認 (ここではスロット1を想定)
         var data = SaveSystem.LoadGame(1);
 
-        // もしセーブデータファイル自体が存在しない場合
         if (data == null)
         {
-            // Stage 0 への強制リセット
             if (this.currentStage != 0)
             {
                 this.currentStage = 0;
                 inputSequence.Clear();
 
-                // 見た目を初期状態 (非表示) に更新
                 UpdateObjectVisibility(false);
                 ApplyCompletionState(false);
 
@@ -180,26 +164,29 @@ public class ButtonSequenceGimmick : GimmickBase
     {
         if (currentStage >= correctSequence.Count + 1)
         {
-            Debug.Log("ギミックは既に解除されています。");
+            DisplayMessage("ギミックは既に解除されています。");
             return;
         }
 
+        // --- 初回起動/リセット時の処理 ---
         if (currentStage < 1)
         {
             this.currentStage = 1;
             inputSequence.Clear();
-            Debug.Log($"[Sequence] START: {initialMessage}");
+            DisplayMessage(initialMessage);
         }
         else
         {
-            Debug.Log($"[Sequence] {inputSequence.Count + 1} ステップ目。");
+            // 既に起動状態の場合、現在のステップのヒントを再表示
+            DisplayMessage($"ステップ {inputSequence.Count + 1} を入力してください。");
         }
 
         UpdateObjectVisibility(true); // オブジェクトを表示
     }
 
-    // ButtonSequenceGimmick.cs の OnButtonClick メソッドのみ
-
+    /// <summary>
+    /// SequenceClickableObjectがクリックで呼び出すメソッド
+    /// </summary>
     public void OnButtonClick(int clickedIndex)
     {
         if (!IsSequenceActive()) return;
@@ -213,20 +200,26 @@ public class ButtonSequenceGimmick : GimmickBase
             if (clickedIndex == expectedIndex)
             {
                 // --- 正解処理 ---
-                DisplayFeedbackText(correctFeedbackId); // ★ TEXTフィードバック
-                retryCount = 0;
-
+                retryCount = 0; // リトライカウントをリセット
                 inputSequence.Add(clickedIndex);
                 this.currentStage++;
-                // ... (省略: 完了チェック) ...
 
-                // 次のテキストを表示
-                DisplayMessage($"正解！ステップ {inputSequence.Count} / {correctSequence.Count} を入力してください。");
+                Debug.Log($"[Sequence] 正解！ステップ {inputSequence.Count}/{correctSequence.Count}");
+
+                if (this.currentStage >= correctSequence.Count + 1)
+                {
+                    // 最終ステップで完全正解
+                    DisplayMessage(correctFeedbackId);
+                    CompleteGimmick();
+                    return;
+                }
+
+                // 次のテキストを表示 (ステップ継続)
+                DisplayMessage($"正解！ステップ {inputSequence.Count + 1} を入力してください。");
             }
             else
             {
                 // --- 不正解処理 (リトライ判定) ---
-                DisplayFeedbackText(incorrectFeedbackId); // ★ TEXTフィードバック
                 retryCount++;
 
                 if (retryCount >= maxRetriesBeforeReset)
@@ -235,27 +228,14 @@ public class ButtonSequenceGimmick : GimmickBase
                     inputSequence.Clear();
                     this.currentStage = 1;
                     retryCount = 0;
-                    DisplayMessage("不正解。リトライ回数を超過したためリセットしました。");
+                    DisplayMessage(incorrectFeedbackId); // 不正解テキスト表示
                 }
                 else
                 {
-                    // リトライ回数内のため、ギミックを継続
+                    // リトライ回数内のため、ギミックを継続（シーケンスの状態は維持）
                     DisplayMessage($"不正解。リトライ残り {maxRetriesBeforeReset - retryCount} 回。");
                 }
             }
-        }
-    }
-
-    /// <summary>
-    /// フィードバック用の短い会話を表示する (DialogueCoreを使用)
-    /// </summary>
-    private void DisplayFeedbackText(string conversationId)
-    {
-        if (ConversationHub.Instance != null && !string.IsNullOrEmpty(conversationId))
-        {
-            ConversationHub.Instance.Fire(conversationId);
-            // ※ DialogueCoreのOnConversationEndedイベントが、メインのパズルテキスト表示を
-            //   停止させないように、Coreのロジックによっては調整が必要です。
         }
     }
 
@@ -342,35 +322,21 @@ public class ButtonSequenceGimmick : GimmickBase
         return currentStage >= 1 && currentStage < correctSequence.Count + 1;
     }
 
+    /// <summary>
+    /// 中央パネルにテキストを表示するヘルパーメソッド (Debug.Logに置き換え)
+    /// </summary>
+    public void DisplayMessage(string message)
+    {
+        Debug.Log($"[Sequence Message] {message}");
+    }
+
 
     public override void LoadProgress(int stage)
     {
-        // 1. GimmickBaseの復元ロジックを呼び出し
         base.LoadProgress(stage);
 
-        // 2. ロード後の復元処理の準備
         inputSequence.Clear();
 
-        // ★★★ 修正箇所: currentStage == 0 の場合の処理を追加 ★★★
-
-        if (currentStage == 0)
-        {
-            // currentStageが0の場合、すべて初期状態に戻す
-            inputSequence.Clear();
-
-            // 見た目を初期状態 (非表示) に設定
-            UpdateObjectVisibility(false);
-            ApplyCompletionState(false);
-
-            Debug.Log($"[Sequence] ロード完了: Stage 0 状態に初期化しました。");
-
-            InitializeClickableObjects(); // 参照設定を保証
-            return; // 処理終了
-        }
-
-        // --- Stage 1以上のセーブデータがある場合の処理 ---
-
-        // currentStageが1以上の場合、インプットシーケンスを復元
         if (currentStage > 0 && currentStage <= correctSequence.Count)
         {
             inputSequence = Enumerable.Repeat(0, currentStage - 1).ToList();
@@ -378,14 +344,9 @@ public class ButtonSequenceGimmick : GimmickBase
 
         bool completed = currentStage >= correctSequence.Count + 1;
 
-        // ★★★ 追加: retryCountはロード時、常に初期化する ★★★
-        this.retryCount = 0;
-
         // ロード後に状態を反映
         UpdateObjectVisibility(!completed);
         ApplyCompletionState(completed);
         InitializeClickableObjects();
-
-        Debug.Log($"[Sequence] ロード完了: セーブ値 {stage} を復元しました。");
     }
 }
