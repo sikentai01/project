@@ -160,6 +160,9 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
 
         EventSystem.current.SetSelectedGameObject(null);
+
+        Input.ResetInputAxes();
+
         Debug.Log("ƒQ[ƒ€ÄŠJ");
     }
 
