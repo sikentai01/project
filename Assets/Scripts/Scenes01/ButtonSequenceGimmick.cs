@@ -196,11 +196,19 @@ public class ButtonSequenceGimmick : GimmickBase
         if (currentStep < correctSequence.Count)
         {
             int expectedIndex = correctSequence[currentStep];
+            if (retryCount >= maxRetriesBeforeReset)
+            {
+                // リトライ回数を超過したため、シーケンスをリセット
+                inputSequence.Clear();
+                this.currentStage = 1;
+                retryCount = 0;
+                DisplayMessage(incorrectFeedbackId); // 不正解テキスト表示
+            }
 
             if (clickedIndex == expectedIndex)
             {
                 // --- 正解処理 ---
-                retryCount = 0; // リトライカウントをリセット
+                retryCount++; // リトライカウントをリセット
                 inputSequence.Add(clickedIndex);
                 this.currentStage++;
 
@@ -221,20 +229,7 @@ public class ButtonSequenceGimmick : GimmickBase
             {
                 // --- 不正解処理 (リトライ判定) ---
                 retryCount++;
-
-                if (retryCount >= maxRetriesBeforeReset)
-                {
-                    // リトライ回数を超過したため、シーケンスをリセット
-                    inputSequence.Clear();
-                    this.currentStage = 1;
-                    retryCount = 0;
-                    DisplayMessage(incorrectFeedbackId); // 不正解テキスト表示
-                }
-                else
-                {
-                    // リトライ回数内のため、ギミックを継続（シーケンスの状態は維持）
-                    DisplayMessage($"不正解。リトライ残り {maxRetriesBeforeReset - retryCount} 回。");
-                }
+                Debug.Log("ドンマイ");
             }
         }
     }
