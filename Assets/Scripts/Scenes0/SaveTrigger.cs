@@ -49,6 +49,7 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
         {
             if (oneTimeOnly && alreadyTriggered) return;
 
+            if (PauseMenu.isPaused) return;
             if (requiredDirection == -1 || player.GetDirection() == requiredDirection)
                 StartCoroutine(EventFlow());
             else
@@ -74,6 +75,7 @@ public class SaveTrigger : MonoBehaviour, ISceneInitializable
             Debug.Log("[SaveTrigger] セーブスロットが閉じられました。");
         }
         PauseMenu.blockMenu = true;
+        if (player != null) player.enabled = false;
         player.SetDirection(0);
         SoundManager.Instance?.PlayBGM(eventBGM);
 
