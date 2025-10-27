@@ -2929,7 +2929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.size
-      value: 22
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[2].relativePath
@@ -3012,6 +3012,26 @@ PrefabInstance:
       value: "SystemWindow/\u9ED2\u767E\u5408.txt"
       objectReference: {fileID: 0}
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[22].relativePath
+      value: "SystemWindow/\u3007\u30E9\u30F3\u30D7.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[23].relativePath
+      value: "SystemWindow/\u25B3\u30E9\u30F3\u30D7.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[24].relativePath
+      value: "SystemWindow/\u25A1\u30E9\u30F3\u30D7.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[25].relativePath
+      value: "SystemWindow/\xD7\u30E9\u30F3\u30D7.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[26].relativePath
+      value: "SystemWindow/\u3007\u30E9\u30F3\u30D7.txt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[2].conversationId
       value: sample 1
       objectReference: {fileID: 0}
@@ -3090,6 +3110,26 @@ PrefabInstance:
     - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
       propertyPath: registry.Array.data[21].conversationId
       value: "\u9ED2\u767E\u5408"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[22].conversationId
+      value: "\u3007\u30E9\u30F3\u30D7"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[23].conversationId
+      value: "\u25B3\u30E9\u30F3\u30D7"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[24].conversationId
+      value: "\u25A1\u30E9\u30F3\u30D7"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[25].conversationId
+      value: "\xD7\u30E9\u30F3\u30D7"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091786927703599162, guid: 0fc957a468ee25046a730e641621f6ff, type: 3}
+      propertyPath: registry.Array.data[26].conversationId
+      value: "\u3007\u30E9\u30F3\u30D7"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
