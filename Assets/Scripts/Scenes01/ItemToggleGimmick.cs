@@ -62,6 +62,7 @@ public class ItemToggleGimmick : GimmickBase
 
     private void Update()
     {
+        if (PauseMenu.isPaused) return;
         // 設置状態 (Stage 1) でプレイヤーが範囲内にいる場合に Enter キー入力を検出
         if (currentStage == 1 && IsPlayerNear && Input.GetKeyDown(KeyCode.Return))
         {
